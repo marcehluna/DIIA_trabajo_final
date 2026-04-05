@@ -1,0 +1,9 @@
+# Núcleo PoC (Gradio + RAG léxico + stub LLM)
+gradio>=4.44.0
+pypdf>=4.0.0
+numpy>=1.24.0
+openai>=1.40.0
+
+# Opcional: REGATAS_EMBEDDING_BACKEND=local
+# sentence-transformers>=2.2.0
+# torch  # según tu plataforma; en CPU Spaces suele instalarse con la imagen base
