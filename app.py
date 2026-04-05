@@ -16,10 +16,14 @@ if str(ROOT) not in sys.path:
 
 import gradio as gr
 
+from regatas_assistant import __version__
 from regatas_assistant.config import Settings, is_huggingface_space
 from regatas_assistant.pipeline import ProtestPipeline
 
 _pipeline: ProtestPipeline | None = None
+
+# Banner panorámico del encabezado (repo / Space)
+_HERO_IMAGE = ROOT / "navegacion-vela-regata-2.jpg"
 
 # Fondo celeste claro; los cuadros de relato se fuerzan a blanco vía .relato-input
 _PAGE_CSS = """
@@ -35,6 +39,27 @@ body {
 }
 main.gradio-main {
     background-color: #d8eef9 !important;
+}
+.app-header {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.35rem;
+}
+.app-hero-banner {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 28px rgba(15, 45, 75, 0.14);
+    margin-bottom: 0.65rem !important;
+}
+.app-hero-banner img {
+    width: 100% !important;
+    max-height: 200px !important;
+    min-height: 140px !important;
+    height: auto !important;
+    object-fit: cover !important;
+    object-position: 18% center !important;
+    display: block !important;
 }
 .app-title-wrap {
     text-align: center;
@@ -60,6 +85,36 @@ main.gradio-main {
 .relato-input .wrap,
 .relato-input .block {
     background-color: #ffffff !important;
+}
+.app-version {
+    text-align: center;
+    font-size: 0.7rem;
+    line-height: 1.4;
+    color: rgba(45, 65, 88, 0.45);
+    margin: 0.35rem 0 0 0;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+    user-select: none;
+}
+.relato-col-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0 0 0.65rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+}
+.relato-col-heading .red-pennant-svg {
+    flex-shrink: 0;
+    display: block;
+}
+.relato-col-body {
+    margin: 0;
+    line-height: 1.55;
+}
+.relato-col-body strong {
+    font-weight: 600;
 }
 """
 
@@ -106,11 +161,24 @@ def build_app() -> gr.Blocks:
         theme=gr.themes.Soft(),
         css=_PAGE_CSS,
     ) as demo:
-        gr.HTML(
-            '<div class="app-title-wrap">'
-            "<h1>Asistente de protestas en regatas (PoC)</h1>"
-            "</div>"
-        )
+        with gr.Column(elem_classes=["app-header"]):
+            if _HERO_IMAGE.is_file():
+                gr.Image(
+                    value=str(_HERO_IMAGE),
+                    type="filepath",
+                    label="Regatas a vela — imagen decorativa del encabezado",
+                    show_label=False,
+                    interactive=False,
+                    container=False,
+                    buttons=[],
+                    elem_classes=["app-hero-banner"],
+                    height=200,
+                )
+            gr.HTML(
+                '<div class="app-title-wrap">'
+                "<h1>Asistente de protestas en regatas (PoC)</h1>"
+                "</div>"
+            )
         gr.Markdown(
             "Esta herramienta apoya la **resolución de protestas en regatas por equipos (Team Racing)** "
             "a partir de relatos en lenguaje cotidiano. El motor localiza pasajes relevantes del "
@@ -126,11 +194,21 @@ def build_app() -> gr.Blocks:
         gr.Markdown(_settings_banner(), elem_classes=["app-settings-banner"])
         with gr.Row(equal_height=True):
             with gr.Column(scale=1):
-                gr.Markdown(
-                    "**Columna izquierda — barco que protesta**\n\n"
-                    "Quien inicia la protesta cuenta **qué vio y qué hizo cada barco**, "
+                gr.HTML(
+                    '<div class="relato-col-intro">'
+                    '<p class="relato-col-heading">'
+                    '<svg class="red-pennant-svg" xmlns="http://www.w3.org/2000/svg" '
+                    'viewBox="0 0 28 36" width="20" height="26" role="img" '
+                    'aria-label="Banderín rojo de protesta">'
+                    '<rect x="1" y="2" width="2.5" height="32" fill="#4a3728" rx="0.5"/>'
+                    '<path d="M6 5 L26 18 L6 31 Z" fill="#d61f2a"/>'
+                    "</svg>"
+                    "<span>Barco que protesta</span>"
+                    "</p>"
+                    "<p class=\"relato-col-body\">Quien inicia la protesta cuenta <strong>qué vio y qué hizo cada barco</strong>, "
                     "en el orden que recuerde (pre-salida, ceñida, popa, boya, contacto, etc.). "
-                    "Mientras más preciso sea el relato (amuras, barlovento/sotavento, quién orzó o panó), mejor será el análisis."
+                    "Mientras más preciso sea el relato (amuras, barlovento/sotavento, quién orzó o panó), mejor será el análisis.</p>"
+                    "</div>"
                 )
                 relato_p = gr.Textbox(
                     label="Relato",
@@ -142,7 +220,7 @@ def build_app() -> gr.Blocks:
                 )
             with gr.Column(scale=1):
                 gr.Markdown(
-                    "**Columna derecha — barco protestado (opcional)**\n\n"
+                    "**Barco Protestado**\n\n"
                     "Si tenés la **versión del otro equipo**, pegala aquí. "
                     "Si no hay segunda versión, podés dejar este cuadro vacío: el sistema trabajará solo con el relato de la protesta."
                 )
@@ -166,6 +244,9 @@ def build_app() -> gr.Blocks:
             "El archivo `.env.example` del repositorio resume el resto de variables.",
             elem_classes=["app-footer-note"],
         )
+        gr.HTML(
+            f'<p class="app-version" aria-label="Versión {__version__}">v{__version__}</p>'
+        )
     return demo
 
 
@@ -174,4 +255,8 @@ demo = build_app()
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", "7860"))
-    demo.launch(server_name="0.0.0.0", server_port=port)
+    demo.launch(
+        server_name="0.0.0.0",
+        server_port=port,
+        allowed_paths=[str(ROOT)],
+    )
