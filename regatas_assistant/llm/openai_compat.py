@@ -18,9 +18,16 @@ class OpenAIChatClient(LLMClient):
         )
         self._model = settings.openai_llm_model
 
-    def complete(self, system_prompt: str, user_content: str) -> str:
+    def complete(
+        self,
+        system_prompt: str,
+        user_content: str,
+        *,
+        model: str | None = None,
+    ) -> str:
+        use_model = model if model else self._model
         r = self._client.chat.completions.create(
-            model=self._model,
+            model=use_model,
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_content},

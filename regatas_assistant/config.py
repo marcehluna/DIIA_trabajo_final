@@ -35,6 +35,8 @@ class Settings:
     openai_api_key: str | None = None
     openai_base_url: str | None = None
     openai_llm_model: str = "gpt-4o-mini"
+    # Lista PoC para la UI (comparar modelos); sobreescribible con REGATAS_LLM_MODEL_CHOICES
+    llm_model_choices: tuple[str, ...] = ("gpt-4o-mini", "gpt-4o")
     openai_embedding_model: str = "text-embedding-3-small"
     local_embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     # stub | openai
@@ -60,6 +62,16 @@ class Settings:
         cache_raw = os.environ.get("REGATAS_INDEX_CACHE_DIR")
         index_cache_dir = Path(cache_raw).resolve() if cache_raw else None
 
+        choices_raw = os.environ.get("REGATAS_LLM_MODEL_CHOICES", "").strip()
+        if choices_raw:
+            llm_model_choices = tuple(
+                x.strip() for x in choices_raw.split(",") if x.strip()
+            )
+            if not llm_model_choices:
+                llm_model_choices = ("gpt-4o-mini", "gpt-4o")
+        else:
+            llm_model_choices = ("gpt-4o-mini", "gpt-4o")
+
         return cls(
             base_dir=base,
             corpus_filenames=corpus_filenames,
@@ -72,6 +84,7 @@ class Settings:
             openai_api_key=os.environ.get("OPENAI_API_KEY"),
             openai_base_url=os.environ.get("OPENAI_BASE_URL"),
             openai_llm_model=os.environ.get("OPENAI_LLM_MODEL", "gpt-4o-mini"),
+            llm_model_choices=llm_model_choices,
             openai_embedding_model=os.environ.get(
                 "OPENAI_EMBEDDING_MODEL", "text-embedding-3-small"
             ),

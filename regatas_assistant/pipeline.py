@@ -52,7 +52,13 @@ class ProtestPipeline:
     def from_env(cls) -> ProtestPipeline:
         return cls.from_settings(Settings.from_env())
 
-    def analyze(self, relato_protesta: str, relato_protestado: str | None) -> str:
+    def analyze(
+        self,
+        relato_protesta: str,
+        relato_protestado: str | None,
+        *,
+        llm_model: str | None = None,
+    ) -> str:
         query = _compose_query(relato_protesta, relato_protestado)
         retrieved = self.retriever.retrieve(query)
         context = format_chunks_for_prompt(retrieved)
@@ -66,4 +72,18 @@ class ProtestPipeline:
             relato_protesta=relato_protesta.strip(),
             relato_protestado=protestado_block,
         )
-        return self.llm.complete(SYSTEM_PROMPT, user_content)
+
+        model = (llm_model or "").strip() or self.settings.openai_llm_model
+        if not model:
+            return "**Error:** elegí un modelo en la barra lateral (PoC)."
+
+        if isinstance(self.llm, StubLLMClient):
+            return self.llm.complete(SYSTEM_PROMPT, user_content)
+
+        if not isinstance(self.llm, OpenAIChatClient):
+            return self.llm.complete(SYSTEM_PROMPT, user_content)
+
+        try:
+            return self.llm.complete(SYSTEM_PROMPT, user_content, model=model)
+        except Exception as e:
+            return f"**Error al llamar al modelo**\n\n```\n{e!r}\n```"
