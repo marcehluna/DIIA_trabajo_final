@@ -174,6 +174,7 @@ def analyze(
     relato_protesta: str,
     relato_protestado: str,
     modelo_llm: str | None,
+    idioma_system_prompt: str | None,
 ) -> str:
     if relato_protesta is None or not str(relato_protesta).strip():
         return "**Error:** el relato del **barco que protesta** es obligatorio."
@@ -182,10 +183,12 @@ def analyze(
         second = relato_protestado if relato_protestado else ""
         second = second.strip() or None
         m = (modelo_llm or "").strip() or None
+        spl = (idioma_system_prompt or "").strip() or None
         return p.analyze(
             str(relato_protesta).strip(),
             second,
             llm_model=m,
+            system_prompt_lang=spl,
         )
     except FileNotFoundError as e:
         return f"**Falta corpus**\n\n{e}\n\nSubí los PDF del Call Book y Case Book a la raíz del proyecto o ajustá `REGATAS_BASE_DIR`."
@@ -199,6 +202,7 @@ def _settings_banner() -> str:
         "Estado actual del motor (útil para depuración y para saber si ya configuraste APIs o modelos remotos):",
         f"- **Recuperación de contexto:** modo `{s.embedding_backend}` · se muestran hasta **{s.retrieve_top_k}** fragmentos del corpus en cada consulta.",
         f"- **Modelo de lenguaje:** backend `{s.llm_backend}`.",
+        f"- **System prompt (default env):** idioma `{s.system_prompt_language}` (`REGATAS_SYSTEM_PROMPT_LANG=es|en`). El informe sigue redactándose en español.",
     ]
     if s.llm_backend == "openai":
         lines.append(f"- **Modelo de chat (default env):** `{s.openai_llm_model}`.")
@@ -214,6 +218,12 @@ def _settings_banner() -> str:
 
 def build_app() -> gr.Blocks:
     poc_choices, poc_default = _ui_llm_model_choices()
+    _s0 = Settings.from_env()
+    _spl_def = (
+        _s0.system_prompt_language
+        if _s0.system_prompt_language in ("es", "en")
+        else "es"
+    )
     # css/theme en Blocks: el `demo` exportado conserva el estilo si el host llama a launch() sin kwargs (p. ej. HF Spaces).
     with gr.Blocks(
         title="Asistente de protestas — Team Racing (PoC)",
@@ -259,12 +269,20 @@ def build_app() -> gr.Blocks:
                     "Elegí **un solo** modelo por análisis. El mismo contexto RAG se usa siempre; "
                     "solo cambia el modelo que redacta el informe.\n\n"
                     "Con `REGATAS_LLM_BACKEND=stub` la elección no afecta la respuesta de demostración. "
-                    "Para **Ollama** u otro endpoint compatible, configurá los nombres en `REGATAS_LLM_MODEL_CHOICES`.",
+                    "Para **Ollama** u otro endpoint compatible, configurá los nombres en `REGATAS_LLM_MODEL_CHOICES`.\n\n"
+                    "El **system prompt** puede ir en español o en inglés; el **informe generado** sigue en español "
+                    "(títulos de sección incluidos). El valor por defecto lo define `REGATAS_SYSTEM_PROMPT_LANG`.",
                 )
                 model_poc = gr.Radio(
                     choices=poc_choices,
                     value=poc_default if poc_default else None,
                     label="Modelo activo",
+                    show_label=True,
+                )
+                lang_system_poc = gr.Radio(
+                    choices=[("Español", "es"), ("English", "en")],
+                    value=_spl_def,
+                    label="Idioma del system prompt",
                     show_label=True,
                 )
             with gr.Column(scale=1, elem_classes=["app-main-tool"]):
@@ -312,7 +330,7 @@ def build_app() -> gr.Blocks:
                 out = gr.Markdown()
         run.click(
             fn=analyze,
-            inputs=[relato_p, relato_d, model_poc],
+            inputs=[relato_p, relato_d, model_poc, lang_system_poc],
             outputs=out,
         )
         gr.Markdown(
@@ -322,6 +340,8 @@ def build_app() -> gr.Blocks:
             "`REGATAS_LLM_BACKEND` (`stub` para pruebas sin API, `openai` para un modelo vía API compatible). "
             "Los modelos de la barra lateral se arman con `REGATAS_LLM_MODEL_CHOICES` (coma-separada) "
             "y siempre incluyen `OPENAI_LLM_MODEL`. "
+            "`REGATAS_SYSTEM_PROMPT_LANG` (`es` o `en`) fija el idioma por defecto del system prompt; "
+            "en pantalla podés cambiarlo por consulta. "
             "En **Hugging Face Spaces**, definí esos valores y la clave `OPENAI_API_KEY` (u otras) en *Secrets*. "
             "El archivo `.env.example` del repositorio resume el resto de variables.",
             elem_classes=["app-footer-note"],

@@ -41,6 +41,8 @@ class Settings:
     local_embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     # stub | openai
     llm_backend: str = "stub"
+    # es | en — idioma del system prompt (plantilla); el informe sigue en español por diseño
+    system_prompt_language: str = "es"
     index_cache_dir: Path | None = None
 
     @property
@@ -72,6 +74,13 @@ class Settings:
         else:
             llm_model_choices = ("gpt-4o-mini", "gpt-4o")
 
+        spl_raw = os.environ.get("REGATAS_SYSTEM_PROMPT_LANG", "es").strip().lower()
+        system_prompt_language = (
+            "en"
+            if spl_raw in ("en", "english", "ingles", "inglés")
+            else "es"
+        )
+
         return cls(
             base_dir=base,
             corpus_filenames=corpus_filenames,
@@ -93,6 +102,7 @@ class Settings:
                 "sentence-transformers/all-MiniLM-L6-v2",
             ),
             llm_backend=os.environ.get("REGATAS_LLM_BACKEND", "stub").lower(),
+            system_prompt_language=system_prompt_language,
             index_cache_dir=index_cache_dir,
         )
 
