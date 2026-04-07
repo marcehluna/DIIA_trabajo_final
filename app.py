@@ -18,6 +18,10 @@ import gradio as gr
 
 from regatas_assistant import __version__
 from regatas_assistant.config import Settings, is_huggingface_space
+from regatas_assistant.ollama_models import (
+    default_choice as ollama_default_choice,
+    list_installed_ollama_models,
+)
 from regatas_assistant.pipeline import ProtestPipeline
 
 _pipeline: ProtestPipeline | None = None
@@ -236,6 +240,7 @@ def analyze(
     relato_protesta: str,
     relato_protestado: str,
     idioma_system_prompt: str | None,
+    ollama_model: str | None,
 ) -> str:
     if relato_protesta is None or not str(relato_protesta).strip():
         return "**Error:** el relato del **barco que protesta** es obligatorio."
@@ -244,10 +249,16 @@ def analyze(
         second = relato_protestado if relato_protestado else ""
         second = second.strip() or None
         spl = (idioma_system_prompt or "").strip() or None
+        s = Settings.from_env()
+        llm_model: str | None = None
+        if s.llm_backend == "openai":
+            om = (ollama_model or "").strip()
+            llm_model = om or None
         return p.analyze(
             str(relato_protesta).strip(),
             second,
             system_prompt_lang=spl,
+            llm_model=llm_model,
         )
     except FileNotFoundError as e:
         return f"**Falta corpus**\n\n{e}\n\nSubí los PDF del Call Book y Case Book a la raíz del proyecto o ajustá `REGATAS_BASE_DIR`."
@@ -274,6 +285,43 @@ def _settings_banner() -> str:
     return "\n".join(lines)
 
 
+def _ollama_dropdown_updates() -> tuple[dict, dict]:
+    """Actualiza desplegable de modelos y mensaje de ayuda según Ollama y el entorno."""
+    s = Settings.from_env()
+    if s.llm_backend != "openai":
+        return (
+            gr.update(visible=False),
+            gr.update(value="", visible=False),
+        )
+    installed = list_installed_ollama_models(s.llm_base_url)
+    if installed:
+        value = ollama_default_choice(installed, s.llm_model)
+        return (
+            gr.update(
+                choices=installed,
+                value=value,
+                visible=True,
+                interactive=True,
+            ),
+            gr.update(value="", visible=True),
+        )
+    hint = (
+        "*No se pudo obtener la lista de modelos desde Ollama* (`/api/tags`). "
+        "Comprobá que el servicio esté en marcha y que `REGATAS_LLM_BASE_URL` apunte a la API compatible "
+        "(p. ej. `http://127.0.0.1:11434/v1`). Mientras tanto se usa el modelo del entorno "
+        f"`REGATAS_LLM_MODEL` = `{s.llm_model}`."
+    )
+    return (
+        gr.update(
+            choices=[s.llm_model],
+            value=s.llm_model,
+            visible=True,
+            interactive=True,
+        ),
+        gr.update(value=hint, visible=True),
+    )
+
+
 def build_app() -> gr.Blocks:
     _s0 = Settings.from_env()
     _spl_def = (
@@ -281,6 +329,29 @@ def build_app() -> gr.Blocks:
         if _s0.system_prompt_language in ("es", "en")
         else "es"
     )
+    _ollama_installed = (
+        list_installed_ollama_models(_s0.llm_base_url)
+        if _s0.llm_backend == "openai"
+        else []
+    )
+    _ollama_choices = (
+        _ollama_installed
+        if _ollama_installed
+        else ([_s0.llm_model] if _s0.llm_backend == "openai" else [])
+    )
+    _ollama_value = (
+        ollama_default_choice(_ollama_installed, _s0.llm_model)
+        if _ollama_installed
+        else _s0.llm_model
+    )
+    _ollama_show = _s0.llm_backend == "openai"
+    _ollama_hint_init = ""
+    if _ollama_show and not _ollama_installed:
+        _ollama_hint_init = (
+            "*No se pudo obtener la lista de modelos desde Ollama* (`/api/tags`). "
+            "Comprobá que el servicio esté en marcha. Mientras tanto se usa el modelo del entorno "
+            f"`REGATAS_LLM_MODEL` = `{_s0.llm_model}`."
+        )
     # css/theme en Blocks: el `demo` exportado conserva el estilo si el host llama a launch() sin kwargs (p. ej. HF Spaces).
     with gr.Blocks(
         title="Asistente de protestas — Team Racing (PoC)",
@@ -309,10 +380,34 @@ def build_app() -> gr.Blocks:
             with gr.Column(scale=0, min_width=200, elem_classes=["app-model-sidebar"]):
                 gr.Markdown(
                     "**Motor de LLM**\n\n"
-                    "En local se usa **Ollama** con **Llama 3** (`ollama pull llama3`), API en "
-                    "`http://127.0.0.1:11434/v1`. Ajustá modelo y URL con `REGATAS_LLM_MODEL` y `REGATAS_LLM_BASE_URL` "
-                    "(o las variables `OPENAI_*` equivalentes, aún soportadas).\n\n"
-                    "Con `REGATAS_LLM_BACKEND=stub` verás solo una respuesta de demostración.\n\n"
+                    "En local, con `REGATAS_LLM_BACKEND=openai`, la app habla con **Ollama** por la API compatible "
+                    "(`http://127.0.0.1:11434/v1` por defecto). El **modelo activo** lo elegís del desplegable: "
+                    "solo aparecen los que Ollama tiene instalados (`ollama list`). "
+                    "La URL y el modelo por defecto del entorno siguen en `REGATAS_LLM_BASE_URL` y `REGATAS_LLM_MODEL` "
+                    "(o `OPENAI_*`).\n\n"
+                    "Con `REGATAS_LLM_BACKEND=stub` verás solo una respuesta de demostración.",
+                    elem_classes=["app-sidebar-motor"],
+                )
+                ollama_models_hint = gr.Markdown(
+                    value=_ollama_hint_init,
+                    visible=_ollama_show,
+                    elem_classes=["app-ollama-hint"],
+                )
+                ollama_model_dd = gr.Dropdown(
+                    choices=_ollama_choices if _ollama_choices else [_s0.llm_model],
+                    value=_ollama_value,
+                    label="Modelo Ollama (local)",
+                    show_label=True,
+                    visible=_ollama_show,
+                    interactive=_ollama_show,
+                    allow_custom_value=False,
+                )
+                refresh_ollama = gr.Button(
+                    "Actualizar lista de modelos",
+                    visible=_ollama_show,
+                    size="sm",
+                )
+                gr.Markdown(
                     "El **system prompt** puede ir en español o en inglés; el **informe** sigue en español. "
                     "Default: `REGATAS_SYSTEM_PROMPT_LANG`.",
                     elem_classes=["app-sidebar-motor"],
@@ -331,7 +426,7 @@ def build_app() -> gr.Blocks:
                     "`REGATAS_LLM_MODEL=llama3`, `REGATAS_LLM_API_KEY=ollama`). Las variables `OPENAI_*` siguen funcionando. "
                     "Usá `stub` para demo sin LLM. "
                     "En **Hugging Face Spaces** el default es `stub` salvo que configures API remota y secretos. "
-                    "`REGATAS_SYSTEM_PROMPT_LANG` (`es`/`en`) y el selector de arriba ajustan el idioma del system prompt. "
+                    "`REGATAS_SYSTEM_PROMPT_LANG` (`es`/`en`) y el selector de idioma en la barra lateral ajustan el system prompt. "
                     "El archivo `.env.example` del repositorio resume el resto de variables.",
                     elem_classes=["app-footer-note"],
                 )
@@ -396,8 +491,16 @@ def build_app() -> gr.Blocks:
                     out = gr.Markdown()
         run.click(
             fn=analyze,
-            inputs=[relato_p, relato_d, lang_system_poc],
+            inputs=[relato_p, relato_d, lang_system_poc, ollama_model_dd],
             outputs=out,
+        )
+        refresh_ollama.click(
+            fn=_ollama_dropdown_updates,
+            outputs=[ollama_model_dd, ollama_models_hint],
+        )
+        demo.load(
+            fn=_ollama_dropdown_updates,
+            outputs=[ollama_model_dd, ollama_models_hint],
         )
         gr.HTML(
             f'<p class="app-version" aria-label="Versión {__version__}">v{__version__}</p>'

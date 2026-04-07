@@ -62,6 +62,7 @@ class ProtestPipeline:
         relato_protestado: str | None,
         *,
         system_prompt_lang: str | None = None,
+        llm_model: str | None = None,
     ) -> str:
         query = _compose_query(relato_protesta, relato_protestado)
         retrieved = self.retriever.retrieve(query)
@@ -92,6 +93,8 @@ class ProtestPipeline:
             return self.llm.complete(system_prompt, user_content)
 
         try:
-            return self.llm.complete(system_prompt, user_content)
+            return self.llm.complete(
+                system_prompt, user_content, model=llm_model
+            )
         except Exception as e:
             return f"**Error al llamar al modelo**\n\n```\n{e!r}\n```"
