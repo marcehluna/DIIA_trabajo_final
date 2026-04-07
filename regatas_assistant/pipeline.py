@@ -61,7 +61,6 @@ class ProtestPipeline:
         relato_protesta: str,
         relato_protestado: str | None,
         *,
-        llm_model: str | None = None,
         system_prompt_lang: str | None = None,
     ) -> str:
         query = _compose_query(relato_protesta, relato_protestado)
@@ -86,10 +85,6 @@ class ProtestPipeline:
         )
         system_prompt = get_system_prompt(lang)
 
-        model = (llm_model or "").strip() or self.settings.openai_llm_model
-        if not model:
-            return "**Error:** elegí un modelo en la barra lateral (PoC)."
-
         if isinstance(self.llm, StubLLMClient):
             return self.llm.complete(system_prompt, user_content)
 
@@ -97,6 +92,6 @@ class ProtestPipeline:
             return self.llm.complete(system_prompt, user_content)
 
         try:
-            return self.llm.complete(system_prompt, user_content, model=model)
+            return self.llm.complete(system_prompt, user_content)
         except Exception as e:
             return f"**Error al llamar al modelo**\n\n```\n{e!r}\n```"

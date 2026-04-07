@@ -99,9 +99,10 @@ def build_retriever(settings: Settings, chunks: list[TextChunk]) -> BaseRetrieve
             embed_corpus_openai,
         )
 
-        if not settings.openai_api_key:
+        if not settings.llm_api_key:
             raise ValueError(
-                "REGATAS_EMBEDDING_BACKEND=openai requiere OPENAI_API_KEY en el entorno."
+                "REGATAS_EMBEDDING_BACKEND=openai requiere REGATAS_LLM_API_KEY en el entorno "
+                "(o OPENAI_API_KEY por compatibilidad)."
             )
         enc = OpenAIEmbeddingEncoder(settings)
         matrix = embed_corpus_openai(enc, [c.text for c in chunks])

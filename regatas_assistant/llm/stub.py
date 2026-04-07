@@ -7,13 +7,7 @@ from regatas_assistant.prompts import STUB_LLM_NOTICE
 
 
 class StubLLMClient(LLMClient):
-    def complete(
-        self,
-        system_prompt: str,
-        user_content: str,
-        *,
-        model: str | None = None,
-    ) -> str:
+    def complete(self, system_prompt: str, user_content: str) -> str:
         preview = user_content.strip()
         if len(preview) > 1200:
             preview = preview[:1200] + "\n\n[… contenido truncado en vista previa del stub …]"
@@ -30,7 +24,8 @@ class StubLLMClient(LLMClient):
             "(Modo stub) Sin modelo activo no se aplica cadena de razonamiento sobre reglas "
             "y Calls.\n\n"
             "## 4. Dictamen de resolución\n\n"
-            "(Modo stub) Sin decisión sugerida. Configurá `REGATAS_LLM_BACKEND=openai` y credenciales.\n\n"
+            "(Modo stub) Sin decisión sugerida. En local: Ollama + `REGATAS_LLM_BACKEND=openai` "
+            "(por defecto ya apunta a Llama 3 vía API compatible).\n\n"
             "### Vista previa del prompt de usuario (referencia)\n\n"
             f"```\n{preview}\n```"
             + STUB_LLM_NOTICE

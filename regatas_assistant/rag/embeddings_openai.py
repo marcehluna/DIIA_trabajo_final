@@ -1,4 +1,4 @@
-"""Embeddings vía API compatible con OpenAI."""
+"""Embeddings vía API HTTP compatible con el SDK `openai`."""
 
 from __future__ import annotations
 
@@ -12,10 +12,10 @@ class OpenAIEmbeddingEncoder:
         from openai import OpenAI
 
         self._client = OpenAI(
-            api_key=settings.openai_api_key,
-            base_url=settings.openai_base_url or None,
+            api_key=settings.llm_api_key,
+            base_url=settings.llm_base_url or None,
         )
-        self._model = settings.openai_embedding_model
+        self._model = settings.embedding_api_model
 
     def embed_one(self, text: str) -> list[float]:
         r = self._client.embeddings.create(model=self._model, input=text[:8000])

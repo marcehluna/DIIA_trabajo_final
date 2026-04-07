@@ -6,6 +6,12 @@ import os
 from dataclasses import dataclass, field
 from pathlib import Path
 
+# API de chat/embeddings compatible con el esquema OpenAI (p. ej. Ollama, vLLM, proveedores cloud)
+DEFAULT_LLM_BASE_URL = "http://127.0.0.1:11434/v1"
+DEFAULT_LLM_API_KEY = "ollama"
+DEFAULT_LLM_MODEL = "llama3"
+DEFAULT_EMBEDDING_API_MODEL = "text-embedding-3-small"
+
 
 def _root_dir() -> Path:
     return Path(__file__).resolve().parent.parent
@@ -16,6 +22,28 @@ def _bool(name: str, default: bool = False) -> bool:
     if v is None:
         return default
     return v.strip().lower() in ("1", "true", "yes", "on")
+
+
+def _is_huggingface_space() -> bool:
+    if os.environ.get("SYSTEM") == "spaces":
+        return True
+    sid = os.environ.get("SPACE_ID")
+    return bool(sid and str(sid).strip())
+
+
+def _env_strip(name: str) -> str | None:
+    v = os.environ.get(name)
+    if v is None:
+        return None
+    return v.strip()
+
+
+def _env_preferred(primary: str, legacy: str) -> str | None:
+    """Valor de entorno: prioriza `primary`, si no existe usa `legacy`."""
+    a = _env_strip(primary)
+    if a is not None:
+        return a
+    return _env_strip(legacy)
 
 
 @dataclass
@@ -30,17 +58,15 @@ class Settings:
     chunk_size: int = 900
     chunk_overlap: int = 120
     retrieve_top_k: int = 8
-    # lexical | openai | local
+    # lexical | openai | local  (openai = cliente HTTP compatible con el SDK openai)
     embedding_backend: str = "lexical"
-    openai_api_key: str | None = None
-    openai_base_url: str | None = None
-    openai_llm_model: str = "gpt-4o-mini"
-    # Lista PoC para la UI (comparar modelos); sobreescribible con REGATAS_LLM_MODEL_CHOICES
-    llm_model_choices: tuple[str, ...] = ("gpt-4o-mini", "gpt-4o")
-    openai_embedding_model: str = "text-embedding-3-small"
+    llm_api_key: str | None = None
+    llm_base_url: str | None = None
+    llm_model: str = DEFAULT_LLM_MODEL
+    embedding_api_model: str = DEFAULT_EMBEDDING_API_MODEL
     local_embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     # stub | openai
-    llm_backend: str = "stub"
+    llm_backend: str = "openai"
     # es | en — idioma del system prompt (plantilla); el informe sigue en español por diseño
     system_prompt_language: str = "es"
     index_cache_dir: Path | None = None
@@ -64,15 +90,40 @@ class Settings:
         cache_raw = os.environ.get("REGATAS_INDEX_CACHE_DIR")
         index_cache_dir = Path(cache_raw).resolve() if cache_raw else None
 
-        choices_raw = os.environ.get("REGATAS_LLM_MODEL_CHOICES", "").strip()
-        if choices_raw:
-            llm_model_choices = tuple(
-                x.strip() for x in choices_raw.split(",") if x.strip()
-            )
-            if not llm_model_choices:
-                llm_model_choices = ("gpt-4o-mini", "gpt-4o")
+        in_space = _is_huggingface_space()
+
+        llm_backend_raw = os.environ.get("REGATAS_LLM_BACKEND")
+        if llm_backend_raw is not None and llm_backend_raw.strip():
+            llm_backend = llm_backend_raw.strip().lower()
         else:
-            llm_model_choices = ("gpt-4o-mini", "gpt-4o")
+            llm_backend = "stub" if in_space else "openai"
+
+        base_url_set = _env_preferred("REGATAS_LLM_BASE_URL", "OPENAI_BASE_URL")
+        if base_url_set is not None:
+            llm_base_url = base_url_set or None
+        elif in_space:
+            llm_base_url = None
+        else:
+            llm_base_url = DEFAULT_LLM_BASE_URL
+
+        key_set = _env_preferred("REGATAS_LLM_API_KEY", "OPENAI_API_KEY")
+        if key_set is not None and key_set:
+            llm_api_key = key_set
+        elif in_space:
+            llm_api_key = None
+        else:
+            llm_api_key = DEFAULT_LLM_API_KEY
+
+        model_set = _env_preferred("REGATAS_LLM_MODEL", "OPENAI_LLM_MODEL")
+        if model_set:
+            llm_model = model_set
+        elif in_space:
+            llm_model = "gpt-4o-mini"
+        else:
+            llm_model = DEFAULT_LLM_MODEL
+
+        emb = _env_preferred("REGATAS_EMBEDDING_MODEL", "OPENAI_EMBEDDING_MODEL")
+        embedding_api_model = emb if emb else DEFAULT_EMBEDDING_API_MODEL
 
         spl_raw = os.environ.get("REGATAS_SYSTEM_PROMPT_LANG", "es").strip().lower()
         system_prompt_language = (
@@ -90,22 +141,20 @@ class Settings:
             embedding_backend=os.environ.get(
                 "REGATAS_EMBEDDING_BACKEND", "lexical"
             ).lower(),
-            openai_api_key=os.environ.get("OPENAI_API_KEY"),
-            openai_base_url=os.environ.get("OPENAI_BASE_URL"),
-            openai_llm_model=os.environ.get("OPENAI_LLM_MODEL", "gpt-4o-mini"),
-            llm_model_choices=llm_model_choices,
-            openai_embedding_model=os.environ.get(
-                "OPENAI_EMBEDDING_MODEL", "text-embedding-3-small"
-            ),
+            llm_api_key=llm_api_key,
+            llm_base_url=llm_base_url,
+            llm_model=llm_model,
+            embedding_api_model=embedding_api_model,
             local_embedding_model=os.environ.get(
                 "REGATAS_LOCAL_EMBEDDING_MODEL",
                 "sentence-transformers/all-MiniLM-L6-v2",
             ),
-            llm_backend=os.environ.get("REGATAS_LLM_BACKEND", "stub").lower(),
+            llm_backend=llm_backend,
             system_prompt_language=system_prompt_language,
             index_cache_dir=index_cache_dir,
         )
 
 
 def is_huggingface_space() -> bool:
-    return _bool("SPACE_ID") or os.environ.get("SYSTEM") == "spaces"
+    """True en Hugging Face Spaces (`SPACE_ID` o `SYSTEM=spaces`)."""
+    return _is_huggingface_space()

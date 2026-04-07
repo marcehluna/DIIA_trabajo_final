@@ -1,7 +1,7 @@
 """
 Interfaz Gradio del asistente de protestas.
-Ejecución local: `python app.py`
-Hugging Face Space: SDK Gradio; asegurate de subir los PDF del corpus y definir secretos (p. ej. OPENAI_API_KEY).
+Ejecución local: Ollama con Llama 3 (`ollama pull llama3`) y `python app.py` (API compatible en 127.0.0.1:11434).
+Hugging Face Space: por defecto `REGATAS_LLM_BACKEND=stub` salvo que configures API remota y secretos.
 """
 
 from __future__ import annotations
@@ -71,10 +71,20 @@ main.gradio-main {
     font-size: 1.75rem;
     line-height: 1.25;
 }
-.app-intro, .app-footer-note, .app-settings-banner {
+/* Intro y banner de estado: ancho cómodo, alineados a la izquierda dentro del panel principal */
+.app-main-with-sidebar .app-intro,
+.app-main-with-sidebar .app-settings-banner {
     max-width: 52rem;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+.app-model-sidebar .app-footer-note {
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 0.75rem !important;
+    padding-top: 0.65rem !important;
+    border-top: 1px solid rgba(55, 75, 95, 0.12) !important;
 }
 .relato-input textarea,
 .relato-input .scroll-hide,
@@ -116,27 +126,91 @@ main.gradio-main {
 .relato-col-body strong {
     font-weight: 600;
 }
-.app-workbench {
+/* Fila principal: barra lateral alineada arriba con la primera línea del texto introductorio */
+.app-body-layout {
     align-items: flex-start !important;
     flex-wrap: nowrap !important;
+}
+.app-body-layout .app-model-sidebar,
+.app-body-layout .app-main-with-sidebar {
+    align-self: flex-start !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
 }
 .app-model-sidebar {
     flex: 0 0 auto !important;
     min-width: 12rem !important;
     max-width: 17rem !important;
-    padding: 0.35rem 1.1rem 1rem 0 !important;
+    padding: 0 1.1rem 0 0 !important;
     margin-right: 0.25rem !important;
     border-right: 1px solid rgba(55, 75, 95, 0.18) !important;
 }
-.app-model-sidebar .prose, .app-model-sidebar p {
-    font-size: 0.88rem !important;
-    line-height: 1.45 !important;
-}
-.app-main-tool {
+.app-main-with-sidebar {
     flex: 1 1 auto !important;
     min-width: 0 !important;
 }
+.app-model-sidebar .form,
+.app-main-with-sidebar .form,
+.app-relato-col .form {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    gap: 0.5rem !important;
+}
+/* Primera línea "Motor de LLM" = misma tipografía base que el primer párrafo del intro */
+.app-body-layout .app-sidebar-motor .prose > p:first-child {
+    margin-top: 0 !important;
+    margin-bottom: 0.65rem !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+}
+.app-body-layout .app-main-with-sidebar .app-intro .prose > p:first-child {
+    margin-top: 0 !important;
+}
+.app-body-layout .app-sidebar-motor .prose,
+.app-body-layout .app-sidebar-motor .prose p {
+    font-size: inherit !important;
+    line-height: inherit !important;
+}
+.app-model-sidebar .app-footer-note .prose,
+.app-model-sidebar .app-footer-note p {
+    font-size: 0.88rem !important;
+    line-height: 1.45 !important;
+}
+.app-workbench {
+    align-items: flex-start !important;
+    flex-wrap: nowrap !important;
+    margin-top: 0.35rem !important;
+}
+.app-relato-col {
+    align-self: flex-start !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+.app-relato-col-left .relato-col-intro {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.app-relato-heading-md .prose > p:first-child {
+    margin-top: 0 !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    line-height: 1.35 !important;
+}
+.app-model-sidebar .block,
+.app-relato-col .block,
+.app-main-with-sidebar .block {
+    padding-top: 0 !important;
+}
+.app-main-actions {
+    padding-top: 0.75rem !important;
+    max-width: 100% !important;
+}
 @media (max-width: 768px) {
+    .app-body-layout {
+        flex-wrap: wrap !important;
+    }
     .app-workbench {
         flex-wrap: wrap !important;
     }
@@ -151,18 +225,6 @@ main.gradio-main {
 """
 
 
-def _ui_llm_model_choices() -> tuple[list[str], str]:
-    """Opciones y valor por defecto del Radio (incluye siempre OPENAI_LLM_MODEL)."""
-    s = Settings.from_env()
-    merged = list(dict.fromkeys([s.openai_llm_model, *s.llm_model_choices]))
-    default = (
-        s.openai_llm_model
-        if s.openai_llm_model in merged
-        else (merged[0] if merged else "")
-    )
-    return merged, default
-
-
 def get_pipeline() -> ProtestPipeline:
     global _pipeline
     if _pipeline is None:
@@ -173,7 +235,6 @@ def get_pipeline() -> ProtestPipeline:
 def analyze(
     relato_protesta: str,
     relato_protestado: str,
-    modelo_llm: str | None,
     idioma_system_prompt: str | None,
 ) -> str:
     if relato_protesta is None or not str(relato_protesta).strip():
@@ -182,12 +243,10 @@ def analyze(
         p = get_pipeline()
         second = relato_protestado if relato_protestado else ""
         second = second.strip() or None
-        m = (modelo_llm or "").strip() or None
         spl = (idioma_system_prompt or "").strip() or None
         return p.analyze(
             str(relato_protesta).strip(),
             second,
-            llm_model=m,
             system_prompt_lang=spl,
         )
     except FileNotFoundError as e:
@@ -205,19 +264,17 @@ def _settings_banner() -> str:
         f"- **System prompt (default env):** idioma `{s.system_prompt_language}` (`REGATAS_SYSTEM_PROMPT_LANG=es|en`). El informe sigue redactándose en español.",
     ]
     if s.llm_backend == "openai":
-        lines.append(f"- **Modelo de chat (default env):** `{s.openai_llm_model}`.")
-        lines.append(
-            "- **Modelos disponibles (barra lateral):** "
-            + ", ".join(f"`{m}`" for m in dict.fromkeys([s.openai_llm_model, *s.llm_model_choices]))
-            + " — personalizá la lista con `REGATAS_LLM_MODEL_CHOICES`."
-        )
+        lines.append(f"- **Modelo LLM:** `{s.llm_model}` (`REGATAS_LLM_MODEL`).")
+        if s.llm_base_url:
+            lines.append(f"- **Base URL (API compatible):** `{s.llm_base_url}`.")
+        else:
+            lines.append("- **Base URL:** *(default cliente OpenAI / no definida)*.")
     if is_huggingface_space():
         lines.insert(1, "- **Entorno:** Hugging Face Space (secretos en *Settings → Secrets*).")
     return "\n".join(lines)
 
 
 def build_app() -> gr.Blocks:
-    poc_choices, poc_default = _ui_llm_model_choices()
     _s0 = Settings.from_env()
     _spl_def = (
         _s0.system_prompt_language
@@ -248,36 +305,17 @@ def build_app() -> gr.Blocks:
                 "<h1>Asistente de protestas en regatas (PoC)</h1>"
                 "</div>"
             )
-        gr.Markdown(
-            "Esta herramienta apoya la **resolución de protestas en regatas por equipos (Team Racing)** "
-            "a partir de relatos en lenguaje cotidiano. El motor localiza pasajes relevantes del "
-            "*Call Book for Team Racing* y del *Case Book* de World Sailing, los combina con tu relato "
-            "y produce un **informe en cuatro partes**: hechos, normas y Calls priorizados, razonamiento técnico y dictamen sugerido. "
-            "No sustituye al comité de protesta: sirve para **acelerar el análisis** y **documentar el razonamiento**.\n\n"
-            "En el **panel principal** (junto a la barra de modelo) hay **dos columnas de relatos**: "
-            "a la **izquierda** el relato del barco que **presenta la protesta** (obligatorio); "
-            "a la **derecha**, si lo conocés, la versión del **barco protestado** (opcional). "
-            "Si hay dos versiones, el asistente intentará **separar hechos coincidentes de contradicciones** "
-            "y aplicar el criterio del *último punto de certeza* descrito en la consigna del trabajo.",
-            elem_classes=["app-intro"],
-        )
-        gr.Markdown(_settings_banner(), elem_classes=["app-settings-banner"])
-        with gr.Row(equal_height=False, elem_classes=["app-workbench"]):
+        with gr.Row(equal_height=False, elem_classes=["app-body-layout"]):
             with gr.Column(scale=0, min_width=200, elem_classes=["app-model-sidebar"]):
                 gr.Markdown(
-                    "**Modelo LLM** (PoC)\n\n"
-                    "Elegí **un solo** modelo por análisis. El mismo contexto RAG se usa siempre; "
-                    "solo cambia el modelo que redacta el informe.\n\n"
-                    "Con `REGATAS_LLM_BACKEND=stub` la elección no afecta la respuesta de demostración. "
-                    "Para **Ollama** u otro endpoint compatible, configurá los nombres en `REGATAS_LLM_MODEL_CHOICES`.\n\n"
-                    "El **system prompt** puede ir en español o en inglés; el **informe generado** sigue en español "
-                    "(títulos de sección incluidos). El valor por defecto lo define `REGATAS_SYSTEM_PROMPT_LANG`.",
-                )
-                model_poc = gr.Radio(
-                    choices=poc_choices,
-                    value=poc_default if poc_default else None,
-                    label="Modelo activo",
-                    show_label=True,
+                    "**Motor de LLM**\n\n"
+                    "En local se usa **Ollama** con **Llama 3** (`ollama pull llama3`), API en "
+                    "`http://127.0.0.1:11434/v1`. Ajustá modelo y URL con `REGATAS_LLM_MODEL` y `REGATAS_LLM_BASE_URL` "
+                    "(o las variables `OPENAI_*` equivalentes, aún soportadas).\n\n"
+                    "Con `REGATAS_LLM_BACKEND=stub` verás solo una respuesta de demostración.\n\n"
+                    "El **system prompt** puede ir en español o en inglés; el **informe** sigue en español. "
+                    "Default: `REGATAS_SYSTEM_PROMPT_LANG`.",
+                    elem_classes=["app-sidebar-motor"],
                 )
                 lang_system_poc = gr.Radio(
                     choices=[("Español", "es"), ("English", "en")],
@@ -285,9 +323,35 @@ def build_app() -> gr.Blocks:
                     label="Idioma del system prompt",
                     show_label=True,
                 )
-            with gr.Column(scale=1, elem_classes=["app-main-tool"]):
-                with gr.Row(equal_height=True):
-                    with gr.Column(scale=1):
+                gr.Markdown(
+                    "**Configuración avanzada.** "
+                    "Podés cambiar el modo de búsqueda en el corpus con `REGATAS_EMBEDDING_BACKEND` "
+                    "(`lexical` sin API, `openai` o `local` con modelo de embeddings) y el generador de texto con "
+                    "`REGATAS_LLM_BACKEND`: en local el default es `openai` contra **Ollama** (`REGATAS_LLM_BASE_URL`, "
+                    "`REGATAS_LLM_MODEL=llama3`, `REGATAS_LLM_API_KEY=ollama`). Las variables `OPENAI_*` siguen funcionando. "
+                    "Usá `stub` para demo sin LLM. "
+                    "En **Hugging Face Spaces** el default es `stub` salvo que configures API remota y secretos. "
+                    "`REGATAS_SYSTEM_PROMPT_LANG` (`es`/`en`) y el selector de arriba ajustan el idioma del system prompt. "
+                    "El archivo `.env.example` del repositorio resume el resto de variables.",
+                    elem_classes=["app-footer-note"],
+                )
+            with gr.Column(scale=1, elem_classes=["app-main-with-sidebar"]):
+                gr.Markdown(
+                    "Esta herramienta apoya la **resolución de protestas en regatas por equipos (Team Racing)** "
+                    "a partir de relatos en lenguaje cotidiano. El motor localiza pasajes relevantes del "
+                    "*Call Book for Team Racing* y del *Case Book* de World Sailing, los combina con tu relato "
+                    "y produce un **informe en cuatro partes**: hechos, normas y Calls priorizados, razonamiento técnico y dictamen sugerido. "
+                    "No sustituye al comité de protesta: sirve para **acelerar el análisis** y **documentar el razonamiento**.\n\n"
+                    "Debajo hay **dos columnas de relatos**: "
+                    "a la **izquierda** el relato del barco que **presenta la protesta** (obligatorio); "
+                    "a la **derecha**, si lo conocés, la versión del **barco protestado** (opcional). "
+                    "Si hay dos versiones, el asistente intentará **separar hechos coincidentes de contradicciones** "
+                    "y aplicar el criterio del *último punto de certeza* descrito en la consigna del trabajo.",
+                    elem_classes=["app-intro"],
+                )
+                gr.Markdown(_settings_banner(), elem_classes=["app-settings-banner"])
+                with gr.Row(equal_height=False, elem_classes=["app-workbench"]):
+                    with gr.Column(scale=1, elem_classes=["app-relato-col", "app-relato-col-left"]):
                         gr.HTML(
                             '<div class="relato-col-intro">'
                             '<p class="relato-col-heading">'
@@ -312,11 +376,12 @@ def build_app() -> gr.Blocks:
                             elem_id="relato-protesta",
                             elem_classes=["relato-input"],
                         )
-                    with gr.Column(scale=1):
+                    with gr.Column(scale=1, elem_classes=["app-relato-col", "app-relato-col-right"]):
                         gr.Markdown(
                             "**Barco Protestado**\n\n"
                             "Si tenés la **versión del otro equipo**, pegala aquí. "
-                            "Si no hay segunda versión, podés dejar este cuadro vacío: el sistema trabajará solo con el relato de la protesta."
+                            "Si no hay segunda versión, podés dejar este cuadro vacío: el sistema trabajará solo con el relato de la protesta.",
+                            elem_classes=["app-relato-heading-md"],
                         )
                         relato_d = gr.Textbox(
                             label="Relato",
@@ -326,25 +391,13 @@ def build_app() -> gr.Blocks:
                             elem_id="relato-protestado",
                             elem_classes=["relato-input"],
                         )
-                run = gr.Button("Analizar incidente", variant="primary")
-                out = gr.Markdown()
+                with gr.Column(elem_classes=["app-main-actions"]):
+                    run = gr.Button("Analizar incidente", variant="primary")
+                    out = gr.Markdown()
         run.click(
             fn=analyze,
-            inputs=[relato_p, relato_d, model_poc, lang_system_poc],
+            inputs=[relato_p, relato_d, lang_system_poc],
             outputs=out,
-        )
-        gr.Markdown(
-            "**Configuración avanzada.** "
-            "Podés cambiar el modo de búsqueda en el corpus con `REGATAS_EMBEDDING_BACKEND` "
-            "(`lexical` sin API, `openai` o `local` con modelo de embeddings) y el generador de texto con "
-            "`REGATAS_LLM_BACKEND` (`stub` para pruebas sin API, `openai` para un modelo vía API compatible). "
-            "Los modelos de la barra lateral se arman con `REGATAS_LLM_MODEL_CHOICES` (coma-separada) "
-            "y siempre incluyen `OPENAI_LLM_MODEL`. "
-            "`REGATAS_SYSTEM_PROMPT_LANG` (`es` o `en`) fija el idioma por defecto del system prompt; "
-            "en pantalla podés cambiarlo por consulta. "
-            "En **Hugging Face Spaces**, definí esos valores y la clave `OPENAI_API_KEY` (u otras) en *Secrets*. "
-            "El archivo `.env.example` del repositorio resume el resto de variables.",
-            elem_classes=["app-footer-note"],
         )
         gr.HTML(
             f'<p class="app-version" aria-label="Versión {__version__}">v{__version__}</p>'

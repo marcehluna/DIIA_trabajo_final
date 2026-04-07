@@ -125,5 +125,5 @@ def get_user_template(lang: str | None) -> str:
 
 STUB_LLM_NOTICE = """
 ---
-*Nota PoC: el backend LLM está en modo **stub** (`REGATAS_LLM_BACKEND=stub`). Configurá `REGATAS_LLM_BACKEND=openai` y las variables OpenAI en el hosting para obtener un dictamen generado por modelo.*
+*Nota PoC: el backend LLM está en modo **stub** (`REGATAS_LLM_BACKEND=stub`). En local, con **Ollama** y `REGATAS_LLM_BACKEND=openai`, el dictamen lo genera **Llama 3** (`REGATAS_LLM_MODEL`, default `llama3`).*
 """
