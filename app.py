@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import os
 import sys
+from collections.abc import Iterator
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -25,6 +26,13 @@ from regatas_assistant.ollama_models import (
 from regatas_assistant.pipeline import ProtestPipeline
 
 _pipeline: ProtestPipeline | None = None
+
+_ANALYSIS_PENDING_HTML = (
+    '<p class="analysis-pending-line">'
+    '<span class="analysis-pending-spinner" aria-hidden="true"></span>'
+    " Generando el informe..."
+    "</p>"
+)
 
 # Banner panorámico del encabezado (repo / Space)
 _HERO_IMAGE = ROOT / "navegacion-vela-regata-2.jpg"
@@ -182,9 +190,31 @@ main.gradio-main {
     line-height: 1.45 !important;
 }
 .app-workbench {
-    align-items: flex-start !important;
-    flex-wrap: nowrap !important;
     margin-top: 0.35rem !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+}
+.app-workbench .app-workbench-row {
+    align-items: stretch !important;
+    flex-wrap: nowrap !important;
+    margin: 0 !important;
+}
+.app-workbench .app-workbench-row + .app-workbench-row {
+    margin-top: 0.65rem !important;
+}
+.app-workbench .app-workbench-row.app-workbench-inputs {
+    margin-top: 0.5rem !important;
+    align-items: flex-start !important;
+}
+.app-workbench .app-relato-cell {
+    min-width: 0 !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+.app-workbench .app-relato-cell .block {
+    padding-top: 0 !important;
 }
 .app-relato-col {
     align-self: flex-start !important;
@@ -195,12 +225,11 @@ main.gradio-main {
     margin: 0 !important;
     padding: 0 !important;
 }
-.app-relato-heading-md .prose > p:first-child {
-    margin-top: 0 !important;
-    margin-bottom: 0.5rem !important;
-    font-size: 1rem !important;
-    font-weight: 600 !important;
-    line-height: 1.35 !important;
+.relato-heading-spacer {
+    flex-shrink: 0;
+    width: 20px;
+    height: 26px;
+    display: block;
 }
 .app-model-sidebar .block,
 .app-relato-col .block,
@@ -211,11 +240,34 @@ main.gradio-main {
     padding-top: 0.75rem !important;
     max-width: 100% !important;
 }
+.analysis-pending-line {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: rgba(35, 55, 80, 0.92);
+}
+.analysis-pending-spinner {
+    flex-shrink: 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    border: 2.5px solid rgba(45, 90, 140, 0.22);
+    border-top-color: rgba(30, 100, 180, 0.95);
+    border-radius: 50%;
+    animation: analysis-pending-spin 0.65s linear infinite;
+}
+@keyframes analysis-pending-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
 @media (max-width: 768px) {
     .app-body-layout {
         flex-wrap: wrap !important;
     }
-    .app-workbench {
+    .app-workbench .app-workbench-row {
         flex-wrap: wrap !important;
     }
     .app-model-sidebar {
@@ -241,29 +293,33 @@ def analyze(
     relato_protestado: str,
     idioma_system_prompt: str | None,
     ollama_model: str | None,
-) -> str:
+) -> Iterator[str]:
+    """Generador: primer chunk = línea de espera con indicador animado (no stub)."""
     if relato_protesta is None or not str(relato_protesta).strip():
-        return "**Error:** el relato del **barco que protesta** es obligatorio."
+        yield "**Error:** el relato del **barco que protesta** es obligatorio."
+        return
+    s = Settings.from_env()
+    if s.llm_backend != "stub":
+        yield _ANALYSIS_PENDING_HTML
     try:
         p = get_pipeline()
         second = relato_protestado if relato_protestado else ""
         second = second.strip() or None
         spl = (idioma_system_prompt or "").strip() or None
-        s = Settings.from_env()
         llm_model: str | None = None
         if s.llm_backend == "openai":
             om = (ollama_model or "").strip()
             llm_model = om or None
-        return p.analyze(
+        yield p.analyze(
             str(relato_protesta).strip(),
             second,
             system_prompt_lang=spl,
             llm_model=llm_model,
         )
     except FileNotFoundError as e:
-        return f"**Falta corpus**\n\n{e}\n\nSubí los PDF del Call Book y Case Book a la raíz del proyecto o ajustá `REGATAS_BASE_DIR`."
+        yield f"**Falta corpus**\n\n{e}\n\nSubí los PDF del Call Book y Case Book a la raíz del proyecto o ajustá `REGATAS_BASE_DIR`."
     except Exception as e:
-        return f"**Error**\n\n```\n{e!r}\n```"
+        yield f"**Error**\n\n```\n{e!r}\n```"
 
 
 def _settings_banner() -> str:
@@ -445,54 +501,89 @@ def build_app() -> gr.Blocks:
                     elem_classes=["app-intro"],
                 )
                 gr.Markdown(_settings_banner(), elem_classes=["app-settings-banner"])
-                with gr.Row(equal_height=False, elem_classes=["app-workbench"]):
-                    with gr.Column(scale=1, elem_classes=["app-relato-col", "app-relato-col-left"]):
-                        gr.HTML(
-                            '<div class="relato-col-intro">'
-                            '<p class="relato-col-heading">'
-                            '<svg class="red-pennant-svg" xmlns="http://www.w3.org/2000/svg" '
-                            'viewBox="0 0 28 36" width="20" height="26" role="img" '
-                            'aria-label="Banderín rojo de protesta">'
-                            '<rect x="1" y="2" width="2.5" height="32" fill="#4a3728" rx="0.5"/>'
-                            '<path d="M6 5 L26 18 L6 31 Z" fill="#d61f2a"/>'
-                            "</svg>"
-                            "<span>Barco que protesta</span>"
-                            "</p>"
-                            "<p class=\"relato-col-body\">Quien inicia la protesta cuenta <strong>qué vio y qué hizo cada barco</strong>, "
-                            "en el orden que recuerde (pre-salida, ceñida, popa, boya, contacto, etc.). "
-                            "Mientras más preciso sea el relato (amuras, barlovento/sotavento, quién orzó o panó), mejor será el análisis.</p>"
-                            "</div>"
-                        )
-                        relato_p = gr.Textbox(
-                            label="Relato",
-                            show_label=False,
-                            placeholder="Descripción del incidente desde quien presenta la protesta…",
-                            lines=14,
-                            elem_id="relato-protesta",
-                            elem_classes=["relato-input"],
-                        )
-                    with gr.Column(scale=1, elem_classes=["app-relato-col", "app-relato-col-right"]):
-                        gr.Markdown(
-                            "**Barco Protestado**\n\n"
-                            "Si tenés la **versión del otro equipo**, pegala aquí. "
-                            "Si no hay segunda versión, podés dejar este cuadro vacío: el sistema trabajará solo con el relato de la protesta.",
-                            elem_classes=["app-relato-heading-md"],
-                        )
-                        relato_d = gr.Textbox(
-                            label="Relato",
-                            show_label=False,
-                            placeholder="Versión del otro involucrado, si la tenés…",
-                            lines=14,
-                            elem_id="relato-protestado",
-                            elem_classes=["relato-input"],
-                        )
+                with gr.Column(elem_classes=["app-workbench"]):
+                    with gr.Row(equal_height=True, elem_classes=["app-workbench-row"]):
+                        with gr.Column(
+                            scale=1,
+                            elem_classes=["app-relato-col", "app-relato-cell", "app-relato-col-left"],
+                        ):
+                            gr.HTML(
+                                '<p class="relato-col-heading">'
+                                '<svg class="red-pennant-svg" xmlns="http://www.w3.org/2000/svg" '
+                                'viewBox="0 0 28 36" width="20" height="26" role="img" '
+                                'aria-label="Banderín rojo de protesta">'
+                                '<rect x="1" y="2" width="2.5" height="32" fill="#4a3728" rx="0.5"/>'
+                                '<path d="M6 5 L26 18 L6 31 Z" fill="#d61f2a"/>'
+                                "</svg>"
+                                "<span>Barco que protesta</span>"
+                                "</p>"
+                            )
+                        with gr.Column(
+                            scale=1,
+                            elem_classes=["app-relato-col", "app-relato-cell", "app-relato-col-right"],
+                        ):
+                            gr.HTML(
+                                '<p class="relato-col-heading">'
+                                '<span class="relato-heading-spacer" aria-hidden="true"></span>'
+                                "<span>Barco protestado</span>"
+                                "</p>"
+                            )
+                    with gr.Row(equal_height=True, elem_classes=["app-workbench-row"]):
+                        with gr.Column(
+                            scale=1,
+                            elem_classes=["app-relato-col", "app-relato-cell", "app-relato-col-left"],
+                        ):
+                            gr.HTML(
+                                '<div class="relato-col-intro">'
+                                "<p class=\"relato-col-body\">Quien inicia la protesta cuenta <strong>qué vio y qué hizo cada barco</strong>, "
+                                "en el orden que recuerde (pre-salida, ceñida, popa, boya, contacto, etc.). "
+                                "Mientras más preciso sea el relato (amuras, barlovento/sotavento, quién orzó o panó), mejor será el análisis.</p>"
+                                "</div>"
+                            )
+                        with gr.Column(
+                            scale=1,
+                            elem_classes=["app-relato-col", "app-relato-cell", "app-relato-col-right"],
+                        ):
+                            gr.HTML(
+                                '<div class="relato-col-intro">'
+                                "<p class=\"relato-col-body\">Si tenés la <strong>versión del otro equipo</strong>, pegala en el cuadro de abajo. "
+                                "Si no hay segunda versión, podés dejarlo vacío: el sistema trabajará solo con el relato de la protesta.</p>"
+                                "</div>"
+                            )
+                    with gr.Row(equal_height=False, elem_classes=["app-workbench-row", "app-workbench-inputs"]):
+                        with gr.Column(
+                            scale=1,
+                            elem_classes=["app-relato-col", "app-relato-cell", "app-relato-col-left"],
+                        ):
+                            relato_p = gr.Textbox(
+                                label="Relato",
+                                show_label=False,
+                                placeholder="Descripción del incidente desde quien presenta la protesta…",
+                                lines=14,
+                                elem_id="relato-protesta",
+                                elem_classes=["relato-input"],
+                            )
+                        with gr.Column(
+                            scale=1,
+                            elem_classes=["app-relato-col", "app-relato-cell", "app-relato-col-right"],
+                        ):
+                            relato_d = gr.Textbox(
+                                label="Relato",
+                                show_label=False,
+                                placeholder="Versión del otro involucrado, si la tenés…",
+                                lines=14,
+                                elem_id="relato-protestado",
+                                elem_classes=["relato-input"],
+                            )
                 with gr.Column(elem_classes=["app-main-actions"]):
                     run = gr.Button("Analizar incidente", variant="primary")
-                    out = gr.Markdown()
+                    out = gr.Markdown(sanitize_html=False)
         run.click(
             fn=analyze,
             inputs=[relato_p, relato_d, lang_system_poc, ollama_model_dd],
             outputs=out,
+            show_progress="full",
+            show_progress_on=[run, out],
         )
         refresh_ollama.click(
             fn=_ollama_dropdown_updates,
