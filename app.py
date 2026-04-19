@@ -292,6 +292,7 @@ def analyze(
     relato_protesta: str,
     relato_protestado: str,
     idioma_system_prompt: str | None,
+    estrategia_prompt: str | None,
     ollama_model: str | None,
 ) -> Iterator[str]:
     """Generador: primer chunk = línea de espera con indicador animado (no stub)."""
@@ -306,14 +307,16 @@ def analyze(
         second = relato_protestado if relato_protestado else ""
         second = second.strip() or None
         spl = (idioma_system_prompt or "").strip() or None
+        strat = (estrategia_prompt or "").strip() or None
         llm_model: str | None = None
-        if s.llm_backend == "openai":
+        if s.llm_backend == "http":
             om = (ollama_model or "").strip()
             llm_model = om or None
         yield p.analyze(
             str(relato_protesta).strip(),
             second,
             system_prompt_lang=spl,
+            prompt_strategy=strat,
             llm_model=llm_model,
         )
     except FileNotFoundError as e:
@@ -328,14 +331,14 @@ def _settings_banner() -> str:
         "Estado actual del motor (útil para depuración y para saber si ya configuraste APIs o modelos remotos):",
         f"- **Recuperación de contexto:** modo `{s.embedding_backend}` · se muestran hasta **{s.retrieve_top_k}** fragmentos del corpus en cada consulta.",
         f"- **Modelo de lenguaje:** backend `{s.llm_backend}`.",
-        f"- **System prompt (default env):** idioma `{s.system_prompt_language}` (`REGATAS_SYSTEM_PROMPT_LANG=es|en`). El informe sigue redactándose en español.",
+        f"- **System prompt (default env):** idioma `{s.system_prompt_language}` (`REGATAS_SYSTEM_PROMPT_LANG=es|en`), estrategia `{s.prompt_strategy}` (`REGATAS_PROMPT_STRATEGY=cot|few_shot_cot`). El informe sigue redactándose en español.",
     ]
-    if s.llm_backend == "openai":
+    if s.llm_backend == "http":
         lines.append(f"- **Modelo LLM:** `{s.llm_model}` (`REGATAS_LLM_MODEL`).")
         if s.llm_base_url:
             lines.append(f"- **Base URL (API compatible):** `{s.llm_base_url}`.")
         else:
-            lines.append("- **Base URL:** *(default cliente OpenAI / no definida)*.")
+            lines.append("- **Base URL:** *(default del cliente HTTP / no definida)*.")
     if is_huggingface_space():
         lines.insert(1, "- **Entorno:** Hugging Face Space (secretos en *Settings → Secrets*).")
     return "\n".join(lines)
@@ -344,7 +347,7 @@ def _settings_banner() -> str:
 def _ollama_dropdown_updates() -> tuple[dict, dict]:
     """Actualiza desplegable de modelos y mensaje de ayuda según Ollama y el entorno."""
     s = Settings.from_env()
-    if s.llm_backend != "openai":
+    if s.llm_backend != "http":
         return (
             gr.update(visible=False),
             gr.update(value="", visible=False),
@@ -385,22 +388,27 @@ def build_app() -> gr.Blocks:
         if _s0.system_prompt_language in ("es", "en")
         else "es"
     )
+    _strat_def = (
+        _s0.prompt_strategy
+        if _s0.prompt_strategy in ("cot", "few_shot_cot")
+        else "cot"
+    )
     _ollama_installed = (
         list_installed_ollama_models(_s0.llm_base_url)
-        if _s0.llm_backend == "openai"
+        if _s0.llm_backend == "http"
         else []
     )
     _ollama_choices = (
         _ollama_installed
         if _ollama_installed
-        else ([_s0.llm_model] if _s0.llm_backend == "openai" else [])
+        else ([_s0.llm_model] if _s0.llm_backend == "http" else [])
     )
     _ollama_value = (
         ollama_default_choice(_ollama_installed, _s0.llm_model)
         if _ollama_installed
         else _s0.llm_model
     )
-    _ollama_show = _s0.llm_backend == "openai"
+    _ollama_show = _s0.llm_backend == "http"
     _ollama_hint_init = ""
     if _ollama_show and not _ollama_installed:
         _ollama_hint_init = (
@@ -436,12 +444,13 @@ def build_app() -> gr.Blocks:
             with gr.Column(scale=0, min_width=200, elem_classes=["app-model-sidebar"]):
                 gr.Markdown(
                     "**Motor de LLM**\n\n"
-                    "En local, con `REGATAS_LLM_BACKEND=openai`, la app habla con **Ollama** por la API compatible "
+                    "En local, con `REGATAS_LLM_BACKEND=http`, la app habla con **Ollama** por la API HTTP compatible "
                     "(`http://127.0.0.1:11434/v1` por defecto). El **modelo activo** lo elegís del desplegable: "
                     "solo aparecen los que Ollama tiene instalados (`ollama list`). "
                     "La URL y el modelo por defecto del entorno siguen en `REGATAS_LLM_BASE_URL` y `REGATAS_LLM_MODEL` "
-                    "(o `OPENAI_*`).\n\n"
-                    "Con `REGATAS_LLM_BACKEND=stub` verás solo una respuesta de demostración.",
+                    "(o las variables legacy documentadas en `.env.example`).\n\n"
+                    "Con `REGATAS_LLM_BACKEND=stub` verás solo una respuesta de demostración. "
+                    "El valor legacy `openai` se acepta como alias de `http`.",
                     elem_classes=["app-sidebar-motor"],
                 )
                 ollama_models_hint = gr.Markdown(
@@ -465,7 +474,8 @@ def build_app() -> gr.Blocks:
                 )
                 gr.Markdown(
                     "El **system prompt** puede ir en español o en inglés; el **informe** sigue en español. "
-                    "Default: `REGATAS_SYSTEM_PROMPT_LANG`.",
+                    "Elegí también la **estrategia de prompt** (Chain-of-Thought explícito vs Few-Shot CoT con ranura de ejemplos). "
+                    "Defaults: `REGATAS_SYSTEM_PROMPT_LANG` y `REGATAS_PROMPT_STRATEGY`.",
                     elem_classes=["app-sidebar-motor"],
                 )
                 lang_system_poc = gr.Radio(
@@ -474,15 +484,24 @@ def build_app() -> gr.Blocks:
                     label="Idioma del system prompt",
                     show_label=True,
                 )
+                prompt_strategy_poc = gr.Radio(
+                    choices=[
+                        ("Chain-of-Thought (CoT explícito)", "cot"),
+                        ("Few-Shot Chain-of-Thought", "few_shot_cot"),
+                    ],
+                    value=_strat_def,
+                    label="Estrategia de prompt",
+                    show_label=True,
+                )
                 gr.Markdown(
                     "**Configuración avanzada.** "
                     "Podés cambiar el modo de búsqueda en el corpus con `REGATAS_EMBEDDING_BACKEND` "
-                    "(`lexical` sin API, `openai` o `local` con modelo de embeddings) y el generador de texto con "
-                    "`REGATAS_LLM_BACKEND`: en local el default es `openai` contra **Ollama** (`REGATAS_LLM_BASE_URL`, "
-                    "`REGATAS_LLM_MODEL=llama3`, `REGATAS_LLM_API_KEY=ollama`). Las variables `OPENAI_*` siguen funcionando. "
+                    "(`lexical` sin API, `http` o `local` con modelo de embeddings) y el generador de texto con "
+                    "`REGATAS_LLM_BACKEND`: en local el default es `http` contra **Ollama** (`REGATAS_LLM_BASE_URL`, "
+                    "`REGATAS_LLM_MODEL=llama3`, `REGATAS_LLM_API_KEY=ollama`). Las variables legacy del `.env.example` siguen funcionando. "
                     "Usá `stub` para demo sin LLM. "
                     "En **Hugging Face Spaces** el default es `stub` salvo que configures API remota y secretos. "
-                    "`REGATAS_SYSTEM_PROMPT_LANG` (`es`/`en`) y el selector de idioma en la barra lateral ajustan el system prompt. "
+                    "`REGATAS_SYSTEM_PROMPT_LANG` (`es`/`en`), `REGATAS_PROMPT_STRATEGY` (`cot`/`few_shot_cot`) y los selectores en la barra lateral ajustan el system prompt. "
                     "El archivo `.env.example` del repositorio resume el resto de variables.",
                     elem_classes=["app-footer-note"],
                 )
@@ -580,7 +599,13 @@ def build_app() -> gr.Blocks:
                     out = gr.Markdown(sanitize_html=False)
         run.click(
             fn=analyze,
-            inputs=[relato_p, relato_d, lang_system_poc, ollama_model_dd],
+            inputs=[
+                relato_p,
+                relato_d,
+                lang_system_poc,
+                prompt_strategy_poc,
+                ollama_model_dd,
+            ],
             outputs=out,
             show_progress="full",
             show_progress_on=[run, out],

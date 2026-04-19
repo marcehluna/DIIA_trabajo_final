@@ -1,4 +1,4 @@
-"""Embeddings vía API HTTP compatible con el SDK `openai`."""
+"""Embeddings vía API HTTP (endpoint del host configurado en `Settings`)."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ import numpy as np
 from regatas_assistant.config import Settings
 
 
-class OpenAIEmbeddingEncoder:
+class HttpEmbeddingEncoder:
     def __init__(self, settings: Settings):
         from openai import OpenAI
 
@@ -31,6 +31,6 @@ class OpenAIEmbeddingEncoder:
         return out
 
 
-def embed_corpus_openai(encoder: OpenAIEmbeddingEncoder, texts: list[str]) -> np.ndarray:
+def embed_corpus_http(encoder: HttpEmbeddingEncoder, texts: list[str]) -> np.ndarray:
     vecs = encoder.embed_batch(texts)
     return np.array(vecs, dtype=np.float32)

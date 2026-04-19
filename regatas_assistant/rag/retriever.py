@@ -1,4 +1,4 @@
-"""Recuperación de fragmentos: léxica (sin embeddings) o semántica (OpenAI / local)."""
+"""Recuperación de fragmentos: léxica (sin embeddings) o semántica (HTTP / local)."""
 
 from __future__ import annotations
 
@@ -93,19 +93,18 @@ def build_retriever(settings: Settings, chunks: list[TextChunk]) -> BaseRetrieve
     if backend == "lexical":
         return LexicalRetriever(chunks)
 
-    if backend == "openai":
-        from regatas_assistant.rag.embeddings_openai import (
-            OpenAIEmbeddingEncoder,
-            embed_corpus_openai,
+    if backend == "http":
+        from regatas_assistant.rag.embeddings_http import (
+            HttpEmbeddingEncoder,
+            embed_corpus_http,
         )
 
         if not settings.llm_api_key:
             raise ValueError(
-                "REGATAS_EMBEDDING_BACKEND=openai requiere REGATAS_LLM_API_KEY en el entorno "
-                "(o OPENAI_API_KEY por compatibilidad)."
+                "REGATAS_EMBEDDING_BACKEND=http requiere REGATAS_LLM_API_KEY en el entorno."
             )
-        enc = OpenAIEmbeddingEncoder(settings)
-        matrix = embed_corpus_openai(enc, [c.text for c in chunks])
+        enc = HttpEmbeddingEncoder(settings)
+        matrix = embed_corpus_http(enc, [c.text for c in chunks])
         return SemanticRetrieverWithEncoder(
             chunks, matrix, lambda q: enc.embed_one(q)
         )
@@ -124,7 +123,7 @@ def build_retriever(settings: Settings, chunks: list[TextChunk]) -> BaseRetrieve
 
     raise ValueError(
         f"REGATAS_EMBEDDING_BACKEND desconocido: {backend}. "
-        "Use lexical | openai | local."
+        "Use lexical | http | local."
     )
 
 

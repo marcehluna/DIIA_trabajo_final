@@ -5,11 +5,12 @@ from __future__ import annotations
 from regatas_assistant.config import Settings
 from regatas_assistant.ingestion import format_chunks_for_prompt, load_corpus_chunks
 from regatas_assistant.llm.base import LLMClient
-from regatas_assistant.llm.openai_compat import OpenAIChatClient
+from regatas_assistant.llm.chat_http_client import HTTPChatClient
 from regatas_assistant.llm.stub import StubLLMClient
 from regatas_assistant.prompts import (
     get_system_prompt,
     get_user_template,
+    normalize_prompt_strategy,
     normalize_system_prompt_language,
 )
 from regatas_assistant.rag.retriever import CorpusRetriever, build_retriever
@@ -19,10 +20,10 @@ def _build_llm(settings: Settings) -> LLMClient:
     backend = settings.llm_backend
     if backend == "stub":
         return StubLLMClient()
-    if backend == "openai":
-        return OpenAIChatClient(settings)
+    if backend == "http":
+        return HTTPChatClient(settings)
     raise ValueError(
-        f"REGATAS_LLM_BACKEND desconocido: {backend}. Use stub | openai."
+        f"REGATAS_LLM_BACKEND desconocido: {backend}. Use stub | http."
     )
 
 
@@ -62,6 +63,7 @@ class ProtestPipeline:
         relato_protestado: str | None,
         *,
         system_prompt_lang: str | None = None,
+        prompt_strategy: str | None = None,
         llm_model: str | None = None,
     ) -> str:
         query = _compose_query(relato_protesta, relato_protestado)
@@ -84,12 +86,15 @@ class ProtestPipeline:
             relato_protesta=relato_protesta.strip(),
             relato_protestado=protestado_block,
         )
-        system_prompt = get_system_prompt(lang)
+        strat = normalize_prompt_strategy(
+            prompt_strategy or self.settings.prompt_strategy
+        )
+        system_prompt = get_system_prompt(lang, strat)
 
         if isinstance(self.llm, StubLLMClient):
             return self.llm.complete(system_prompt, user_content)
 
-        if not isinstance(self.llm, OpenAIChatClient):
+        if not isinstance(self.llm, HTTPChatClient):
             return self.llm.complete(system_prompt, user_content)
 
         try:

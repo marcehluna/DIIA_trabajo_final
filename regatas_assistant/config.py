@@ -6,7 +6,9 @@ import os
 from dataclasses import dataclass, field
 from pathlib import Path
 
-# API de chat/embeddings compatible con el esquema OpenAI (p. ej. Ollama, vLLM, proveedores cloud)
+from regatas_assistant.prompts import normalize_prompt_strategy
+
+# API HTTP de chat/embeddings (p. ej. Ollama, vLLM, hosts con rutas tipo /v1)
 DEFAULT_LLM_BASE_URL = "http://127.0.0.1:11434/v1"
 DEFAULT_LLM_API_KEY = "ollama"
 DEFAULT_LLM_MODEL = "llama3"
@@ -58,17 +60,19 @@ class Settings:
     chunk_size: int = 900
     chunk_overlap: int = 120
     retrieve_top_k: int = 8
-    # lexical | openai | local  (openai = cliente HTTP compatible con el SDK openai)
+    # lexical | http | local  (valor legacy `openai` se normaliza a `http` en from_env)
     embedding_backend: str = "lexical"
     llm_api_key: str | None = None
     llm_base_url: str | None = None
     llm_model: str = DEFAULT_LLM_MODEL
     embedding_api_model: str = DEFAULT_EMBEDDING_API_MODEL
     local_embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
-    # stub | openai
-    llm_backend: str = "openai"
+    # stub | http  (valor legacy `openai` se normaliza a `http` en from_env)
+    llm_backend: str = "http"
     # es | en — idioma del system prompt (plantilla); el informe sigue en español por diseño
     system_prompt_language: str = "es"
+    # cot | few_shot_cot — plantilla de system prompt (CoT explícito vs Few-Shot CoT con ranura de ejemplos)
+    prompt_strategy: str = "cot"
     index_cache_dir: Path | None = None
 
     @property
@@ -94,10 +98,12 @@ class Settings:
 
         llm_backend_raw = os.environ.get("REGATAS_LLM_BACKEND")
         if llm_backend_raw is not None and llm_backend_raw.strip():
-            llm_backend = llm_backend_raw.strip().lower()
+            raw_lb = llm_backend_raw.strip().lower()
+            llm_backend = "http" if raw_lb in ("http", "openai") else raw_lb
         else:
-            llm_backend = "stub" if in_space else "openai"
+            llm_backend = "stub" if in_space else "http"
 
+        # Fallback de nombres de entorno heredados del ecosistema (mismo significado que REGATAS_*).
         base_url_set = _env_preferred("REGATAS_LLM_BASE_URL", "OPENAI_BASE_URL")
         if base_url_set is not None:
             llm_base_url = base_url_set or None
@@ -132,15 +138,24 @@ class Settings:
             else "es"
         )
 
+        strat_raw = os.environ.get("REGATAS_PROMPT_STRATEGY", "cot")
+        prompt_strategy = normalize_prompt_strategy(strat_raw)
+
+        emb_b_raw = os.environ.get("REGATAS_EMBEDDING_BACKEND", "lexical").strip().lower()
+        if emb_b_raw in ("http", "openai"):
+            embedding_backend = "http"
+        elif emb_b_raw == "local":
+            embedding_backend = "local"
+        else:
+            embedding_backend = "lexical"
+
         return cls(
             base_dir=base,
             corpus_filenames=corpus_filenames,
             chunk_size=int(os.environ.get("REGATAS_CHUNK_SIZE", "900")),
             chunk_overlap=int(os.environ.get("REGATAS_CHUNK_OVERLAP", "120")),
             retrieve_top_k=int(os.environ.get("REGATAS_TOP_K", "8")),
-            embedding_backend=os.environ.get(
-                "REGATAS_EMBEDDING_BACKEND", "lexical"
-            ).lower(),
+            embedding_backend=embedding_backend,
             llm_api_key=llm_api_key,
             llm_base_url=llm_base_url,
             llm_model=llm_model,
@@ -151,6 +166,7 @@ class Settings:
             ),
             llm_backend=llm_backend,
             system_prompt_language=system_prompt_language,
+            prompt_strategy=prompt_strategy,
             index_cache_dir=index_cache_dir,
         )
 

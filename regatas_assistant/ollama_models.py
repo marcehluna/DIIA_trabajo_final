@@ -8,11 +8,11 @@ import urllib.request
 from urllib.parse import urlparse
 
 
-def ollama_tags_url(openai_compat_base_url: str | None) -> str | None:
-    """Pasa de la base tipo OpenAI (`.../v1`) al endpoint `.../api/tags` de Ollama."""
-    if not openai_compat_base_url:
+def ollama_tags_url(chat_api_base_url: str | None) -> str | None:
+    """Pasa de la base HTTP del chat (`.../v1`) al endpoint `.../api/tags` de Ollama."""
+    if not chat_api_base_url:
         return None
-    u = openai_compat_base_url.strip().rstrip("/")
+    u = chat_api_base_url.strip().rstrip("/")
     if u.endswith("/v1"):
         root = u[:-3].rstrip("/")
         return f"{root}/api/tags"
@@ -24,12 +24,12 @@ def ollama_tags_url(openai_compat_base_url: str | None) -> str | None:
 
 
 def list_installed_ollama_models(
-    openai_compat_base_url: str | None,
+    chat_api_base_url: str | None,
     *,
     timeout: float = 5.0,
 ) -> list[str]:
     """Nombres de modelos locales reportados por Ollama (p. ej. `llama3:latest`)."""
-    tags_url = ollama_tags_url(openai_compat_base_url)
+    tags_url = ollama_tags_url(chat_api_base_url)
     if not tags_url:
         return []
     try:

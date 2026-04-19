@@ -24,7 +24,7 @@ class StubLLMClient(LLMClient):
             "(Modo stub) Sin modelo activo no se aplica cadena de razonamiento sobre reglas "
             "y Calls.\n\n"
             "## 4. Dictamen de resolución\n\n"
-            "(Modo stub) Sin decisión sugerida. En local: Ollama + `REGATAS_LLM_BACKEND=openai` "
+            "(Modo stub) Sin decisión sugerida. En local: Ollama + `REGATAS_LLM_BACKEND=http` "
             "(por defecto ya apunta a Llama 3 vía API compatible).\n\n"
             "### Vista previa del prompt de usuario (referencia)\n\n"
             f"```\n{preview}\n```"
