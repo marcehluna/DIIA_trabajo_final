@@ -1,3 +1,5 @@
+# Este es el baseline para la elaboracion del Trabajo Final de la DIIA - Es la última versión de la PoC elaborada para la materia PLN - 02/05/2026
+
 ---
 title: Asistente protestas regatas (PoC)
 emoji: ⛵
@@ -9,14 +11,15 @@ app_file: app.py
 pinned: false
 ---
 
-# Asistente de protestas — Team Racing (PoC)
+
+## Asistente de protestas — Team Racing (PoC)
 
 Subí a la raíz del Space los PDF:
 
 - `The-Call-Book-for-Team-Racing-2025-2028.pdf`
 - `WS-Case-Book-2025-2028-v2025-07.pdf`
 
-## Local (Ollama + Llama 3)
+### Local (Ollama + Llama 3)
 
 1. Instalá [Ollama](https://ollama.com) y ejecutá `ollama pull llama3`.
 2. Dejá el servidor en marcha (por defecto escucha en el puerto 11434).
@@ -33,7 +36,7 @@ Subí a la raíz del Space los PDF:
 
 *Compatibilidad:* si no definís las equivalentes `REGATAS_*`, se leen las variables alternativas documentadas en `.env.example`.
 
-## Hugging Face Space (secretos)
+### Hugging Face Space (secretos)
 
 En Space no hay Ollama: el default es `REGATAS_LLM_BACKEND=stub` hasta que configures una API remota.
 
@@ -47,7 +50,7 @@ En Space no hay Ollama: el default es `REGATAS_LLM_BACKEND=stub` hasta que confi
 
 Para embeddings **local** en CPU hace falta ampliar `requirements.txt` con `sentence-transformers` (y `torch`); el arranque será más lento.
 
-## Local
+### Local
 
 ```bash
 pip install -r requirements.txt
