@@ -1,0 +1,41 @@
+name: Tarea
+description: Nueva tarea de evolución (feature, refactor, documentación, etc.)
+title: "[Tarea] "
+labels:
+  - tarea
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Las **tareas** en GitHub siguen siendo *issues* por detrás; esta plantilla solo homogeneiza el formato. Después de crearla, asigná un **Milestone** (agrupación por objetivo, ej. «Redefinir persistencia del RAG») y mové la tarjeta en el **Project** si corresponde.
+  - type: textarea
+    id: objetivo
+    attributes:
+      label: Objetivo
+      description: Qué querés lograr en una oración.
+    validations:
+      required: true
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto / motivación
+      description: Por qué importa o qué problema de usuario técnico resuelve.
+    validations:
+      required: false
+  - type: textarea
+    id: criterios
+    attributes:
+      label: Criterios de hecho
+      description: Lista verificable (tests, comportamiento, docs actualizadas).
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+  - type: textarea
+    id: notas
+    attributes:
+      label: Notas técnicas (opcional)
+      description: Archivos, módulos, dependencias o riesgos.
+    validations:
+      required: false

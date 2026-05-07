@@ -1,0 +1,49 @@
+name: Bug
+description: Reportar un error o comportamiento incorrecto
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describí el problema con el mayor detalle posible. Si aplica, asigná un **Milestone** en la barra lateral después de crear la tarea.
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto
+      description: Qué estabas haciendo cuando ocurrió el problema.
+      placeholder: "Ej.: Al ejecutar el asistente con el caso X..."
+    validations:
+      required: true
+  - type: textarea
+    id: comportamiento_actual
+    attributes:
+      label: Comportamiento actual
+      description: Qué ocurre hoy.
+    validations:
+      required: true
+  - type: textarea
+    id: comportamiento_esperado
+    attributes:
+      label: Comportamiento esperado
+      description: Qué debería ocurrir.
+    validations:
+      required: true
+  - type: textarea
+    id: reproducir
+    attributes:
+      label: Pasos para reproducir
+      description: Lista numerada o comandos exactos.
+      placeholder: |
+        1. ...
+        2. ...
+    validations:
+      required: false
+  - type: textarea
+    id: entorno
+    attributes:
+      label: Entorno (opcional)
+      description: SO, versión de Python, modelo, etc.
+    validations:
+      required: false
