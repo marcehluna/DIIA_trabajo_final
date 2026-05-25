@@ -1,0 +1,291 @@
+{
+  "schema": "regatas_tesauro_es_en",
+  "version": "1",
+  "meta": {
+    "tag_prefixes": [
+      "rrs:",
+      "tr:",
+      "proc:"
+    ],
+    "default_expansion": "balanced",
+    "bidirectional": true
+  },
+  "entries": [
+    {
+      "id": "keep_clear",
+      "es": [
+        "mantenerse alejado",
+        "mantenerse alejada",
+        "mantenerse alejadas",
+        "mantenerse alejados"
+      ],
+      "en": [
+        "keep clear",
+        "keeping clear",
+        "keeps clear"
+      ],
+      "tags": [
+        "rrs:section_a",
+        "rrs:right_of_way"
+      ],
+      "notes": "RRS: obligación del barco sin derecho de paso."
+    },
+    {
+      "id": "right_of_way",
+      "es": [
+        "derecho de paso",
+        "barco con derecho de paso"
+      ],
+      "en": [
+        "right of way",
+        "right-of-way",
+        "ROW"
+      ],
+      "tags": [
+        "rrs:section_a"
+      ]
+    },
+    {
+      "id": "give_way",
+      "es": [
+        "ceder el paso"
+      ],
+      "en": [
+        "give way",
+        "giving way"
+      ],
+      "tags": [
+        "rrs:section_a"
+      ]
+    },
+    {
+      "id": "room",
+      "es": [
+        "espacio",
+        "espacio suficiente",
+        "dar espacio"
+      ],
+      "en": [
+        "room",
+        "give room",
+        "giving room"
+      ],
+      "tags": [
+        "rrs:section_b",
+        "rrs:mark"
+      ],
+      "notes": "Cuidado: 'room' también en Rule 18 mark-room."
+    },
+    {
+      "id": "mark_room",
+      "es": [
+        "margen de boya",
+        "regla 18",
+        "zona de boya"
+      ],
+      "en": [
+        "mark-room",
+        "Rule 18",
+        "zone of a mark"
+      ],
+      "tags": [
+        "rrs:mark",
+        "rrs:rule18",
+        "tr:calls"
+      ]
+    },
+    {
+      "id": "tack_tacking",
+      "es": [
+        "virar",
+        "virando",
+        "virada",
+        "cambio de amura"
+      ],
+      "en": [
+        "tack",
+        "tacking"
+      ],
+      "tags": [
+        "rrs:maneuver"
+      ]
+    },
+    {
+      "id": "gybe_jibe",
+      "es": [
+        "empopar",
+        "empopando",
+        "empopada"
+      ],
+      "en": [
+        "gybe",
+        "gybing",
+        "jibe",
+        "jibing"
+      ],
+      "tags": [
+        "rrs:maneuver"
+      ]
+    },
+    {
+      "id": "port_starboard",
+      "es": [
+        "babor",
+        "estribor",
+        "barco de babor",
+        "barco de estribor"
+      ],
+      "en": [
+        "port",
+        "starboard",
+        "port-tack",
+        "starboard-tack"
+      ],
+      "tags": [
+        "rrs:section_a",
+        "rrs:tack"
+      ]
+    },
+    {
+      "id": "windward_leeward",
+      "es": [
+        "barlovento",
+        "sotavento",
+        "a barlovento",
+        "a sotavento"
+      ],
+      "en": [
+        "windward",
+        "leeward"
+      ],
+      "tags": [
+        "rrs:section_a"
+      ]
+    },
+    {
+      "id": "overlap",
+      "es": [
+        "solapamiento",
+        "solapados",
+        "solapadas"
+      ],
+      "en": [
+        "overlap",
+        "overlapped",
+        "clear astern",
+        "clear ahead"
+      ],
+      "tags": [
+        "rrs:definitions"
+      ],
+      "notes": "Revisar falsos positivos en queries muy cortas."
+    },
+    {
+      "id": "obstruction",
+      "es": [
+        "obstrucción",
+        "obstruir"
+      ],
+      "en": [
+        "obstruction",
+        "obstructing"
+      ],
+      "tags": [
+        "rrs:definitions"
+      ]
+    },
+    {
+      "id": "proper_course",
+      "es": [
+        "rumbo propio",
+        "rumbo apropiado"
+      ],
+      "en": [
+        "proper course"
+      ],
+      "tags": [
+        "rrs:rule17"
+      ]
+    },
+    {
+      "id": "fetch_mark",
+      "es": [
+        "pasar la boya",
+        "bordear la boya",
+        "en la boya"
+      ],
+      "en": [
+        "fetching the mark",
+        "passing the mark",
+        "round the mark"
+      ],
+      "tags": [
+        "rrs:mark"
+      ]
+    },
+    {
+      "id": "protest",
+      "es": [
+        "protesta",
+        "protestar",
+        "protestó"
+      ],
+      "en": [
+        "protest",
+        "protesting"
+      ],
+      "tags": [
+        "proc:protest"
+      ]
+    },
+    {
+      "id": "penalty",
+      "es": [
+        "penalización",
+        "penalidad",
+        "vueltas de penalización",
+        "giros de penalización"
+      ],
+      "en": [
+        "penalty",
+        "penalty turns",
+        "take a penalty"
+      ],
+      "tags": [
+        "proc:penalty"
+      ]
+    },
+    {
+      "id": "start_line",
+      "es": [
+        "línea de salida",
+        "pre salida",
+        "previo a la salida"
+      ],
+      "en": [
+        "starting line",
+        "pre-start",
+        "before the start"
+      ],
+      "tags": [
+        "rrs:start",
+        "tr:prestart"
+      ]
+    },
+    {
+      "id": "tr_team_racing_turn",
+      "es": [
+        "viraje en team racing",
+        "giro de equipo"
+      ],
+      "en": [
+        "team racing turn"
+      ],
+      "tags": [
+        "tr:team_racing",
+        "tr:calls"
+      ],
+      "notes": "Verificar contra Call Book TR; ajustar ES si tu circle usa otro término."
+    }
+  ]
+}

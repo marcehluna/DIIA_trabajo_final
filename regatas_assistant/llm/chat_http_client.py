@@ -18,6 +18,7 @@ class HTTPChatClient(LLMClient):
         self._client = OpenAI(
             api_key=settings.llm_api_key,
             base_url=settings.llm_base_url or None,
+            timeout=settings.llm_timeout_seconds,
         )
         self._model = settings.llm_model
 

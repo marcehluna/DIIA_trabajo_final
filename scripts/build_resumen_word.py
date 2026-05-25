@@ -183,7 +183,7 @@ def build() -> Path:
 
     _h(document, "5. Cómo utilizarlo (indicaciones prácticas)", 1)
     for line in [
-        "Requisito de activos: en la raíz del proyecto o en la ruta configurada deben estar los PDF del Call Book y Case Book indicados en la documentación o en `REGATAS_CORPUS_FILES`.",
+        "Requisito de activos: en la carpeta `corpus/` bajo el proyecto (o en la ruta configurada) deben estar los PDF del Call Book y Case Book indicados en la documentación o en `REGATAS_CORPUS_FILES` (subcarpeta ajustable con `REGATAS_CORPUS_SUBDIR`).",
         "Entorno local recomendado: `pip install -r requirements.txt`, Ollama en marcha (p. ej. en el puerto 11434) y modelo descargado (`ollama pull …`), luego `python app.py` abre la interfaz web.",
         "Parametrización: variables como `REGATAS_LLM_BACKEND` (http o stub), `REGATAS_LLM_BASE_URL`, `REGATAS_LLM_MODEL`, `REGATAS_EMBEDDING_BACKEND` (lexical, http, local) controlan dónde corre el modelo y cómo se hace la búsqueda, sin tocar el código de negocio.",
     ]:

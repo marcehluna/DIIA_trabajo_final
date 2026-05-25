@@ -1,0 +1,1494 @@
+{
+  "run_id": "20260525_184445_rrs_case_retrieval",
+  "label": "rrs_case_retrieval",
+  "created_at": "2026-05-25T18:44:49.886664+00:00",
+  "retrieval_only": true,
+  "eval_set": "/Users/marcelo.luna/Library/CloudStorage/OneDrive-Personal/Diplomaturas/01. Inteligencia Artificial Aplicada/Materias/05. Taller de Trabajo Final/Repositorio/DIIA_trabajo_final/eval/data/eval_set.json",
+  "eval_set_source": "/Users/marcelo.luna/Library/CloudStorage/OneDrive-Personal/Diplomaturas/01. Inteligencia Artificial Aplicada/Materias/05. Taller de Trabajo Final/Repositorio/DIIA_trabajo_final/docs/Casos de Regatas.xlsx",
+  "settings": {
+    "corpus_filenames": [
+      "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+      "WS-Case-Book-2025-2028-v2025-07.pdf"
+    ],
+    "corpus_subdir": "corpus",
+    "chunk_size": 900,
+    "chunk_overlap": 120,
+    "retrieve_top_k": 8,
+    "embedding_backend": "lexical",
+    "llm_backend": "http",
+    "llm_model": "llama3",
+    "system_prompt_language": "es",
+    "prompt_strategy": "cot"
+  },
+  "aggregate": {
+    "n_cases": 15,
+    "mean_recall_at_k_rules": 0.2,
+    "mean_recall_at_k_calls": 0.0,
+    "mean_citation_f1_rrs": null,
+    "mean_citation_f1_calls": null,
+    "mean_token_jaccard_answer_context": null,
+    "mean_token_jaccard_answer_reference": null,
+    "verdict_accuracy": null
+  },
+  "cases": [
+    {
+      "id": "1",
+      "titulo": "Orzada brusca sin espacio para mantenerse alejado",
+      "relato_protesta": "B y Y navegan en la misma amura (babor), solapados. Y es el barco de sotavento. Y comienza a orzar lentamente. B responde de inmediato, pero Y continúa orzando hasta que B ya no puede evitar el contacto. Hay contacto leve.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "16.1"
+        ],
+        "calls": [
+          "A3"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a Y.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "Y"
+        ]
+      },
+      "output_ideal": "Hechos: B (barlovento) y Y (sotavento) solapados. Y orza y B responde prontamente. Y sigue orzando hasta que B no puede evitarla. \nNorma: Regla 16.1 e interpretación TR CALL A3 .\nRationale: Aunque Y es el barco con derecho de paso, al cambiar de curso debe dar espacio para que el barco que debe mantenerse alejado lo haga .\nDecisión: Penalizar a Y.",
+      "query": "B y Y navegan en la misma amura (babor), solapados. Y es el barco de sotavento. Y comienza a orzar lentamente. B responde de inmediato, pero Y continúa orzando hasta que B ya no puede evitar el contacto. Hay contacto leve.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 0.0,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p1|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 1,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 1 — §0]",
+            "text": "Racing Rules of Sailing 2025 – 2028"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §0]",
+            "text": "N All races in progress are abandoned. Return to the starting area. The warning signal will be made 1 minute after removal unless at that time the race is abandoned again or postponed. RACE SIGNALS The meanings of visual and sound signals are stated below. An arrow pointing up or down (   ) means that a visual signal is displayed or removed. A dot ( • ) means a sound; five short dashes (– – – – –) mean repetitive sounds; a long dash ( —) means a long sound. When a visual signal is displayed over a class flag, fleet flag , event flag or race area flag, the signal applies only to that class, fleet, event or race area. Postponement Signals Abandonment Signals Safety N over H All races in progress are abandoned. Further signals ashore. AP over A Races not started are postponed. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennan"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §1]",
+            "text": "poned. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennant 1–9 AP Races not started are postponed. The warning signal will be made 1 minute after removal unless at that time the race is postponed again or abandoned. Postponement of 1-9 hours from the scheduled starting time. N over A All races in progress are abandoned. No more racing today. Pennant 2 Pennant 1 Pennant 4 Pennant 3 Pennant 5 Pennant 6 Pennant 7 Pennant 8 Pennant 9 V Monitor communication channel for safety instructions (see rule 37)."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p3|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 3,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 3 — §0]",
+            "text": "Preparatory Signals Recall Signals Shortened Course Changing the Next Leg Other Signals P Preparatory signal. I Rule 30.1 is in effect. Z Rule 30.2 is in effect. First Substitute General recall. The warning signal will be made 1 minute after removal. S The course has been shortened. Rule 32.2 is in effect. (no sound) C The position of the next mark has been changed: L Ashore: A notice to competitors has been posted. Afloat: Come within hail or follow this vessel. Blue flag. The staff displaying this flag is one end of the finishing line. M The object displaying this signal replaces a missing mark. to starboard; to port; Y Wear a personal flotation device (see rule 40). to decrease the length of the leg; to increase the length of the leg. U Rule 30.3 is in effect. Orange flag. The staff displaying this flag is one end of the starting line. Black flag. Rule 30.4 is in effect. X Individual"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p3|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 3,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 3 — §1]",
+            "text": "flag. The staff displaying this flag is one end of the starting line. Black flag. Rule 30.4 is in effect. X Individual recall. (no sound)"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p5|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 5,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 5 — §0]",
+            "text": "THE RACING RULES OF SAILING for 2025–2028 Including changes and corrections made by World Sailing as of January 1, 2025 World Sailing"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p6|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 6,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 6 — §0]",
+            "text": "As the leading authority for the sport, World Sailing promotes and supports the protection of the environment in all sailing competitions and related activities throughout the world. Contact Details for the World Sailing Executive Office: World Sailing Office 401, 4th Floor 3 Shortlands London W6 8DA United Kingdom General Email: office@sailing.org Racing Rules Email: rules@sailing.org Website: sailing.org Published by World Sailing (UK) Limited, London, UK © World Sailing Limited June 2024"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p7|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 7,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 7 — §0]",
+            "text": "CONTENTS Race Signals Inside front cover Online Rules Documents 4 Introduction 5 Definitions 8 Basic Principles 13 Part 1 Fundamental Rules 13 Part 2 When Boats Meet 16 Part 3 Conduct of a Race 23 Part 4 Other Requirements When Racing 28 Part 5 Protests, Redress, Hearings, Misconduct and Appeals 36 Part 6 Entry and Qualification 52 Part 7 Event Organization 54 Appendix A Scoring 59 Appendix B Windsurfing Fleet Racing Rules 63 Appendix C Match Racing Rules 73 Appendix D Team Racing Rules 87 Appendix E Radio Sailing Racing Rules 95 Appendix F Kiteboarding Racing Rules 106 Appendix G Identification on Sails 118 Appendix H Weighing Clothing and Equipment 123 Appendix J Notice of Race and Sailing Instructions 124 Appendix M Recommendations for Protest Committees 129 Appendix N International Juries 136 Appendix P Special Procedures for Rule 42 139 Appendix R Procedures for Appeals and Requests"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "titulo": "Sobre-rotación del barco de barlovento proa al viento",
+      "relato_protesta": "En la pre-salida, Y (sotavento) y B (barlovento) están solapados. Y orza hacia una posición de \"proa al viento\". B orza en respuesta. B continúa rotando y pasa de la posición de proa al viento, chocando con el costado de Y.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "11",
+          "13"
+        ],
+        "calls": [
+          "B2"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      },
+      "output_ideal": "Hechos: Y y B solapados. Y orza a proa al viento y B responde. B sobre-rota y choca con Y .\nNorma: Reglas 11 o 13 según TR CALL B2 .\nRationale: Y dio espacio inicial para que B respondiera. El contacto fue causado por la sobre-rotación de B (error de maniobra), no por falta de espacio de Y .\nDecisión: Penalizar a B.",
+      "query": "En la pre-salida, Y (sotavento) y B (barlovento) están solapados. Y orza hacia una posición de \"proa al viento\". B orza en respuesta. B continúa rotando y pasa de la posición de proa al viento, chocando con el costado de Y.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 0.0,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p16|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 16,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 16 — §1]",
+            "text": "equired side and in the correct order (including the starting marks), (2) touches each mark designated in the sailing instructi ons to be a rounding mark, and (3) passes between the marks of a gate from the direction of the course from the previous mark; and then (c) she finishes. A mark that does not begin, bound or end the leg the boat is sailing does not have a required side. Start A boat starts when, her hull having been entirely on the pre -start side of the starting line at or after her starting signal, and having complied with rule 30.1 if it applies, any part of her hull crosses the starting line from the pre-start side to the course side. Support Person Any person who (a) provides, or may provide, physical or advisory support to a competitor, including any coach, trainer, manager, team staff, medic, paramedic or any other person working with, treating or assisting a competitor i"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p26|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 26,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 26 — §0]",
+            "text": "Part 2 WHEN BOATS MEET 21 20.3 Passing On a Hail to an Additional Boat When a boat has been hailed for room to tack and she intends to respond by tacking, she may hail another boat on the same tack for room to tack and avoid her. She may hail even if her hail does not meet the conditions of rule 20.1. Rule 20.2 applies between her and a boat she hails. 20.4 Additional Requirements for Hails (a) When conditions are such that a hail may not be heard, the boat shall also make a signal that clearly indicates her need for room to tack or her response. (b) The notice of race may specify an alternative communication for a boat to indicate her need for room to tack or her response, and require boats to use it. SECTION D OTHER RULES When rule 21 or 22 applies between two boats, Section A rules do not. 21 STARTING ERRORS; TAKING PENALTIES; BACKING A SAIL 21.1 A boat sailing towards the pre -start"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p26|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 26,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 26 — §1]",
+            "text": "Section A rules do not. 21 STARTING ERRORS; TAKING PENALTIES; BACKING A SAIL 21.1 A boat sailing towards the pre -start side of the starting line or one of its extensions after her starting signal to start or to comply with rule 30.1 shall keep clear of a boat not doing so until her hull is completely on the pre-start side. 21.2 A boat taking a penalty shall keep clear of one that is not. 21.3 A boat moving astern , or sideways to windward, through the water by backing a sail shall keep clear of one that is not. 22 CAPSIZED, ANCHORED OR AGROUND; RESCUING If possible, a boat shall avoid a boat that is capsized or has not regained control after capsizing, is anchored or aground, or is trying to help a person or vessel in danger. A boat is capsized when her masthead is in the water."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p29|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 29,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 29 — §1]",
+            "text": "g line or she must comply with rule 30.1, the race committee shall promptly display flag X with one sound. The flag shall be disp layed until the hull of each such boat has been completely on the pre -start side of the starting line or one of its extensions, and until all such boats have complied with rule 30.1 if it applies, but no later than four minutes after the starting signal or one minute before any later starting signal, whichever is earlier. If rule 29.2, 30.3 or 30.4 applies this rule does not. 29.2 General Recall When at the starting signal the race committee is unable to identify boats that are on the course side of the starting line or to which rule 30 applies, or there has been an error in the starting procedure, the race committee may signal a gen eral recall (display the First Substitute with two sounds). The warning signal for a new start for the recalled class shall be"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p30|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 30,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 30 — §0]",
+            "text": "Part 3 CONDUCT OF A RACE 25 30 STARTING PENALTIES 30.1 I Flag Rule If flag I has been displayed, and any part of a boat’s hull is on the course side of the starting line or one of its extensions during the last minute before her starting signal, she shall sail across an extension so that her hull is completely on the pre-start side before she starts. 30.2 Z Flag Rule If flag Z has been displayed, no part of a boat’s hull shall be in the triangle formed by the ends of the starting line and the first mark during the last minute before her starting signal. If a boat breaks this rule and is identified, she shall receive, without a hearing, a 20% Scoring Penalty calculated as stated in rule 44.3(c). She shall be penalized even if the race is restarted or resailed, but not if it is postponed or abandoned before the starting signal. If she is similarly identified during a subsequent attempt to"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p82|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 82,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 82 — §0]",
+            "text": "Appendix C MATCH RACING RULES 77 Time in minutes Visual signal Sound signal Means 7 Flag F displayed One Attention signal 6 Flag F removed None 5 Numeral pennant displayed* One Warning signal 4 Flag P displayed One Preparatory signal 2 Blue or yellow flag or both displayed** One** End of pre-start entry time 1 Flag P removed One long 0 Warning signal removed One Starting signal * Within a flight, numeral pennant 1 means Match 1, pennant 2 means Match 2, etc., unless the sailing instructions state otherwise. ** These signals shall be made only if one or both boats fail to comply with rule C4.2. The flag(s) shall be displayed until the umpires have signalled a penalty or for one minute, whichever is earlier. C3.2 Changes to Related Rules (a) Rule 29.1 is changed to: (1) When at a boat’s starting signal any part of her hull is on the course side of the starting line or one of its extensions"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p82|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 82,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 82 — §1]",
+            "text": "hen at a boat’s starting signal any part of her hull is on the course side of the starting line or one of its extensions, the race committee shall promptly display a blue or yellow flag identifying the boat with one sound. The flag shall be displayed until the hull of the boat is completely on the pre-start side of the starting line or one of its extensions or until two minutes after her starting signal, whichever is earlier. (2) When after a boat’s starting signal any part of her hull crosses from the pre -start side to the course side of the starting line across an extension without having started correctly, the race committee shall promptly display a blue or yellow flag identifying the boat. The flag shall be displayed until the hull of the boat is completely on the pre-start side of the starting line or one of its extensions or until two minutes after her starting signal, whichever i"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p82|#2",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 82,
+            "chunk_index": 2,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 82 — §2]",
+            "text": "pre-start side of the starting line or one of its extensions or until two minutes after her starting signal, whichever is earlier."
+          }
+        ]
+      }
+    },
+    {
+      "id": "3",
+      "titulo": "Retraso en la respuesta al solapamiento desde atrás",
+      "relato_protesta": "B establece un solapamiento desde atrás a sotavento de Y muy cerca de la línea de salida. Y puede mantenerse alejada acelerando, pero tarda en reaccionar y luego decide orzar, golpeando a B.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "11",
+          "15"
+        ],
+        "calls": [
+          "B1"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a Y.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "Y"
+        ]
+      },
+      "output_ideal": "Hechos: B gana solapamiento desde atrás. Y puede mantenerse alejada acelerando pero demora su respuesta y luego orza chocando a B .\nNorma: Regla 11 según TR CALL B1 .\nRationale: B cumplió la Regla 15 al dar espacio inicial para que Y reaccionara de forma marinera. Y falló al demorar su respuesta .\nDecisión: Penalizar a Y.",
+      "query": "B establece un solapamiento desde atrás a sotavento de Y muy cerca de la línea de salida. Y puede mantenerse alejada acelerando, pero tarda en reaccionar y luego decide orzar, golpeando a B.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 0.0,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p43|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 43,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 43 — §1]",
+            "text": "equipment does not comply with the class rules or rule 50. 60.5 Protest Decisions (a) The protest committee shall conduct a hearing as required by rule 63 to decide a protest. (b) A boat shall only be penalized (1) at a protest hearing to which she is a party, (2) under rule 62.4, 64 or 69, or (3) under a rule which expressly states that a penalty may be applied without a hearing. (c) If the protest committee decides that a boat has broken a rule it shall disqualify her whether or not the applicable rule was mentioned in the protest. However, the boat shall not be disqualified if (1) she is exonerated or some other penalty applies, (2) the boat has already taken an applicable penalty, in which case she shall not be penalized further unless the penalty for a rule she broke is disqualification that is not excludable, (3) the race is restarted or resailed, in which case rule 36 applies, or"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p45|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 45,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 45 — §0]",
+            "text": "Part 5 PROTESTS, REDRESS, HEARINGS, MISCONDUCT AND APPEALS 40 (2) if it is based on a protest committee decision on the last scheduled day of racing, no later than 30 minutes after the decision was posted, or (3) for all other requests, as soon as reasonably possible after the relevant information is available. However, the protest committee shall extend the time if there is good reason to do so. 61.3 Invalid Requests A request for redress is invalid if it does not comply with rule 61.2. 61.4 Redress Decisions (a) The protest committee shall conduct a hearing as required by rule 63 to decide whether to grant redress. (b) A boat is entitled to redress if her score or place in a race or series has been made, or may be made, significantly worse through no fault of her own by (1) an improper action or improper omission of a committee or the organizing authority , but not by a protest committ"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p47|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 47,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 47 — §0]",
+            "text": "Part 5 PROTESTS, REDRESS, HEARINGS, MISCONDUCT AND APPEALS 42 SECTION B HEARINGS AND MAKING DECISIONS Rule 63 applies to all hearings conducted by the protest committee. 63 CONDUCT OF HEARINGS 63.1 Rights of Parties (a) All parties to a hearing shall be (1) informed of the time and place of the hearing, (2) given access to the protest, request for redress, or report to be considered at the hearing, (3) allowed reasonable time to prepare for the hearing, and (4) allowed to have a representative present throughout the hearing of the evidence but, in a protest involving a breach of a rule of Part 2, 3 or 4, representative s of boats shall have been on board at the time of the incident unless there is good reason for the protest committee to decide otherwise. (b) If a party does not come to a hearing, the protest committee may proceed with the hearing in their absence. 63.2 Hearings (a) The"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p49|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 49,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 49 — §1]",
+            "text": "rty, or (2) is a member of the protest committee. 63.5 Decisions (a) The protest committee shall consider the evidence and decide what weight to give it. It shall then find the facts based on the balance of probabilities (unless an applicable rule requires otherwise), and then apply the rules to those facts to make its conclusions and a decision. (b) Decisions shall be made by simple majority vote. When there is an equal division of votes, the chair of the hearing may cast an additional vote. (c) If there is a conflict between (1) two or more rules that must be resolved before a decision can be made, and (2) those rules are in the notice of race, the sailing instructions, or any of the other documents that govern the event under item (g) of the definition Rule, then the protest committee shall apply the rule that it believes will provide the fairest result for all boats affected. (d) If"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p51|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 51,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 51 — §1]",
+            "text": "considered, or when the hearing is reopened, (1) if based only on new evidence, a majority of the members of the protest committee shall, if practicable, be members of the original committee; (2) if based on a significant error, the protest committee shall, if practicable, have at least one new member. 64 DISCRETIONARY PENALTIES When a boat reports within the protest time limit that she has broken a rule which is subject to a discretionary penalty, the protest committee shall decide the appropriate penalty having first considered the evidence that it considers appropriate. There is no requirement to hold a hearing. 65 LEGAL LIABILITY AND COSTS 65.1 Questions of legal liability arising from a breach of a rule, including any claims for monetary damages, shall be governed by prescriptions, if any, of the national authority. 65.2 Any measurement costs arising from a protest involving a class"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p52|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 52,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 52 — §1]",
+            "text": "from any source, including evidence taken during a hearing, believes a person may have broken rule 69.1(a), it shall decide whether or not to call a hearing. (c) When the protest committee needs more information to make the decision to call a hearing, it shall consider appointing a person or persons to conduct an investigation. These investigators shall not be members of the protest committee that will decide the matter. (d) When an investigator is appointed, all relevant information gathered by the investigator, favourable or unfavourable, shall be disclosed to the protest committee, and if the protest committee decides to call a hearing, to the parties."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p84|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 84,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 84 — §1]",
+            "text": "ing or in the finishing area shall clearly display a red flag as soon as possible after she becomes aware of those circumstances, but no later than two minutes after finishing or retiring. C6.4 (a) A boat protesting under rule C6.1(a) shall remove flag Y before or as soon as possible after the umpires’ signal. (b) A boat protesting under rule C6.1(b) or requesting redress under rule C6.3 shall, for her protest or request to be valid, keep her red flag displayed until she has so informed the umpires after finishing or retiring. No written protest or request for redress is required. C6.5 Umpire Decisions (a) After flag Y is displayed, the umpires shall decide whether to penalize any boat. They shall signal their decision in compliance with rule C5.1, C5.2 or C5.3. However, (1) if the umpires decide to penalize a boat, and as a result that boat will have more than two outstanding penalties,"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p84|#2",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 84,
+            "chunk_index": 2,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 84 — §2]",
+            "text": ", (1) if the umpires decide to penalize a boat, and as a result that boat will have more than two outstanding penalties, the umpires shall signal her disqualification under rule C5.4;"
+          }
+        ]
+      }
+    },
+    {
+      "id": "4",
+      "titulo": "Derecho a espacio de marca y pérdida por virada",
+      "relato_protesta": "Y y B se acercan a una boya de barlovento que debe dejarse por babor. B llega a la zona libre por proa de Y. B orza para virar (tack) frente a la boya, pero la presencia de Y por su costado le impide completar la virada.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "18.2(a)(2)",
+          "12",
+          "18.2(d)"
+        ],
+        "calls": [
+          "E1"
+        ],
+        "cases": [],
+        "decision_text": "Sin penalización mientras B no pase de proa al viento.",
+        "verdict": "sin_penalizacion",
+        "penalized_boats": []
+      },
+      "output_ideal": "Hechos: B entra a la zona libre por proa de Y. B quiere virar pero Y se lo impide .\nNorma: Reglas 18.2(a)(2) y 12 según TR CALL E1 .\nRationale: Y debe dar espacio de marca a B. Sin embargo, si B pasa de la posición de proa al viento, pierde su derecho a espacio de marca bajo la Regla 18.2(d) .\nDecisión: Sin penalización mientras B no pase de proa al viento.",
+      "query": "Y y B se acercan a una boya de barlovento que debe dejarse por babor. B llega a la zona libre por proa de Y. B orza para virar (tack) frente a la boya, pero la presencia de Y por su costado le impide completar la virada.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 0.3333333333333333,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p13|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 13,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 13 — §0]",
+            "text": "8 DEFINITIONS A term used as stated below is shown in italic type or, in preambles, in bold italic type. The meaning of several other terms is given in Terminology in the Introduction. Abandon A race that a race committee or protest committee abandons is void but may be resailed. Clear Astern and Clear Ahead; Overlap One boat is clear astern of another when her hull and equipment in normal position are behind a line abeam from the aftermost point of the other boat’s hull and equipment in normal position. The other boat is clear ahead. They overlap when neither is clear astern. However, they also overlap when a boat between them overlaps both. These terms always apply to boats on the same tack. They apply to boats on opposite tacks only when rule 18 applies between them or when both boats are sailing more than ninety degrees from the true wind. Committee The protest committee, the race co"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p13|#2",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 13,
+            "chunk_index": 2,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 13 — §2]",
+            "text": "race committee vessel that is also a mark. Fetching A boat is fetching a mark when she is in a position to pass to windward of it and leave it on the required side without changing tack. Finish A boat finishes when, after her starting signal , any part of her hull crosses the finishing line from the course side. However, she has not finished if after crossing the finishing line she (a) takes a penalty under rule 44.2,"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p14|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 14,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 14 — §0]",
+            "text": "DEFINITIONS 9 (b) corrects an error in sailing the course made at the line, or (c) continues to sail the course. After finishing she need not cross the finishing line completely. The sailing instructions may change the direction in which boats are required to cross the finishing line to finish. Keep Clear A boat keeps clear of a right-of-way boat (a) if the right-of-way boat can sail her course with no need to take avoiding action and, (b) when the boats are overlapped, if the right-of-way boat can also change course in both directions without immediately making contact. Leeward and Windward A boat’s leeward side is the side that is or, when she is head to wind, was away from the wind. However, when sailing by the lee or directly downwind, her leeward side is the side on which her mainsail lies. The other side is her windward side. When two boats on the same tack overlap, the one on the"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p14|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 14,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 14 — §1]",
+            "text": "n which her mainsail lies. The other side is her windward side. When two boats on the same tack overlap, the one on the leeward side of the other is the leeward boat. The other is the windward boat. Mark An object the sailing instructions require a boat to leave on a specified side, a race committee vessel surrounded by navigable water from which the starting or finishing line extends , and an object intentionally attached to the object or vessel. However, an anchor line is not part of the mark. Mark-Room Room for a boat (a) to sail to the mark when her proper course is to sail close to it, (b) to round or pass the mark on the required side, and (c) to leave it astern. Obstruction An obstruction is (a) an object that a boat could not pass without changing course substantially, if she were sailing directly towards it and one of her hull lengths from it; (b) an object that can be safely pa"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p17|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 17,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 17 — §0]",
+            "text": "DEFINITIONS 12 Tack, Starboard or Port A boat is on the tack, starboard or port, corresponding to her windward side. Windward See Leeward and Windward. Zone The area around a mark within a distance of three hull lengths of the boat nearer to it. A boat is in the zone when any part of her hull is in the zone."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p21|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 21,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 21 — §1]",
+            "text": "of her. However, some rules in Sections B, C and D limit the actions of a right-of-way boat. 10 ON OPPOSITE TACKS When boats are on opposite tacks, a port-tack boat shall keep clear of a starboard-tack boat. 11 ON THE SAME TACK, OVERLAPPED When boats are on the same tack and overlapped, a windward boat shall keep clear of a leeward boat. 12 ON THE SAME TACK, NOT OVERLAPPED When boats are on the same tack and not overlapped, a boat clear astern shall keep clear of a boat clear ahead. 13 WHILE TACKING After a boat passes head to wind, she shall keep clear of other boats until she is on a close -hauled course. During that time rules 10, 11 and 12 do not apply. If two boats are subject to this rule at the same"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p22|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 22,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 22 — §1]",
+            "text": "n a right -of-way boat changes course, she shall give the other boat room to keep clear. 16.2 In addition, on a beat to windward when a port-tack boat is keeping clear by sailing to pass to leeward of a starboard-tack boat, the starboard-tack boat shall not bear away if as a result the port-tack boat must change course immediately to continue keeping clear. 17 ON THE SAME TACK; PROPER COURSE If a boat clear astern becomes overlapped within two of her hull lengths to leeward of a boat on the same tack, she shall not sail above her proper course while they remain on the same tack and overlapped within that distance, unless in doing so she promptly sails astern of the other boat."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p23|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 23,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 23 — §0]",
+            "text": "Part 2 WHEN BOATS MEET 18 SECTION C AT MARKS AND OBSTRUCTIONS Section C rules do not apply between boats when the mark or obstruction referred to in those rules is a starting mark surrounded by navigable water or its anchor line, from the time the boats are approaching it to start until they have left it astern. 18 MARK-ROOM 18.1 When Rule 18 Applies (a) Rule 18 applies between boats when they are required to leave a mark on the same side and at least one of them is in the zone. However, it does not apply (1) between boats on opposite tacks on a beat to windward, (2) between boats on opposite tacks when the proper course at the mark for one but not both of them is to tack, (3) between a boat approaching a mark and one leaving it, or (4) if the mark is a continuing obstruction, in which case rule 19 applies. (b) Rule 18 no longer applies between boats when mark-room has been given. 18.2 G"
+          }
+        ]
+      }
+    },
+    {
+      "id": "5",
+      "titulo": "Cambio de rumbo táctico en babor-estribor (Anti-Hunt)",
+      "relato_protesta": "B (estribor) y Y (babor) convergen en ceñida. A 3 esloras, Y vira para pasar por popa de B. B entonces también cae (bear away) manteniendo el rumbo de colisión. Y debe volver a caer bruscamente para evitar a B.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "16.2"
+        ],
+        "calls": [
+          "D2"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      },
+      "output_ideal": "Hechos: B en estribor, Y en babor. Y intenta pasar por popa de B. B cae hacia Y obligándola a maniobrar de nuevo .\nNorma: Regla 16.2 según TR CALL D2 .\nRationale: En ceñida, un barco de estribor no puede cambiar de rumbo si obliga al barco de babor (que intenta pasar por popa) a cambiar de rumbo inmediatamente para seguir manteniéndose alejado .\nDecisión: Penalizar a B.",
+      "query": "B (estribor) y Y (babor) convergen en ceñida. A 3 esloras, Y vira para pasar por popa de B. B entonces también cae (bear away) manteniendo el rumbo de colisión. Y debe volver a caer bruscamente para evitar a B.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 1.0,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p22|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 22,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 22 — §1]",
+            "text": "n a right -of-way boat changes course, she shall give the other boat room to keep clear. 16.2 In addition, on a beat to windward when a port-tack boat is keeping clear by sailing to pass to leeward of a starboard-tack boat, the starboard-tack boat shall not bear away if as a result the port-tack boat must change course immediately to continue keeping clear. 17 ON THE SAME TACK; PROPER COURSE If a boat clear astern becomes overlapped within two of her hull lengths to leeward of a boat on the same tack, she shall not sail above her proper course while they remain on the same tack and overlapped within that distance, unless in doing so she promptly sails astern of the other boat."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p70|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 70,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 70 — §0]",
+            "text": "Appendix B WINDSURFING FLEET RACING RULES 65 18.2 Giving Mark-Room Rule 18.2(a) is changed to: (a) When the first of two boards is rounding or passing the mark, (1) if the boards are overlapped, the outside board shall give the inside board mark-room; (2) if the boards are not overlapped, the board clear astern at that moment shall give the other board mark-room. When a board is required to give mark-room by rule 18.2(a), she shall continue to do so for as long as this rule applies, even if later an overlap is broken or a new overlap begins. Rule 18.2(b) is changed to: (b) Rule 18.2(a) no longer applies if the board entitled to mark-room passes head to wind. Rule 18.3 is deleted. 18.4 Gybing or Bearing Away Rule 18.4 is changed to: When an inside overlapped right-of-way board must gybe or bear away at a mark to sail her proper course, until she gybes or bears away she shall sail no farth"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p70|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 70,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 70 — §1]",
+            "text": "board must gybe or bear away at a mark to sail her proper course, until she gybes or bears away she shall sail no farther from the mark than needed to sail that course. Rule 18.4 does not apply at a gate mark. 22 CAPSIZED; AGROUND; RESCUING Rule 22 is changed to: 22.1 If possible, a board shall avoid a board that is capsized or has not regained control after capsizing, is aground, or is trying to help a person or vessel in danger. 22.2 If possible, a board that is capsized or aground shall not interfere with another board."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p79|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 79,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 79 — §1]",
+            "text": "astern shall keep clear. C2.7 Rule 16.2 is changed to: 16.2 In addition, when boats on opposite tacks are sailing to a mark that is to windward of them, the starboard-tack boat shall not bear away to a course that is more than ninety degrees from the true wind and that is below her proper course, if as a result the port-tack boat must change course immediately to continue keeping clear. C2.8 Rule 17 is deleted. C2.9 Rule 18 is changed to: 18 MARK-ROOM 18.1 When Rule 18 Applies Rule 18 applies between boats when they are required to leave a mark on the same side and at least one of them is in the zone. However, it does not apply between a boat approaching a mark and one leaving it. Rule 18 no longer applies between boats when the boat entitled to mark-room is on the next leg and the mark is astern of her."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p86|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 86,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 86 — §0]",
+            "text": "Appendix C MATCH RACING RULES 81 possible, bear away to a course that is more than ninety degrees from the true wind. (b) Add to rule 2: ‘When racing, a boat need not take a penalty unless signalled to do so by an umpire.’ (c) A boat completes a leg of the course when any part of her hull crosses the extension of the line from the previous mark through the mark she is rounding, or on the last leg when she finishes. (d) A penalized boat shall not be recorded as having finished until she takes her penalty and her hull is completely on the course side of the line and she then finishes, unless the penalty is cancelled before or after she crosses the finishing line. (e) If a boat has one or two outstanding penalties and the other boat in her match is penalized, one penalty for each boat shall be cancelled except that a red -flag penalty shall not cancel or be cancelled by another penalty. (f)"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p113|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 113,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 113 — §1]",
+            "text": "RULES OF PART 1 [No changes.] F2 CHANGES TO THE RULES OF PART 2 PART 2 — PREAMBLE In the second sentence of the preamble, ‘injury or serious damage’ is changed to ‘injury, serious damage or a tangle’. 13 WHILE TACKING Rule 13 is deleted. 16 CHANGING COURSE OR KITE POSITION Rule 16 is changed to: 16.1 When a right -of-way kiteboard changes course or the position of her kite, she shall give the other kiteboard room to continue keeping clear. 16.2 In addition, on a beat to windward when a port-tack kiteboard is keeping clear by sailing to pass to leeward of a starboard- tack kiteboard, the starboard-tack kiteboard shall not bear away or change the position of her kite if as a result the port-"
+          },
+          {
+            "chunk_id": "WS-Case-Book-2025-2028-v2025-07.pdf|p79|#0",
+            "source_file": "WS-Case-Book-2025-2028-v2025-07.pdf",
+            "page_start": 79,
+            "chunk_index": 0,
+            "header": "[WS-Case-Book-2025-2028-v2025-07.pdf — p. 79 — §0]",
+            "text": "CASE 3 Rule 19.2(a), Room to Pass an Obstruction: Giving Room at an Obstruction Rule 20, Room to Tack at an Obstruction Rule 43.1(a), Exoneration A leeward port-tack boat, hailing for room to tack when faced with an oncoming starboard-tack boat, an obstruction, is not required to anticipate that the windward boat will fail to comply with her obligation to tack promptly or otherwise provide room. Facts S hailed PL as the two dinghies approached each other on collision courses. PL then twice hailed ‘Room to tack’, but PW did not respond. PL, now unable to keep clear of S, hailed a third time, and PW then began to tack. At that moment, S, which was then within three feet (1 m) of PL, had to bear away sharply to avoid a collision. PW retired and S protested PL under rule 10. The protest committee disqualified PL observing that, not having had a timely response from PW, she should have used h"
+          },
+          {
+            "chunk_id": "WS-Case-Book-2025-2028-v2025-07.pdf|p119|#0",
+            "source_file": "WS-Case-Book-2025-2028-v2025-07.pdf",
+            "page_start": 119,
+            "chunk_index": 0,
+            "header": "[WS-Case-Book-2025-2028-v2025-07.pdf — p. 119 — §0]",
+            "text": "CASE 28 Rule 28.1, Sailing the Course Rule 32.1, Shortening or Abandoning After the Start Rule 43.1(a), Exoneration Rule A5.1, Scores Determined by the Race Committee When one boat breaks a rule and, as a result, causes another to touch a mark, the other boat is exonerated. The fact that a starting mark has moved, for whatever reason, does not relieve a boat of her obligation to start. A race committee may abandon under rule 32.1(c) only when the change in the mark’s position has directly affected the safety or fairness of the competition. Facts As S and P, close-hauled, approached the port end of the starting line, a strong tide was setting them towards the line and the starting line mark. When S was two hull lengths from the mark, she hailed P to keep clear. There was no response, and S was forced to bear away to avoid a collision. Immediately after the starting signal, P sailed over t"
+          }
+        ]
+      }
+    },
+    {
+      "id": "6",
+      "titulo": "Incapacidad física de dar espacio de marca al solapar",
+      "relato_protesta": "Y y B se acercan a una marca de barlovento a dejar por estribor. Y entra en la zona libre por popa de B. Y gana un solapamiento por el interior de B y reclama espacio. B no tiene espacio físico para dejar virar a Y sin chocar.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "18.2(a)",
+          "18.2(d)"
+        ],
+        "calls": [
+          "E2"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a Y (si vira y choca).",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "Y"
+        ]
+      },
+      "output_ideal": "Hechos: Y entra a la zona libre por popa. Y gana solapamiento interior. B no tiene espacio para dejar virar a Y .\nNorma: Regla 18.2(a) según TR CALL E2 .\nRationale: Si el barco exterior (B) es incapaz de dar espacio de marca desde el momento en que se crea el solapamiento, no está obligado a darlo según la Regla 18.2(d) .\nDecisión: Penalizar a Y (si vira y choca).",
+      "query": "Y y B se acercan a una marca de barlovento a dejar por estribor. Y entra en la zona libre por popa de B. Y gana un solapamiento por el interior de B y reclama espacio. B no tiene espacio físico para dejar virar a Y sin chocar.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 0.0,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p125|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 125,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 125 — §0]",
+            "text": "Appendix G IDENTIFICATION ON SAILS 120 National authority Letters Lebanon LIB Libya LBA Liechtenstein LIE Lithuania LTU Luxembourg LUX Macau, China MAC Madagascar MAD Malaysia MAS Malta MLT Mauritius MRI Mexico MEX Moldova MDA Monaco MON Montenegro MNE Montserrat MNT Morocco MAR Mozambique MOZ Myanmar MYA Namibia NAM Netherlands NED Netherlands Antilles AHO New Zealand NZL Nicaragua NCA Nigeria NGR North Macedonia MKD Norway NOR Oman OMA Pakistan PAK Palestine PLE Panama PAK Papua New Guinea PNG Paraguay PAR Peru PER Philippines PHI Poland POL Portugal POR Puerto Rico PUR Qatar QAT National authority Letters Romania ROU Russia RUS Samoa SAM San Marino SMR Saudi Arabia KSA Senegal SEN Serbia SRB Seychelles SEY Singapore SGP Slovak Republic SVK Slovenia SLO Solomon Islands SOL South Africa RSA Spain ESP Sri Lanka SRI St Kitts & Nevis SKN St Lucia LCA St Vincent & Grenadines VIN Sudan SUD S"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p131|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 131,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 131 — §0]",
+            "text": "Appendix J NOTICE OF RACE AND SAILING INSTRUCTIONS 126 (2) changes to the racing rules authorized by World Sailing under rule 86.2, referring specifically to each rule and stating the change (also include the statement from World Sailing authorizing the change); (3) changes to class rules, as permitted under rule 87, referring specifically to each rule and stating the change; (4) categorization or classification requirements that some or all competitors must satisfy; (a) for sailor categorization (see rule 79 and the World Sailing Sailor Categorization Code), or (b) for functional classification for Para World Sailing events (see World Sailing Para Classification Rules); (5) that boats will be required to display advertising chosen and supplied by the organizing authority (see rule 6 and the World Sailing Advertising Code) and other information related to advertising; (6) that rule 90.3("
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p1|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 1,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 1 — §0]",
+            "text": "Racing Rules of Sailing 2025 – 2028"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §0]",
+            "text": "N All races in progress are abandoned. Return to the starting area. The warning signal will be made 1 minute after removal unless at that time the race is abandoned again or postponed. RACE SIGNALS The meanings of visual and sound signals are stated below. An arrow pointing up or down (   ) means that a visual signal is displayed or removed. A dot ( • ) means a sound; five short dashes (– – – – –) mean repetitive sounds; a long dash ( —) means a long sound. When a visual signal is displayed over a class flag, fleet flag , event flag or race area flag, the signal applies only to that class, fleet, event or race area. Postponement Signals Abandonment Signals Safety N over H All races in progress are abandoned. Further signals ashore. AP over A Races not started are postponed. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennan"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §1]",
+            "text": "poned. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennant 1–9 AP Races not started are postponed. The warning signal will be made 1 minute after removal unless at that time the race is postponed again or abandoned. Postponement of 1-9 hours from the scheduled starting time. N over A All races in progress are abandoned. No more racing today. Pennant 2 Pennant 1 Pennant 4 Pennant 3 Pennant 5 Pennant 6 Pennant 7 Pennant 8 Pennant 9 V Monitor communication channel for safety instructions (see rule 37)."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p3|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 3,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 3 — §0]",
+            "text": "Preparatory Signals Recall Signals Shortened Course Changing the Next Leg Other Signals P Preparatory signal. I Rule 30.1 is in effect. Z Rule 30.2 is in effect. First Substitute General recall. The warning signal will be made 1 minute after removal. S The course has been shortened. Rule 32.2 is in effect. (no sound) C The position of the next mark has been changed: L Ashore: A notice to competitors has been posted. Afloat: Come within hail or follow this vessel. Blue flag. The staff displaying this flag is one end of the finishing line. M The object displaying this signal replaces a missing mark. to starboard; to port; Y Wear a personal flotation device (see rule 40). to decrease the length of the leg; to increase the length of the leg. U Rule 30.3 is in effect. Orange flag. The staff displaying this flag is one end of the starting line. Black flag. Rule 30.4 is in effect. X Individual"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p3|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 3,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 3 — §1]",
+            "text": "flag. The staff displaying this flag is one end of the starting line. Black flag. Rule 30.4 is in effect. X Individual recall. (no sound)"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p5|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 5,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 5 — §0]",
+            "text": "THE RACING RULES OF SAILING for 2025–2028 Including changes and corrections made by World Sailing as of January 1, 2025 World Sailing"
+          }
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "titulo": "Interferencia durante el cumplimiento de una penalización",
+      "relato_protesta": "B está cumpliendo una penalización de una vuelta. Mientras gira, Y (que no está en penalización) tiene que desviarse para evitar chocar con B.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "21.2"
+        ],
+        "calls": [
+          "L2"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      },
+      "output_ideal": "Hechos: B tomando penalización. Y debe evitarla .\nNorma: Regla 21.2 según TR CALL L2 o L5 .\nRationale: Un barco que está tomando una penalización debe mantenerse alejado de uno que no lo está haciendo .\nDecisión: Penalizar a B.",
+      "query": "B está cumpliendo una penalización de una vuelta. Mientras gira, Y (que no está en penalización) tiene que desviarse para evitar chocar con B.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 0.0,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p131|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 131,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 131 — §0]",
+            "text": "Appendix J NOTICE OF RACE AND SAILING INSTRUCTIONS 126 (2) changes to the racing rules authorized by World Sailing under rule 86.2, referring specifically to each rule and stating the change (also include the statement from World Sailing authorizing the change); (3) changes to class rules, as permitted under rule 87, referring specifically to each rule and stating the change; (4) categorization or classification requirements that some or all competitors must satisfy; (a) for sailor categorization (see rule 79 and the World Sailing Sailor Categorization Code), or (b) for functional classification for Para World Sailing events (see World Sailing Para Classification Rules); (5) that boats will be required to display advertising chosen and supplied by the organizing authority (see rule 6 and the World Sailing Advertising Code) and other information related to advertising; (6) that rule 90.3("
+          },
+          {
+            "chunk_id": "WS-Case-Book-2025-2028-v2025-07.pdf|p118|#0",
+            "source_file": "WS-Case-Book-2025-2028-v2025-07.pdf",
+            "page_start": 118,
+            "chunk_index": 0,
+            "header": "[WS-Case-Book-2025-2028-v2025-07.pdf — p. 118 — §0]",
+            "text": "head to wind, BP became the right-of-way boat under rule 13 and held right of way until AS assumed a close-hauled course on starboard tack. At that moment AS, having just acquired right of way under rule 10, was required by rule 15 to give BP room to keep clear. The collision occurred almost immediately after AS assumed a close-hauled course on starboard tack. Therefore, BP needed to take avoiding action before AS had borne away to a close-hauled course. At that time BP had right of way under rule 13, and so AS broke rule 13. It is a principle of the right-of-way rules, as stated in rule 15, that a boat that becomes obligated to keep clear by an action of another boat is entitled to sufficient time and space to respond. When AS acquired right of way under rule 10, she did not give BP room to keep clear and broke rule 15. Finally, AS broke rule 14(a) because she could have avoided the con"
+          },
+          {
+            "chunk_id": "WS-Case-Book-2025-2028-v2025-07.pdf|p299|#1",
+            "source_file": "WS-Case-Book-2025-2028-v2025-07.pdf",
+            "page_start": 299,
+            "chunk_index": 1,
+            "header": "[WS-Case-Book-2025-2028-v2025-07.pdf — p. 299 — §1]",
+            "text": "almost certainly create a high degree of conflict, while more distant relationships will generally create diminishing degrees of conflict as the distance increases. Similarly, an employer/employee relationship could create a high degree of conflict. Rule 63.3(d) also requires the level of the event to be considered. At some levels of event it is not practical to find suitable protest committee members who have no conflict of interest, yet the event still needs the service of a protest committee. It may be possible to balance the conflict between two or more protest committee members. The protest committee should also consider if the perception of fairness is best served by having more members on the protest committee or by not including a person with a conflict. The protest committee may also take into account the strength of feeling of the parties and if their concerns are shared or con"
+          },
+          {
+            "chunk_id": "WS-Case-Book-2025-2028-v2025-07.pdf|p320|#0",
+            "source_file": "WS-Case-Book-2025-2028-v2025-07.pdf",
+            "page_start": 320,
+            "chunk_index": 0,
+            "header": "[WS-Case-Book-2025-2028-v2025-07.pdf — p. 320 — §0]",
+            "text": "informed X of her protest at that time. The protest committee decided that Y’s protest met the requirements of rule 60.2(b)(2). Question 1 When did X finish? Answer 1 Boat X satisfied the first sentence of the definition Finish when her bow crossed the finishing line for the first time, shortly before position 6. The second sentence of the definition contains three conditions, (a), (b) and (c). If one of those three conditions applies, X’s first crossing of the finish line does not qualify as her finish. X did not take a penalty at or near the finishing line and, therefore, she did not satisfy condition (a). Boat X had made an error in ‘ sailing the course’ when she failed to leave mark 2 to port, which she corrected by sailing to mark 2 and rounding it to port. The error in ‘ sailing the course ’ that X made was made at mark 2, not at the finishing line. Therefore, X did not satisfy con"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p1|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 1,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 1 — §0]",
+            "text": "Racing Rules of Sailing 2025 – 2028"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §0]",
+            "text": "N All races in progress are abandoned. Return to the starting area. The warning signal will be made 1 minute after removal unless at that time the race is abandoned again or postponed. RACE SIGNALS The meanings of visual and sound signals are stated below. An arrow pointing up or down (   ) means that a visual signal is displayed or removed. A dot ( • ) means a sound; five short dashes (– – – – –) mean repetitive sounds; a long dash ( —) means a long sound. When a visual signal is displayed over a class flag, fleet flag , event flag or race area flag, the signal applies only to that class, fleet, event or race area. Postponement Signals Abandonment Signals Safety N over H All races in progress are abandoned. Further signals ashore. AP over A Races not started are postponed. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennan"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §1]",
+            "text": "poned. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennant 1–9 AP Races not started are postponed. The warning signal will be made 1 minute after removal unless at that time the race is postponed again or abandoned. Postponement of 1-9 hours from the scheduled starting time. N over A All races in progress are abandoned. No more racing today. Pennant 2 Pennant 1 Pennant 4 Pennant 3 Pennant 5 Pennant 6 Pennant 7 Pennant 8 Pennant 9 V Monitor communication channel for safety instructions (see rule 37)."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p3|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 3,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 3 — §0]",
+            "text": "Preparatory Signals Recall Signals Shortened Course Changing the Next Leg Other Signals P Preparatory signal. I Rule 30.1 is in effect. Z Rule 30.2 is in effect. First Substitute General recall. The warning signal will be made 1 minute after removal. S The course has been shortened. Rule 32.2 is in effect. (no sound) C The position of the next mark has been changed: L Ashore: A notice to competitors has been posted. Afloat: Come within hail or follow this vessel. Blue flag. The staff displaying this flag is one end of the finishing line. M The object displaying this signal replaces a missing mark. to starboard; to port; Y Wear a personal flotation device (see rule 40). to decrease the length of the leg; to increase the length of the leg. U Rule 30.3 is in effect. Orange flag. The staff displaying this flag is one end of the starting line. Black flag. Rule 30.4 is in effect. X Individual"
+          }
+        ]
+      }
+    },
+    {
+      "id": "8",
+      "titulo": "Eliminación de la Regla 18.4 en Team Racing",
+      "relato_protesta": "Y y B solapados en babor hacia la boya de sotavento. Y es interior. Y traslucha a estribor en la zona y orza a B para alejarla de la marca. B es obligada a trasluchar.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "18.2(a)(1)",
+          "D1.1",
+          "18.4"
+        ],
+        "calls": [
+          "J5"
+        ],
+        "cases": [],
+        "decision_text": "Sin penalización para Y.",
+        "verdict": "sin_penalizacion",
+        "penalized_boats": []
+      },
+      "output_ideal": "Hechos: Y interior solapado. Y traslucha a estribor en la zona y orza a B .\nNorma: Regla 18.2(a)(1) y Apéndice D (D1.1c) según TR CALL J5 .\nRationale: En Team Racing, la Regla 18.4 se borra, por lo que el barco con derecho a espacio de marca no tiene obligación de trasluchar de inmediato y puede orzar al otro .\nDecisión: Sin penalización para Y.",
+      "query": "Y y B solapados en babor hacia la boya de sotavento. Y es interior. Y traslucha a estribor en la zona y orza a B para alejarla de la marca. B es obligada a trasluchar.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 0.0,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p131|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 131,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 131 — §0]",
+            "text": "Appendix J NOTICE OF RACE AND SAILING INSTRUCTIONS 126 (2) changes to the racing rules authorized by World Sailing under rule 86.2, referring specifically to each rule and stating the change (also include the statement from World Sailing authorizing the change); (3) changes to class rules, as permitted under rule 87, referring specifically to each rule and stating the change; (4) categorization or classification requirements that some or all competitors must satisfy; (a) for sailor categorization (see rule 79 and the World Sailing Sailor Categorization Code), or (b) for functional classification for Para World Sailing events (see World Sailing Para Classification Rules); (5) that boats will be required to display advertising chosen and supplied by the organizing authority (see rule 6 and the World Sailing Advertising Code) and other information related to advertising; (6) that rule 90.3("
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p1|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 1,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 1 — §0]",
+            "text": "Racing Rules of Sailing 2025 – 2028"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §0]",
+            "text": "N All races in progress are abandoned. Return to the starting area. The warning signal will be made 1 minute after removal unless at that time the race is abandoned again or postponed. RACE SIGNALS The meanings of visual and sound signals are stated below. An arrow pointing up or down (   ) means that a visual signal is displayed or removed. A dot ( • ) means a sound; five short dashes (– – – – –) mean repetitive sounds; a long dash ( —) means a long sound. When a visual signal is displayed over a class flag, fleet flag , event flag or race area flag, the signal applies only to that class, fleet, event or race area. Postponement Signals Abandonment Signals Safety N over H All races in progress are abandoned. Further signals ashore. AP over A Races not started are postponed. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennan"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §1]",
+            "text": "poned. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennant 1–9 AP Races not started are postponed. The warning signal will be made 1 minute after removal unless at that time the race is postponed again or abandoned. Postponement of 1-9 hours from the scheduled starting time. N over A All races in progress are abandoned. No more racing today. Pennant 2 Pennant 1 Pennant 4 Pennant 3 Pennant 5 Pennant 6 Pennant 7 Pennant 8 Pennant 9 V Monitor communication channel for safety instructions (see rule 37)."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p3|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 3,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 3 — §0]",
+            "text": "Preparatory Signals Recall Signals Shortened Course Changing the Next Leg Other Signals P Preparatory signal. I Rule 30.1 is in effect. Z Rule 30.2 is in effect. First Substitute General recall. The warning signal will be made 1 minute after removal. S The course has been shortened. Rule 32.2 is in effect. (no sound) C The position of the next mark has been changed: L Ashore: A notice to competitors has been posted. Afloat: Come within hail or follow this vessel. Blue flag. The staff displaying this flag is one end of the finishing line. M The object displaying this signal replaces a missing mark. to starboard; to port; Y Wear a personal flotation device (see rule 40). to decrease the length of the leg; to increase the length of the leg. U Rule 30.3 is in effect. Orange flag. The staff displaying this flag is one end of the starting line. Black flag. Rule 30.4 is in effect. X Individual"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p3|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 3,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 3 — §1]",
+            "text": "flag. The staff displaying this flag is one end of the starting line. Black flag. Rule 30.4 is in effect. X Individual recall. (no sound)"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p5|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 5,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 5 — §0]",
+            "text": "THE RACING RULES OF SAILING for 2025–2028 Including changes and corrections made by World Sailing as of January 1, 2025 World Sailing"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p6|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 6,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 6 — §0]",
+            "text": "As the leading authority for the sport, World Sailing promotes and supports the protection of the environment in all sailing competitions and related activities throughout the world. Contact Details for the World Sailing Executive Office: World Sailing Office 401, 4th Floor 3 Shortlands London W6 8DA United Kingdom General Email: office@sailing.org Racing Rules Email: rules@sailing.org Website: sailing.org Published by World Sailing (UK) Limited, London, UK © World Sailing Limited June 2024"
+          }
+        ]
+      }
+    },
+    {
+      "id": "9",
+      "titulo": "Virada completada libre por proa en la zona",
+      "relato_protesta": "Y vira en la zona de la marca de barlovento por delante de B. Y completa su virada y queda libre por proa, pero B debe caer inmediatamente para evitar chocar con la popa de Y.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "12",
+          "13",
+          "15"
+        ],
+        "calls": [
+          "E6"
+        ],
+        "cases": [],
+        "decision_text": "Sin penalización para Y.",
+        "verdict": "sin_penalizacion",
+        "penalized_boats": []
+      },
+      "output_ideal": "Hechos: Y vira en la zona. B debe caer para evitarla después de que Y completó su virada .\nNorma: Regla 12 e interpretación TR CALL E6 .\nRationale: Si Y completa su virada sin obligar a B a maniobrar durante la misma (Regla 13) y sin riesgo de contacto inmediato (Regla 15), B ahora es el barco que viene por popa y debe mantenerse alejado .\nDecisión: Sin penalización para Y.",
+      "query": "Y vira en la zona de la marca de barlovento por delante de B. Y completa su virada y queda libre por proa, pero B debe caer inmediatamente para evitar chocar con la popa de Y.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 0.6666666666666666,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p125|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 125,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 125 — §0]",
+            "text": "Appendix G IDENTIFICATION ON SAILS 120 National authority Letters Lebanon LIB Libya LBA Liechtenstein LIE Lithuania LTU Luxembourg LUX Macau, China MAC Madagascar MAD Malaysia MAS Malta MLT Mauritius MRI Mexico MEX Moldova MDA Monaco MON Montenegro MNE Montserrat MNT Morocco MAR Mozambique MOZ Myanmar MYA Namibia NAM Netherlands NED Netherlands Antilles AHO New Zealand NZL Nicaragua NCA Nigeria NGR North Macedonia MKD Norway NOR Oman OMA Pakistan PAK Palestine PLE Panama PAK Papua New Guinea PNG Paraguay PAR Peru PER Philippines PHI Poland POL Portugal POR Puerto Rico PUR Qatar QAT National authority Letters Romania ROU Russia RUS Samoa SAM San Marino SMR Saudi Arabia KSA Senegal SEN Serbia SRB Seychelles SEY Singapore SGP Slovak Republic SVK Slovenia SLO Solomon Islands SOL South Africa RSA Spain ESP Sri Lanka SRI St Kitts & Nevis SKN St Lucia LCA St Vincent & Grenadines VIN Sudan SUD S"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p131|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 131,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 131 — §0]",
+            "text": "Appendix J NOTICE OF RACE AND SAILING INSTRUCTIONS 126 (2) changes to the racing rules authorized by World Sailing under rule 86.2, referring specifically to each rule and stating the change (also include the statement from World Sailing authorizing the change); (3) changes to class rules, as permitted under rule 87, referring specifically to each rule and stating the change; (4) categorization or classification requirements that some or all competitors must satisfy; (a) for sailor categorization (see rule 79 and the World Sailing Sailor Categorization Code), or (b) for functional classification for Para World Sailing events (see World Sailing Para Classification Rules); (5) that boats will be required to display advertising chosen and supplied by the organizing authority (see rule 6 and the World Sailing Advertising Code) and other information related to advertising; (6) that rule 90.3("
+          },
+          {
+            "chunk_id": "WS-Case-Book-2025-2028-v2025-07.pdf|p118|#0",
+            "source_file": "WS-Case-Book-2025-2028-v2025-07.pdf",
+            "page_start": 118,
+            "chunk_index": 0,
+            "header": "[WS-Case-Book-2025-2028-v2025-07.pdf — p. 118 — §0]",
+            "text": "head to wind, BP became the right-of-way boat under rule 13 and held right of way until AS assumed a close-hauled course on starboard tack. At that moment AS, having just acquired right of way under rule 10, was required by rule 15 to give BP room to keep clear. The collision occurred almost immediately after AS assumed a close-hauled course on starboard tack. Therefore, BP needed to take avoiding action before AS had borne away to a close-hauled course. At that time BP had right of way under rule 13, and so AS broke rule 13. It is a principle of the right-of-way rules, as stated in rule 15, that a boat that becomes obligated to keep clear by an action of another boat is entitled to sufficient time and space to respond. When AS acquired right of way under rule 10, she did not give BP room to keep clear and broke rule 15. Finally, AS broke rule 14(a) because she could have avoided the con"
+          },
+          {
+            "chunk_id": "WS-Case-Book-2025-2028-v2025-07.pdf|p299|#1",
+            "source_file": "WS-Case-Book-2025-2028-v2025-07.pdf",
+            "page_start": 299,
+            "chunk_index": 1,
+            "header": "[WS-Case-Book-2025-2028-v2025-07.pdf — p. 299 — §1]",
+            "text": "almost certainly create a high degree of conflict, while more distant relationships will generally create diminishing degrees of conflict as the distance increases. Similarly, an employer/employee relationship could create a high degree of conflict. Rule 63.3(d) also requires the level of the event to be considered. At some levels of event it is not practical to find suitable protest committee members who have no conflict of interest, yet the event still needs the service of a protest committee. It may be possible to balance the conflict between two or more protest committee members. The protest committee should also consider if the perception of fairness is best served by having more members on the protest committee or by not including a person with a conflict. The protest committee may also take into account the strength of feeling of the parties and if their concerns are shared or con"
+          },
+          {
+            "chunk_id": "WS-Case-Book-2025-2028-v2025-07.pdf|p320|#0",
+            "source_file": "WS-Case-Book-2025-2028-v2025-07.pdf",
+            "page_start": 320,
+            "chunk_index": 0,
+            "header": "[WS-Case-Book-2025-2028-v2025-07.pdf — p. 320 — §0]",
+            "text": "informed X of her protest at that time. The protest committee decided that Y’s protest met the requirements of rule 60.2(b)(2). Question 1 When did X finish? Answer 1 Boat X satisfied the first sentence of the definition Finish when her bow crossed the finishing line for the first time, shortly before position 6. The second sentence of the definition contains three conditions, (a), (b) and (c). If one of those three conditions applies, X’s first crossing of the finish line does not qualify as her finish. X did not take a penalty at or near the finishing line and, therefore, she did not satisfy condition (a). Boat X had made an error in ‘ sailing the course’ when she failed to leave mark 2 to port, which she corrected by sailing to mark 2 and rounding it to port. The error in ‘ sailing the course ’ that X made was made at mark 2, not at the finishing line. Therefore, X did not satisfy con"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p1|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 1,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 1 — §0]",
+            "text": "Racing Rules of Sailing 2025 – 2028"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §0]",
+            "text": "N All races in progress are abandoned. Return to the starting area. The warning signal will be made 1 minute after removal unless at that time the race is abandoned again or postponed. RACE SIGNALS The meanings of visual and sound signals are stated below. An arrow pointing up or down (   ) means that a visual signal is displayed or removed. A dot ( • ) means a sound; five short dashes (– – – – –) mean repetitive sounds; a long dash ( —) means a long sound. When a visual signal is displayed over a class flag, fleet flag , event flag or race area flag, the signal applies only to that class, fleet, event or race area. Postponement Signals Abandonment Signals Safety N over H All races in progress are abandoned. Further signals ashore. AP over A Races not started are postponed. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennan"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §1]",
+            "text": "poned. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennant 1–9 AP Races not started are postponed. The warning signal will be made 1 minute after removal unless at that time the race is postponed again or abandoned. Postponement of 1-9 hours from the scheduled starting time. N over A All races in progress are abandoned. No more racing today. Pennant 2 Pennant 1 Pennant 4 Pennant 3 Pennant 5 Pennant 6 Pennant 7 Pennant 8 Pennant 9 V Monitor communication channel for safety instructions (see rule 37)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "10",
+      "titulo": "Contacto antes de completar la virada tras cruce",
+      "relato_protesta": "B (estribor) cruza por delante de Y (babor). Después de cruzar, B orza y vira a babor. Durante la virada, B choca con Y antes de llegar a rumbo de ceñida.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "13"
+        ],
+        "calls": [
+          "D4"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      },
+      "output_ideal": "Hechos: B cruza a Y. B vira y choca con Y antes de completar la virada .\nNorma: Regla 13 según TR CALL D4 .\nRationale: B perdió su derecho de paso al virar. Mientras un barco vira, debe mantenerse alejado de los demás .\nDecisión: Penalizar a B.",
+      "query": "B (estribor) cruza por delante de Y (babor). Después de cruzar, B orza y vira a babor. Durante la virada, B choca con Y antes de llegar a rumbo de ceñida.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 1.0,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p125|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 125,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 125 — §0]",
+            "text": "Appendix G IDENTIFICATION ON SAILS 120 National authority Letters Lebanon LIB Libya LBA Liechtenstein LIE Lithuania LTU Luxembourg LUX Macau, China MAC Madagascar MAD Malaysia MAS Malta MLT Mauritius MRI Mexico MEX Moldova MDA Monaco MON Montenegro MNE Montserrat MNT Morocco MAR Mozambique MOZ Myanmar MYA Namibia NAM Netherlands NED Netherlands Antilles AHO New Zealand NZL Nicaragua NCA Nigeria NGR North Macedonia MKD Norway NOR Oman OMA Pakistan PAK Palestine PLE Panama PAK Papua New Guinea PNG Paraguay PAR Peru PER Philippines PHI Poland POL Portugal POR Puerto Rico PUR Qatar QAT National authority Letters Romania ROU Russia RUS Samoa SAM San Marino SMR Saudi Arabia KSA Senegal SEN Serbia SRB Seychelles SEY Singapore SGP Slovak Republic SVK Slovenia SLO Solomon Islands SOL South Africa RSA Spain ESP Sri Lanka SRI St Kitts & Nevis SKN St Lucia LCA St Vincent & Grenadines VIN Sudan SUD S"
+          },
+          {
+            "chunk_id": "WS-Case-Book-2025-2028-v2025-07.pdf|p118|#0",
+            "source_file": "WS-Case-Book-2025-2028-v2025-07.pdf",
+            "page_start": 118,
+            "chunk_index": 0,
+            "header": "[WS-Case-Book-2025-2028-v2025-07.pdf — p. 118 — §0]",
+            "text": "head to wind, BP became the right-of-way boat under rule 13 and held right of way until AS assumed a close-hauled course on starboard tack. At that moment AS, having just acquired right of way under rule 10, was required by rule 15 to give BP room to keep clear. The collision occurred almost immediately after AS assumed a close-hauled course on starboard tack. Therefore, BP needed to take avoiding action before AS had borne away to a close-hauled course. At that time BP had right of way under rule 13, and so AS broke rule 13. It is a principle of the right-of-way rules, as stated in rule 15, that a boat that becomes obligated to keep clear by an action of another boat is entitled to sufficient time and space to respond. When AS acquired right of way under rule 10, she did not give BP room to keep clear and broke rule 15. Finally, AS broke rule 14(a) because she could have avoided the con"
+          },
+          {
+            "chunk_id": "WS-Case-Book-2025-2028-v2025-07.pdf|p299|#1",
+            "source_file": "WS-Case-Book-2025-2028-v2025-07.pdf",
+            "page_start": 299,
+            "chunk_index": 1,
+            "header": "[WS-Case-Book-2025-2028-v2025-07.pdf — p. 299 — §1]",
+            "text": "almost certainly create a high degree of conflict, while more distant relationships will generally create diminishing degrees of conflict as the distance increases. Similarly, an employer/employee relationship could create a high degree of conflict. Rule 63.3(d) also requires the level of the event to be considered. At some levels of event it is not practical to find suitable protest committee members who have no conflict of interest, yet the event still needs the service of a protest committee. It may be possible to balance the conflict between two or more protest committee members. The protest committee should also consider if the perception of fairness is best served by having more members on the protest committee or by not including a person with a conflict. The protest committee may also take into account the strength of feeling of the parties and if their concerns are shared or con"
+          },
+          {
+            "chunk_id": "WS-Case-Book-2025-2028-v2025-07.pdf|p320|#0",
+            "source_file": "WS-Case-Book-2025-2028-v2025-07.pdf",
+            "page_start": 320,
+            "chunk_index": 0,
+            "header": "[WS-Case-Book-2025-2028-v2025-07.pdf — p. 320 — §0]",
+            "text": "informed X of her protest at that time. The protest committee decided that Y’s protest met the requirements of rule 60.2(b)(2). Question 1 When did X finish? Answer 1 Boat X satisfied the first sentence of the definition Finish when her bow crossed the finishing line for the first time, shortly before position 6. The second sentence of the definition contains three conditions, (a), (b) and (c). If one of those three conditions applies, X’s first crossing of the finish line does not qualify as her finish. X did not take a penalty at or near the finishing line and, therefore, she did not satisfy condition (a). Boat X had made an error in ‘ sailing the course’ when she failed to leave mark 2 to port, which she corrected by sailing to mark 2 and rounding it to port. The error in ‘ sailing the course ’ that X made was made at mark 2, not at the finishing line. Therefore, X did not satisfy con"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p1|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 1,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 1 — §0]",
+            "text": "Racing Rules of Sailing 2025 – 2028"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §0]",
+            "text": "N All races in progress are abandoned. Return to the starting area. The warning signal will be made 1 minute after removal unless at that time the race is abandoned again or postponed. RACE SIGNALS The meanings of visual and sound signals are stated below. An arrow pointing up or down (   ) means that a visual signal is displayed or removed. A dot ( • ) means a sound; five short dashes (– – – – –) mean repetitive sounds; a long dash ( —) means a long sound. When a visual signal is displayed over a class flag, fleet flag , event flag or race area flag, the signal applies only to that class, fleet, event or race area. Postponement Signals Abandonment Signals Safety N over H All races in progress are abandoned. Further signals ashore. AP over A Races not started are postponed. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennan"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §1]",
+            "text": "poned. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennant 1–9 AP Races not started are postponed. The warning signal will be made 1 minute after removal unless at that time the race is postponed again or abandoned. Postponement of 1-9 hours from the scheduled starting time. N over A All races in progress are abandoned. No more racing today. Pennant 2 Pennant 1 Pennant 4 Pennant 3 Pennant 5 Pennant 6 Pennant 7 Pennant 8 Pennant 9 V Monitor communication channel for safety instructions (see rule 37)."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p3|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 3,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 3 — §0]",
+            "text": "Preparatory Signals Recall Signals Shortened Course Changing the Next Leg Other Signals P Preparatory signal. I Rule 30.1 is in effect. Z Rule 30.2 is in effect. First Substitute General recall. The warning signal will be made 1 minute after removal. S The course has been shortened. Rule 32.2 is in effect. (no sound) C The position of the next mark has been changed: L Ashore: A notice to competitors has been posted. Afloat: Come within hail or follow this vessel. Blue flag. The staff displaying this flag is one end of the finishing line. M The object displaying this signal replaces a missing mark. to starboard; to port; Y Wear a personal flotation device (see rule 40). to decrease the length of the leg; to increase the length of the leg. U Rule 30.3 is in effect. Orange flag. The staff displaying this flag is one end of the starting line. Black flag. Rule 30.4 is in effect. X Individual"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11",
+      "titulo": "Táctica de frenado en la marca (The Trap)",
+      "relato_protesta": "Tres barcos (B, X, Y) se acercan a una boya por babor. X es el barco más a sotavento y líder. Y y B están solapados por fuera. X frena bruscamente para \"atrapar\" a B y permitir que su compañero Y pase por el interior. B choca con X.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "11",
+          "18.2"
+        ],
+        "calls": [
+          "J9"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a X.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "X"
+        ]
+      },
+      "output_ideal": "Hechos: X frena en la marca para atrapar a B. B choca con X .\nNorma: Regla 11 y 18.2 según TR CALL J9 .\nRationale: X es el barco con derecho de paso y espacio de marca. B (barlovento) debe mantenerse alejada de X independientemente de la táctica de equipo de X .\nDecisión: Penalizar a X.",
+      "query": "Tres barcos (B, X, Y) se acercan a una boya por babor. X es el barco más a sotavento y líder. Y y B están solapados por fuera. X frena bruscamente para \"atrapar\" a B y permitir que su compañero Y pase por el interior. B choca con X.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 0.0,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p125|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 125,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 125 — §0]",
+            "text": "Appendix G IDENTIFICATION ON SAILS 120 National authority Letters Lebanon LIB Libya LBA Liechtenstein LIE Lithuania LTU Luxembourg LUX Macau, China MAC Madagascar MAD Malaysia MAS Malta MLT Mauritius MRI Mexico MEX Moldova MDA Monaco MON Montenegro MNE Montserrat MNT Morocco MAR Mozambique MOZ Myanmar MYA Namibia NAM Netherlands NED Netherlands Antilles AHO New Zealand NZL Nicaragua NCA Nigeria NGR North Macedonia MKD Norway NOR Oman OMA Pakistan PAK Palestine PLE Panama PAK Papua New Guinea PNG Paraguay PAR Peru PER Philippines PHI Poland POL Portugal POR Puerto Rico PUR Qatar QAT National authority Letters Romania ROU Russia RUS Samoa SAM San Marino SMR Saudi Arabia KSA Senegal SEN Serbia SRB Seychelles SEY Singapore SGP Slovak Republic SVK Slovenia SLO Solomon Islands SOL South Africa RSA Spain ESP Sri Lanka SRI St Kitts & Nevis SKN St Lucia LCA St Vincent & Grenadines VIN Sudan SUD S"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p131|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 131,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 131 — §0]",
+            "text": "Appendix J NOTICE OF RACE AND SAILING INSTRUCTIONS 126 (2) changes to the racing rules authorized by World Sailing under rule 86.2, referring specifically to each rule and stating the change (also include the statement from World Sailing authorizing the change); (3) changes to class rules, as permitted under rule 87, referring specifically to each rule and stating the change; (4) categorization or classification requirements that some or all competitors must satisfy; (a) for sailor categorization (see rule 79 and the World Sailing Sailor Categorization Code), or (b) for functional classification for Para World Sailing events (see World Sailing Para Classification Rules); (5) that boats will be required to display advertising chosen and supplied by the organizing authority (see rule 6 and the World Sailing Advertising Code) and other information related to advertising; (6) that rule 90.3("
+          },
+          {
+            "chunk_id": "WS-Case-Book-2025-2028-v2025-07.pdf|p118|#0",
+            "source_file": "WS-Case-Book-2025-2028-v2025-07.pdf",
+            "page_start": 118,
+            "chunk_index": 0,
+            "header": "[WS-Case-Book-2025-2028-v2025-07.pdf — p. 118 — §0]",
+            "text": "head to wind, BP became the right-of-way boat under rule 13 and held right of way until AS assumed a close-hauled course on starboard tack. At that moment AS, having just acquired right of way under rule 10, was required by rule 15 to give BP room to keep clear. The collision occurred almost immediately after AS assumed a close-hauled course on starboard tack. Therefore, BP needed to take avoiding action before AS had borne away to a close-hauled course. At that time BP had right of way under rule 13, and so AS broke rule 13. It is a principle of the right-of-way rules, as stated in rule 15, that a boat that becomes obligated to keep clear by an action of another boat is entitled to sufficient time and space to respond. When AS acquired right of way under rule 10, she did not give BP room to keep clear and broke rule 15. Finally, AS broke rule 14(a) because she could have avoided the con"
+          },
+          {
+            "chunk_id": "WS-Case-Book-2025-2028-v2025-07.pdf|p299|#1",
+            "source_file": "WS-Case-Book-2025-2028-v2025-07.pdf",
+            "page_start": 299,
+            "chunk_index": 1,
+            "header": "[WS-Case-Book-2025-2028-v2025-07.pdf — p. 299 — §1]",
+            "text": "almost certainly create a high degree of conflict, while more distant relationships will generally create diminishing degrees of conflict as the distance increases. Similarly, an employer/employee relationship could create a high degree of conflict. Rule 63.3(d) also requires the level of the event to be considered. At some levels of event it is not practical to find suitable protest committee members who have no conflict of interest, yet the event still needs the service of a protest committee. It may be possible to balance the conflict between two or more protest committee members. The protest committee should also consider if the perception of fairness is best served by having more members on the protest committee or by not including a person with a conflict. The protest committee may also take into account the strength of feeling of the parties and if their concerns are shared or con"
+          },
+          {
+            "chunk_id": "WS-Case-Book-2025-2028-v2025-07.pdf|p320|#0",
+            "source_file": "WS-Case-Book-2025-2028-v2025-07.pdf",
+            "page_start": 320,
+            "chunk_index": 0,
+            "header": "[WS-Case-Book-2025-2028-v2025-07.pdf — p. 320 — §0]",
+            "text": "informed X of her protest at that time. The protest committee decided that Y’s protest met the requirements of rule 60.2(b)(2). Question 1 When did X finish? Answer 1 Boat X satisfied the first sentence of the definition Finish when her bow crossed the finishing line for the first time, shortly before position 6. The second sentence of the definition contains three conditions, (a), (b) and (c). If one of those three conditions applies, X’s first crossing of the finish line does not qualify as her finish. X did not take a penalty at or near the finishing line and, therefore, she did not satisfy condition (a). Boat X had made an error in ‘ sailing the course’ when she failed to leave mark 2 to port, which she corrected by sailing to mark 2 and rounding it to port. The error in ‘ sailing the course ’ that X made was made at mark 2, not at the finishing line. Therefore, X did not satisfy con"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p1|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 1,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 1 — §0]",
+            "text": "Racing Rules of Sailing 2025 – 2028"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §0]",
+            "text": "N All races in progress are abandoned. Return to the starting area. The warning signal will be made 1 minute after removal unless at that time the race is abandoned again or postponed. RACE SIGNALS The meanings of visual and sound signals are stated below. An arrow pointing up or down (   ) means that a visual signal is displayed or removed. A dot ( • ) means a sound; five short dashes (– – – – –) mean repetitive sounds; a long dash ( —) means a long sound. When a visual signal is displayed over a class flag, fleet flag , event flag or race area flag, the signal applies only to that class, fleet, event or race area. Postponement Signals Abandonment Signals Safety N over H All races in progress are abandoned. Further signals ashore. AP over A Races not started are postponed. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennan"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §1]",
+            "text": "poned. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennant 1–9 AP Races not started are postponed. The warning signal will be made 1 minute after removal unless at that time the race is postponed again or abandoned. Postponement of 1-9 hours from the scheduled starting time. N over A All races in progress are abandoned. No more racing today. Pennant 2 Pennant 1 Pennant 4 Pennant 3 Pennant 5 Pennant 6 Pennant 7 Pennant 8 Pennant 9 V Monitor communication channel for safety instructions (see rule 37)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "12",
+      "titulo": "Provocación de contacto deliberado (Antideportivo)",
+      "relato_protesta": "Y navega por la amura de babor. B navega por la amura de estribor. Y tiene que virar para evitar a B, pero durante la maniobra el tripulante de B empuja la botavara hacia afuera deliberadamente para tocar a Y.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "10",
+          "D2.3(f)"
+        ],
+        "calls": [
+          "L1"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B. Exonerar a Y.",
+        "verdict": "mixto",
+        "penalized_boats": [
+          "B"
+        ]
+      },
+      "output_ideal": "Hechos: Y en babor, B en estribor. Y vira para evitar a B. B empuja la botavara para causar contacto .\nNorma: Regla 10 y D2.3(f) según TR CALL L1 .\nRationale: Es un incumplimiento de la deportividad provocar contacto deliberadamente cuando el otro barco estaba manteniéndose alejado .\nDecisión: Penalizar a B. Exonerar a Y.",
+      "query": "Y navega por la amura de babor. B navega por la amura de estribor. Y tiene que virar para evitar a B, pero durante la maniobra el tripulante de B empuja la botavara hacia afuera deliberadamente para tocar a Y.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 0.0,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p125|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 125,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 125 — §0]",
+            "text": "Appendix G IDENTIFICATION ON SAILS 120 National authority Letters Lebanon LIB Libya LBA Liechtenstein LIE Lithuania LTU Luxembourg LUX Macau, China MAC Madagascar MAD Malaysia MAS Malta MLT Mauritius MRI Mexico MEX Moldova MDA Monaco MON Montenegro MNE Montserrat MNT Morocco MAR Mozambique MOZ Myanmar MYA Namibia NAM Netherlands NED Netherlands Antilles AHO New Zealand NZL Nicaragua NCA Nigeria NGR North Macedonia MKD Norway NOR Oman OMA Pakistan PAK Palestine PLE Panama PAK Papua New Guinea PNG Paraguay PAR Peru PER Philippines PHI Poland POL Portugal POR Puerto Rico PUR Qatar QAT National authority Letters Romania ROU Russia RUS Samoa SAM San Marino SMR Saudi Arabia KSA Senegal SEN Serbia SRB Seychelles SEY Singapore SGP Slovak Republic SVK Slovenia SLO Solomon Islands SOL South Africa RSA Spain ESP Sri Lanka SRI St Kitts & Nevis SKN St Lucia LCA St Vincent & Grenadines VIN Sudan SUD S"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p131|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 131,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 131 — §0]",
+            "text": "Appendix J NOTICE OF RACE AND SAILING INSTRUCTIONS 126 (2) changes to the racing rules authorized by World Sailing under rule 86.2, referring specifically to each rule and stating the change (also include the statement from World Sailing authorizing the change); (3) changes to class rules, as permitted under rule 87, referring specifically to each rule and stating the change; (4) categorization or classification requirements that some or all competitors must satisfy; (a) for sailor categorization (see rule 79 and the World Sailing Sailor Categorization Code), or (b) for functional classification for Para World Sailing events (see World Sailing Para Classification Rules); (5) that boats will be required to display advertising chosen and supplied by the organizing authority (see rule 6 and the World Sailing Advertising Code) and other information related to advertising; (6) that rule 90.3("
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p1|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 1,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 1 — §0]",
+            "text": "Racing Rules of Sailing 2025 – 2028"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §0]",
+            "text": "N All races in progress are abandoned. Return to the starting area. The warning signal will be made 1 minute after removal unless at that time the race is abandoned again or postponed. RACE SIGNALS The meanings of visual and sound signals are stated below. An arrow pointing up or down (   ) means that a visual signal is displayed or removed. A dot ( • ) means a sound; five short dashes (– – – – –) mean repetitive sounds; a long dash ( —) means a long sound. When a visual signal is displayed over a class flag, fleet flag , event flag or race area flag, the signal applies only to that class, fleet, event or race area. Postponement Signals Abandonment Signals Safety N over H All races in progress are abandoned. Further signals ashore. AP over A Races not started are postponed. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennan"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §1]",
+            "text": "poned. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennant 1–9 AP Races not started are postponed. The warning signal will be made 1 minute after removal unless at that time the race is postponed again or abandoned. Postponement of 1-9 hours from the scheduled starting time. N over A All races in progress are abandoned. No more racing today. Pennant 2 Pennant 1 Pennant 4 Pennant 3 Pennant 5 Pennant 6 Pennant 7 Pennant 8 Pennant 9 V Monitor communication channel for safety instructions (see rule 37)."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p3|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 3,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 3 — §0]",
+            "text": "Preparatory Signals Recall Signals Shortened Course Changing the Next Leg Other Signals P Preparatory signal. I Rule 30.1 is in effect. Z Rule 30.2 is in effect. First Substitute General recall. The warning signal will be made 1 minute after removal. S The course has been shortened. Rule 32.2 is in effect. (no sound) C The position of the next mark has been changed: L Ashore: A notice to competitors has been posted. Afloat: Come within hail or follow this vessel. Blue flag. The staff displaying this flag is one end of the finishing line. M The object displaying this signal replaces a missing mark. to starboard; to port; Y Wear a personal flotation device (see rule 40). to decrease the length of the leg; to increase the length of the leg. U Rule 30.3 is in effect. Orange flag. The staff displaying this flag is one end of the starting line. Black flag. Rule 30.4 is in effect. X Individual"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p3|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 3,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 3 — §1]",
+            "text": "flag. The staff displaying this flag is one end of the starting line. Black flag. Rule 30.4 is in effect. X Individual recall. (no sound)"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p5|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 5,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 5 — §0]",
+            "text": "THE RACING RULES OF SAILING for 2025–2028 Including changes and corrections made by World Sailing as of January 1, 2025 World Sailing"
+          }
+        ]
+      }
+    },
+    {
+      "id": "13",
+      "titulo": "Trasluchada para \"apagar\" la restricción de la Regla 17",
+      "relato_protesta": "B y Y están en el tramo de popa, solapados en la misma amura. B es sotavento y tiene restricción de rumbo debido (Regla 17). B traslucha a la amura de babor y vuelve a trasluchar a estribor de inmediato para orzar a Y.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "17"
+        ],
+        "calls": [
+          "G3"
+        ],
+        "cases": [],
+        "decision_text": "Sin penalización para B.",
+        "verdict": "sin_penalizacion",
+        "penalized_boats": []
+      },
+      "output_ideal": "Hechos: B traslucha dos veces. B orza a Y tras las trasluchadas .\nNorma: Regla 17 según TR CALL G3 .\nRationale: Si la trasluchada es real (la vela se llena en la nueva amura), el solapamiento original se rompe y con él la restricción de la Regla 17 .\nDecisión: Sin penalización para B.",
+      "query": "B y Y están en el tramo de popa, solapados en la misma amura. B es sotavento y tiene restricción de rumbo debido (Regla 17). B traslucha a la amura de babor y vuelve a trasluchar a estribor de inmediato para orzar a Y.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 0.0,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p131|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 131,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 131 — §0]",
+            "text": "Appendix J NOTICE OF RACE AND SAILING INSTRUCTIONS 126 (2) changes to the racing rules authorized by World Sailing under rule 86.2, referring specifically to each rule and stating the change (also include the statement from World Sailing authorizing the change); (3) changes to class rules, as permitted under rule 87, referring specifically to each rule and stating the change; (4) categorization or classification requirements that some or all competitors must satisfy; (a) for sailor categorization (see rule 79 and the World Sailing Sailor Categorization Code), or (b) for functional classification for Para World Sailing events (see World Sailing Para Classification Rules); (5) that boats will be required to display advertising chosen and supplied by the organizing authority (see rule 6 and the World Sailing Advertising Code) and other information related to advertising; (6) that rule 90.3("
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p1|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 1,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 1 — §0]",
+            "text": "Racing Rules of Sailing 2025 – 2028"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §0]",
+            "text": "N All races in progress are abandoned. Return to the starting area. The warning signal will be made 1 minute after removal unless at that time the race is abandoned again or postponed. RACE SIGNALS The meanings of visual and sound signals are stated below. An arrow pointing up or down (   ) means that a visual signal is displayed or removed. A dot ( • ) means a sound; five short dashes (– – – – –) mean repetitive sounds; a long dash ( —) means a long sound. When a visual signal is displayed over a class flag, fleet flag , event flag or race area flag, the signal applies only to that class, fleet, event or race area. Postponement Signals Abandonment Signals Safety N over H All races in progress are abandoned. Further signals ashore. AP over A Races not started are postponed. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennan"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §1]",
+            "text": "poned. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennant 1–9 AP Races not started are postponed. The warning signal will be made 1 minute after removal unless at that time the race is postponed again or abandoned. Postponement of 1-9 hours from the scheduled starting time. N over A All races in progress are abandoned. No more racing today. Pennant 2 Pennant 1 Pennant 4 Pennant 3 Pennant 5 Pennant 6 Pennant 7 Pennant 8 Pennant 9 V Monitor communication channel for safety instructions (see rule 37)."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p3|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 3,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 3 — §0]",
+            "text": "Preparatory Signals Recall Signals Shortened Course Changing the Next Leg Other Signals P Preparatory signal. I Rule 30.1 is in effect. Z Rule 30.2 is in effect. First Substitute General recall. The warning signal will be made 1 minute after removal. S The course has been shortened. Rule 32.2 is in effect. (no sound) C The position of the next mark has been changed: L Ashore: A notice to competitors has been posted. Afloat: Come within hail or follow this vessel. Blue flag. The staff displaying this flag is one end of the finishing line. M The object displaying this signal replaces a missing mark. to starboard; to port; Y Wear a personal flotation device (see rule 40). to decrease the length of the leg; to increase the length of the leg. U Rule 30.3 is in effect. Orange flag. The staff displaying this flag is one end of the starting line. Black flag. Rule 30.4 is in effect. X Individual"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p3|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 3,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 3 — §1]",
+            "text": "flag. The staff displaying this flag is one end of the starting line. Black flag. Rule 30.4 is in effect. X Individual recall. (no sound)"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p5|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 5,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 5 — §0]",
+            "text": "THE RACING RULES OF SAILING for 2025–2028 Including changes and corrections made by World Sailing as of January 1, 2025 World Sailing"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p6|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 6,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 6 — §0]",
+            "text": "As the leading authority for the sport, World Sailing promotes and supports the protection of the environment in all sailing competitions and related activities throughout the world. Contact Details for the World Sailing Executive Office: World Sailing Office 401, 4th Floor 3 Shortlands London W6 8DA United Kingdom General Email: office@sailing.org Racing Rules Email: rules@sailing.org Website: sailing.org Published by World Sailing (UK) Limited, London, UK © World Sailing Limited June 2024"
+          }
+        ]
+      }
+    },
+    {
+      "id": "14",
+      "titulo": "Interferencia de un barco que ya terminó la regata",
+      "relato_protesta": "Y ha terminado la regata y está navegando de regreso. En su camino, pasa cerca de B que aún está compitiendo, obligando a B a virar para evitarla.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "D1.1(e)"
+        ],
+        "calls": [
+          "K1"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a Y.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "Y"
+        ]
+      },
+      "output_ideal": "Hechos: Y ha terminado. B sigue compitiendo. Y obliga a B a maniobrar .\nNorma: Regla D1.1(e) según TR CALL K1 .\nRationale: Un barco que ha terminado no debe interferir con un barco que aún está compitiendo .\nDecisión: Penalizar a Y.",
+      "query": "Y ha terminado la regata y está navegando de regreso. En su camino, pasa cerca de B que aún está compitiendo, obligando a B a virar para evitarla.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 0.0,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p131|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 131,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 131 — §0]",
+            "text": "Appendix J NOTICE OF RACE AND SAILING INSTRUCTIONS 126 (2) changes to the racing rules authorized by World Sailing under rule 86.2, referring specifically to each rule and stating the change (also include the statement from World Sailing authorizing the change); (3) changes to class rules, as permitted under rule 87, referring specifically to each rule and stating the change; (4) categorization or classification requirements that some or all competitors must satisfy; (a) for sailor categorization (see rule 79 and the World Sailing Sailor Categorization Code), or (b) for functional classification for Para World Sailing events (see World Sailing Para Classification Rules); (5) that boats will be required to display advertising chosen and supplied by the organizing authority (see rule 6 and the World Sailing Advertising Code) and other information related to advertising; (6) that rule 90.3("
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p1|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 1,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 1 — §0]",
+            "text": "Racing Rules of Sailing 2025 – 2028"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §0]",
+            "text": "N All races in progress are abandoned. Return to the starting area. The warning signal will be made 1 minute after removal unless at that time the race is abandoned again or postponed. RACE SIGNALS The meanings of visual and sound signals are stated below. An arrow pointing up or down (   ) means that a visual signal is displayed or removed. A dot ( • ) means a sound; five short dashes (– – – – –) mean repetitive sounds; a long dash ( —) means a long sound. When a visual signal is displayed over a class flag, fleet flag , event flag or race area flag, the signal applies only to that class, fleet, event or race area. Postponement Signals Abandonment Signals Safety N over H All races in progress are abandoned. Further signals ashore. AP over A Races not started are postponed. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennan"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p2|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 2,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 2 — §1]",
+            "text": "poned. No more racing today. AP over H Races not started are postponed. Further signals ashore. AP over a Numeral Pennant 1–9 AP Races not started are postponed. The warning signal will be made 1 minute after removal unless at that time the race is postponed again or abandoned. Postponement of 1-9 hours from the scheduled starting time. N over A All races in progress are abandoned. No more racing today. Pennant 2 Pennant 1 Pennant 4 Pennant 3 Pennant 5 Pennant 6 Pennant 7 Pennant 8 Pennant 9 V Monitor communication channel for safety instructions (see rule 37)."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p3|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 3,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 3 — §0]",
+            "text": "Preparatory Signals Recall Signals Shortened Course Changing the Next Leg Other Signals P Preparatory signal. I Rule 30.1 is in effect. Z Rule 30.2 is in effect. First Substitute General recall. The warning signal will be made 1 minute after removal. S The course has been shortened. Rule 32.2 is in effect. (no sound) C The position of the next mark has been changed: L Ashore: A notice to competitors has been posted. Afloat: Come within hail or follow this vessel. Blue flag. The staff displaying this flag is one end of the finishing line. M The object displaying this signal replaces a missing mark. to starboard; to port; Y Wear a personal flotation device (see rule 40). to decrease the length of the leg; to increase the length of the leg. U Rule 30.3 is in effect. Orange flag. The staff displaying this flag is one end of the starting line. Black flag. Rule 30.4 is in effect. X Individual"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p3|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 3,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 3 — §1]",
+            "text": "flag. The staff displaying this flag is one end of the starting line. Black flag. Rule 30.4 is in effect. X Individual recall. (no sound)"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p5|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 5,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 5 — §0]",
+            "text": "THE RACING RULES OF SAILING for 2025–2028 Including changes and corrections made by World Sailing as of January 1, 2025 World Sailing"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p6|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 6,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 6 — §0]",
+            "text": "As the leading authority for the sport, World Sailing promotes and supports the protection of the environment in all sailing competitions and related activities throughout the world. Contact Details for the World Sailing Executive Office: World Sailing Office 401, 4th Floor 3 Shortlands London W6 8DA United Kingdom General Email: office@sailing.org Racing Rules Email: rules@sailing.org Website: sailing.org Published by World Sailing (UK) Limited, London, UK © World Sailing Limited June 2024"
+          }
+        ]
+      }
+    },
+    {
+      "id": "15",
+      "titulo": "Virada en proa obligando a maniobra evitativa inmediata",
+      "relato_protesta": "B (estribor) y Y (babor) en ceñida. B está claramente por delante y Y pasaría por su popa sin problemas. B decide virar justo en la proa de Y, obligando a Y a virar de inmediato para evitar el choque.",
+      "relato_protestado": null,
+      "expected": {
+        "rrs_rules": [
+          "13",
+          "15"
+        ],
+        "calls": [
+          "D3"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      },
+      "output_ideal": "Hechos: B vira frente a Y. Y debe virar para evitar contacto .\nNorma: Regla 13 y 15 según TR CALL D3 .\nRationale: B al virar adquiere derecho de paso pero debe dar espacio inicialmente a Y para que se mantenga alejada de forma marinera .\nDecisión: Penalizar a B.",
+      "query": "B (estribor) y Y (babor) en ceñida. B está claramente por delante y Y pasaría por su popa sin problemas. B decide virar justo en la proa de Y, obligando a Y a virar de inmediato para evitar el choque.",
+      "answer": null,
+      "metrics": {
+        "retrieval": {
+          "recall_at_k_rules": 0.0,
+          "recall_at_k_calls": 0.0,
+          "n_retrieved": 8
+        },
+        "response": {},
+        "retrieved": [
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p43|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 43,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 43 — §1]",
+            "text": "equipment does not comply with the class rules or rule 50. 60.5 Protest Decisions (a) The protest committee shall conduct a hearing as required by rule 63 to decide a protest. (b) A boat shall only be penalized (1) at a protest hearing to which she is a party, (2) under rule 62.4, 64 or 69, or (3) under a rule which expressly states that a penalty may be applied without a hearing. (c) If the protest committee decides that a boat has broken a rule it shall disqualify her whether or not the applicable rule was mentioned in the protest. However, the boat shall not be disqualified if (1) she is exonerated or some other penalty applies, (2) the boat has already taken an applicable penalty, in which case she shall not be penalized further unless the penalty for a rule she broke is disqualification that is not excludable, (3) the race is restarted or resailed, in which case rule 36 applies, or"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p45|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 45,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 45 — §0]",
+            "text": "Part 5 PROTESTS, REDRESS, HEARINGS, MISCONDUCT AND APPEALS 40 (2) if it is based on a protest committee decision on the last scheduled day of racing, no later than 30 minutes after the decision was posted, or (3) for all other requests, as soon as reasonably possible after the relevant information is available. However, the protest committee shall extend the time if there is good reason to do so. 61.3 Invalid Requests A request for redress is invalid if it does not comply with rule 61.2. 61.4 Redress Decisions (a) The protest committee shall conduct a hearing as required by rule 63 to decide whether to grant redress. (b) A boat is entitled to redress if her score or place in a race or series has been made, or may be made, significantly worse through no fault of her own by (1) an improper action or improper omission of a committee or the organizing authority , but not by a protest committ"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p47|#0",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 47,
+            "chunk_index": 0,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 47 — §0]",
+            "text": "Part 5 PROTESTS, REDRESS, HEARINGS, MISCONDUCT AND APPEALS 42 SECTION B HEARINGS AND MAKING DECISIONS Rule 63 applies to all hearings conducted by the protest committee. 63 CONDUCT OF HEARINGS 63.1 Rights of Parties (a) All parties to a hearing shall be (1) informed of the time and place of the hearing, (2) given access to the protest, request for redress, or report to be considered at the hearing, (3) allowed reasonable time to prepare for the hearing, and (4) allowed to have a representative present throughout the hearing of the evidence but, in a protest involving a breach of a rule of Part 2, 3 or 4, representative s of boats shall have been on board at the time of the incident unless there is good reason for the protest committee to decide otherwise. (b) If a party does not come to a hearing, the protest committee may proceed with the hearing in their absence. 63.2 Hearings (a) The"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p49|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 49,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 49 — §1]",
+            "text": "rty, or (2) is a member of the protest committee. 63.5 Decisions (a) The protest committee shall consider the evidence and decide what weight to give it. It shall then find the facts based on the balance of probabilities (unless an applicable rule requires otherwise), and then apply the rules to those facts to make its conclusions and a decision. (b) Decisions shall be made by simple majority vote. When there is an equal division of votes, the chair of the hearing may cast an additional vote. (c) If there is a conflict between (1) two or more rules that must be resolved before a decision can be made, and (2) those rules are in the notice of race, the sailing instructions, or any of the other documents that govern the event under item (g) of the definition Rule, then the protest committee shall apply the rule that it believes will provide the fairest result for all boats affected. (d) If"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p51|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 51,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 51 — §1]",
+            "text": "considered, or when the hearing is reopened, (1) if based only on new evidence, a majority of the members of the protest committee shall, if practicable, be members of the original committee; (2) if based on a significant error, the protest committee shall, if practicable, have at least one new member. 64 DISCRETIONARY PENALTIES When a boat reports within the protest time limit that she has broken a rule which is subject to a discretionary penalty, the protest committee shall decide the appropriate penalty having first considered the evidence that it considers appropriate. There is no requirement to hold a hearing. 65 LEGAL LIABILITY AND COSTS 65.1 Questions of legal liability arising from a breach of a rule, including any claims for monetary damages, shall be governed by prescriptions, if any, of the national authority. 65.2 Any measurement costs arising from a protest involving a class"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p52|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 52,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 52 — §1]",
+            "text": "from any source, including evidence taken during a hearing, believes a person may have broken rule 69.1(a), it shall decide whether or not to call a hearing. (c) When the protest committee needs more information to make the decision to call a hearing, it shall consider appointing a person or persons to conduct an investigation. These investigators shall not be members of the protest committee that will decide the matter. (d) When an investigator is appointed, all relevant information gathered by the investigator, favourable or unfavourable, shall be disclosed to the protest committee, and if the protest committee decides to call a hearing, to the parties."
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p84|#1",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 84,
+            "chunk_index": 1,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 84 — §1]",
+            "text": "ing or in the finishing area shall clearly display a red flag as soon as possible after she becomes aware of those circumstances, but no later than two minutes after finishing or retiring. C6.4 (a) A boat protesting under rule C6.1(a) shall remove flag Y before or as soon as possible after the umpires’ signal. (b) A boat protesting under rule C6.1(b) or requesting redress under rule C6.3 shall, for her protest or request to be valid, keep her red flag displayed until she has so informed the umpires after finishing or retiring. No written protest or request for redress is required. C6.5 Umpire Decisions (a) After flag Y is displayed, the umpires shall decide whether to penalize any boat. They shall signal their decision in compliance with rule C5.1, C5.2 or C5.3. However, (1) if the umpires decide to penalize a boat, and as a result that boat will have more than two outstanding penalties,"
+          },
+          {
+            "chunk_id": "2025-2028-RRS-with-Changes-and-Corrections.pdf|p84|#2",
+            "source_file": "2025-2028-RRS-with-Changes-and-Corrections.pdf",
+            "page_start": 84,
+            "chunk_index": 2,
+            "header": "[2025-2028-RRS-with-Changes-and-Corrections.pdf — p. 84 — §2]",
+            "text": ", (1) if the umpires decide to penalize a boat, and as a result that boat will have more than two outstanding penalties, the umpires shall signal her disqualification under rule C5.4;"
+          }
+        ]
+      }
+    }
+  ]
+}

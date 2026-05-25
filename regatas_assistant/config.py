@@ -14,6 +14,9 @@ DEFAULT_LLM_API_KEY = "ollama"
 DEFAULT_LLM_MODEL = "llama3"
 DEFAULT_EMBEDDING_API_MODEL = "text-embedding-3-small"
 
+# Subcarpeta bajo `base_dir` donde viven los PDF ingeridos por defecto.
+DEFAULT_CORPUS_SUBDIR = "corpus"
+
 
 def _root_dir() -> Path:
     return Path(__file__).resolve().parent.parent
@@ -60,6 +63,7 @@ class Settings:
     chunk_size: int = 900
     chunk_overlap: int = 120
     retrieve_top_k: int = 8
+    corpus_subdir: str = DEFAULT_CORPUS_SUBDIR
     # lexical | http | local  (valor legacy `openai` se normaliza a `http` en from_env)
     embedding_backend: str = "lexical"
     llm_api_key: str | None = None
@@ -74,14 +78,19 @@ class Settings:
     # cot | few_shot_cot — plantilla de system prompt (CoT explícito vs Few-Shot CoT con ranura de ejemplos)
     prompt_strategy: str = "cot"
     index_cache_dir: Path | None = None
+    llm_timeout_seconds: float = 600.0
 
     @property
     def corpus_paths(self) -> list[Path]:
-        return [self.base_dir / name for name in self.corpus_filenames]
+        root = self.base_dir / self.corpus_subdir
+        return [root / name for name in self.corpus_filenames]
 
     @classmethod
     def from_env(cls) -> Settings:
         base = Path(os.environ.get("REGATAS_BASE_DIR", _root_dir())).resolve()
+        corpus_subdir = (
+            _env_strip("REGATAS_CORPUS_SUBDIR") or DEFAULT_CORPUS_SUBDIR
+        )
         files = os.environ.get("REGATAS_CORPUS_FILES")
         corpus_filenames: tuple[str, ...]
         if files:
@@ -149,8 +158,18 @@ class Settings:
         else:
             embedding_backend = "lexical"
 
+        try:
+            llm_timeout_seconds = float(
+                os.environ.get("REGATAS_LLM_TIMEOUT", "600")
+            )
+        except ValueError:
+            llm_timeout_seconds = 600.0
+        if llm_timeout_seconds <= 0:
+            llm_timeout_seconds = 600.0
+
         return cls(
             base_dir=base,
+            corpus_subdir=corpus_subdir,
             corpus_filenames=corpus_filenames,
             chunk_size=int(os.environ.get("REGATAS_CHUNK_SIZE", "900")),
             chunk_overlap=int(os.environ.get("REGATAS_CHUNK_OVERLAP", "120")),
@@ -168,6 +187,7 @@ class Settings:
             system_prompt_language=system_prompt_language,
             prompt_strategy=prompt_strategy,
             index_cache_dir=index_cache_dir,
+            llm_timeout_seconds=llm_timeout_seconds,
         )
 
 

@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import os
 import sys
+import threading
 from collections.abc import Iterator
 from pathlib import Path
 
@@ -18,6 +19,10 @@ if str(ROOT) not in sys.path:
 import gradio as gr
 
 from regatas_assistant import __version__
+from regatas_assistant.activity_console import clear_for_new_query
+from regatas_assistant.activity_console import is_enabled as activity_console_enabled
+from regatas_assistant.activity_console import launch_on_startup
+from regatas_assistant.activity_console import log_note
 from regatas_assistant.config import Settings, is_huggingface_space
 from regatas_assistant.ollama_models import (
     default_choice as ollama_default_choice,
@@ -26,6 +31,7 @@ from regatas_assistant.ollama_models import (
 from regatas_assistant.pipeline import ProtestPipeline
 
 _pipeline: ProtestPipeline | None = None
+_pipeline_lock = threading.Lock()
 
 _ANALYSIS_PENDING_HTML = (
     '<p class="analysis-pending-line">'
@@ -283,9 +289,25 @@ main.gradio-main {
 
 def get_pipeline() -> ProtestPipeline:
     global _pipeline
-    if _pipeline is None:
-        _pipeline = ProtestPipeline.from_env()
-    return _pipeline
+    with _pipeline_lock:
+        if _pipeline is None:
+            _pipeline = ProtestPipeline.from_env()
+        return _pipeline
+
+
+def _warm_pipeline_async() -> None:
+    def _run() -> None:
+        try:
+            if activity_console_enabled():
+                log_note("Precalentando índice del corpus en segundo plano…")
+            get_pipeline()
+            if activity_console_enabled():
+                log_note("Índice listo.")
+        except Exception as exc:
+            if activity_console_enabled():
+                log_note(f"Precalentado omitido: {exc!r}")
+
+    threading.Thread(target=_run, name="regatas-pipeline-warmup", daemon=True).start()
 
 
 def analyze(
@@ -295,15 +317,28 @@ def analyze(
     estrategia_prompt: str | None,
     ollama_model: str | None,
 ) -> Iterator[str]:
-    """Generador: primer chunk = línea de espera con indicador animado (no stub)."""
+    """Generador: primer chunk = espera; la consola externa se actualiza en paralelo."""
     if relato_protesta is None or not str(relato_protesta).strip():
         yield "**Error:** el relato del **barco que protesta** es obligatorio."
         return
+    clear_for_new_query()
+    if activity_console_enabled():
+        log_note("Nueva consulta.")
     s = Settings.from_env()
-    if s.llm_backend != "stub":
-        yield _ANALYSIS_PENDING_HTML
+    pending = _ANALYSIS_PENDING_HTML if s.llm_backend != "stub" else ""
+    if pending:
+        yield pending
     try:
+        if _pipeline is None:
+            log_note(
+                "Cargando índice del corpus (primera vez puede tardar varios minutos "
+                f"si REGATAS_EMBEDDING_BACKEND={s.embedding_backend})…"
+            )
         p = get_pipeline()
+        if s.llm_backend == "http":
+            log_note(
+                f"Esperando respuesta del LLM (timeout {int(s.llm_timeout_seconds)} s)…"
+            )
         second = relato_protestado if relato_protestado else ""
         second = second.strip() or None
         spl = (idioma_system_prompt or "").strip() or None
@@ -320,7 +355,7 @@ def analyze(
             llm_model=llm_model,
         )
     except FileNotFoundError as e:
-        yield f"**Falta corpus**\n\n{e}\n\nSubí los PDF del Call Book y Case Book a la raíz del proyecto o ajustá `REGATAS_BASE_DIR`."
+        yield f"**Falta corpus**\n\n{e}\n\nSubí los PDF del Call Book y Case Book a la carpeta `corpus/` del proyecto (o ajustá `REGATAS_BASE_DIR` y, si aplica, `REGATAS_CORPUS_SUBDIR`)."
     except Exception as e:
         yield f"**Error**\n\n```\n{e!r}\n```"
 
@@ -628,6 +663,20 @@ demo = build_app()
 
 
 if __name__ == "__main__":
+    if launch_on_startup(in_space=is_huggingface_space()):
+        print("Consola de actividad: ventana independiente abierta.")
+    elif not is_huggingface_space() and not activity_console_enabled():
+        print(
+            "Consola desactivada (REGATAS_ACTIVITY_CONSOLE=0). "
+            "Para omitir la ventana al arrancar, usá esa variable."
+        )
+    if os.environ.get("REGATAS_PRELOAD_PIPELINE", "1").strip().lower() not in (
+        "0",
+        "false",
+        "no",
+        "off",
+    ):
+        _warm_pipeline_async()
     port = int(os.environ.get("PORT", "7860"))
     demo.launch(
         server_name="0.0.0.0",
