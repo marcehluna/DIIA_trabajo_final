@@ -79,11 +79,17 @@ class Settings:
     prompt_strategy: str = "cot"
     index_cache_dir: Path | None = None
     llm_timeout_seconds: float = 600.0
+    # Cargar corpus/processed/*.jsonl (RRS y definiciones desde CSV)
+    load_processed_jsonl: bool = True
 
     @property
     def corpus_paths(self) -> list[Path]:
         root = self.base_dir / self.corpus_subdir
         return [root / name for name in self.corpus_filenames]
+
+    @property
+    def corpus_processed_dir(self) -> Path:
+        return self.base_dir / self.corpus_subdir / "processed"
 
     @classmethod
     def from_env(cls) -> Settings:
@@ -167,6 +173,8 @@ class Settings:
         if llm_timeout_seconds <= 0:
             llm_timeout_seconds = 600.0
 
+        load_processed_jsonl = _bool("REGATAS_LOAD_PROCESSED", default=True)
+
         return cls(
             base_dir=base,
             corpus_subdir=corpus_subdir,
@@ -188,6 +196,7 @@ class Settings:
             prompt_strategy=prompt_strategy,
             index_cache_dir=index_cache_dir,
             llm_timeout_seconds=llm_timeout_seconds,
+            load_processed_jsonl=load_processed_jsonl,
         )
 
 

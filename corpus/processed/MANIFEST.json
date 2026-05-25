@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "rrs_rules": 469,
+  "definitions": 26,
+  "sources": {
+    "rrs": "rrs_reglas_2025_2028.csv",
+    "definitions": "definitions.csv"
+  }
+}

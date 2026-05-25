@@ -112,6 +112,7 @@ def chunk_mentions_rule(text: str, rule: str) -> bool:
     else:
         base = r.split("(")[0]
         patterns = [
+            rf"(?i)\bregla\s+{re.escape(r)}\b",
             rf"\brule\s+{re.escape(r)}\b",
             rf"\brule\s+{re.escape(base)}\b",
             rf"\b{re.escape(r)}\b",

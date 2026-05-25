@@ -35,6 +35,10 @@ def _is_spurious_row(row: dict) -> bool:
 def _source_from_chunk(chunk_id: str) -> str:
     if not chunk_id:
         return ""
+    if chunk_id.startswith("rrs|"):
+        return "RRS (JSONL)"
+    if chunk_id.startswith("definition|"):
+        return "Definitions (JSONL)"
     if "Call-Book" in chunk_id or "Call Book" in chunk_id:
         return "Call Book"
     if "Case-Book" in chunk_id or "Case Book" in chunk_id:

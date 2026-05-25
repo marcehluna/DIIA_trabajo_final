@@ -77,10 +77,12 @@ def recall_at_k_calls(
 
 def _chunk_to_dict(c: TextChunk) -> dict[str, Any]:
     return {
-        "chunk_id": f"{c.source_file}|p{c.page_start}|#{c.chunk_index}",
+        "chunk_id": c.chunk_id(),
         "source_file": c.source_file,
         "page_start": c.page_start,
         "chunk_index": c.chunk_index,
+        "doc_type": c.doc_type,
+        "ref_id": c.ref_id,
         "header": c.header_line(),
         "text": c.text,
     }

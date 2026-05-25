@@ -16,8 +16,27 @@ class TextChunk:
     page_start: int
     chunk_index: int
     text: str
+    doc_type: str | None = None
+    ref_id: str | None = None
+
+    def chunk_id(self) -> str:
+        if self.doc_type in ("rrs", "definition") and self.ref_id:
+            return f"{self.doc_type}|{self.ref_id}"
+        return f"{self.source_file}|p{self.page_start}|#{self.chunk_index}"
+
+    def rule_label(self) -> str | None:
+        """Número de regla sin sufijo #n (para matching con el golden set)."""
+        if self.doc_type != "rrs" or not self.ref_id:
+            return None
+        return self.ref_id.split("#", 1)[0]
 
     def header_line(self) -> str:
+        if self.doc_type == "rrs" and self.ref_id:
+            label = self.rule_label() or self.ref_id
+            return f"[RRS — Regla {label} — {self.source_file}]"
+        if self.doc_type == "definition" and self.ref_id:
+            title = self.ref_id
+            return f"[Definición — {title} — {self.source_file}]"
         return f"[{self.source_file} — p. {self.page_start} — §{self.chunk_index}]"
 
 
@@ -53,7 +72,7 @@ def _split_text(text: str, chunk_size: int, overlap: int) -> list[str]:
     return chunks
 
 
-def load_corpus_chunks(settings: Settings) -> list[TextChunk]:
+def _load_pdf_chunks(settings: Settings) -> list[TextChunk]:
     out: list[TextChunk] = []
     for path in settings.corpus_paths:
         if not path.is_file():
@@ -68,8 +87,21 @@ def load_corpus_chunks(settings: Settings) -> list[TextChunk]:
                         page_start=page_num,
                         chunk_index=idx,
                         text=part,
+                        doc_type="pdf",
                     )
                 )
+    return out
+
+
+def load_corpus_chunks(settings: Settings) -> list[TextChunk]:
+    """PDFs del corpus + JSONL pre-procesado (RRS/definiciones) si está habilitado."""
+    from regatas_assistant.corpus_processed import load_processed_chunks
+
+    out: list[TextChunk] = []
+    if settings.load_processed_jsonl:
+        processed = load_processed_chunks(settings.corpus_processed_dir)
+        out.extend(processed)
+    out.extend(_load_pdf_chunks(settings))
     return out
 
 

@@ -31,6 +31,28 @@ python scripts/eval_run.py --label baseline_call_case_qwen_es --lang es --plots
 
 Resultados: `eval/corrida baseline/` (run_id: `20260525_185138_baseline_call_case_qwen_es`)
 
+Tag git de referencia: `v0.1.0-baseline`
+
+## Ingesta RRS desde CSV → JSONL (v0.2)
+
+```bash
+# 1. Generar artefactos (desde scripts/*.csv)
+python scripts/build_corpus_processed.py
+
+# 2. Correr eval (carga JSONL + PDFs Call/Case por defecto)
+REGATAS_ACTIVITY_CONSOLE=0 REGATAS_LLM_BACKEND=http \
+  REGATAS_LLM_MODEL=qwen2.5:14b-instruct REGATAS_SYSTEM_PROMPT_LANG=es \
+  python scripts/eval_run.py --label ingesta_rrs_jsonl --lang es --plots
+
+# 3. Comparar con baseline
+python scripts/aggregate_retrieval_hits.py "eval/runs/<run_id>" \
+  --compare "eval/corrida baseline"
+```
+
+Sin JSONL (solo PDFs, como baseline): `REGATAS_LOAD_PROCESSED=0`.
+
+Documentación: `corpus/processed/README.md`
+
 ## Tablas de revisión
 
 ```bash
