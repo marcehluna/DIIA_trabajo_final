@@ -28,7 +28,9 @@
     "mean_citation_f1_calls": 0.13333333333333333,
     "mean_token_jaccard_answer_context": 0.029071888249708418,
     "mean_token_jaccard_answer_reference": 0.13100460278109174,
-    "verdict_accuracy": 0.0
+    "verdict_accuracy": 0.0,
+    "mean_faithfulness_rate": 0.0,
+    "mean_faithfulness_rate_strict": null
   },
   "cases": [
     {
@@ -87,7 +89,16 @@
           "verdict_expected": "penalizar",
           "verdict_predicted": "otro",
           "verdict_match": false,
-          "penalized_boats_match": false
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 0,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 0,
+            "faithfulness_rate": null,
+            "faithfulness_rate_strict": null,
+            "claims": []
+          }
         },
         "retrieved": [
           {
@@ -367,7 +378,113 @@
           "verdict_expected": "penalizar",
           "verdict_predicted": "otro",
           "verdict_match": false,
-          "penalized_boats_match": false
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 16,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 16,
+            "faithfulness_rate": 0.0,
+            "faithfulness_rate_strict": null,
+            "claims": [
+              {
+                "claim": "Los barcos Y y B están solapados en la pre-salida.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco Y orza hacia una posición de 'proa al viento'.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco B responde a la maniobra de Y orzando también.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B continúa rotando después de pasar por la posición de proa al viento.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B choca con el costado de Y durante su rotación.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "RRS 15 establece que cuando un barco adquiere derecho de paso, debe dar espacio suficiente a otro barco para mantenerse alejado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Call B2 del Call Book for Team Racing (2025-2028) se refiere a situaciones en las que dos barcos están solapados y uno orza.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según el Call B2, si un barco luffea no da espacio suficiente para mantenerse alejado, puede ser penalizado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B es el barco de barlovento.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y es el barco de sotavento.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Cuando Y orza, adquiere derecho de paso sobre B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según RRS 15 y Call B2, Y debe dar a B espacio suficiente para mantenerse alejado después de luffear.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B no tuvo espacio suficiente para evitar la colisión después de pasar por proa al viento.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y no cumplió con su obligación de dar a B espacio suficiente para mantenerse alejado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y es penalizada según RRS 15 y Call B2 del Call Book for Team Racing (2025-2028).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La colisión ocurrió después que B pasó por la posición de proa al viento.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -690,7 +807,113 @@
           "verdict_expected": "penalizar",
           "verdict_predicted": "otro",
           "verdict_match": false,
-          "penalized_boats_match": false
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 16,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 16,
+            "faithfulness_rate": 0.0,
+            "faithfulness_rate_strict": null,
+            "claims": [
+              {
+                "claim": "B establece un solapamiento desde atrás a sotavento de Y cerca de la línea de partida.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y tiene la opción de mantenerse alejada acelerando pero tarda en reaccionar.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y decide orzar para evitar el contacto con B y resulta en una colisión.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según RRS 15, el barco que debe mantenerse alejado no puede interferir con el otro barco.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "RRS 18 tiene precedencia sobre las reglas generales del derecho de paso en la zona de una boya.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Call TR C3 establece que si un barco interfiere con otro que aún no ha comenzado, debe ser penalizado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y como barco que debe mantenerse alejado de B, tiene la obligación de evitar cualquier interferencia con B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según RRS 15, Y no actuó correctamente al decidir orzar y colisionar con B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El incidente ocurre cerca de la línea de salida donde las reglas específicas del Call TR C3 aplican.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "De acuerdo a Call TR C3, si un barco interrumpe a otro que aún no ha comenzado, debe ser penalizado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según el principio del Último Punto de Certeza, la situación no cambia hasta que haya evidencia clara de lo contrario.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B establece un solapamiento y Y tarda en reaccionar, sugiriendo que Y no actuó oportuna para mantenerse alejada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Se penaliza a Y por infringir RRS 15 al interferir con B mientras debía mantenerse alejado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y debe actuar conforme a las especificaciones del Call TR C3 para evitar interrupciones a barcos que aún no han comenzado correctamente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La regla exacta de la penalización es RRS 15 y el Call TR C3.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Se exoneró a B como resultado del dictamen.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -1007,7 +1230,161 @@
           "token_jaccard_answer_reference": 0.11258278145695365,
           "verdict_expected": "sin_penalizacion",
           "verdict_predicted": "otro",
-          "verdict_match": false
+          "verdict_match": false,
+          "faithfulness": {
+            "n_claims": 24,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 24,
+            "faithfulness_rate": 0.0,
+            "faithfulness_rate_strict": null,
+            "claims": [
+              {
+                "claim": "Barco Y y Barco B se acercan a una boya de barlovento que debe dejarse por babor.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B intenta virar frente a la boya pero no puede completar su taca debido a la presencia de Y en su costado estribor.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La situación ocurre en el campo abierto y ambos barcos están ceñidos.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Aplica la Regla RRS 15: 'Acquiring Right of Way'.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Aplica la Regla RRS 17: 'On the Same Tack; Proper Course'.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Se aplica Call A2 (TR Call Book): 'B is no longer keeping clear of Y when she cannot change course to windward without immediately making contact.'",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según el Call A2, B no está cumpliendo con las obligaciones de mantenerse alejado si no puede cambiar de rumbo sin inmediatamente entrar en contacto con Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Se debe analizar si Y ha infringido la Regla 17 al no permitir a B completar su taca.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según la Regla 15, B adquirió el derecho de paso al establecer una superposición desde asta trasera.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Cuando B intenta virar y es impedido por Y, se debe determinar si Y ha infringido la Regla 17 permitiendo que B no pueda completar su taca.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y no cumplió con sus obligaciones de mantenerse alejado al impedir que B completara su virada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La presencia de Y en el costado estribor de B impidió que B pudiera completar su taca sin inmediatamente entrar en contacto con Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y violó las obligaciones establecidas en la Regla 17.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Se penaliza a Barco Y por infringir la Regla RRS 17.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B adquirió el derecho de paso al establecer una superposición desde asta trasera.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La presencia de Y impidió que B completara su taca sin inmediatamente entrar en contacto con Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según Call A2, cuando un barco (Y) impide que otro (B) cambie de rumbo sin inmediatamente entrar en contacto, entonces Y no está cumpliendo con sus obligaciones de mantenerse alejado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La situación ocurre en el campo abierto y ambos barcos están ceñidos.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según la Regla 17, B debe mantenerse alejado si es impedido por Y al intentar virar.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B no puede completar su taca debido a la presencia de Y en su costado estribor.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La boya debe dejarse por babor para ambos barcos.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según el Call A2, B no está cumpliendo con las obligaciones de mantenerse alejado si no puede cambiar de rumbo sin inmediatamente entrar en contacto con Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B intenta virar frente a la boya pero es impedido por la presencia de Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y no cumplió con sus obligaciones de mantenerse alejado al impedir que B completara su taca.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -1343,7 +1720,155 @@
           "verdict_expected": "penalizar",
           "verdict_predicted": "otro",
           "verdict_match": false,
-          "penalized_boats_match": false
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 23,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 23,
+            "faithfulness_rate": 0.0,
+            "faithfulness_rate_strict": null,
+            "claims": [
+              {
+                "claim": "B y Y convergen en ceñida.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "A tres esloras, Y vira para pasar por popa de B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Sin embargo, B también cae (bear away), manteniendo el rumbo de colisión.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Como resultado, Y debe volver a caer bruscamente para evitar la colisión con B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Regla 10 define las reglas aplicables cuando dos barcos están en tramos opuestos.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Call D2 se aplica a situaciones donde un barco de estribor (B) y uno de babor (Y) convergen.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según Call D2, B está obligada a mantener un rumbo que no requiera de Y cambiar su curso inmediatamente para seguir manteniéndose alejado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Cuando Y vira para pasar por popa de B, B debe evitar cualquier acción que pueda forzar a Y a realizar una maniobra brusca para mantenerse alejada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B no cumple con esta obligación al caer (bear away) y mantener el rumbo de colisión.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Esta acción fuerza a Y a cambiar su curso inmediatamente para evitar la colisión, lo cual es una violación de la regla 16.2.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B infringe la Regla 16.2 al caer (bear away) y mantener el rumbo de colisión cuando Y intenta pasar por popa.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La regla exacta de la penalización es Regla 16.2.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Regla 16.2 prohíbe a un barco en estribor (B) caer si eso requiere que un barco en babor (Y), que está manteniéndose alejado, tenga que cambiar de curso inmediatamente para continuar manteniéndose alejado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Regla 16.2 se aplica cuando B y Y convergen en ceñida.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B no cumple con la obligación de mantener un rumbo seguro al caer (bear away) y mantener el rumbo de colisión.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Esta acción de B fuerza a Y a realizar una maniobra brusca para evitar la colisión.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Regla 16.2 establece que B debe mantener un rumbo que no requiera de Y cambiar su curso inmediatamente para seguir manteniéndose alejado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B viola Regla 16.2 al caer (bear away) y mantener el rumbo de colisión cuando Y intenta pasar por popa.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Regla 16.2 prohíbe a B caer si eso requiere que Y tenga que cambiar de curso inmediatamente para continuar manteniéndose alejado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B no cumple con la obligación de mantener un rumbo seguro al caer (bear away) y mantener el rumbo de colisión cuando Y intenta pasar por popa.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Regla 16.2 establece que B debe evitar cualquier acción que pueda forzar a Y a realizar una maniobra brusca para mantenerse alejada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B viola Regla 16.2 al caer (bear away) y mantener el rumbo de colisión cuando Y intenta pasar por popa, lo cual fuerza a Y a cambiar su curso inmediatamente para evitar la colisión.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Regla 16.2 se aplica en este caso ya que B no cumple con la obligación de mantener un rumbo seguro al caer (bear away) y mantener el rumbo de colisión cuando Y intenta pasar por popa.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -1671,7 +2196,161 @@
           "verdict_expected": "penalizar",
           "verdict_predicted": "otro",
           "verdict_match": false,
-          "penalized_boats_match": false
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 24,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 24,
+            "faithfulness_rate": 0.0,
+            "faithfulness_rate_strict": null,
+            "claims": [
+              {
+                "claim": "Barco Y y Barco B se acercan a una marca de barlovento que deben dejar por estribor.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "En el momento en que Y entra en la zona libre por popa de B, B tiene el derecho de paso según RRS 10.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y reclama espacio para virar cuando gana un solapamiento interno sobre B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B no tiene suficiente espacio físico para permitir que Y realice su maniobra sin chocar.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Si Y adquirió el solapamiento interno debido a su propia maniobra, entonces B no tiene la obligación de mantenerse alejado según RRS 15.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Si B cambia imprudentemente de rumbo puede infringir RRS 16.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Call E7 establece que un barco con derecho de paso no debe ser forzado a realizar una maniobra peligrosa o impracticable para evitar un choque.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Se debe analizar si la maniobra de Y fue provocada por una acción previa propia.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Si B intenta evitar el choque realizando una maniobra impracticable, podría infringir Call E7.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B no tiene suficiente espacio físico para permitir que Y realice su maniobra sin chocar.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Si la situación no fue provocada por una acción previa de Y, entonces Barco B debe mantenerse alejado según RRS 10.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Si B realiza una maniobra peligrosa o impracticable para evitar el choque, se le penalizará con RRS 16.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Se debe determinar si la situación fue provocada por una acción previa de Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B no puede evitar un choque sin realizar una maniobra peligrosa o impracticable.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Si B realiza una maniobra peligrosa para evitar el choque, se le penalizará con RRS 16.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco B es penalizado por infringir la Regla RRS 16 si realiza una maniobra peligrosa o impracticable para evitar un choque.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Si no hay evidencia clara de que Y haya realizado alguna maniobra propia, entonces Barco B debería mantener su rumbo y velocidad para evitar un choque peligroso o impracticable.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B debe mantenerse alejado si la situación no fue provocada por una acción previa de Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Si B realiza una maniobra impracticable para evitar el choque, podría infringir Call E7.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Si B cambia imprudentemente de rumbo puede infringir RRS 16.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B debe mantenerse alejado si no hay evidencia clara de que Y haya realizado alguna maniobra propia.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco B es penalizado por infringir la Regla RRS 16 si realiza una maniobra peligrosa o impracticable para evitar un choque.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Si B realiza una maniobra impracticable para evitar el choque, podría infringir Call E7.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B debe mantenerse alejado y no realizar maniobras peligrosas o impracticables para evitar un choque.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -1755,13 +2434,13 @@
             "recall_at_2": 0.0,
             "recall_at_3": 0.0,
             "recall_at_4": 0.0,
-            "recall_at_5": 1.0,
-            "recall_at_6": 1.0,
-            "recall_at_7": 1.0,
-            "recall_at_8": 1.0
+            "recall_at_5": 0.0,
+            "recall_at_6": 0.0,
+            "recall_at_7": 0.0,
+            "recall_at_8": 0.0
           },
           "mrr_rules": 0.0,
-          "mrr_calls": 0.2,
+          "mrr_calls": 0.0,
           "rule_hits": [
             {
               "expected": "18.2(a)",
@@ -1779,9 +2458,9 @@
           "call_hits": [
             {
               "expected": "E2",
-              "hit": true,
-              "first_rank": 5,
-              "first_chunk_id": "The-Call-Book-for-Team-Racing-2025-2028.pdf|p4|#0"
+              "hit": false,
+              "first_rank": null,
+              "first_chunk_id": null
             }
           ],
           "retrieved_by_source": {
@@ -1958,7 +2637,89 @@
           "verdict_expected": "penalizar",
           "verdict_predicted": "otro",
           "verdict_match": false,
-          "penalized_boats_match": false
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 12,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 12,
+            "faithfulness_rate": 0.0,
+            "faithfulness_rate_strict": null,
+            "claims": [
+              {
+                "claim": "Barco B está cumpliendo una penalización de una vuelta.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Mientras Barco B gira alrededor de la boya, Barco Y debe desviarse para evitar un choque.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Regla RRS 10 establece que un barco que gira alrededor de una boya pierde el derecho de paso y debe dar espacio a otros barcos.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Call J7 del Call Book for Team Racing indica que los demás barcos deben evitar a un barco cumpliendo penalización.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco Y no estaba en ninguna penalización durante la maniobra evasiva.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según RRS 10, Barco B pierde el derecho de paso al girar alrededor de la boya.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Los demás barcos tienen la obligación de evitar a un barco cumpliendo penalización según Call J7.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco Y tomó medidas evasivas para evitar un choque con Barco B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "No se considera que Barco Y haya infringido ninguna regla al desviarse.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El dictamen concluye que no hay infracción por parte de Barco Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La maniobra evasiva fue necesaria debido a la posición de Barco B cumpliendo penalización.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco Y debe mantenerse alejado de Barco B mientras este cumple su penalización.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -2246,7 +3007,83 @@
           "token_jaccard_answer_reference": 0.18446601941747573,
           "verdict_expected": "sin_penalizacion",
           "verdict_predicted": "otro",
-          "verdict_match": false
+          "verdict_match": false,
+          "faithfulness": {
+            "n_claims": 11,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 11,
+            "faithfulness_rate": 0.0,
+            "faithfulness_rate_strict": null,
+            "claims": [
+              {
+                "claim": "El barco Y está solapado en babor hacia la boya de sotavento con el barco B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El barco Y es el interior (ROW).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El barco Y está trasluchando a estribor cuando orza al barco B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El barco Y obliga al barco B a trasluchar.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La Regla 15 establece que un barco que cambia su rumbo por una maniobra propia pierde su derecho de paso.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Call J7 indica que un barco interior puede orzar a un exterior para evitar la marca, pero no debe hacerlo si esto obliga al exterior a trasluchar.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El barco Y cambia su rumbo por una maniobra propia y pierde su derecho de paso según la Regla 15.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La acción del barco Y viola el Call J7 ya que fuerza al barco B a trasluchar.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El dictamen es que el barco Y ha infringido la Regla 15 y el Call J7.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Se penaliza al barco Y por infringir la Regla 15 y el Call J7.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "No hay infracción por parte del barco B ya que este no ha realizado ninguna maniobra que viole las reglas.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -2538,7 +3375,161 @@
           "token_jaccard_answer_reference": 0.11464968152866242,
           "verdict_expected": "sin_penalizacion",
           "verdict_predicted": "otro",
-          "verdict_match": false
+          "verdict_match": false,
+          "faithfulness": {
+            "n_claims": 24,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 24,
+            "faithfulness_rate": 0.0,
+            "faithfulness_rate_strict": null,
+            "claims": [
+              {
+                "claim": "Y vira en la zona de barlovento y se convierte en el barco con derecho de paso (ROW).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B tenía derecho de paso hasta que Y completó su virada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Al momento en que Y completa la virada, B debe mantenerse alejado de Y según la Regla 15.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B no puede cambiar su rumbo ni velocidad para impedir que Y pueda mantenerse alejado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y se convirtió en el barco con derecho de paso después de completar su virada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B debió caer inmediatamente después de que Y completó su virada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La situación indica que B no mantuvo suficiente distancia y tiempo para responder adecuadamente a la nueva posición de Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B viola la Regla 15 al no dar espacio suficiente a Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según el relato, no se proporcionó un informe adicional del barco protestado (B).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La Regla 13 establece que un barco es el barco con derecho de paso hasta que otro barco le quita ese derecho.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La Regla 15 indica que si un barco pierde su derecho de paso, debe mantenerse alejado del segundo barco.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La Regla 10 establece que un barco a vela es el barco con derecho de paso cuando otro barco se convierte en el barco con derecho de paso al virar.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y asumió una posición ceñida y se convirtió en el barco con derecho de paso (ROW).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B no cumplió con la obligación de mantenerse alejado de Y después que este completó su virada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La situación indica que B no dio suficiente espacio a Y para mantenerse alejado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según las reglas citadas, B debe ser penalizado por infringir la Regla 15.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B es el barco penalizado en esta situación.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y es el barco exonerado en esta situación.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La Regla exacta de la penalización es RRS 15.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según las reglas citadas, B no cumplió con su obligación de mantenerse alejado de Y después que este completó su virada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B debió caer inmediatamente para evitar chocar con la popa de Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La situación indica que B no respondió adecuadamente a la nueva posición de Y al completar su virada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según el relato, B no proporcionó un informe adicional del barco protestado (B).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y se convirtió en el barco con derecho de paso después de completar su virada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -2843,7 +3834,161 @@
           "verdict_expected": "penalizar",
           "verdict_predicted": "otro",
           "verdict_match": false,
-          "penalized_boats_match": false
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 24,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 24,
+            "faithfulness_rate": 0.0,
+            "faithfulness_rate_strict": null,
+            "claims": [
+              {
+                "claim": "B cruza por delante de Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Durante la cruzada, B es el barco con derecho-de-paso (ROW) según Regla 13.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Después de cruzar a barlovento de Y, B realiza una maniobra de orzada y vira a babor.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B cambia su rumbo y velocidad durante la virada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según Regla 10, al cambiar el rumbo y velocidad, B pierde el derecho-de-paso.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "En ese momento, Y adquiere el derecho-de-paso (ROW) según Regla 10.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según Regla 15, B debe dar a Y tiempo y espacio suficientes para responder adecuadamente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B no proporciona el tiempo y el espacio necesarios a Y antes del choque.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B infringe la Regla 15 al no permitir a Y mantenerse alejado de manera efectiva.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Se dictamina que B debe ser penalizado por infringir la Regla 15.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y es exonerado del incidente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La maniobra de orzada realizada por B resulta en una colisión con Y antes de alcanzar el rumbo ceñido.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B choca con Y durante la virada a babor.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Antes de que B llegue al rumbo ceñido, se produce un choque entre B y Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La maniobra de orzada realizada por B es inadecuada según las reglas náuticas.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B pierde el derecho-de-paso cuando cambia su rumbo durante la maniobra.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y adquiere el derecho-de-paso al cambiar a un rumbo ceñido en babor.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La Regla 15 requiere que B dé tiempo y espacio suficientes a Y para responder adecuadamente después de perder el derecho-de-paso.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B no cumple con la obligación de dar tiempo y espacio suficientes a Y según la Regla 15.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El choque entre B y Y es resultado directo del incumplimiento por parte de B de la Regla 15.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La maniobra inadecuada de B resulta en una situación peligrosa para Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B no permite a Y responder adecuadamente antes del choque.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El dictamen establece que B debe ser penalizado por infringir la Regla 15.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y es exonerado debido al incumplimiento de B de las reglas náuticas.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -2930,10 +4075,10 @@
             "recall_at_5": 0.0,
             "recall_at_6": 0.0,
             "recall_at_7": 0.0,
-            "recall_at_8": 1.0
+            "recall_at_8": 0.0
           },
           "mrr_rules": 1.0,
-          "mrr_calls": 0.125,
+          "mrr_calls": 0.0,
           "rule_hits": [
             {
               "expected": "13",
@@ -2945,9 +4090,9 @@
           "call_hits": [
             {
               "expected": "D4",
-              "hit": true,
-              "first_rank": 8,
-              "first_chunk_id": "The-Call-Book-for-Team-Racing-2025-2028.pdf|p4|#0"
+              "hit": false,
+              "first_rank": null,
+              "first_chunk_id": null
             }
           ],
           "retrieved_by_source": {
@@ -3133,7 +4278,161 @@
           "verdict_expected": "penalizar",
           "verdict_predicted": "otro",
           "verdict_match": false,
-          "penalized_boats_match": false
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 24,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 24,
+            "faithfulness_rate": 0.0,
+            "faithfulness_rate_strict": null,
+            "claims": [
+              {
+                "claim": "En la aproximación a una boya, tres barcos (B, X, Y) se encuentran solapados por babor.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El barco X está más a sotavento y es líder en la carrera.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Los barcos Y y B están solapados por fuera de X.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Antes del choque, el barco X frena bruscamente para permitir que su compañero Y pase por dentro de él.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La maniobra repentina de X crea una situación donde el barco B no puede evitar chocar con X.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "X es el barco más a sotavento y líder en la carrera antes del choque.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Al frenar bruscamente, X cambia su estado y adquiere derecho de paso según Regla 13.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Esta maniobra repentina no da tiempo suficiente al barco B para responder adecuadamente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según el principio del último punto de certeza, antes de la maniobra brusca de X, B tenía derecho de paso debido a su posición más arriba en la vía.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Al frenar repentinamente y cambiar su rumbo, X adquiere el deber de mantenerse alejado de B según Regla 15.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La maniobra no proporciona tiempo ni espacio suficientes para que B pueda responder adecuadamente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según Regla 15, un barco que adquiere el deber de mantenerse alejado debe dar al otro barco con derecho de paso tiempo y espacio suficientes para responder.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La maniobra brusca de X interfiere directamente con la vía de B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según Regla 14(a), un barco que tiene el deber de mantenerse alejado debe evitar interferir con la vía del otro barco.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El dictamen es que el barco X ha infringido las Reglas 15 y 14(a).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Se penaliza al barco X por infringir las Reglas 15 y 14(a).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B no ha infringido ninguna regla en este incidente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B queda exonerado del dictamen.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "X es el único barco penalizado en este caso.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La maniobra de X cambia su estado y derecho de paso según Regla 13.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Regla 15 establece que un barco debe dar tiempo suficiente a otro para responder adecuadamente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Regla 14(a) requiere evitar interferir con la vía del otro barco al mantenerse alejado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La maniobra de X no proporciona el tiempo y espacio necesarios para B según Regla 15.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "X interfiere directamente con la vía de B, violando Regla 14(a).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -3427,7 +4726,107 @@
           "verdict_expected": "mixto",
           "verdict_predicted": "otro",
           "verdict_match": false,
-          "penalized_boats_match": false
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 15,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 15,
+            "faithfulness_rate": 0.0,
+            "faithfulness_rate_strict": null,
+            "claims": [
+              {
+                "claim": "Barco Y navega por la amura de babor.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco B navega por la amura de estribor.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Y tiene que virar para evitar a B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El tripulante de B empuja deliberadamente la botavara hacia afuera con intención de tocar a Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según Regla 15 (RRS), un barco que cambia su rumbo para evitar un peligro no debe hacerlo en una forma que cause o aumente la probabilidad de causar un incidente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Call J7 establece que empujar deliberadamente la botavara hacia afuera durante una maniobra evasiva es penalizado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La maniobra de Y era legítima y necesaria para evitar a B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El acto del tripulante de B de empujar la botavara con intención de causar un contacto viola Regla 15 (RRS).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Empujar deliberadamente la botavara hacia afuera durante una maniobra evasiva aumenta la probabilidad de un incidente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El acto del tripulante de B no se ajusta al estándar de competidor experto en Team Racing.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco B es penalizado por infringir Regla 15 (RRS).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco B es penalizado por infringir Call J7 del World Sailing The Call Book for Team Racing 2025-2028.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El tripulante de B empujó deliberadamente la botavara hacia afuera con intención de tocar a Barco Y durante una maniobra evasiva.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco B es penalizado por su acción.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco Y se exime de toda responsabilidad en este incidente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -3711,7 +5110,101 @@
           "token_jaccard_answer_reference": 0.1111111111111111,
           "verdict_expected": "sin_penalizacion",
           "verdict_predicted": "otro",
-          "verdict_match": false
+          "verdict_match": false,
+          "faithfulness": {
+            "n_claims": 14,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 14,
+            "faithfulness_rate": 0.0,
+            "faithfulness_rate_strict": null,
+            "claims": [
+              {
+                "claim": "Los barcos B y Y están navegando en el tramo de popa solapados en la misma amura.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco B está sotavento respecto a Barco Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco B tiene restricción de rumbo debido a una situación previa que le impide cambiar su rumbo sin infringir la Regla 17.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco B intenta superar a Barco Y trasluchando primero a babor y luego rápidamente a estribor para orzar hacia Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Regla 15 establece que un barco no debe cambiar su rumbo si, como resultado, se convierte en un peligro para otro barco que tiene derecho de paso.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Regla 16 indica que un barco con derecho de paso debe mantenerse alejado del barco que le ha concedido el derecho.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Call E2 (Team Racing) establece que cuando dos barcos están en la misma amura y uno es sotavento, este tiene restricción de rumbo si cambia su rumbo para orzar al otro barco.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco B debe mantenerse alejado del Barco Y debido a que es sotavento y tiene restricciones de rumbo por la Regla 17.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Al cambiar su rumbo, Barco B se convierte en un peligro para Barco Y violando la Regla 15.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según el Call E2 del Team Racing, cuando dos barcos están en la misma amura y uno es sotavento, este no debe cambiar su rumbo para orzar al otro sin darle espacio suficiente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco B infringe la Regla 15 por cambiar su rumbo de manera que se convierte en un peligro para Barco Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Barco B infringe el Call E2 del Team Racing por no dar espacio suficiente a Barco Y al cambiar su rumbo.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Se dictamina que Barco B es penalizado por infringir la Regla 15 y el Call E2 del Team Racing.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Regla exacta de la penalización es la Regla 15 y el Call E2 (Team Racing).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -3992,7 +5485,161 @@
           "verdict_expected": "penalizar",
           "verdict_predicted": "otro",
           "verdict_match": false,
-          "penalized_boats_match": false
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 24,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 24,
+            "faithfulness_rate": 0.0,
+            "faithfulness_rate_strict": null,
+            "claims": [
+              {
+                "claim": "El incidente ocurrió después de que la regata hubiera terminado.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "A navegaba de vuelta a puerto cuando pasó cerca de B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B aún estaba compitiendo en el agua.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La cercanía de A obligó a B a virar para evitar una colisión.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "RRS 63 establece las condiciones bajo las cuales un barco que ha terminado la competencia debe mantenerse alejado de los barcos aún en competición.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El Call Book for Team Racing, Call A1 (2025-2028) especifica cómo deben comportarse los barcos que han finalizado la regata y se encuentran cerca de aquellos que todavía están compitiendo.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según el principio del último punto de certeza, A no cambió su estado de competencia hasta que hubo evidencia clara de lo contrario.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Una vez que la regata ha terminado para un barco, este debe mantenerse alejado de los barcos aún en competición (Regla RRS 63).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La cercanía de A a B obligó a B a realizar maniobras evasivas.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El Call A1 especifica que un barco que ha terminado la competencia debe mantenerse alejado de los barcos aún en competición para evitar interferir con su rendimiento.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "A no cumplió con esta obligación al pasar cerca de B y forzarlo a virar.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La conducta de A fue inadecuada y contraria a las reglas establecidas para el Team Racing.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B actuó de manera defensiva en una situación no ideal.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Se penaliza a A por interferir con las maniobras de B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "A infringió la Regla RRS 63 al no mantenerse alejado de un barco aún en competición.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "A infringió el Call A1 del Call Book for Team Racing al pasar cerca de B y forzarlo a virar.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B es exonerado por su comportamiento defensivo.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La cercanía de A obligó a B a realizar maniobras evasivas, lo cual es inadecuado según el estándar seamanlike.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "A no cumplió con la obligación de mantenerse alejado de los barcos aún en competición.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "Según RRS 63 y Call A1, A debía mantenerse lejos de B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "La cercanía de A a B afectó negativamente el rendimiento de B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "A no mantuvo una distancia segura con respecto a B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "B tuvo que realizar maniobras evasivas para evitar la colisión.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              },
+              {
+                "claim": "El dictamen refleja que la conducta de A fue inadecuada y contraria a las reglas del Team Racing.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "No se pudo parsear la verificación del juez."
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -4274,7 +5921,16 @@
           "verdict_expected": "penalizar",
           "verdict_predicted": "otro",
           "verdict_match": false,
-          "penalized_boats_match": false
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 0,
+            "n_supported": 0,
+            "n_not_supported": 0,
+            "n_unknown": 0,
+            "faithfulness_rate": null,
+            "faithfulness_rate_strict": null,
+            "claims": []
+          }
         },
         "retrieved": [
           {

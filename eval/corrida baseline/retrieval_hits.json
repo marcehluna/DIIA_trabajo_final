@@ -271,9 +271,9 @@
       "call_hits": [
         {
           "expected": "E2",
-          "hit": true,
-          "first_rank": 5,
-          "first_chunk_id": "The-Call-Book-for-Team-Racing-2025-2028.pdf|p4|#0"
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
         }
       ],
       "citations_in_answer": {
@@ -463,9 +463,9 @@
       "call_hits": [
         {
           "expected": "D4",
-          "hit": true,
-          "first_rank": 8,
-          "first_chunk_id": "The-Call-Book-for-Team-Racing-2025-2028.pdf|p4|#0"
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
         }
       ],
       "citations_in_answer": {

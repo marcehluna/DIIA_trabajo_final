@@ -1,0 +1,3 @@
+﻿corrida,tipo,n_esperados,n_en_contexto,tasa_contexto,n_citados,tasa_cita,n_pipeline_ok,tasa_pipeline,brecha_contexto_cita,mrr,pct_hits_top1,pct_hits_top3,pct_hits_call_book,n_citas_espurias_rrs,n_citas_espurias_call,n_citas_espurias_total
+rrs_calls_cases_jsonl,RRS,27,6,0.2222222222222222,4,0.14814814814814814,3,0.1111111111111111,0.07407407407407407,0.06922398589065255,0.16666666666666666,0.3333333333333333,0.0,10,9,19
+rrs_calls_cases_jsonl,CALL,15,2,0.13333333333333333,2,0.13333333333333333,2,0.13333333333333333,0.0,0.017857142857142856,0.0,0.0,0.0,10,9,19

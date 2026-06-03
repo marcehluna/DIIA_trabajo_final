@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Timeline — Corridas eval RAG (DIIA)</title>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #fff;
+      --text: #1a1a2e;
+      --muted: #5c6370;
+      --axis: #6c8ebf;
+      --border: #dde3ec;
+      --shadow: 0 2px 12px rgba(26, 42, 74, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      background: linear-gradient(135deg, #1a3a5c 0%, #2d5a87 100%);
+      color: #fff;
+      padding: 1.25rem 1.5rem;
+    }
+    header h1 { margin: 0 0 0.35rem; font-size: 1.35rem; font-weight: 600; }
+    header p { margin: 0; opacity: 0.9; font-size: 0.9rem; }
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: calc(100vh - 88px);
+    }
+    @media (max-width: 960px) {
+      .layout { grid-template-columns: 1fr; }
+      nav.sidebar { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+    nav.sidebar {
+      background: var(--card);
+      border-right: 1px solid var(--border);
+      padding: 1rem;
+      overflow-y: auto;
+      max-height: calc(100vh - 88px);
+      position: sticky;
+      top: 0;
+    }
+    nav.sidebar h2 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin: 0 0 0.75rem;
+    }
+    .nav-list { list-style: none; padding: 0; margin: 0 0 1.25rem; }
+    .nav-list li { margin-bottom: 0.35rem; }
+    .nav-list a, .nav-list button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 0.45rem 0.65rem;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .nav-list a:hover, .nav-list button:hover { background: #eef2f7; }
+    .nav-list a.active, .nav-list button.active {
+      background: #e8f0fe;
+      border-color: var(--axis);
+      font-weight: 600;
+    }
+    .nav-branch { opacity: 0.85; font-style: italic; }
+    .legend-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    main { padding: 1.25rem 1.5rem 2rem; overflow-x: hidden; }
+    section { margin-bottom: 2rem; }
+    section > h2 {
+      font-size: 1.1rem;
+      margin: 0 0 1rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 2px solid var(--axis);
+    }
+    .timeline-wrap {
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      margin: 0 -0.5rem;
+    }
+    .timeline {
+      position: relative;
+      min-width: 2000px;
+      padding: 2.5rem 1rem 1rem;
+    }
+    .axis-line {
+      position: absolute;
+      left: 40px;
+      right: 40px;
+      top: 52px;
+      height: 4px;
+      background: var(--axis);
+      border-radius: 2px;
+    }
+    .branch-zone {
+      position: relative;
+      min-height: 140px;
+      margin-bottom: 0.5rem;
+      padding-left: 1rem;
+    }
+    .branch-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    .branch-row {
+      display: flex;
+      gap: 1.5rem;
+      padding-left: 2rem;
+      flex-wrap: wrap;
+    }
+    .main-row {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      position: relative;
+      padding-top: 0.5rem;
+    }
+    .run-card {
+      flex: 0 0 200px;
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 0;
+      cursor: pointer;
+      transition: box-shadow 0.15s, transform 0.15s;
+      scroll-margin-top: 100px;
+    }
+    .run-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .run-card.active { box-shadow: 0 0 0 3px var(--axis); }
+    .run-card.branch { border-style: dashed; flex: 0 0 180px; }
+    .run-node {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin: -10px auto 0;
+      position: relative;
+      z-index: 2;
+      border: 2px solid;
+    }
+    .run-card.baseline .run-node { width: 24px; height: 24px; margin-top: -12px; border-width: 3px; }
+    .run-card.highlight { border-width: 3px; }
+    .run-card.highlight .run-node { width: 24px; height: 24px; margin-top: -12px; border-width: 3px; }
+    .metric-headline { font-size: 0.78rem; margin: 0.25rem 0 0; font-weight: 600; }
+    .card-body { padding: 0.65rem 0.75rem 0.75rem; }
+    .card-body h3 { margin: 0 0 0.2rem; font-size: 0.95rem; }
+    .card-body .label { font-size: 0.72rem; color: var(--muted); word-break: break-all; }
+    .card-body .bullets { font-size: 0.78rem; margin: 0.5rem 0 0; padding-left: 1rem; color: #333; }
+    .card-body .bullets li { margin-bottom: 0.2rem; }
+    .metrics-block {
+      margin-top: 0.5rem;
+      padding-top: 0.45rem;
+      border-top: 1px dashed var(--border);
+      font-size: 0.78rem;
+    }
+    .metrics-block .metrics-title {
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+      margin-bottom: 0.25rem;
+    }
+    .metrics-block dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 0.5rem; }
+    .metrics-block dt { color: var(--muted); }
+    .metrics-block dd { margin: 0; font-weight: 500; }
+    .arrow-between {
+      flex: 0 0 24px;
+      align-self: center;
+      color: var(--axis);
+      font-size: 1.25rem;
+      padding-top: 2rem;
+    }
+    .detail-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+    .detail-panel h3 { margin: 0 0 0.5rem; }
+    .detail-panel .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+    .metrics-guide {
+      background: #f8f9fc;
+      border: 1px solid var(--axis);
+      border-radius: 10px;
+      padding: 1.25rem;
+      font-size: 0.9rem;
+    }
+    .metrics-guide h3 { margin: 1rem 0 0.35rem; font-size: 1rem; color: #1a3a5c; }
+    .metrics-guide h3:first-child { margin-top: 0; }
+    .metrics-guide p { margin: 0.25rem 0 0.5rem; }
+    .compare-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.88rem;
+    }
+    .compare-bar select { padding: 0.35rem 0.5rem; border-radius: 6px; border: 1px solid var(--border); }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+    }
+    .compare-table th, .compare-table td {
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.6rem;
+      text-align: left;
+    }
+    .compare-table th { background: #eef2f7; }
+    .next-chip {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 0.75rem;
+      border: 1px dashed #9673a6;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      background: #fff;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Timeline de corridas de evaluación RAG</h1>
+    <p>Golden set 15 casos · Qwen2.5 · retrieval léxico top_k=8 · Línea base E0 · última E11</p>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" aria-label="Navegación">
+      <h2>Ir a corrida</h2>
+      <ul class="nav-list" id="nav-main"></ul>
+      <h2>Ramas diagnóstico</h2>
+      <ul class="nav-list" id="nav-branch"></ul>
+      <h2>Secciones</h2>
+      <ul class="nav-list">
+        <li><a href="#metricas">Guía de métricas</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#detalle">Detalle</a></li>
+        <li><a href="#comparar">Comparar</a></li>
+      </ul>
+      <h2>Leyenda</h2>
+      <ul class="nav-list" style="font-size:0.8rem;color:var(--muted)">
+        <li><span class="legend-dot" style="background:#fff2cc;border:1px solid #d6b656"></span> E0 baseline</li>
+        <li><span class="legend-dot" style="background:#f5f5f5;border:1px dashed #999"></span> E1/E2 solo retrieval</li>
+        <li><span class="legend-dot" style="background:#f8cecc;border:1px solid #b85450"></span> Regresión retrieval</li>
+        <li><span class="legend-dot" style="background:#d5e8d4;border:1px solid #82b366"></span> Full + cupos</li>
+        <li><span class="legend-dot" style="background:#dae8fc;border:1px solid #6c8ebf"></span> Solo JSONL</li>
+        <li><span class="legend-dot" style="background:#e1d5e7;border:1px solid #9673a6"></span> Cupos por tipo (E10–E11)</li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="metricas">
+        <h2>Guía de métricas</h2>
+        <div class="metrics-guide" id="metrics-guide"></div>
+      </section>
+
+      <section id="timeline">
+        <h2>Timeline interactivo</h2>
+        <p style="font-size:0.9rem;color:var(--muted);margin-top:-0.5rem">
+          Clic en una corrida para ver el detalle. Documento autocontenido (sin rutas al repositorio).
+        </p>
+        <div class="timeline-wrap">
+          <div class="branch-zone">
+            <div class="branch-label">Ramas diagnóstico (solo retrieval) — desde E0</div>
+            <div class="branch-row" id="branch-row"></div>
+          </div>
+          <div class="timeline">
+            <div class="axis-line" aria-hidden="true"></div>
+            <div class="main-row" id="main-row"></div>
+          </div>
+        </div>
+        <div class="next-chip">
+          <strong>Siguiente (sugerido):</strong><br>
+          E12: JSONL + Case PDF cupos 3+5<br>
+          o faithfulness (fix juez)
+        </div>
+      </section>
+
+      <section id="detalle">
+        <h2>Detalle de corrida</h2>
+        <div class="detail-panel" id="detail-panel">
+          <p style="color:var(--muted)">Seleccioná una corrida en el timeline o en el menú lateral.</p>
+        </div>
+      </section>
+
+      <section id="comparar">
+        <h2>Comparar con baseline (E0)</h2>
+        <div class="compare-bar">
+          <label>Corrida:</label>
+          <select id="compare-select"></select>
+        </div>
+        <div id="compare-output"></div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    DIIA — Taller de Trabajo Final · Asistente de protestas náuticas (eval RAG)
+  </footer>
+
+  <script>
+    const RUNS = [
+      {
+        id: "E0", label: "baseline", slug: "baseline_call_case_qwen_es",
+        category: "baseline", branch: false, highlight: true,
+        fill: "#fff2cc", stroke: "#d6b656", dashed: false,
+        date: "25-may",
+        runId: "20260525_185138_baseline_call_case_qwen_es",
+        retrievalOnly: false,
+        metricHeadline: "R@k reglas <strong>0.41</strong> · CALL <strong>0.27</strong>",
+        bullets: [
+          "Línea base oficial (tag v0.1.0-baseline)",
+          "Call Book + Case Book PDF (~894 ch.)",
+          "Qwen ES · léxico · sin cupos"
+        ],
+        metrics: { rkRules: 0.41, rkCall: 0.27, f1Rrs: 0.22, f1Call: 0.13, jaccard: 0.13 }
+      },
+      {
+        id: "E1", label: "baseline_retrieval", slug: "baseline_retrieval",
+        category: "branch", branch: true,
+        fill: "#f5f5f5", stroke: "#999999", dashed: true,
+        date: "25-may",
+        runId: "20260525_184355_baseline_retrieval",
+        retrievalOnly: true,
+        bullets: [
+          "vs E0: <strong>--retrieval-only</strong>",
+          "Mismo PDF Call+Case · llama3",
+          "Valida métricas de retrieval"
+        ],
+        metrics: { rkRules: 0.41, rkCall: 0.27, soloRetrieval: true }
+      },
+      {
+        id: "E2", label: "rrs_case_retrieval", slug: "rrs_case_retrieval",
+        category: "branch", branch: true,
+        fill: "#f5f5f5", stroke: "#999999", dashed: true,
+        date: "25-may",
+        runId: "20260525_184445_rrs_case_retrieval",
+        retrievalOnly: true,
+        bullets: [
+          "vs E1: PDF → RRS PDF + Case",
+          "Sin Call Book en corpus",
+          "Sigue solo retrieval (llama3)"
+        ],
+        metrics: { rkRules: 0.20, rkCall: 0.00, soloRetrieval: true }
+      },
+      {
+        id: "E3", label: "ingesta_rrs_jsonl", slug: "ingesta_rrs_jsonl",
+        category: "regression", branch: false,
+        fill: "#f8cecc", stroke: "#b85450", dashed: false,
+        date: "25-may",
+        runId: "20260525_214113_ingesta_rrs_jsonl",
+        retrievalOnly: false,
+        bullets: [
+          "+RRS JSONL en índice <strong>full</strong> (~1389 ch.)",
+          "Sin cupos · dilución vs PDF",
+          "Reglas −0.13 vs E0"
+        ],
+        metrics: { rkRules: 0.28, rkCall: 0.07, f1Rrs: 0.20, f1Call: 0.07, jaccard: 0.12 }
+      },
+      {
+        id: "E4", label: "rrs_only", slug: "rrs_only",
+        category: "regression", branch: false,
+        fill: "#f8cecc", stroke: "#b85450", dashed: false,
+        date: "25-may",
+        runId: "20260525_220816_rrs_only",
+        retrievalOnly: false,
+        bullets: [
+          "Solo <strong>processed</strong> (RRS+def JSONL)",
+          "Sin PDF Call/Case",
+          "Aísla RRS: peor que mezcla"
+        ],
+        metrics: { rkRules: 0.13, rkCall: 0.00, f1Rrs: 0.06, f1Call: 0.00, jaccard: 0.13 }
+      },
+      {
+        id: "E6", label: "full_cupos_4_4", slug: "full_cupos_4_4",
+        category: "full", branch: false,
+        fill: "#d5e8d4", stroke: "#82b366", dashed: false,
+        date: "25-may",
+        runId: "20260525_223713_full_cupos_4_4",
+        retrievalOnly: false,
+        bullets: [
+          "Vuelve <strong>full</strong> + cupos 4+4",
+          "Mitiga dilución E3",
+          "Reglas casi = E0 (−0.02)"
+        ],
+        metrics: { rkRules: 0.39, rkCall: 0.13, f1Rrs: 0.13, f1Call: 0.07, jaccard: 0.13 }
+      },
+      {
+        id: "E7", label: "full_cupos_3_5", slug: "full_cupos_3_5",
+        category: "full", branch: false,
+        fill: "#d5e8d4", stroke: "#82b366", dashed: false,
+        date: "25-may",
+        runId: "20260525_225609_full_cupos_3_5",
+        retrievalOnly: false,
+        metricHeadline: "R@k reglas 0.39 · CALL <strong>0.20</strong>",
+        bullets: [
+          "Cupos 3 JSONL + 5 PDF",
+          "Mismo índice full que E6",
+          "Mejor CALL en mixto (+0.07 vs E6)"
+        ],
+        metrics: { rkRules: 0.39, rkCall: 0.20, f1Rrs: 0.14, f1Call: 0.07, jaccard: 0.13 }
+      },
+      {
+        id: "E8", label: "rrs_calls_jsonl", slug: "rrs_calls_jsonl",
+        category: "jsonl", branch: false,
+        fill: "#dae8fc", stroke: "#6c8ebf", dashed: false,
+        date: "25-may",
+        runId: "20260525_231904_rrs_calls_jsonl",
+        retrievalOnly: false,
+        bullets: [
+          "Solo JSONL: RRS + calls CSV",
+          "Sin PDF · sin cupos (~578 ch.)",
+          "F1 CALL = E0; reglas caen"
+        ],
+        metrics: { rkRules: 0.20, rkCall: 0.13, f1Rrs: 0.14, f1Call: 0.13, jaccard: 0.12 }
+      },
+      {
+        id: "E9", label: "rrs_calls_cases_jsonl", slug: "rrs_calls_cases_jsonl",
+        category: "jsonl", branch: false,
+        fill: "#dae8fc", stroke: "#6c8ebf", dashed: false,
+        date: "25-may",
+        runId: "20260525_234431_rrs_calls_cases_jsonl",
+        retrievalOnly: false,
+        bullets: [
+          "+cases.jsonl (129 WS Case)",
+          "Índice ~707 ch. sin cupos",
+          "Sin mejora vs E8 (dilución)"
+        ],
+        metrics: { rkRules: 0.20, rkCall: 0.13, f1Rrs: 0.16, f1Call: 0.13, jaccard: 0.12 }
+      },
+      {
+        id: "E10", label: "processed_cupos_3_2_2_1", slug: "processed_cupos_3_2_2_1",
+        category: "cupos", branch: false,
+        fill: "#e1d5e7", stroke: "#9673a6", dashed: false,
+        date: "26-may",
+        runId: "20260526_000249_processed_cupos_3_2_2_1",
+        retrievalOnly: false,
+        metricHeadline: "R@k reglas 0.69 · CALL 0.07",
+        bullets: [
+          "Cupos por doc_type 3+2+2+1",
+          "JSONL 707 ch. sin PDF",
+          "Reglas +0.28 vs E0; CALL baja"
+        ],
+        metrics: { rkRules: 0.69, rkCall: 0.07, f1Rrs: 0.09, f1Call: 0.07, jaccard: 0.13 }
+      },
+      {
+        id: "E11", label: "processed_cupos_2_3_2_1", slug: "processed_cupos_2_3_2_1",
+        category: "cupos", branch: false, highlight: true,
+        fill: "#e1d5e7", stroke: "#9673a6", dashed: false,
+        date: "26-may",
+        runId: "20260526_185624_processed_cupos_2_3_2_1",
+        retrievalOnly: false,
+        metricHeadline: "R@k reglas <strong>0.76</strong> · CALL <strong>0.20</strong>",
+        bullets: [
+          "Cupos 2+3+2+1 (más CALL)",
+          "Mismo JSONL 707 ch.",
+          "CALL +0.13 vs E10"
+        ],
+        metrics: { rkRules: 0.76, rkCall: 0.20, f1Rrs: 0.22, f1Call: 0.07, jaccard: 0.12 }
+      }
+    ];
+
+    const METRICS_GUIDE = `
+      <p>Golden set: 15 casos con reglas RRS, CALL y decisión esperada. Promedios sobre casos donde aplica cada métrica. Retrieval con top_k=8 (léxico).</p>
+      <h3>R@k reglas · R@k CALL <span style="font-weight:normal;font-size:0.85rem">(Recall@k — recuperación)</span></h3>
+      <p><strong>Qué mide:</strong> De las referencias esperadas en el golden set, ¿cuántas aparecen en al menos un fragmento del top_k recuperado? (matcher por código: p. ej. Regla 16.1 / Rule 16.1, CALL A3).</p>
+      <p><strong>Por qué importa:</strong> Si el contexto no trae la norma correcta, el LLM no puede fundamentar bien el dictamen. Permite comparar índices (PDF vs JSONL), cupos y dilución del corpus sin depender del texto generado.</p>
+      <h3>F1 RRS · F1 CALL <span style="font-weight:normal;font-size:0.85rem">(citas en la respuesta vs golden)</span></h3>
+      <p><strong>Qué mide:</strong> F1 entre referencias esperadas y las citadas en la respuesta (extracción por regex). Combina precisión (citas correctas / citas dichas) y recall (esperadas citadas / esperadas).</p>
+      <p><strong>Por qué importa:</strong> Un buen R@k con F1 bajo indica que recuperamos bien pero el modelo no cita o alucina códigos. Clave para protestas náuticas donde la trazabilidad normativa (RRS + Call Book) es obligatoria.</p>
+      <h3>Jaccard ref <span style="font-weight:normal;font-size:0.85rem">(solapamiento léxico respuesta ↔ output ideal)</span></h3>
+      <p><strong>Qué mide:</strong> Similitud de tokens (≥3 letras) entre la respuesta generada y la respuesta de referencia del Excel.</p>
+      <p><strong>Por qué importa:</strong> Señal barata de cercanía al criterio humano del curso. <em>Limitación:</em> corpus en inglés y respuestas en español → valores bajos aunque el contenido sea equivalente; no sustituye faithfulness ni revisión manual.</p>
+      <p><strong>Lectura conjunta:</strong> R@k alto + F1 bajo → mejorar prompting/citas; R@k bajo → índice, chunking o cupos; E1/E2 solo muestran R@k (sin LLM). Detalle por caso: <code>report.json</code>, <code>metrics_long.csv</code>.</p>
+    `;
+
+    const baseline = RUNS.find(r => r.id === "E0");
+    let selectedId = "E0";
+
+    function fmt(v) {
+      if (v === undefined || v === null) return "—";
+      return typeof v === "number" ? v.toFixed(2) : v;
+    }
+
+    function metricsHtml(m) {
+      let html = '<div class="metrics-block"><div class="metrics-title">Métricas</div><dl>';
+      html += `<dt>R@k reglas</dt><dd>${fmt(m.rkRules)}</dd>`;
+      html += `<dt>R@k CALL</dt><dd>${fmt(m.rkCall)}</dd>`;
+      if (m.soloRetrieval) {
+        html += `</dl><p style="margin:0.25rem 0 0;font-size:0.75rem"><em>(solo retrieval)</em></p>`;
+      } else {
+        html += `<dt>F1 RRS</dt><dd>${fmt(m.f1Rrs)}</dd>`;
+        html += `<dt>F1 CALL</dt><dd>${fmt(m.f1Call)}</dd>`;
+        html += `<dt>Jaccard ref</dt><dd>${fmt(m.jaccard)}</dd>`;
+        html += "</dl>";
+      }
+      html += "</div>";
+      return html;
+    }
+
+    function cardHtml(run) {
+      const cls = [
+        "run-card",
+        run.category === "baseline" ? "baseline" : "",
+        run.branch ? "branch" : "",
+        run.highlight ? "highlight" : ""
+      ].filter(Boolean).join(" ");
+      const border = run.dashed ? `border-style:dashed` : "";
+      const headline = run.metricHeadline
+        ? `<p class="metric-headline">${run.metricHeadline}</p>` : "";
+      return `
+        <article class="${cls}" id="card-${run.id}" data-id="${run.id}"
+          style="background:${run.fill};border-color:${run.stroke};${border}"
+          role="button" tabindex="0" aria-label="Corrida ${run.id}">
+          <div class="run-node" style="background:${run.fill};border-color:${run.stroke}"></div>
+          <div class="card-body">
+            <h3>${run.id} — ${run.label}</h3>
+            <div class="label">${run.slug}</div>
+            ${headline}
+            <ul class="bullets">${run.bullets.map(b => `<li>${b}</li>`).join("")}</ul>
+            ${metricsHtml(run.metrics)}
+          </div>
+        </article>
+      `;
+    }
+
+    function renderTimeline() {
+      const main = RUNS.filter(r => !r.branch);
+      const branch = RUNS.filter(r => r.branch);
+      const mainRow = document.getElementById("main-row");
+      const branchRow = document.getElementById("branch-row");
+      mainRow.innerHTML = main.map((r, i) => {
+        const arrow = i < main.length - 1 ? '<span class="arrow-between" aria-hidden="true">→</span>' : "";
+        return cardHtml(r) + arrow;
+      }).join("");
+      branchRow.innerHTML = branch.map((r, i) => {
+        const arrow = i < branch.length - 1 ? '<span class="arrow-between" aria-hidden="true">→</span>' : "";
+        return cardHtml(r) + arrow;
+      }).join("");
+      document.querySelectorAll(".run-card").forEach(el => {
+        el.addEventListener("click", () => selectRun(el.dataset.id));
+        el.addEventListener("keydown", e => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectRun(el.dataset.id); }
+        });
+      });
+    }
+
+    function renderNav() {
+      const navMain = document.getElementById("nav-main");
+      const navBranch = document.getElementById("nav-branch");
+      navMain.innerHTML = RUNS.filter(r => !r.branch).map(r =>
+        `<li><a href="#card-${r.id}" data-id="${r.id}">${r.id} — ${r.label}</a></li>`
+      ).join("");
+      navBranch.innerHTML = RUNS.filter(r => r.branch).map(r =>
+        `<li><a href="#card-${r.id}" class="nav-branch" data-id="${r.id}">${r.id} — ${r.label}</a></li>`
+      ).join("");
+      document.querySelectorAll("nav a[data-id]").forEach(a => {
+        a.addEventListener("click", e => {
+          e.preventDefault();
+          selectRun(a.dataset.id);
+          document.getElementById("card-" + a.dataset.id)?.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+      });
+    }
+
+    function selectRun(id) {
+      selectedId = id;
+      document.querySelectorAll(".run-card").forEach(c => c.classList.toggle("active", c.dataset.id === id));
+      document.querySelectorAll("nav a[data-id]").forEach(a => a.classList.toggle("active", a.dataset.id === id));
+      renderDetail(RUNS.find(r => r.id === id));
+      document.getElementById("compare-select").value = id;
+      renderCompare(id);
+    }
+
+    function renderDetail(run) {
+      if (!run) return;
+      const panel = document.getElementById("detail-panel");
+      const mode = run.retrievalOnly ? "solo retrieval (sin LLM)" : "completo (retrieval + generación)";
+      panel.innerHTML = `
+        <h3>${run.id} — ${run.label}</h3>
+        <p class="meta">Run ID: <code>${run.runId}</code> · ${run.date} · Modo: ${mode}</p>
+        ${run.metricHeadline ? `<p class="metric-headline">${run.metricHeadline}</p>` : ""}
+        <p><strong>Cambios clave:</strong></p>
+        <ul>${run.bullets.map(b => `<li>${b}</li>`).join("")}</ul>
+        ${metricsHtml(run.metrics)}
+        <p style="margin-top:1rem;font-size:0.85rem;color:var(--muted)">
+          Etiqueta técnica: <code>${run.slug}</code>
+        </p>
+      `;
+    }
+
+    function renderCompare(id) {
+      const run = RUNS.find(r => r.id === id);
+      const out = document.getElementById("compare-output");
+      if (!run || !baseline || run.id === "E0") {
+        out.innerHTML = "<p>Seleccioná una corrida distinta de E0.</p>";
+        return;
+      }
+      const m = run.metrics, b = baseline.metrics;
+      const delta = (a, bv) => (a != null && bv != null) ? (a - bv).toFixed(2) : "—";
+      const sign = v => v.startsWith("-") ? v : `+${v}`;
+      out.innerHTML = `
+        <table class="compare-table">
+          <thead><tr><th>Métrica</th><th>E0</th><th>${run.id}</th><th>Δ</th></tr></thead>
+          <tbody>
+            <tr><td>R@k reglas</td><td>${fmt(b.rkRules)}</td><td>${fmt(m.rkRules)}</td><td>${sign(delta(m.rkRules, b.rkRules))}</td></tr>
+            <tr><td>R@k CALL</td><td>${fmt(b.rkCall)}</td><td>${fmt(m.rkCall)}</td><td>${sign(delta(m.rkCall, b.rkCall))}</td></tr>
+            <tr><td>F1 RRS</td><td>${fmt(b.f1Rrs)}</td><td>${fmt(m.f1Rrs)}</td><td>${sign(delta(m.f1Rrs, b.f1Rrs))}</td></tr>
+            <tr><td>F1 CALL</td><td>${fmt(b.f1Call)}</td><td>${fmt(m.f1Call)}</td><td>${sign(delta(m.f1Call, b.f1Call))}</td></tr>
+            <tr><td>Jaccard ref</td><td>${fmt(b.jaccard)}</td><td>${fmt(m.jaccard)}</td><td>${sign(delta(m.jaccard, b.jaccard))}</td></tr>
+          </tbody>
+        </table>
+      `;
+    }
+
+    function initCompare() {
+      const sel = document.getElementById("compare-select");
+      sel.innerHTML = RUNS.filter(r => r.id !== "E0").map(r =>
+        `<option value="${r.id}">${r.id} — ${r.label}</option>`
+      ).join("");
+      sel.addEventListener("change", () => {
+        selectRun(sel.value);
+        document.getElementById("comparar").scrollIntoView({ behavior: "smooth" });
+      });
+    }
+
+    document.getElementById("metrics-guide").innerHTML = METRICS_GUIDE;
+    renderTimeline();
+    renderNav();
+    initCompare();
+    const hashId = location.hash.startsWith("#card-") ? location.hash.replace("#card-", "") : null;
+    selectRun(hashId && RUNS.some(r => r.id === hashId) ? hashId : "E11");
+  </script>
+</body>
+</html>

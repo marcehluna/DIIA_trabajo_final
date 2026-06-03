@@ -120,13 +120,29 @@ def chunk_mentions_rule(text: str, rule: str) -> bool:
     return any(re.search(p, t) for p in patterns)
 
 
+def chunk_mentions_case(text: str, case_code: str) -> bool:
+    code = case_code.strip()
+    if not code:
+        return False
+    t = text
+    if re.search(rf"(?m)^CASE\s+{re.escape(code)}\b", t, re.I):
+        return True
+    if re.search(rf"\bCase\s+{re.escape(code)}\b", t, re.I):
+        return True
+    return False
+
+
 def chunk_mentions_call(text: str, call_code: str) -> bool:
     t = text.upper()
     code = call_code.upper()
     if re.search(rf"\bCALL\s+{re.escape(code)}\b", t):
         return True
-    # Call book: "A3" puede aparecer como "CALL A3" o encabezado "A3"
-    return bool(re.search(rf"\b{re.escape(code)}\b", t))
+    if re.search(rf"\bTR\s+CALL\s+{re.escape(code)}\b", t):
+        return True
+    # JSONL: chunk_id call|A3; evitar falsos positivos de diagramas (B1, Y2)
+    if re.search(rf"(?m)^TR\s+CALL\s+{re.escape(code)}\b", t):
+        return True
+    return False
 
 
 def answer_citations(text: str) -> dict[str, list[str]]:

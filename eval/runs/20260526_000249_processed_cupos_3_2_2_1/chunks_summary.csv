@@ -1,0 +1,121 @@
+case_id,rank,chunk_id,source_file,page_start,chunk_index,char_len,refs_rrs,refs_calls
+1,1,rrs|1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,0,14,1,
+1,2,rrs|1.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,1,134,1.1,
+1,3,rrs|1.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,2,346,1.2,
+1,4,call|A1,Call-Book-TR (call_book_calls.csv),0,0,1348,13|17,A1
+1,5,call|A2,Call-Book-TR (call_book_calls.csv),0,1,1093,11,A2
+1,6,case|1,Case-Book-WS (case_book_cases.csv),0,0,1177,60.1|60.5,
+1,7,case|2,Case-Book-WS (case_book_cases.csv),0,1,2768,12|14|15|18.2|43.1|10,
+1,8,definition|1,definitions.csv,0,0,95,,
+2,1,rrs|21.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,39,157,21.1,
+2,2,rrs|30.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,40,102,30.1,
+2,3,rrs|29.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,60,628,29.1|30.1|29.2|30.3|30.4,
+2,4,call|B2,Call-Book-TR (call_book_calls.csv),0,7,1884,11|13|16.1,B2
+2,5,call|C3,Call-Book-TR (call_book_calls.csv),0,15,905,21.1|23.2,C3
+2,6,case|13,Case-Book-WS (case_book_cases.csv),0,12,2859,11|14|15|16.1|17|43.1,
+2,7,case|31,Case-Book-WS (case_book_cases.csv),0,28,3870,2|26|29.1|61.4|30.1,
+2,8,definition|22,definitions.csv,0,21,273,30.1,
+3,1,rrs|60.5,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,123,846,60.5|63|1|2|62.4|64|69|3|36,
+3,2,rrs|61.4,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,128,1302,61.4|63|1|2|3|4|1.1|5|69|9,
+3,3,rrs|63.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,135,690,63.1|1|2|3|4,
+3,4,call|C3,Call-Book-TR (call_book_calls.csv),0,15,905,21.1|23.2,C3
+3,5,call|L5,Call-Book-TR (call_book_calls.csv),0,70,2059,21.2|44.2|D2.3|17|D1.3|D2.5,L5
+3,6,case|20,Case-Book-WS (case_book_cases.csv),0,17,1605,1.1|61.4,
+3,7,case|27,Case-Book-WS (case_book_cases.csv),0,24,3081,2|13|14|15|43|12|18.2|10|43.1,
+3,8,definition|1,definitions.csv,0,0,95,,
+4,1,rrs|10,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,15,120,10,
+4,2,rrs|11,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,16,137,11,
+4,3,rrs|12,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,17,153,12,
+4,4,call|A1,Call-Book-TR (call_book_calls.csv),0,0,1348,13|17,A1
+4,5,call|A2,Call-Book-TR (call_book_calls.csv),0,1,1093,11,A2
+4,6,case|2,Case-Book-WS (case_book_cases.csv),0,1,2768,12|14|15|18.2|43.1|10,
+4,7,case|3,Case-Book-WS (case_book_cases.csv),0,2,1902,19.2|20|43.1|10|20.1,
+4,8,definition|2,definitions.csv,0,1,574,18,
+5,1,rrs|16.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,23,276,16.2,
+5,2,rrs|18.4#1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,207,361,18.4|22,
+5,3,rrs|16.2#1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,238,340,16.2,
+5,4,call|A5,Call-Book-TR (call_book_calls.csv),0,4,1180,11|16.1,A5
+5,5,call|A6,Call-Book-TR (call_book_calls.csv),0,5,1089,18|11|18.1|18.2|43.1|17,A6
+5,6,case|3,Case-Book-WS (case_book_cases.csv),0,2,1902,19.2|20|43.1|10|20.1,
+5,7,case|13,Case-Book-WS (case_book_cases.csv),0,12,2859,11|14|15|16.1|17|43.1,
+5,8,definition|9,definitions.csv,0,8,400,,
+6,1,rrs|1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,0,14,1,
+6,2,rrs|1.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,1,134,1.1,
+6,3,rrs|1.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,2,346,1.2,
+6,4,call|A1,Call-Book-TR (call_book_calls.csv),0,0,1348,13|17,A1
+6,5,call|A2,Call-Book-TR (call_book_calls.csv),0,1,1093,11,A2
+6,6,case|1,Case-Book-WS (case_book_cases.csv),0,0,1177,60.1|60.5,
+6,7,case|2,Case-Book-WS (case_book_cases.csv),0,1,2768,12|14|15|18.2|43.1|10,
+6,8,definition|1,definitions.csv,0,0,95,,
+7,1,rrs|1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,0,14,1,
+7,2,rrs|1.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,1,134,1.1,
+7,3,rrs|1.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,2,346,1.2,
+7,4,call|A1,Call-Book-TR (call_book_calls.csv),0,0,1348,13|17,A1
+7,5,call|A2,Call-Book-TR (call_book_calls.csv),0,1,1093,11,A2
+7,6,case|1,Case-Book-WS (case_book_cases.csv),0,0,1177,60.1|60.5,
+7,7,case|2,Case-Book-WS (case_book_cases.csv),0,1,2768,12|14|15|18.2|43.1|10,
+7,8,definition|1,definitions.csv,0,0,95,,
+8,1,rrs|1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,0,14,1,
+8,2,rrs|1.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,1,134,1.1,
+8,3,rrs|1.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,2,346,1.2,
+8,4,call|A1,Call-Book-TR (call_book_calls.csv),0,0,1348,13|17,A1
+8,5,call|A2,Call-Book-TR (call_book_calls.csv),0,1,1093,11,A2
+8,6,case|1,Case-Book-WS (case_book_cases.csv),0,0,1177,60.1|60.5,
+8,7,case|2,Case-Book-WS (case_book_cases.csv),0,1,2768,12|14|15|18.2|43.1|10,
+8,8,definition|1,definitions.csv,0,0,95,,
+9,1,rrs|1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,0,14,1,
+9,2,rrs|1.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,1,134,1.1,
+9,3,rrs|1.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,2,346,1.2,
+9,4,call|A1,Call-Book-TR (call_book_calls.csv),0,0,1348,13|17,A1
+9,5,call|A2,Call-Book-TR (call_book_calls.csv),0,1,1093,11,A2
+9,6,case|1,Case-Book-WS (case_book_cases.csv),0,0,1177,60.1|60.5,
+9,7,case|2,Case-Book-WS (case_book_cases.csv),0,1,2768,12|14|15|18.2|43.1|10,
+9,8,definition|1,definitions.csv,0,0,95,,
+10,1,rrs|1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,0,14,1,
+10,2,rrs|1.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,1,134,1.1,
+10,3,rrs|1.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,2,346,1.2,
+10,4,call|A1,Call-Book-TR (call_book_calls.csv),0,0,1348,13|17,A1
+10,5,call|A2,Call-Book-TR (call_book_calls.csv),0,1,1093,11,A2
+10,6,case|1,Case-Book-WS (case_book_cases.csv),0,0,1177,60.1|60.5,
+10,7,case|2,Case-Book-WS (case_book_cases.csv),0,1,2768,12|14|15|18.2|43.1|10,
+10,8,definition|1,definitions.csv,0,0,95,,
+11,1,rrs|1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,0,14,1,
+11,2,rrs|1.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,1,134,1.1,
+11,3,rrs|1.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,2,346,1.2,
+11,4,call|A1,Call-Book-TR (call_book_calls.csv),0,0,1348,13|17,A1
+11,5,call|A2,Call-Book-TR (call_book_calls.csv),0,1,1093,11,A2
+11,6,case|1,Case-Book-WS (case_book_cases.csv),0,0,1177,60.1|60.5,
+11,7,case|2,Case-Book-WS (case_book_cases.csv),0,1,2768,12|14|15|18.2|43.1|10,
+11,8,definition|1,definitions.csv,0,0,95,,
+12,1,rrs|1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,0,14,1,
+12,2,rrs|1.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,1,134,1.1,
+12,3,rrs|1.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,2,346,1.2,
+12,4,call|A1,Call-Book-TR (call_book_calls.csv),0,0,1348,13|17,A1
+12,5,call|A2,Call-Book-TR (call_book_calls.csv),0,1,1093,11,A2
+12,6,case|1,Case-Book-WS (case_book_cases.csv),0,0,1177,60.1|60.5,
+12,7,case|2,Case-Book-WS (case_book_cases.csv),0,1,2768,12|14|15|18.2|43.1|10,
+12,8,definition|1,definitions.csv,0,0,95,,
+13,1,rrs|1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,0,14,1,
+13,2,rrs|1.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,1,134,1.1,
+13,3,rrs|1.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,2,346,1.2,
+13,4,call|A1,Call-Book-TR (call_book_calls.csv),0,0,1348,13|17,A1
+13,5,call|A2,Call-Book-TR (call_book_calls.csv),0,1,1093,11,A2
+13,6,case|1,Case-Book-WS (case_book_cases.csv),0,0,1177,60.1|60.5,
+13,7,case|2,Case-Book-WS (case_book_cases.csv),0,1,2768,12|14|15|18.2|43.1|10,
+13,8,definition|1,definitions.csv,0,0,95,,
+14,1,rrs|1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,0,14,1,
+14,2,rrs|1.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,1,134,1.1,
+14,3,rrs|1.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,2,346,1.2,
+14,4,call|A1,Call-Book-TR (call_book_calls.csv),0,0,1348,13|17,A1
+14,5,call|A2,Call-Book-TR (call_book_calls.csv),0,1,1093,11,A2
+14,6,case|1,Case-Book-WS (case_book_cases.csv),0,0,1177,60.1|60.5,
+14,7,case|2,Case-Book-WS (case_book_cases.csv),0,1,2768,12|14|15|18.2|43.1|10,
+14,8,definition|1,definitions.csv,0,0,95,,
+15,1,rrs|60.5,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,123,846,60.5|63|1|2|62.4|64|69|3|36,
+15,2,rrs|61.4,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,128,1302,61.4|63|1|2|3|4|1.1|5|69|9,
+15,3,rrs|63.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,135,690,63.1|1|2|3|4,
+15,4,call|C3,Call-Book-TR (call_book_calls.csv),0,15,905,21.1|23.2,C3
+15,5,call|L5,Call-Book-TR (call_book_calls.csv),0,70,2059,21.2|44.2|D2.3|17|D1.3|D2.5,L5
+15,6,case|20,Case-Book-WS (case_book_cases.csv),0,17,1605,1.1|61.4,
+15,7,case|27,Case-Book-WS (case_book_cases.csv),0,24,3081,2|13|14|15|43|12|18.2|10|43.1,
+15,8,definition|1,definitions.csv,0,0,95,,

@@ -1,0 +1,715 @@
+{
+  "cases": [
+    {
+      "id": "1",
+      "titulo": "Orzada brusca sin espacio para mantenerse alejado",
+      "expected": {
+        "rrs_rules": [
+          "16.1"
+        ],
+        "calls": [
+          "A3"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a Y.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "Y"
+        ]
+      },
+      "rule_hits": [
+        {
+          "expected": "16.1",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "A3",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [
+          "15"
+        ],
+        "calls": [
+          "C3"
+        ],
+        "cases": []
+      }
+    },
+    {
+      "id": "2",
+      "titulo": "Sobre-rotación del barco de barlovento proa al viento",
+      "expected": {
+        "rrs_rules": [
+          "11",
+          "13"
+        ],
+        "calls": [
+          "B2"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      },
+      "rule_hits": [
+        {
+          "expected": "11",
+          "hit": true,
+          "first_rank": 8,
+          "first_chunk_id": "call|B2"
+        },
+        {
+          "expected": "13",
+          "hit": true,
+          "first_rank": 8,
+          "first_chunk_id": "call|B2"
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "B2",
+          "hit": true,
+          "first_rank": 8,
+          "first_chunk_id": "call|B2"
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [
+          "13"
+        ],
+        "calls": [
+          "B2"
+        ],
+        "cases": []
+      }
+    },
+    {
+      "id": "3",
+      "titulo": "Retraso en la respuesta al solapamiento desde atrás",
+      "expected": {
+        "rrs_rules": [
+          "11",
+          "15"
+        ],
+        "calls": [
+          "B1"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a Y.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "Y"
+        ]
+      },
+      "rule_hits": [
+        {
+          "expected": "11",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        },
+        {
+          "expected": "15",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "B1",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [
+          "7.3(c)",
+          "31"
+        ],
+        "calls": [],
+        "cases": []
+      }
+    },
+    {
+      "id": "4",
+      "titulo": "Derecho a espacio de marca y pérdida por virada",
+      "expected": {
+        "rrs_rules": [
+          "18.2(a)(2)",
+          "12",
+          "18.2(d)"
+        ],
+        "calls": [
+          "E1"
+        ],
+        "cases": [],
+        "decision_text": "Sin penalización mientras B no pase de proa al viento.",
+        "verdict": "sin_penalizacion",
+        "penalized_boats": []
+      },
+      "rule_hits": [
+        {
+          "expected": "18.2(a)(2)",
+          "hit": true,
+          "first_rank": 7,
+          "first_chunk_id": "rrs|18.3"
+        },
+        {
+          "expected": "12",
+          "hit": true,
+          "first_rank": 3,
+          "first_chunk_id": "rrs|12"
+        },
+        {
+          "expected": "18.2(d)",
+          "hit": true,
+          "first_rank": 7,
+          "first_chunk_id": "rrs|18.3"
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "E1",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [
+          "18"
+        ],
+        "calls": [],
+        "cases": []
+      }
+    },
+    {
+      "id": "5",
+      "titulo": "Cambio de rumbo táctico en babor-estribor (Anti-Hunt)",
+      "expected": {
+        "rrs_rules": [
+          "16.2"
+        ],
+        "calls": [
+          "D2"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      },
+      "rule_hits": [
+        {
+          "expected": "16.2",
+          "hit": true,
+          "first_rank": 1,
+          "first_chunk_id": "rrs|16.2"
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "D2",
+          "hit": true,
+          "first_rank": 7,
+          "first_chunk_id": "call|D2"
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [
+          "16.2"
+        ],
+        "calls": [
+          "D2"
+        ],
+        "cases": []
+      }
+    },
+    {
+      "id": "6",
+      "titulo": "Incapacidad física de dar espacio de marca al solapar",
+      "expected": {
+        "rrs_rules": [
+          "18.2(a)",
+          "18.2(d)"
+        ],
+        "calls": [
+          "E2"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a Y (si vira y choca).",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "Y"
+        ]
+      },
+      "rule_hits": [
+        {
+          "expected": "18.2(a)",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        },
+        {
+          "expected": "18.2(d)",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "E2",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [],
+        "calls": [
+          "30"
+        ],
+        "cases": []
+      }
+    },
+    {
+      "id": "7",
+      "titulo": "Interferencia durante el cumplimiento de una penalización",
+      "expected": {
+        "rrs_rules": [
+          "21.2"
+        ],
+        "calls": [
+          "L2"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      },
+      "rule_hits": [
+        {
+          "expected": "21.2",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "L2",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [
+          "15",
+          "16",
+          "2"
+        ],
+        "calls": [],
+        "cases": []
+      }
+    },
+    {
+      "id": "8",
+      "titulo": "Eliminación de la Regla 18.4 en Team Racing",
+      "expected": {
+        "rrs_rules": [
+          "18.2(a)(1)",
+          "D1.1",
+          "18.4"
+        ],
+        "calls": [
+          "J5"
+        ],
+        "cases": [],
+        "decision_text": "Sin penalización para Y.",
+        "verdict": "sin_penalizacion",
+        "penalized_boats": []
+      },
+      "rule_hits": [
+        {
+          "expected": "18.2(a)(1)",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        },
+        {
+          "expected": "D1.1",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        },
+        {
+          "expected": "18.4",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "J5",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [
+          "10"
+        ],
+        "calls": [
+          "43"
+        ],
+        "cases": []
+      }
+    },
+    {
+      "id": "9",
+      "titulo": "Virada completada libre por proa en la zona",
+      "expected": {
+        "rrs_rules": [
+          "12",
+          "13",
+          "15"
+        ],
+        "calls": [
+          "E6"
+        ],
+        "cases": [],
+        "decision_text": "Sin penalización para Y.",
+        "verdict": "sin_penalizacion",
+        "penalized_boats": []
+      },
+      "rule_hits": [
+        {
+          "expected": "12",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        },
+        {
+          "expected": "13",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        },
+        {
+          "expected": "15",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "E6",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [
+          "15"
+        ],
+        "calls": [
+          "36"
+        ],
+        "cases": []
+      }
+    },
+    {
+      "id": "10",
+      "titulo": "Contacto antes de completar la virada tras cruce",
+      "expected": {
+        "rrs_rules": [
+          "13"
+        ],
+        "calls": [
+          "D4"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      },
+      "rule_hits": [
+        {
+          "expected": "13",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "D4",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [
+          "16"
+        ],
+        "calls": [
+          "25"
+        ],
+        "cases": []
+      }
+    },
+    {
+      "id": "11",
+      "titulo": "Táctica de frenado en la marca (The Trap)",
+      "expected": {
+        "rrs_rules": [
+          "11",
+          "18.2"
+        ],
+        "calls": [
+          "J9"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a X.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "X"
+        ]
+      },
+      "rule_hits": [
+        {
+          "expected": "11",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        },
+        {
+          "expected": "18.2",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "J9",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [],
+        "calls": [
+          "30"
+        ],
+        "cases": []
+      }
+    },
+    {
+      "id": "12",
+      "titulo": "Provocación de contacto deliberado (Antideportivo)",
+      "expected": {
+        "rrs_rules": [
+          "10",
+          "D2.3(f)"
+        ],
+        "calls": [
+          "L1"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B. Exonerar a Y.",
+        "verdict": "mixto",
+        "penalized_boats": [
+          "B"
+        ]
+      },
+      "rule_hits": [
+        {
+          "expected": "10",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        },
+        {
+          "expected": "D2.3(f)",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "L1",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [
+          "15",
+          "17"
+        ],
+        "calls": [
+          "30"
+        ],
+        "cases": []
+      }
+    },
+    {
+      "id": "13",
+      "titulo": "Trasluchada para \"apagar\" la restricción de la Regla 17",
+      "expected": {
+        "rrs_rules": [
+          "17"
+        ],
+        "calls": [
+          "G3"
+        ],
+        "cases": [],
+        "decision_text": "Sin penalización para B.",
+        "verdict": "sin_penalizacion",
+        "penalized_boats": []
+      },
+      "rule_hits": [
+        {
+          "expected": "17",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "G3",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [
+          "15"
+        ],
+        "calls": [],
+        "cases": []
+      }
+    },
+    {
+      "id": "14",
+      "titulo": "Interferencia de un barco que ya terminó la regata",
+      "expected": {
+        "rrs_rules": [
+          "D1.1(e)"
+        ],
+        "calls": [
+          "K1"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a Y.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "Y"
+        ]
+      },
+      "rule_hits": [
+        {
+          "expected": "D1.1(e)",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "K1",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [
+          "10"
+        ],
+        "calls": [
+          "34"
+        ],
+        "cases": []
+      }
+    },
+    {
+      "id": "15",
+      "titulo": "Virada en proa obligando a maniobra evitativa inmediata",
+      "expected": {
+        "rrs_rules": [
+          "13",
+          "15"
+        ],
+        "calls": [
+          "D3"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      },
+      "rule_hits": [
+        {
+          "expected": "13",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        },
+        {
+          "expected": "15",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "call_hits": [
+        {
+          "expected": "D3",
+          "hit": false,
+          "first_rank": null,
+          "first_chunk_id": null
+        }
+      ],
+      "citations_in_answer": {
+        "rrs_rules": [],
+        "calls": [
+          "21"
+        ],
+        "cases": []
+      }
+    }
+  ]
+}

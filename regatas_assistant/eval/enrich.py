@@ -252,6 +252,10 @@ def export_sidecars(report: dict[str, Any], out_dir: Path) -> None:
         add("token_jaccard_answer_context", resp.get("token_jaccard_answer_context"), "response")
         add("token_jaccard_answer_reference", resp.get("token_jaccard_answer_reference"), "response")
         add("verdict_match", 1.0 if resp.get("verdict_match") else 0.0 if resp.get("verdict_match") is False else None, "response")
+        fh = resp.get("faithfulness") or {}
+        add("faithfulness_rate", fh.get("faithfulness_rate"), "faithfulness")
+        add("faithfulness_rate_strict", fh.get("faithfulness_rate_strict"), "faithfulness")
+        add("faithfulness_n_claims", fh.get("n_claims"), "faithfulness")
         add("answer_char_len", ext.get("answer_char_len"), "volume")
         add("context_char_len", ext.get("context_char_len"), "volume")
 

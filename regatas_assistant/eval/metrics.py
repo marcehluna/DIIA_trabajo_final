@@ -8,6 +8,7 @@ from typing import Any
 from regatas_assistant.eval.refs import (
     answer_citations,
     chunk_mentions_call,
+    chunk_mentions_case,
     chunk_mentions_rule,
     extract_penalized_boats,
     normalize_verdict,
@@ -75,6 +76,25 @@ def recall_at_k_calls(
     return hits / len(expected_calls)
 
 
+def recall_at_k_cases(
+    expected_cases: list[str],
+    retrieved: list[TextChunk],
+    k: int,
+) -> float | None:
+    if not expected_cases:
+        return None
+    top = retrieved[:k]
+    hits = 0
+    for case in expected_cases:
+        if any(
+            chunk_mentions_case(c.text, case)
+            or (c.doc_type == "case" and c.ref_id == case)
+            for c in top
+        ):
+            hits += 1
+    return hits / len(expected_cases)
+
+
 def _chunk_to_dict(c: TextChunk) -> dict[str, Any]:
     return {
         "chunk_id": c.chunk_id(),
@@ -83,6 +103,12 @@ def _chunk_to_dict(c: TextChunk) -> dict[str, Any]:
         "chunk_index": c.chunk_index,
         "doc_type": c.doc_type,
         "ref_id": c.ref_id,
+        "section": c.section,
+        "referenced_rules": list(c.referenced_rules),
+        "rrs_tipo": c.rrs_tipo,
+        "corpus_page_start": c.corpus_page_start,
+        "corpus_page_end": c.corpus_page_end,
+        "lang": c.lang,
         "header": c.header_line(),
         "text": c.text,
     }
@@ -104,6 +130,7 @@ def score_case(
     retrieval = {
         "recall_at_k_rules": recall_at_k_rules(exp_rules, retrieved, top_k),
         "recall_at_k_calls": recall_at_k_calls(exp_calls, retrieved, top_k),
+        "recall_at_k_cases": recall_at_k_cases(exp_cases, retrieved, top_k),
         "n_retrieved": len(retrieved),
     }
 
@@ -186,7 +213,16 @@ def aggregate_metrics(case_results: list[dict[str, Any]]) -> dict[str, Any]:
         if resp.get("verdict_match") is not None:
             verdict_ok.append(1.0 if resp["verdict_match"] else 0.0)
 
-    return {
+    faith_rates = []
+    faith_strict = []
+    for cr in case_results:
+        fh = (cr.get("metrics") or {}).get("response", {}).get("faithfulness") or {}
+        if fh.get("faithfulness_rate") is not None:
+            faith_rates.append(fh["faithfulness_rate"])
+        if fh.get("faithfulness_rate_strict") is not None:
+            faith_strict.append(fh["faithfulness_rate_strict"])
+
+    out: dict[str, Any] = {
         "n_cases": len(case_results),
         "mean_recall_at_k_rules": _mean(r_rules),
         "mean_recall_at_k_calls": _mean(r_calls),
@@ -196,3 +232,7 @@ def aggregate_metrics(case_results: list[dict[str, Any]]) -> dict[str, Any]:
         "mean_token_jaccard_answer_reference": _mean(j_ref),
         "verdict_accuracy": _mean(verdict_ok),
     }
+    if faith_rates:
+        out["mean_faithfulness_rate"] = _mean(faith_rates)
+        out["mean_faithfulness_rate_strict"] = _mean(faith_strict)
+    return out

@@ -1,0 +1,30 @@
+Run: 20260526_000249_processed_cupos_3_2_2_1 (processed_cupos_3_2_2_1)
+Created: 2026-05-26T00:16:51.772824+00:00
+Retrieval only: False
+Cases: 15
+
+=== Agregados ===
+Recall@k reglas (media): 0.689
+Recall@k calls (media):  0.067
+F1 citas RRS (media):      0.087
+F1 citas Call (media):     0.067
+Jaccard resp-contexto:     0.026
+Jaccard resp-referencia:   0.125
+Acierto dictamen:          0.000
+
+=== Por caso (recall reglas | F1 RRS | verdict) ===
+   1 Orzada brusca sin espacio para mantenerse  R@0.0 F1=0.0 V=✗
+   2 Sobre-rotación del barco de barlovento pro R@1.0 F1=0.0 V=✗
+   3 Retraso en la respuesta al solapamiento de R@0.5 F1=0.0 V=✗
+   4 Derecho a espacio de marca y pérdida por v R@1.0 F1=0.4 V=✗
+   5 Cambio de rumbo táctico en babor-estribor  R@1.0 F1=0.0 V=✗
+   6 Incapacidad física de dar espacio de marca R@1.0 F1=0.0 V=✗
+   7 Interferencia durante el cumplimiento de u R@0.0 F1=0.0 V=✗
+   8 Eliminación de la Regla 18.4 en Team Racin R@0.3333333333333333 F1=0.0 V=✗
+   9 Virada completada libre por proa en la zon R@1.0 F1=0.4 V=✗
+  10 Contacto antes de completar la virada tras R@1.0 F1=0.0 V=✗
+  11 Táctica de frenado en la marca (The Trap)  R@1.0 F1=0.5 V=✗
+  12 Provocación de contacto deliberado (Antide R@0.5 F1=0.0 V=✗
+  13 Trasluchada para "apagar" la restricción d R@1.0 F1=0.0 V=✗
+  14 Interferencia de un barco que ya terminó l R@0.0 F1=0.0 V=✗
+  15 Virada en proa obligando a maniobra evitat R@1.0 F1=0.0 V=✗

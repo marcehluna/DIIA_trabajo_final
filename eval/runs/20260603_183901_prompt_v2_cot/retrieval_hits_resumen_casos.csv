@@ -1,0 +1,16 @@
+﻿case_id,titulo,reglas_esperadas,reglas_en_contexto,reglas_citadas_ok,calls_esperados,calls_en_contexto,calls_citados_ok,reglas_citadas_respuesta,calls_citados_respuesta,dictamen_esperado
+1,Orzada brusca sin espacio para mantenerse alejado,16.1,1/1,0/1,A3,1/1,1/1,14,A3,penalizar
+2,Sobre-rotación del barco de barlovento proa al viento,11|13,2/2,0/2,B2,1/1,0/1,—,—,penalizar
+3,Retraso en la respuesta al solapamiento desde atrás,11|15,1/2,0/2,B1,0/1,0/1,—,M10,penalizar
+4,Derecho a espacio de marca y pérdida por virada,18.2(a)(2)|12|18.2(d),3/3,0/3,E1,0/1,0/1,—,2,sin_penalizacion
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),16.2,1/1,0/1,D2,1/1,1/1,10,D2,penalizar
+6,Incapacidad física de dar espacio de marca al solapar,18.2(a)|18.2(d),2/2,0/2,E2,0/1,0/1,—,A3,penalizar
+7,Interferencia durante el cumplimiento de una penalización,21.2,0/1,0/1,L2,0/1,0/1,—,A3,penalizar
+8,Eliminación de la Regla 18.4 en Team Racing,18.2(a)(1)|D1.1|18.4,1/3,0/3,J5,0/1,0/1,18.2(a)(2),A3|A2,sin_penalizacion
+9,Virada completada libre por proa en la zona,12|13|15,3/3,0/3,E6,0/1,0/1,—,—,sin_penalizacion
+10,Contacto antes de completar la virada tras cruce,13,1/1,0/1,D4,0/1,0/1,—,A3|A2,penalizar
+11,Táctica de frenado en la marca (The Trap),11|18.2,2/2,0/2,J9,0/1,0/1,—,A3,penalizar
+12,Provocación de contacto deliberado (Antideportivo),10|D2.3(f),1/2,0/2,L1,0/1,0/1,—,A3,mixto
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",17,1/1,0/1,G3,0/1,0/1,—,A3|A2,sin_penalizacion
+14,Interferencia de un barco que ya terminó la regata,D1.1(e),0/1,0/1,K1,0/1,0/1,14,A3,penalizar
+15,Virada en proa obligando a maniobra evitativa inmediata,13|15,2/2,0/2,D3,0/1,0/1,14,M10,penalizar

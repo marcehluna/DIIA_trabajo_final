@@ -20,6 +20,8 @@ from regatas_assistant.pipeline import ProtestPipeline
 class EvalRunConfig:
     label: str
     retrieval_only: bool = False
+    compute_faithfulness: bool = False
+    faithfulness_model: str | None = None
     eval_set_path: Path | None = None
     runs_dir: Path | None = None
     system_prompt_lang: str | None = None
@@ -34,11 +36,25 @@ def _settings_snapshot(settings: Settings) -> dict[str, Any]:
         "chunk_size": settings.chunk_size,
         "chunk_overlap": settings.chunk_overlap,
         "retrieve_top_k": settings.retrieve_top_k,
+        "active_profile": settings.active_profile,
         "embedding_backend": settings.embedding_backend,
+        "hybrid_semantic_backend": settings.hybrid_semantic_backend,
+        "hybrid_rrf_k": settings.hybrid_rrf_k,
         "llm_backend": settings.llm_backend,
         "llm_model": settings.llm_model,
         "system_prompt_language": settings.system_prompt_language,
         "prompt_strategy": settings.prompt_strategy,
+        "corpus_sources": settings.corpus_sources,
+        "load_processed_jsonl": settings.load_processed_jsonl,
+        "corpus_processed_dir": str(settings.corpus_processed_dir),
+        "retrieval_use_quotas": settings.retrieval_use_quotas,
+        "retrieval_quota_by_doctype": settings.retrieval_quota_by_doctype,
+        "retrieval_quota_processed": settings.retrieval_quota_processed,
+        "retrieval_quota_pdf": settings.retrieval_quota_pdf,
+        "retrieval_quota_rrs": settings.retrieval_quota_rrs,
+        "retrieval_quota_call": settings.retrieval_quota_call,
+        "retrieval_quota_case": settings.retrieval_quota_case,
+        "retrieval_quota_definition": settings.retrieval_quota_definition,
     }
 
 
@@ -89,6 +105,30 @@ def run_evaluation(
             top_k=settings.retrieve_top_k,
             output_ideal=case.get("output_ideal"),
         )
+
+        if (
+            config.compute_faithfulness
+            and not config.retrieval_only
+            and trace.get("answer")
+        ):
+            from regatas_assistant.eval.faithfulness import llm_for_judge, score_faithfulness
+
+            judge = llm_for_judge(
+                pipeline.llm,
+                config.faithfulness_model or config.llm_model,
+            )
+            try:
+                fh = score_faithfulness(
+                    judge,
+                    trace["answer"],
+                    metrics.get("retrieved") or [],
+                )
+                metrics.setdefault("response", {})["faithfulness"] = fh
+            except Exception as exc:
+                metrics.setdefault("response", {})["faithfulness"] = {
+                    "error": str(exc),
+                    "faithfulness_rate": None,
+                }
 
         case_results.append(
             {
@@ -143,9 +183,20 @@ def _format_summary(report: dict[str, Any]) -> str:
         f"Jaccard resp-contexto:     {_fmt(agg.get('mean_token_jaccard_answer_context'))}",
         f"Jaccard resp-referencia:   {_fmt(agg.get('mean_token_jaccard_answer_reference'))}",
         f"Acierto dictamen:          {_fmt(agg.get('verdict_accuracy'))}",
-        "",
-        "=== Por caso (recall reglas | F1 RRS | verdict) ===",
     ]
+    if agg.get("mean_faithfulness_rate") is not None:
+        lines.extend(
+            [
+                f"Faithfulness (media):    {_fmt(agg.get('mean_faithfulness_rate'))}",
+                f"Faithfulness estricta:   {_fmt(agg.get('mean_faithfulness_rate_strict'))}",
+            ]
+        )
+    lines.extend(
+        [
+            "",
+            "=== Por caso (recall reglas | F1 RRS | verdict) ===",
+        ]
+    )
     for c in report.get("cases") or []:
         m = c.get("metrics") or {}
         ret = m.get("retrieval") or {}

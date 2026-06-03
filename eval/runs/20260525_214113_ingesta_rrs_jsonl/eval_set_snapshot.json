@@ -1,0 +1,327 @@
+{
+  "version": 1,
+  "source": "/Users/marcelo.luna/Library/CloudStorage/OneDrive-Personal/Diplomaturas/01. Inteligencia Artificial Aplicada/Materias/05. Taller de Trabajo Final/Repositorio/DIIA_trabajo_final/docs/Casos de Regatas.xlsx",
+  "built_at": "2026-05-25T18:44:45.457297+00:00",
+  "notes": "relato_protesta = columna Input del Excel; etiquetas extraídas del Output Ideal Esperado.",
+  "cases": [
+    {
+      "id": "1",
+      "titulo": "Orzada brusca sin espacio para mantenerse alejado",
+      "relato_protesta": "B y Y navegan en la misma amura (babor), solapados. Y es el barco de sotavento. Y comienza a orzar lentamente. B responde de inmediato, pero Y continúa orzando hasta que B ya no puede evitar el contacto. Hay contacto leve.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: B (barlovento) y Y (sotavento) solapados. Y orza y B responde prontamente. Y sigue orzando hasta que B no puede evitarla. \nNorma: Regla 16.1 e interpretación TR CALL A3 .\nRationale: Aunque Y es el barco con derecho de paso, al cambiar de curso debe dar espacio para que el barco que debe mantenerse alejado lo haga .\nDecisión: Penalizar a Y.",
+      "expected": {
+        "rrs_rules": [
+          "16.1"
+        ],
+        "calls": [
+          "A3"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a Y.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "Y"
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "titulo": "Sobre-rotación del barco de barlovento proa al viento",
+      "relato_protesta": "En la pre-salida, Y (sotavento) y B (barlovento) están solapados. Y orza hacia una posición de \"proa al viento\". B orza en respuesta. B continúa rotando y pasa de la posición de proa al viento, chocando con el costado de Y.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: Y y B solapados. Y orza a proa al viento y B responde. B sobre-rota y choca con Y .\nNorma: Reglas 11 o 13 según TR CALL B2 .\nRationale: Y dio espacio inicial para que B respondiera. El contacto fue causado por la sobre-rotación de B (error de maniobra), no por falta de espacio de Y .\nDecisión: Penalizar a B.",
+      "expected": {
+        "rrs_rules": [
+          "11",
+          "13"
+        ],
+        "calls": [
+          "B2"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      }
+    },
+    {
+      "id": "3",
+      "titulo": "Retraso en la respuesta al solapamiento desde atrás",
+      "relato_protesta": "B establece un solapamiento desde atrás a sotavento de Y muy cerca de la línea de salida. Y puede mantenerse alejada acelerando, pero tarda en reaccionar y luego decide orzar, golpeando a B.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: B gana solapamiento desde atrás. Y puede mantenerse alejada acelerando pero demora su respuesta y luego orza chocando a B .\nNorma: Regla 11 según TR CALL B1 .\nRationale: B cumplió la Regla 15 al dar espacio inicial para que Y reaccionara de forma marinera. Y falló al demorar su respuesta .\nDecisión: Penalizar a Y.",
+      "expected": {
+        "rrs_rules": [
+          "11",
+          "15"
+        ],
+        "calls": [
+          "B1"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a Y.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "Y"
+        ]
+      }
+    },
+    {
+      "id": "4",
+      "titulo": "Derecho a espacio de marca y pérdida por virada",
+      "relato_protesta": "Y y B se acercan a una boya de barlovento que debe dejarse por babor. B llega a la zona libre por proa de Y. B orza para virar (tack) frente a la boya, pero la presencia de Y por su costado le impide completar la virada.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: B entra a la zona libre por proa de Y. B quiere virar pero Y se lo impide .\nNorma: Reglas 18.2(a)(2) y 12 según TR CALL E1 .\nRationale: Y debe dar espacio de marca a B. Sin embargo, si B pasa de la posición de proa al viento, pierde su derecho a espacio de marca bajo la Regla 18.2(d) .\nDecisión: Sin penalización mientras B no pase de proa al viento.",
+      "expected": {
+        "rrs_rules": [
+          "18.2(a)(2)",
+          "12",
+          "18.2(d)"
+        ],
+        "calls": [
+          "E1"
+        ],
+        "cases": [],
+        "decision_text": "Sin penalización mientras B no pase de proa al viento.",
+        "verdict": "sin_penalizacion",
+        "penalized_boats": []
+      }
+    },
+    {
+      "id": "5",
+      "titulo": "Cambio de rumbo táctico en babor-estribor (Anti-Hunt)",
+      "relato_protesta": "B (estribor) y Y (babor) convergen en ceñida. A 3 esloras, Y vira para pasar por popa de B. B entonces también cae (bear away) manteniendo el rumbo de colisión. Y debe volver a caer bruscamente para evitar a B.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: B en estribor, Y en babor. Y intenta pasar por popa de B. B cae hacia Y obligándola a maniobrar de nuevo .\nNorma: Regla 16.2 según TR CALL D2 .\nRationale: En ceñida, un barco de estribor no puede cambiar de rumbo si obliga al barco de babor (que intenta pasar por popa) a cambiar de rumbo inmediatamente para seguir manteniéndose alejado .\nDecisión: Penalizar a B.",
+      "expected": {
+        "rrs_rules": [
+          "16.2"
+        ],
+        "calls": [
+          "D2"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      }
+    },
+    {
+      "id": "6",
+      "titulo": "Incapacidad física de dar espacio de marca al solapar",
+      "relato_protesta": "Y y B se acercan a una marca de barlovento a dejar por estribor. Y entra en la zona libre por popa de B. Y gana un solapamiento por el interior de B y reclama espacio. B no tiene espacio físico para dejar virar a Y sin chocar.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: Y entra a la zona libre por popa. Y gana solapamiento interior. B no tiene espacio para dejar virar a Y .\nNorma: Regla 18.2(a) según TR CALL E2 .\nRationale: Si el barco exterior (B) es incapaz de dar espacio de marca desde el momento en que se crea el solapamiento, no está obligado a darlo según la Regla 18.2(d) .\nDecisión: Penalizar a Y (si vira y choca).",
+      "expected": {
+        "rrs_rules": [
+          "18.2(a)",
+          "18.2(d)"
+        ],
+        "calls": [
+          "E2"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a Y (si vira y choca).",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "Y"
+        ]
+      }
+    },
+    {
+      "id": "7",
+      "titulo": "Interferencia durante el cumplimiento de una penalización",
+      "relato_protesta": "B está cumpliendo una penalización de una vuelta. Mientras gira, Y (que no está en penalización) tiene que desviarse para evitar chocar con B.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: B tomando penalización. Y debe evitarla .\nNorma: Regla 21.2 según TR CALL L2 o L5 .\nRationale: Un barco que está tomando una penalización debe mantenerse alejado de uno que no lo está haciendo .\nDecisión: Penalizar a B.",
+      "expected": {
+        "rrs_rules": [
+          "21.2"
+        ],
+        "calls": [
+          "L2"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      }
+    },
+    {
+      "id": "8",
+      "titulo": "Eliminación de la Regla 18.4 en Team Racing",
+      "relato_protesta": "Y y B solapados en babor hacia la boya de sotavento. Y es interior. Y traslucha a estribor en la zona y orza a B para alejarla de la marca. B es obligada a trasluchar.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: Y interior solapado. Y traslucha a estribor en la zona y orza a B .\nNorma: Regla 18.2(a)(1) y Apéndice D (D1.1c) según TR CALL J5 .\nRationale: En Team Racing, la Regla 18.4 se borra, por lo que el barco con derecho a espacio de marca no tiene obligación de trasluchar de inmediato y puede orzar al otro .\nDecisión: Sin penalización para Y.",
+      "expected": {
+        "rrs_rules": [
+          "18.2(a)(1)",
+          "D1.1",
+          "18.4"
+        ],
+        "calls": [
+          "J5"
+        ],
+        "cases": [],
+        "decision_text": "Sin penalización para Y.",
+        "verdict": "sin_penalizacion",
+        "penalized_boats": []
+      }
+    },
+    {
+      "id": "9",
+      "titulo": "Virada completada libre por proa en la zona",
+      "relato_protesta": "Y vira en la zona de la marca de barlovento por delante de B. Y completa su virada y queda libre por proa, pero B debe caer inmediatamente para evitar chocar con la popa de Y.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: Y vira en la zona. B debe caer para evitarla después de que Y completó su virada .\nNorma: Regla 12 e interpretación TR CALL E6 .\nRationale: Si Y completa su virada sin obligar a B a maniobrar durante la misma (Regla 13) y sin riesgo de contacto inmediato (Regla 15), B ahora es el barco que viene por popa y debe mantenerse alejado .\nDecisión: Sin penalización para Y.",
+      "expected": {
+        "rrs_rules": [
+          "12",
+          "13",
+          "15"
+        ],
+        "calls": [
+          "E6"
+        ],
+        "cases": [],
+        "decision_text": "Sin penalización para Y.",
+        "verdict": "sin_penalizacion",
+        "penalized_boats": []
+      }
+    },
+    {
+      "id": "10",
+      "titulo": "Contacto antes de completar la virada tras cruce",
+      "relato_protesta": "B (estribor) cruza por delante de Y (babor). Después de cruzar, B orza y vira a babor. Durante la virada, B choca con Y antes de llegar a rumbo de ceñida.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: B cruza a Y. B vira y choca con Y antes de completar la virada .\nNorma: Regla 13 según TR CALL D4 .\nRationale: B perdió su derecho de paso al virar. Mientras un barco vira, debe mantenerse alejado de los demás .\nDecisión: Penalizar a B.",
+      "expected": {
+        "rrs_rules": [
+          "13"
+        ],
+        "calls": [
+          "D4"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      }
+    },
+    {
+      "id": "11",
+      "titulo": "Táctica de frenado en la marca (The Trap)",
+      "relato_protesta": "Tres barcos (B, X, Y) se acercan a una boya por babor. X es el barco más a sotavento y líder. Y y B están solapados por fuera. X frena bruscamente para \"atrapar\" a B y permitir que su compañero Y pase por el interior. B choca con X.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: X frena en la marca para atrapar a B. B choca con X .\nNorma: Regla 11 y 18.2 según TR CALL J9 .\nRationale: X es el barco con derecho de paso y espacio de marca. B (barlovento) debe mantenerse alejada de X independientemente de la táctica de equipo de X .\nDecisión: Penalizar a X.",
+      "expected": {
+        "rrs_rules": [
+          "11",
+          "18.2"
+        ],
+        "calls": [
+          "J9"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a X.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "X"
+        ]
+      }
+    },
+    {
+      "id": "12",
+      "titulo": "Provocación de contacto deliberado (Antideportivo)",
+      "relato_protesta": "Y navega por la amura de babor. B navega por la amura de estribor. Y tiene que virar para evitar a B, pero durante la maniobra el tripulante de B empuja la botavara hacia afuera deliberadamente para tocar a Y.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: Y en babor, B en estribor. Y vira para evitar a B. B empuja la botavara para causar contacto .\nNorma: Regla 10 y D2.3(f) según TR CALL L1 .\nRationale: Es un incumplimiento de la deportividad provocar contacto deliberadamente cuando el otro barco estaba manteniéndose alejado .\nDecisión: Penalizar a B. Exonerar a Y.",
+      "expected": {
+        "rrs_rules": [
+          "10",
+          "D2.3(f)"
+        ],
+        "calls": [
+          "L1"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B. Exonerar a Y.",
+        "verdict": "mixto",
+        "penalized_boats": [
+          "B"
+        ]
+      }
+    },
+    {
+      "id": "13",
+      "titulo": "Trasluchada para \"apagar\" la restricción de la Regla 17",
+      "relato_protesta": "B y Y están en el tramo de popa, solapados en la misma amura. B es sotavento y tiene restricción de rumbo debido (Regla 17). B traslucha a la amura de babor y vuelve a trasluchar a estribor de inmediato para orzar a Y.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: B traslucha dos veces. B orza a Y tras las trasluchadas .\nNorma: Regla 17 según TR CALL G3 .\nRationale: Si la trasluchada es real (la vela se llena en la nueva amura), el solapamiento original se rompe y con él la restricción de la Regla 17 .\nDecisión: Sin penalización para B.",
+      "expected": {
+        "rrs_rules": [
+          "17"
+        ],
+        "calls": [
+          "G3"
+        ],
+        "cases": [],
+        "decision_text": "Sin penalización para B.",
+        "verdict": "sin_penalizacion",
+        "penalized_boats": []
+      }
+    },
+    {
+      "id": "14",
+      "titulo": "Interferencia de un barco que ya terminó la regata",
+      "relato_protesta": "Y ha terminado la regata y está navegando de regreso. En su camino, pasa cerca de B que aún está compitiendo, obligando a B a virar para evitarla.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: Y ha terminado. B sigue compitiendo. Y obliga a B a maniobrar .\nNorma: Regla D1.1(e) según TR CALL K1 .\nRationale: Un barco que ha terminado no debe interferir con un barco que aún está compitiendo .\nDecisión: Penalizar a Y.",
+      "expected": {
+        "rrs_rules": [
+          "D1.1(e)"
+        ],
+        "calls": [
+          "K1"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a Y.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "Y"
+        ]
+      }
+    },
+    {
+      "id": "15",
+      "titulo": "Virada en proa obligando a maniobra evitativa inmediata",
+      "relato_protesta": "B (estribor) y Y (babor) en ceñida. B está claramente por delante y Y pasaría por su popa sin problemas. B decide virar justo en la proa de Y, obligando a Y a virar de inmediato para evitar el choque.",
+      "relato_protestado": null,
+      "output_ideal": "Hechos: B vira frente a Y. Y debe virar para evitar contacto .\nNorma: Regla 13 y 15 según TR CALL D3 .\nRationale: B al virar adquiere derecho de paso pero debe dar espacio inicialmente a Y para que se mantenga alejada de forma marinera .\nDecisión: Penalizar a B.",
+      "expected": {
+        "rrs_rules": [
+          "13",
+          "15"
+        ],
+        "calls": [
+          "D3"
+        ],
+        "cases": [],
+        "decision_text": "Penalizar a B.",
+        "verdict": "penalizar",
+        "penalized_boats": [
+          "B"
+        ]
+      }
+    }
+  ]
+}

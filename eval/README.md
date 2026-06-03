@@ -2,6 +2,12 @@
 
 Conjunto de **15 casos** desde `docs/Casos de Regatas.xlsx` (columna **Input** = relato; etiquetas desde **Output Ideal**).
 
+**Diario de todas las corridas (E0, E1, …):** [`eval/DIARIO_PRUEBAS.md`](DIARIO_PRUEBAS.md) — se **regenera solo** al final de cada `eval_run.py` (cambios vs corrida anterior + comparativa vs E0). Opcional: `--diario-nota "…"`.
+
+**Registro narrativo (informe final):** [`docs/REGISTRO_TRABAJO_INFORME_FINAL.md`](../docs/REGISTRO_TRABAJO_INFORME_FINAL.md) — decisiones, código y bitácora; complementa el diario automático.
+
+**Timeline visual:** [Draw.io](docs/timeline_corridas_eval.drawio) · [HTML navegable](docs/timeline_corridas_eval.html) — línea temporal E0→E11, métricas y guía integrada.
+
 ## 1. Generar golden set
 
 ```bash
@@ -10,7 +16,17 @@ python scripts/build_eval_set.py
 
 Salida: `eval/data/eval_set.json`
 
-## Línea base acordada
+## Perfil productivo (defecto) vs línea base E0
+
+| | **Producción (E11)** | **Baseline (E0)** |
+|--|----------------------|-------------------|
+| Perfil | `REGATAS_PROFILE=production` (defecto) | `REGATAS_PROFILE=baseline` |
+| Corpus | JSONL `processed` + cupos 2+3+2+1 | PDF Call+Case |
+| Doc | `docs/PERFIL_PRODUCTIVO.md` | `eval/corrida baseline/` |
+
+Regresión tras cambios: `python scripts/regression_eval.py <carpeta_corrida>`
+
+## Línea base histórica (E0)
 
 | Parámetro | Valor |
 |-----------|--------|
@@ -73,6 +89,33 @@ python scripts/plot_eval_run.py eval/runs/<run_id>
 ```
 
 O con `--plots` en `eval_run.py` (genera al finalizar).
+
+## Faithfulness (fidelidad al contexto)
+
+Mide si **cada afirmación** de la respuesta está respaldada por los **fragmentos recuperados** (LLM-as-judge en dos pasos: extracción de claims + verificación).
+
+**En corrida nueva** (más lento: ~2 llamadas LLM × 15 casos):
+
+```bash
+REGATAS_LLM_BACKEND=http REGATAS_LLM_MODEL=qwen2.5:14b-instruct \
+  python scripts/eval_run.py --label mi_prueba --lang es --faithfulness
+```
+
+**Sobre corrida ya guardada** (sin re-ejecutar RAG ni generación):
+
+```bash
+REGATAS_LLM_BACKEND=http REGATAS_LLM_MODEL=qwen2.5:14b-instruct \
+  python scripts/score_faithfulness.py "eval/corrida baseline"
+# o: eval/runs/<run_id>
+```
+
+Salida en `report.json` → `cases[].metrics.response.faithfulness` y agregados `mean_faithfulness_rate` / `mean_faithfulness_rate_strict` en `aggregate`. También filas en `metrics_long.csv`.
+
+| Campo | Significado |
+|-------|-------------|
+| `faithfulness_rate` | supported / total claims |
+| `faithfulness_rate_strict` | supported / (supported + not_supported), excluye `unknown` |
+| `claims[]` | Detalle por afirmación: veredicto, `evidence_ids`, rationale |
 
 ## 2. Correr evaluación
 

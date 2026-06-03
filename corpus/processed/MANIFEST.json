@@ -1,9 +1,14 @@
 {
-  "version": 1,
+  "version": 2,
+  "schema": "processed_record_v2",
   "rrs_rules": 469,
   "definitions": 26,
+  "calls": 83,
+  "cases": 129,
   "sources": {
     "rrs": "rrs_reglas_2025_2028.csv",
-    "definitions": "definitions.csv"
+    "definitions": "definitions.csv",
+    "calls": "call_book_calls.csv",
+    "cases": "case_book_cases.csv"
   }
 }

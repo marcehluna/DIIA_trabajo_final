@@ -28,6 +28,7 @@ case_id,titulo,metric,value,k,category
 1,Orzada brusca sin espacio para mantenerse alejado,token_jaccard_answer_context,0.017326732673267328,,response
 1,Orzada brusca sin espacio para mantenerse alejado,token_jaccard_answer_reference,0.19491525423728814,,response
 1,Orzada brusca sin espacio para mantenerse alejado,verdict_match,0.0,,response
+1,Orzada brusca sin espacio para mantenerse alejado,faithfulness_n_claims,0,,faithfulness
 1,Orzada brusca sin espacio para mantenerse alejado,answer_char_len,2165,,volume
 1,Orzada brusca sin espacio para mantenerse alejado,context_char_len,5219,,volume
 2,Sobre-rotación del barco de barlovento proa al viento,recall_at_k_rules,1.0,8,retrieval
@@ -59,6 +60,8 @@ case_id,titulo,metric,value,k,category
 2,Sobre-rotación del barco de barlovento proa al viento,token_jaccard_answer_context,0.017964071856287425,,response
 2,Sobre-rotación del barco de barlovento proa al viento,token_jaccard_answer_reference,0.1440677966101695,,response
 2,Sobre-rotación del barco de barlovento proa al viento,verdict_match,0.0,,response
+2,Sobre-rotación del barco de barlovento proa al viento,faithfulness_rate,0.0,,faithfulness
+2,Sobre-rotación del barco de barlovento proa al viento,faithfulness_n_claims,16,,faithfulness
 2,Sobre-rotación del barco de barlovento proa al viento,answer_char_len,1981,,volume
 2,Sobre-rotación del barco de barlovento proa al viento,context_char_len,7004,,volume
 3,Retraso en la respuesta al solapamiento desde atrás,recall_at_k_rules,0.0,8,retrieval
@@ -90,6 +93,8 @@ case_id,titulo,metric,value,k,category
 3,Retraso en la respuesta al solapamiento desde atrás,token_jaccard_answer_context,0.015486725663716814,,response
 3,Retraso en la respuesta al solapamiento desde atrás,token_jaccard_answer_reference,0.10457516339869281,,response
 3,Retraso en la respuesta al solapamiento desde atrás,verdict_match,0.0,,response
+3,Retraso en la respuesta al solapamiento desde atrás,faithfulness_rate,0.0,,faithfulness
+3,Retraso en la respuesta al solapamiento desde atrás,faithfulness_n_claims,16,,faithfulness
 3,Retraso en la respuesta al solapamiento desde atrás,answer_char_len,2046,,volume
 3,Retraso en la respuesta al solapamiento desde atrás,context_char_len,6811,,volume
 4,Derecho a espacio de marca y pérdida por virada,recall_at_k_rules,0.6666666666666666,8,retrieval
@@ -121,6 +126,8 @@ case_id,titulo,metric,value,k,category
 4,Derecho a espacio de marca y pérdida por virada,token_jaccard_answer_context,0.06077348066298342,,response
 4,Derecho a espacio de marca y pérdida por virada,token_jaccard_answer_reference,0.11258278145695365,,response
 4,Derecho a espacio de marca y pérdida por virada,verdict_match,0.0,,response
+4,Derecho a espacio de marca y pérdida por virada,faithfulness_rate,0.0,,faithfulness
+4,Derecho a espacio de marca y pérdida por virada,faithfulness_n_claims,24,,faithfulness
 4,Derecho a espacio de marca y pérdida por virada,answer_char_len,2244,,volume
 4,Derecho a espacio de marca y pérdida por virada,context_char_len,6892,,volume
 5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_k_rules,1.0,8,retrieval
@@ -152,12 +159,14 @@ case_id,titulo,metric,value,k,category
 5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),token_jaccard_answer_context,0.07430340557275542,,response
 5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),token_jaccard_answer_reference,0.1746031746031746,,response
 5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),verdict_match,0.0,,response
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),faithfulness_rate,0.0,,faithfulness
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),faithfulness_n_claims,23,,faithfulness
 5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),answer_char_len,1640,,volume
 5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),context_char_len,6584,,volume
 6,Incapacidad física de dar espacio de marca al solapar,recall_at_k_rules,0.0,8,retrieval
 6,Incapacidad física de dar espacio de marca al solapar,recall_at_k_calls,1.0,8,retrieval
 6,Incapacidad física de dar espacio de marca al solapar,mrr_rules,0.0,,retrieval
-6,Incapacidad física de dar espacio de marca al solapar,mrr_calls,0.2,,retrieval
+6,Incapacidad física de dar espacio de marca al solapar,mrr_calls,0.0,,retrieval
 6,Incapacidad física de dar espacio de marca al solapar,recall_at_1,0.0,1,retrieval_curve_rules
 6,Incapacidad física de dar espacio de marca al solapar,recall_at_2,0.0,2,retrieval_curve_rules
 6,Incapacidad física de dar espacio de marca al solapar,recall_at_3,0.0,3,retrieval_curve_rules
@@ -170,10 +179,10 @@ case_id,titulo,metric,value,k,category
 6,Incapacidad física de dar espacio de marca al solapar,recall_at_2,0.0,2,retrieval_curve_calls
 6,Incapacidad física de dar espacio de marca al solapar,recall_at_3,0.0,3,retrieval_curve_calls
 6,Incapacidad física de dar espacio de marca al solapar,recall_at_4,0.0,4,retrieval_curve_calls
-6,Incapacidad física de dar espacio de marca al solapar,recall_at_5,1.0,5,retrieval_curve_calls
-6,Incapacidad física de dar espacio de marca al solapar,recall_at_6,1.0,6,retrieval_curve_calls
-6,Incapacidad física de dar espacio de marca al solapar,recall_at_7,1.0,7,retrieval_curve_calls
-6,Incapacidad física de dar espacio de marca al solapar,recall_at_8,1.0,8,retrieval_curve_calls
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_5,0.0,5,retrieval_curve_calls
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_6,0.0,6,retrieval_curve_calls
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_7,0.0,7,retrieval_curve_calls
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_8,0.0,8,retrieval_curve_calls
 6,Incapacidad física de dar espacio de marca al solapar,citation_rrs_precision,0.0,,response_citation_rrs
 6,Incapacidad física de dar espacio de marca al solapar,citation_rrs_recall,0.0,,response_citation_rrs
 6,Incapacidad física de dar espacio de marca al solapar,citation_rrs_f1,0.0,,response_citation_rrs
@@ -183,6 +192,8 @@ case_id,titulo,metric,value,k,category
 6,Incapacidad física de dar espacio de marca al solapar,token_jaccard_answer_context,0.007159904534606206,,response
 6,Incapacidad física de dar espacio de marca al solapar,token_jaccard_answer_reference,0.1590909090909091,,response
 6,Incapacidad física de dar espacio de marca al solapar,verdict_match,0.0,,response
+6,Incapacidad física de dar espacio de marca al solapar,faithfulness_rate,0.0,,faithfulness
+6,Incapacidad física de dar espacio de marca al solapar,faithfulness_n_claims,24,,faithfulness
 6,Incapacidad física de dar espacio de marca al solapar,answer_char_len,2911,,volume
 6,Incapacidad física de dar espacio de marca al solapar,context_char_len,5219,,volume
 7,Interferencia durante el cumplimiento de una penalización,recall_at_k_rules,0.0,8,retrieval
@@ -214,6 +225,8 @@ case_id,titulo,metric,value,k,category
 7,Interferencia durante el cumplimiento de una penalización,token_jaccard_answer_context,0.018140589569160998,,response
 7,Interferencia durante el cumplimiento de una penalización,token_jaccard_answer_reference,0.10743801652892562,,response
 7,Interferencia durante el cumplimiento de una penalización,verdict_match,0.0,,response
+7,Interferencia durante el cumplimiento de una penalización,faithfulness_rate,0.0,,faithfulness
+7,Interferencia durante el cumplimiento de una penalización,faithfulness_n_claims,12,,faithfulness
 7,Interferencia durante el cumplimiento de una penalización,answer_char_len,2199,,volume
 7,Interferencia durante el cumplimiento de una penalización,context_char_len,5399,,volume
 8,Eliminación de la Regla 18.4 en Team Racing,recall_at_k_rules,0.3333333333333333,8,retrieval
@@ -245,6 +258,8 @@ case_id,titulo,metric,value,k,category
 8,Eliminación de la Regla 18.4 en Team Racing,token_jaccard_answer_context,0.007712082262210797,,response
 8,Eliminación de la Regla 18.4 en Team Racing,token_jaccard_answer_reference,0.18446601941747573,,response
 8,Eliminación de la Regla 18.4 en Team Racing,verdict_match,0.0,,response
+8,Eliminación de la Regla 18.4 en Team Racing,faithfulness_rate,0.0,,faithfulness
+8,Eliminación de la Regla 18.4 en Team Racing,faithfulness_n_claims,11,,faithfulness
 8,Eliminación de la Regla 18.4 en Team Racing,answer_char_len,1574,,volume
 8,Eliminación de la Regla 18.4 en Team Racing,context_char_len,5219,,volume
 9,Virada completada libre por proa en la zona,recall_at_k_rules,0.6666666666666666,8,retrieval
@@ -276,12 +291,14 @@ case_id,titulo,metric,value,k,category
 9,Virada completada libre por proa en la zona,token_jaccard_answer_context,0.07207207207207207,,response
 9,Virada completada libre por proa en la zona,token_jaccard_answer_reference,0.11464968152866242,,response
 9,Virada completada libre por proa en la zona,verdict_match,0.0,,response
+9,Virada completada libre por proa en la zona,faithfulness_rate,0.0,,faithfulness
+9,Virada completada libre por proa en la zona,faithfulness_n_claims,24,,faithfulness
 9,Virada completada libre por proa en la zona,answer_char_len,2356,,volume
 9,Virada completada libre por proa en la zona,context_char_len,5399,,volume
 10,Contacto antes de completar la virada tras cruce,recall_at_k_rules,1.0,8,retrieval
 10,Contacto antes de completar la virada tras cruce,recall_at_k_calls,1.0,8,retrieval
 10,Contacto antes de completar la virada tras cruce,mrr_rules,1.0,,retrieval
-10,Contacto antes de completar la virada tras cruce,mrr_calls,0.125,,retrieval
+10,Contacto antes de completar la virada tras cruce,mrr_calls,0.0,,retrieval
 10,Contacto antes de completar la virada tras cruce,recall_at_1,1.0,1,retrieval_curve_rules
 10,Contacto antes de completar la virada tras cruce,recall_at_2,1.0,2,retrieval_curve_rules
 10,Contacto antes de completar la virada tras cruce,recall_at_3,1.0,3,retrieval_curve_rules
@@ -297,7 +314,7 @@ case_id,titulo,metric,value,k,category
 10,Contacto antes de completar la virada tras cruce,recall_at_5,0.0,5,retrieval_curve_calls
 10,Contacto antes de completar la virada tras cruce,recall_at_6,0.0,6,retrieval_curve_calls
 10,Contacto antes de completar la virada tras cruce,recall_at_7,0.0,7,retrieval_curve_calls
-10,Contacto antes de completar la virada tras cruce,recall_at_8,1.0,8,retrieval_curve_calls
+10,Contacto antes de completar la virada tras cruce,recall_at_8,0.0,8,retrieval_curve_calls
 10,Contacto antes de completar la virada tras cruce,citation_rrs_precision,0.3333333333333333,,response_citation_rrs
 10,Contacto antes de completar la virada tras cruce,citation_rrs_recall,1.0,,response_citation_rrs
 10,Contacto antes de completar la virada tras cruce,citation_rrs_f1,0.5,,response_citation_rrs
@@ -307,6 +324,8 @@ case_id,titulo,metric,value,k,category
 10,Contacto antes de completar la virada tras cruce,token_jaccard_answer_context,0.07441860465116279,,response
 10,Contacto antes de completar la virada tras cruce,token_jaccard_answer_reference,0.11678832116788321,,response
 10,Contacto antes de completar la virada tras cruce,verdict_match,0.0,,response
+10,Contacto antes de completar la virada tras cruce,faithfulness_rate,0.0,,faithfulness
+10,Contacto antes de completar la virada tras cruce,faithfulness_n_claims,24,,faithfulness
 10,Contacto antes de completar la virada tras cruce,answer_char_len,2243,,volume
 10,Contacto antes de completar la virada tras cruce,context_char_len,5399,,volume
 11,Táctica de frenado en la marca (The Trap),recall_at_k_rules,0.0,8,retrieval
@@ -338,6 +357,8 @@ case_id,titulo,metric,value,k,category
 11,Táctica de frenado en la marca (The Trap),token_jaccard_answer_context,0.004484304932735426,,response
 11,Táctica de frenado en la marca (The Trap),token_jaccard_answer_reference,0.09523809523809523,,response
 11,Táctica de frenado en la marca (The Trap),verdict_match,0.0,,response
+11,Táctica de frenado en la marca (The Trap),faithfulness_rate,0.0,,faithfulness
+11,Táctica de frenado en la marca (The Trap),faithfulness_n_claims,24,,faithfulness
 11,Táctica de frenado en la marca (The Trap),answer_char_len,2485,,volume
 11,Táctica de frenado en la marca (The Trap),context_char_len,5399,,volume
 12,Provocación de contacto deliberado (Antideportivo),recall_at_k_rules,0.5,8,retrieval
@@ -369,6 +390,8 @@ case_id,titulo,metric,value,k,category
 12,Provocación de contacto deliberado (Antideportivo),token_jaccard_answer_context,0.02531645569620253,,response
 12,Provocación de contacto deliberado (Antideportivo),token_jaccard_answer_reference,0.1415929203539823,,response
 12,Provocación de contacto deliberado (Antideportivo),verdict_match,0.0,,response
+12,Provocación de contacto deliberado (Antideportivo),faithfulness_rate,0.0,,faithfulness
+12,Provocación de contacto deliberado (Antideportivo),faithfulness_n_claims,15,,faithfulness
 12,Provocación de contacto deliberado (Antideportivo),answer_char_len,1714,,volume
 12,Provocación de contacto deliberado (Antideportivo),context_char_len,5219,,volume
 13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_k_rules,0.0,8,retrieval
@@ -400,6 +423,8 @@ case_id,titulo,metric,value,k,category
 13,"Trasluchada para ""apagar"" la restricción de la Regla 17",token_jaccard_answer_context,0.01020408163265306,,response
 13,"Trasluchada para ""apagar"" la restricción de la Regla 17",token_jaccard_answer_reference,0.1111111111111111,,response
 13,"Trasluchada para ""apagar"" la restricción de la Regla 17",verdict_match,0.0,,response
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",faithfulness_rate,0.0,,faithfulness
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",faithfulness_n_claims,14,,faithfulness
 13,"Trasluchada para ""apagar"" la restricción de la Regla 17",answer_char_len,1851,,volume
 13,"Trasluchada para ""apagar"" la restricción de la Regla 17",context_char_len,5219,,volume
 14,Interferencia de un barco que ya terminó la regata,recall_at_k_rules,1.0,8,retrieval
@@ -431,6 +456,8 @@ case_id,titulo,metric,value,k,category
 14,Interferencia de un barco que ya terminó la regata,token_jaccard_answer_context,0.016826923076923076,,response
 14,Interferencia de un barco que ya terminó la regata,token_jaccard_answer_reference,0.10317460317460317,,response
 14,Interferencia de un barco que ya terminó la regata,verdict_match,0.0,,response
+14,Interferencia de un barco que ya terminó la regata,faithfulness_rate,0.0,,faithfulness
+14,Interferencia de un barco que ya terminó la regata,faithfulness_n_claims,24,,faithfulness
 14,Interferencia de un barco que ya terminó la regata,answer_char_len,1882,,volume
 14,Interferencia de un barco que ya terminó la regata,context_char_len,5219,,volume
 15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_k_rules,0.0,8,retrieval
@@ -462,5 +489,6 @@ case_id,titulo,metric,value,k,category
 15,Virada en proa obligando a maniobra evitativa inmediata,token_jaccard_answer_context,0.013888888888888888,,response
 15,Virada en proa obligando a maniobra evitativa inmediata,token_jaccard_answer_reference,0.10077519379844961,,response
 15,Virada en proa obligando a maniobra evitativa inmediata,verdict_match,0.0,,response
+15,Virada en proa obligando a maniobra evitativa inmediata,faithfulness_n_claims,0,,faithfulness
 15,Virada en proa obligando a maniobra evitativa inmediata,answer_char_len,2052,,volume
 15,Virada en proa obligando a maniobra evitativa inmediata,context_char_len,6811,,volume
