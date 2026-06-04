@@ -14,13 +14,29 @@ PROFILE_PRODUCTION = "production"
 PROFILE_BASELINE = "baseline"
 PROFILE_LEGACY = "legacy"
 
-# Umbrales de regresión vs corrida E11 (eval).
-E11_REFERENCE_RUN_ID = "20260526_185624_processed_cupos_2_3_2_1"
-E11_REGRESSION_THRESHOLDS: dict[str, float] = {
+# Referencias de eval para regresión (ver eval/RESUMEN_CORRIDAS_EVAL.md).
+RETRIEVAL_REFERENCE_RUN_ID = "20260526_185624_processed_cupos_2_3_2_1"  # E11
+RESPONSE_REFERENCE_RUN_ID = "20260604_124747_prompt_v3_format"  # E13
+
+# Umbrales mínimos (pisos conservadores vs E11 retrieval / E13 respuesta + parser citas).
+RETRIEVAL_REGRESSION_THRESHOLDS: dict[str, float] = {
     "mean_recall_at_k_rules": 0.70,
     "mean_recall_at_k_calls": 0.18,
-    "mean_citation_f1_rrs": 0.18,
 }
+RESPONSE_REGRESSION_THRESHOLDS: dict[str, float] = {
+    "mean_citation_f1_rrs": 0.18,
+    "mean_citation_f1_calls": 0.06,
+    "verdict_accuracy": 0.50,
+}
+PRODUCTION_REGRESSION_THRESHOLDS: dict[str, float] = {
+    **RETRIEVAL_REGRESSION_THRESHOLDS,
+    **RESPONSE_REGRESSION_THRESHOLDS,
+}
+
+# Alias históricos (E11 = solo retrieval antes de E12–E13).
+E11_REFERENCE_RUN_ID = RETRIEVAL_REFERENCE_RUN_ID
+E13_REFERENCE_RUN_ID = RESPONSE_REFERENCE_RUN_ID
+E11_REGRESSION_THRESHOLDS = PRODUCTION_REGRESSION_THRESHOLDS
 
 
 def normalize_profile(name: str | None) -> str:

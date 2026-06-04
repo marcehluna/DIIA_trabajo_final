@@ -13,6 +13,7 @@ Documento **vivo** para acumular decisiones, cambios de código, corridas de eva
 | Sección | Para el informe |
 |---------|-----------------|
 | [Resumen ejecutivo](#resumen-ejecutivo) | Introducción / conclusiones |
+| [**E0 vs E12 (citabile)**](INFORME_CITAS_E0_vs_E12.md) | Comparativa métricas, faithfulness, Jaccard, conclusiones |
 | [Corridas E0–E11](#corridas-de-evaluación-e0e11) | Metodología y resultados |
 | [Código y arquitectura](#cambios-en-código-y-arquitectura) | Implementación |
 | [Perfil productivo](#integración-perfil-productivo-e11) | Configuración desplegada |
@@ -103,7 +104,7 @@ Documento **vivo** para acumular decisiones, cambios de código, corridas de eva
 | `regatas_assistant/eval/` | Golden set, métricas, runner, diario auto |
 | `scripts/eval_run.py` | Corrida completa + plots + comparación baseline |
 | `scripts/compare_eval_runs.py`, `plot_eval_run.py`, `aggregate_retrieval_hits.py` | Análisis post-corrida |
-| `scripts/regression_eval.py` | Umbrales mínimos vs E11 |
+| `scripts/regression_eval.py` | Umbrales E11 (retrieval) + E13 (respuesta); ver `eval/RESUMEN_CORRIDAS_EVAL.md` |
 | `regatas_assistant/eval/faithfulness.py` + `scripts/score_faithfulness.py` | LLM juez (experimental, ver abajo) |
 
 ### Perfil productivo (2026-05-26)
@@ -128,7 +129,7 @@ Documento **vivo** para acumular decisiones, cambios de código, corridas de eva
 
 **Baseline histórico:** `REGATAS_PROFILE=baseline` → solo PDF E0.
 
-**Regresión:** `python scripts/regression_eval.py <carpeta_corrida>` (umbrales en `profiles.py`).
+**Regresión:** `python scripts/regression_eval.py <carpeta_corrida>` (umbrales en `profiles.py`; `--mode retrieval` si solo índice). Resumen corridas: [`eval/RESUMEN_CORRIDAS_EVAL.md`](../eval/RESUMEN_CORRIDAS_EVAL.md).
 
 ---
 
@@ -137,6 +138,14 @@ Documento **vivo** para acumular decisiones, cambios de código, corridas de eva
 - **Implementado:** `REGATAS_EMBEDDING_BACKEND=hybrid` + `REGATAS_HYBRID_SEMANTIC_BACKEND=local|http`.
 - **Compatibilidad:** los cupos por `doc_type` envuelven el retriever interno; cada pool aplica RRF (léxico + semántica) antes de fusionar.
 - **Nota para el informe:** métricas E11 son con léxico; híbrido requiere nueva corrida eval antes de afirmar mejoras cuantitativas.
+
+---
+
+## Comparativa E0 vs E12 (respuestas y métricas)
+
+**Documento citabile:** [`docs/INFORME_CITAS_E0_vs_E12.md`](INFORME_CITAS_E0_vs_E12.md) — tablas agregadas, faithfulness (37% vs 57%), Jaccard, conclusión “¿mejores respuestas?”, artefactos CSV y limitaciones.
+
+Resumen: E12 gana en **recuperación RRS** y **faithfulness**; E0 gana en **CALL**; **F1 RRS** en E12 no es comparable por formato de prompt; **dictamen** automático 0% en ambas.
 
 ---
 
@@ -160,6 +169,8 @@ Documento **vivo** para acumular decisiones, cambios de código, corridas de eva
 | Reconstrucción RRS | `docs/RAG_RECONSTRUCCION_RRS.md` |
 | Perfil productivo | `docs/PERFIL_PRODUCTIVO.md` |
 | Este registro | `docs/REGISTRO_TRABAJO_INFORME_FINAL.md` |
+| Comparativa E0 vs E12 (informe) | `docs/INFORME_CITAS_E0_vs_E12.md` |
+| Faithfulness CSV | `eval/faithfulness_e0_e12_comparison.csv` |
 | Tag git baseline | `v0.1.0-baseline` |
 
 ---

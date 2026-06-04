@@ -19,6 +19,26 @@ _RULE_EN_RE = re.compile(
     r"(?i)\b(?:rule|r\.)\s*(\d{1,2}(?:\.\d+)*|[Dd]\d+(?:\.\d+)*)"
 )
 _DECISION_RE = re.compile(r"(?i)decisi[oó]n:\s*(.+?)(?:\s*$|\n)")
+# Prompt v3 / E11: - **Regla 16.1** —, - **Regla RRS 11**:
+_REGLA_MARKDOWN_RE = re.compile(r"(?i)\*\*Regla(?:\s+RRS)?\s+([^*]+?)\*\*")
+# Líneas tipo "- Regla 16.1 —" (con o sin negritas)
+_REGLA_BULLET_RE = re.compile(
+    r"(?i)^\s*[-*•]\s+(?:\*\*)?Regla(?:\s+RRS)?\s+([^\n*—:]+)",
+    re.M,
+)
+# **Case 92** / **CASE 13**
+_CASE_MARKDOWN_RE = re.compile(r"(?i)\*\*(?:Case|CASE)\s+(\d{1,4})\*\*")
+
+
+def _dedupe_preserve(items: list[str]) -> list[str]:
+    seen: set[str] = set()
+    out: list[str] = []
+    for item in items:
+        key = item.lower()
+        if key not in seen:
+            seen.add(key)
+            out.append(item)
+    return out
 
 
 def _split_rule_alternatives(fragment: str) -> list[str]:
@@ -37,37 +57,29 @@ def extract_rrs_rules(text: str) -> list[str]:
         found.extend(_split_rule_alternatives(block.group(1)))
     for m in _RULE_EN_RE.finditer(text):
         found.append(m.group(1))
-    # dedupe preserving order
-    seen: set[str] = set()
-    unique: list[str] = []
-    for r in found:
-        key = r.lower()
-        if key not in seen:
-            seen.add(key)
-            unique.append(r)
-    return unique
+    for m in _REGLA_MARKDOWN_RE.finditer(text):
+        label = m.group(1).strip().rstrip(":")
+        found.extend(_split_rule_alternatives(label))
+    for m in _REGLA_BULLET_RE.finditer(text):
+        label = m.group(1).strip().rstrip(":")
+        found.extend(_split_rule_alternatives(label))
+    return _dedupe_preserve(found)
 
 
 def extract_calls(text: str) -> list[str]:
-    seen: set[str] = set()
     out: list[str] = []
     for m in _CALL_RE.finditer(text):
-        code = m.group(1).upper()
-        if code not in seen:
-            seen.add(code)
-            out.append(code)
-    return out
+        out.append(m.group(1).upper())
+    return _dedupe_preserve(out)
 
 
 def extract_cases(text: str) -> list[str]:
-    seen: set[str] = set()
     out: list[str] = []
     for m in _CASE_RE.finditer(text):
-        code = m.group(1)
-        if code not in seen:
-            seen.add(code)
-            out.append(code)
-    return out
+        out.append(m.group(1))
+    for m in _CASE_MARKDOWN_RE.finditer(text):
+        out.append(m.group(1))
+    return _dedupe_preserve(out)
 
 
 def extract_decision(text: str) -> str | None:

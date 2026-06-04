@@ -35,13 +35,13 @@
     "n_cases": 15,
     "mean_recall_at_k_rules": 0.7555555555555556,
     "mean_recall_at_k_calls": 0.2,
-    "mean_citation_f1_rrs": 0.0,
+    "mean_citation_f1_rrs": 0.20126984126984127,
     "mean_citation_f1_calls": 0.13333333333333333,
     "mean_token_jaccard_answer_context": 0.008920519136226431,
     "mean_token_jaccard_answer_reference": 0.13408848836543688,
-    "verdict_accuracy": 0.0,
-    "mean_faithfulness_rate": 0.7916666666666666,
-    "mean_faithfulness_rate_strict": 0.9047619047619048
+    "verdict_accuracy": 0.6,
+    "mean_faithfulness_rate": 0.5661519036519036,
+    "mean_faithfulness_rate_strict": 0.8246310171310172
   },
   "cases": [
     {
@@ -75,9 +75,9 @@
         },
         "response": {
           "citation_rrs": {
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1": 0.0
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6666666666666666
           },
           "citation_calls": {
             "precision": 1.0,
@@ -91,7 +91,8 @@
           },
           "citations_found": {
             "rrs_rules": [
-              "14"
+              "14",
+              "16.1"
             ],
             "calls": [
               "A3"
@@ -101,26 +102,26 @@
           "token_jaccard_answer_context": 0.007281553398058253,
           "token_jaccard_answer_reference": 0.17796610169491525,
           "verdict_expected": "penalizar",
-          "verdict_predicted": "otro",
-          "verdict_match": false,
+          "verdict_predicted": "penalizar",
+          "verdict_match": true,
           "penalized_boats_match": true,
           "faithfulness": {
             "n_claims": 24,
-            "n_supported": 19,
-            "n_not_supported": 2,
-            "n_unknown": 3,
+            "n_supported": 15,
+            "n_not_supported": 5,
+            "n_unknown": 4,
             "n_parse_failures": 0,
-            "faithfulness_rate": 0.7916666666666666,
-            "faithfulness_rate_strict": 0.9047619047619048,
+            "faithfulness_rate": 0.625,
+            "faithfulness_rate_strict": 0.75,
             "claims": [
               {
-                "claim": "B y Y navegan en la misma amura (babor), solapados.",
+                "claim": "B y Y navegan en la misma amura, babor.",
                 "verdict": "unknown",
                 "evidence_ids": [],
                 "rationale": ""
               },
               {
-                "claim": "Y está en posición de sotavento.",
+                "claim": "Y está en posición de sotavento respecto a B.",
                 "verdict": "not_supported",
                 "evidence_ids": [],
                 "rationale": ""
@@ -132,7 +133,7 @@
                 "rationale": ""
               },
               {
-                "claim": "B responde prontamente a los cambios de curso de Y.",
+                "claim": "B responde prontamente al cambio de curso de Y.",
                 "verdict": "supported",
                 "evidence_ids": [],
                 "rationale": ""
@@ -144,115 +145,115 @@
                 "rationale": ""
               },
               {
-                "claim": "Se produce un choque leve entre B y Y.",
+                "claim": "Se produce un choque leve entre los dos barcos.",
                 "verdict": "unknown",
                 "evidence_ids": [],
                 "rationale": ""
               },
               {
-                "claim": "La Regla 14 establece la obligación del barco con derecho de vía (Y) de mantenerse claro.",
-                "verdict": "not_supported",
-                "evidence_ids": [],
-                "rationale": ""
-              },
-              {
-                "claim": "Si es evidente que Y no va a mantenerse claro, B debe evitar cualquier contacto posible.",
+                "claim": "Según TR CALL A3, cuando dos barcos están solapados en la misma amura (babor), el barco con derecho de vía debe mantenerse claro.",
                 "verdict": "supported",
                 "evidence_ids": [],
                 "rationale": ""
               },
               {
-                "claim": "Regla 16.1 protege al barco que responde prontamente y en forma marinera a los cambios de curso del barco con derecho de vía.",
+                "claim": "B tiene la obligación de responder prontamente a cualquier cambio de curso del barco con derecho de vía (Y).",
                 "verdict": "supported",
                 "evidence_ids": [],
                 "rationale": ""
               },
               {
-                "claim": "Y viola la regla 14 al continuar orzando sin permitir suficiente espacio para B.",
+                "claim": "Si B responde adecuadamente y se mantiene lo suficientemente lejos para evitar un contacto inmediato, está protegido por la Regla 16.1.",
                 "verdict": "supported",
                 "evidence_ids": [],
                 "rationale": ""
               },
               {
-                "claim": "B responde adecuadamente hasta el momento en que es evidente que el contacto inmediato es inevitable.",
+                "claim": "La regla 14 establece que una vez que es evidente que el barco con derecho de vía no va a mantenerse claro, el otro barco debe evitar cualquier contacto posible.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 16.1 protege al barco que responde prontamente y en forma marinera a los cambios de curso del barco con derecho de vía siempre y cuando no haya un contacto inmediato.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y está violando la regla 14 al no permitir suficiente espacio para que B pueda mantenerse claro.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B respondió adecuadamente hasta el momento en que se volvió evidente que el contacto era inevitable.",
                 "verdict": "supported",
                 "evidence_ids": [],
                 "rationale": ""
               },
               {
                 "claim": "Una vez que es evidente que el contacto inmediato es inevitable, la responsabilidad recae en B para evitar cualquier contacto adicional.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Dada la respuesta pronta y adecuada de B, está protegida por Regla 16.1.",
                 "verdict": "supported",
                 "evidence_ids": [],
                 "rationale": ""
               },
               {
-                "claim": "B está protegida por Regla 16.1 debido a su respuesta pronta y adecuada.",
+                "claim": "Y continuó orzando sin permitir suficiente espacio a B para mantenerse claro y evitar el contacto inmediato.",
                 "verdict": "supported",
                 "evidence_ids": [],
                 "rationale": ""
               },
               {
-                "claim": "La decisión final penaliza a Y por no cumplir con su obligación de permitir suficiente espacio para que B pudiera mantenerse claro.",
+                "claim": "La decisión es clara en penalizar a Y.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Esta decisión se basa en las reglas aplicables (Regla 14 y TR CALL A3).",
                 "verdict": "supported",
                 "evidence_ids": [],
                 "rationale": ""
               },
               {
-                "claim": "Y continúa orzando sin dar tiempo a B para evitar el contacto inmediato.",
-                "verdict": "supported",
-                "evidence_ids": [],
-                "rationale": ""
-              },
-              {
-                "claim": "B responde prontamente a los cambios de curso de Y según TR CALL A3.",
-                "verdict": "supported",
-                "evidence_ids": [],
-                "rationale": ""
-              },
-              {
-                "claim": "La responsabilidad recae en Y por no cumplir con la regla 14.",
-                "verdict": "supported",
-                "evidence_ids": [],
-                "rationale": ""
-              },
-              {
-                "claim": "Regla 16.1 protege a B si responde adecuadamente y evita un contacto inmediato.",
-                "verdict": "supported",
-                "evidence_ids": [],
-                "rationale": ""
-              },
-              {
-                "claim": "Y viola las reglas al continuar orzando sin permitir suficiente espacio para evitar el choque.",
-                "verdict": "supported",
-                "evidence_ids": [],
-                "rationale": ""
-              },
-              {
-                "claim": "B está exento de responsabilidad por su respuesta pronta según Regla 16.1.",
-                "verdict": "supported",
-                "evidence_ids": [],
-                "rationale": ""
-              },
-              {
-                "claim": "La decisión final es clara en penalizar a Y por no cumplir con sus obligaciones legales.",
+                "claim": "Según la Regla 14, Y no cumplió con su obligación de permitir suficiente espacio para que B pudiera mantenerse claro.",
                 "verdict": "unknown",
                 "evidence_ids": [],
                 "rationale": ""
               },
               {
-                "claim": "Y continúa orzando hasta que B ya no puede evitar el contacto inmediato.",
+                "claim": "La responsabilidad recae en Y por violar la regla 14 al continuar orzando sin dejar suficiente espacio a B.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B está protegido por Regla 16.1 debido a su respuesta pronta y adecuada.",
                 "verdict": "supported",
                 "evidence_ids": [],
                 "rationale": ""
               },
               {
-                "claim": "B responde adecuadamente hasta que el contacto se vuelve inevitable.",
-                "verdict": "supported",
+                "claim": "El contacto fue causado principalmente por el continuo orzamiento de Y.",
+                "verdict": "unknown",
                 "evidence_ids": [],
                 "rationale": ""
               },
               {
-                "claim": "Regla 14 establece la responsabilidad de mantenerse claro para el barco con derecho de vía (Y).",
+                "claim": "La decisión final es penalizar a Y por no cumplir con sus obligaciones bajo la regla 14.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B actuó conforme a las reglas al responder prontamente a los cambios de curso de Y.",
                 "verdict": "supported",
                 "evidence_ids": [],
                 "rationale": ""
@@ -588,7 +589,8 @@
           "context_chunk_count": 8,
           "answer_refs": {
             "rrs_rules": [
-              "14"
+              "14",
+              "16.1"
             ],
             "calls": [
               "A3"
@@ -630,9 +632,9 @@
         },
         "response": {
           "citation_rrs": {
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1": 0.0
+            "precision": 0.2,
+            "recall": 0.5,
+            "f1": 0.28571428571428575
           },
           "citation_calls": {
             "precision": 0.0,
@@ -645,7 +647,13 @@
             "f1": null
           },
           "citations_found": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "11",
+              "15",
+              "16.1",
+              "30.1",
+              "43.1(c)"
+            ],
             "calls": [],
             "cases": [
               "13"
@@ -654,9 +662,104 @@
           "token_jaccard_answer_context": 0.010245901639344262,
           "token_jaccard_answer_reference": 0.10344827586206896,
           "verdict_expected": "penalizar",
-          "verdict_predicted": "otro",
-          "verdict_match": false,
-          "penalized_boats_match": false
+          "verdict_predicted": "penalizar",
+          "verdict_match": true,
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 14,
+            "n_supported": 13,
+            "n_not_supported": 0,
+            "n_unknown": 1,
+            "n_parse_failures": 0,
+            "faithfulness_rate": 0.9285714285714286,
+            "faithfulness_rate_strict": 1.0,
+            "claims": [
+              {
+                "claim": "Las embarcaciones Y y B estaban solapadas en la pre-salida.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La embarcación Y orzó hacia una posición de 'proa al viento'.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "En respuesta, la embarcación B también orzó.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Mientras B continuaba rotando, chocó con el costado de Y.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según Regla 11, la embarcación barlovento tiene derecho de paso sobre la sotavento siempre y cuando esta última tenga espacio para mantenerse claramente fuera del camino de la primera.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 15 establece que una embarcación con derecho de paso debe inicialmente dar tiempo a la otra embarcación para que pueda mantenerse claramente fuera de su camino.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según Regla 16.1, cuando una embarcación cambia de rumbo, debe dar espacio a las demás embarcaciones para que puedan mantenerse claramente fuera de su camino.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 30.1 establece que si la embarcación ha cruzado el límite del lado pre-salida al lado de la carrera después de su señal de partida, debe regresar y cumplir con esta regla antes de iniciar la competencia.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según Regla 43.1(c), una embarcación no es penalizada si ha evitado un contacto peligroso sin causar daños ni lesiones.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "El caso CASE 13 establece que una embarcación sotavento no puede navegar a un rumbo más alto que la barlovento mientras están solapadas.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "En este incidente, B no tenía un rumbo propio definido antes del disparo de partida y por lo tanto estaba dentro de sus derechos para orzar hacia una posición de 'proa al viento'.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La embarcación Y no cumplió con Regla 15 y Regla 16.1.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B tenía derecho a luchar por su posición sin causar daños ni lesiones según Regla 43.1(c).",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Se decide penalizar a la embarcación Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -1003,7 +1106,13 @@
           "context_char_len": 11398,
           "context_chunk_count": 8,
           "answer_refs": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "11",
+              "15",
+              "16.1",
+              "30.1",
+              "43.1(c)"
+            ],
             "calls": [],
             "cases": [
               "13"
@@ -1044,9 +1153,9 @@
         },
         "response": {
           "citation_rrs": {
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1": 0.0
+            "precision": 0.25,
+            "recall": 0.5,
+            "f1": 0.3333333333333333
           },
           "citation_calls": {
             "precision": 0.0,
@@ -1059,7 +1168,12 @@
             "f1": null
           },
           "citations_found": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "10",
+              "13",
+              "14",
+              "15"
+            ],
             "calls": [
               "M10"
             ],
@@ -1068,9 +1182,92 @@
           "token_jaccard_answer_context": 0.005791505791505791,
           "token_jaccard_answer_reference": 0.15789473684210525,
           "verdict_expected": "penalizar",
-          "verdict_predicted": "otro",
-          "verdict_match": false,
-          "penalized_boats_match": false
+          "verdict_predicted": "penalizar",
+          "verdict_match": true,
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 12,
+            "n_supported": 5,
+            "n_not_supported": 1,
+            "n_unknown": 6,
+            "n_parse_failures": 0,
+            "faithfulness_rate": 0.4166666666666667,
+            "faithfulness_rate_strict": 0.8333333333333334,
+            "claims": [
+              {
+                "claim": "B establece un solapamiento desde atrás a sotavento de Y muy cerca de la línea de salida.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y tiene derecho de vía según Regla 10.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 13 establece que la embarcación con derecho de vía es la que está en posición de evitar el contacto.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 14 obliga a una embarcación sin derecho de vía a mantenerse claramente fuera del camino de la embarcación con derecho de vía.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 15 establece que cuando una embarcación adquiere derecho de vía debido a su propia acción, la otra embarcación es obligada a darle espacio para mantenerse clara.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y decide orzar tarde y golpea a B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La tardanza en reaccionar por parte de Y sugiere que no cumplió con las reglas establecidas en Regla 14 y Regla 15.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL M10 (D2.3) permite a los árbitros penalizar a una embarcación que no cumple correctamente con las reglas de Parte 2.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y no cumplió con la Regla 15 al tardar en reaccionar y orzar tarde.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según TR CALL M10 (D2.3), los árbitros pueden penalizar a una embarcación que no cumple correctamente con las reglas de Parte 2.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y no actuó conforme a las reglas establecidas para mantenerse clara frente a B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Se concluye que Y debe ser penalizada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -1432,7 +1629,12 @@
           "context_char_len": 10954,
           "context_chunk_count": 8,
           "answer_refs": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "10",
+              "13",
+              "14",
+              "15"
+            ],
             "calls": [
               "M10"
             ],
@@ -1472,9 +1674,9 @@
         },
         "response": {
           "citation_rrs": {
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1": 0.0
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4
           },
           "citation_calls": {
             "precision": 0.0,
@@ -1487,7 +1689,10 @@
             "f1": null
           },
           "citations_found": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "18.2(a)(2)",
+              "10"
+            ],
             "calls": [
               "2"
             ],
@@ -1498,9 +1703,178 @@
           "token_jaccard_answer_context": 0.022988505747126436,
           "token_jaccard_answer_reference": 0.17073170731707318,
           "verdict_expected": "sin_penalizacion",
-          "verdict_predicted": "otro",
+          "verdict_predicted": "penalizar",
           "verdict_match": false,
-          "penalized_boats_match": null
+          "penalized_boats_match": null,
+          "faithfulness": {
+            "n_claims": 24,
+            "n_supported": 11,
+            "n_not_supported": 7,
+            "n_unknown": 6,
+            "n_parse_failures": 0,
+            "faithfulness_rate": 0.4583333333333333,
+            "faithfulness_rate_strict": 0.6111111111111112,
+            "claims": [
+              {
+                "claim": "Y llega a la zona libre por proa de B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B está en posición de ser el barco claro adelante (clear ahead).",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y debe dar espacio para mar (mark-room) a B según Regla 18.2(a)(2).",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 10 establece que cuando dos barcos están en diferentes bandas táticas, el barco en la banda de estribor tiene derecho de vía sobre el barco en la banda de babor.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL 2 aborda una situación similar a la descrita donde un barco clear astern llega al área del marcador antes que un barco clear ahead y debe recibir espacio para mar (mark-room).",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Case 2 establece que cuando dos barcos están en diferentes bandas táticas y uno de ellos no puede completar su maniobra debido a la presencia del otro, el barco que tiene derecho de vía debe dar espacio para mar al barco clear astern.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B intenta orzar frente a la boya pero no puede debido a la proximidad de Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "no se menciona que B intente orzar o que Y esté cerca impidiendo esto"
+              },
+              {
+                "claim": "Y como barco clear ahead no está cumpliendo con sus obligaciones bajo Regla 10 y Regla 18.2(a)(2).",
+                "verdict": "supported",
+                "evidence_ids": [
+                  "case|2"
+                ],
+                "rationale": "el caso muestra que Y (clear ahead) debe dar espacio a B pero no lo hace"
+              },
+              {
+                "claim": "Como resultado, B no puede completar su maniobra correctamente y se ve forzada a evitar una colisión.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "no hay detalles sobre la capacidad de B para completar su maniobra o evitar una colisión"
+              },
+              {
+                "claim": "La decisión es penalizar a Y por no cumplir con sus obligaciones bajo Regla 10 y Regla 18.2(a)(2).",
+                "verdict": "supported",
+                "evidence_ids": [
+                  "case|2"
+                ],
+                "rationale": "el caso muestra que Y fue descalificada por no dar espacio a B (clear ahead) como requiere la regla"
+              },
+              {
+                "claim": "Y como barco clear ahead debe dar espacio para mar (mark-room) a B, quien necesita completar su maniobra correctamente frente al marcador.",
+                "verdict": "supported",
+                "evidence_ids": [
+                  "case|2"
+                ],
+                "rationale": "el caso muestra que Y debe dar espacio a B para pasar el marcador de manera segura"
+              },
+              {
+                "claim": "B llega primero a la zona y necesita orzar frente a la boya.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "no se menciona explícitamente que B llegue primero o necesite orzar"
+              },
+              {
+                "claim": "La presencia de Y le impide a B completar su maniobra correctamente.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": "no se menciona que la presencia de Y impida a B completar su maniobra."
+              },
+              {
+                "claim": "Y no puede cumplir con sus obligaciones bajo las reglas pertinentes debido a la proximidad de B.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": "no se menciona que Y no pueda cumplir con sus obligaciones debido a la proximidad de B."
+              },
+              {
+                "claim": "Regla 18.2(a)(2) establece que el barco clear ahead debe dar espacio para mar (mark-room) al barco clear astern cuando llega primero a la zona libre por proa.",
+                "verdict": "supported",
+                "evidence_ids": [
+                  "case|2"
+                ],
+                "rationale": "el fragmento de evidencia menciona que regla 18.2(a)(2) requiere que el barco clear ahead deje espacio para mar al barco clear astern cuando este llega primero a la zona libre por proa."
+              },
+              {
+                "claim": "B es el barco clear astern y necesita completar su maniobra correctamente frente al marcador.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": "no se menciona que B sea el barco clear astern o que necesite completar su maniobra correctamente frente al marcador."
+              },
+              {
+                "claim": "Y como barco clear ahead no puede cumplir con sus obligaciones debido a la presencia de B.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": "no se menciona que Y, como barco clear ahead, no pueda cumplir con sus obligaciones debido a la presencia de B."
+              },
+              {
+                "claim": "La situación descrita en TR CALL 2 es similar a la del incidente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "no se proporciona información sobre el contenido específico de TR CALL 2 para compararlo con el incidente descrito."
+              },
+              {
+                "claim": "Case 2 establece que el barco que tiene derecho de vía debe dar espacio para mar al barco clear astern cuando este necesita completar su maniobra correctamente frente al marcador.",
+                "verdict": "supported",
+                "evidence_ids": [
+                  "case|2"
+                ],
+                "rationale": "el fragmento menciona que la regla 18.2(a)(2) requiere a la embarcación clear ahead de dar espacio para mar (mark-room) a la embarcación clear astern"
+              },
+              {
+                "claim": "Regla 10 establece que el barco en la banda de estribor tiene derecho de vía sobre el barco en la banda de babor.",
+                "verdict": "supported",
+                "evidence_ids": [
+                  "rrs|10"
+                ],
+                "rationale": "el fragmento menciona que una embarcación a banda de estribor (starboard-tack) tiene derecho de vía sobre una embarcación a banda de babor (port-tack)"
+              },
+              {
+                "claim": "B intenta orzar pero no puede debido a la proximidad de Y, lo que implica una violación de Regla 18.2(a)(2).",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": "no hay evidencia directa que mencione que B intentó orzar y no pudo debido a la proximidad de Y"
+              },
+              {
+                "claim": "La decisión es clara y basada en las reglas pertinentes.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "la afirmación es general y no se especifica cuál es la decisión o qué reglas están involucradas"
+              },
+              {
+                "claim": "Y debe dar espacio para mar (mark-room) a B según las reglas establecidas.",
+                "verdict": "supported",
+                "evidence_ids": [
+                  "case|2"
+                ],
+                "rationale": "el fragmento menciona que Y, como barco clear ahead, debe dar mark-room a B, el barco clear astern"
+              },
+              {
+                "claim": "B no puede completar su maniobra correctamente debido a la proximidad de Y.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": "no hay evidencia directa que mencione que B no pueda completar su maniobra correctamente por la proximidad de Y"
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -1846,7 +2220,10 @@
           "context_char_len": 9576,
           "context_chunk_count": 8,
           "answer_refs": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "18.2(a)(2)",
+              "10"
+            ],
             "calls": [
               "2"
             ],
@@ -1914,9 +2291,108 @@
           "token_jaccard_answer_context": 0.00963855421686747,
           "token_jaccard_answer_reference": 0.20202020202020202,
           "verdict_expected": "penalizar",
-          "verdict_predicted": "otro",
-          "verdict_match": false,
-          "penalized_boats_match": true
+          "verdict_predicted": "penalizar",
+          "verdict_match": true,
+          "penalized_boats_match": true,
+          "faithfulness": {
+            "n_claims": 14,
+            "n_supported": 7,
+            "n_not_supported": 4,
+            "n_unknown": 3,
+            "n_parse_failures": 0,
+            "faithfulness_rate": 0.5,
+            "faithfulness_rate_strict": 0.6363636363636364,
+            "claims": [
+              {
+                "claim": "B y Y convergen en ceñida.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "A tres esloras, Y vira para pasar por popa de B.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B cae manteniendo el rumbo de colisión.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Como resultado, Y debe volver a caer bruscamente para evitar una colisión con B.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 10 regula la situación cuando dos barcos navegan en travesía opuesta.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL D2 describe el caso donde un barco de estribor (B) altera su rumbo y obliga a un barco de babor (Y) a cambiar inmediatamente su curso para mantenerse claro.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según la descripción, Y intentó pasar por popa de B al virar hacia el este.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Cuando B cambia su rumbo en dirección opuesta, esto forzó a Y a realizar una maniobra brusca para evitar la colisión.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "De acuerdo con TR CALL D2, un barco de estribor (B) no debe alterar su curso si eso obliga al barco de babor (Y), que intenta pasar por popa, a cambiar inmediatamente su rumbo.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Cuando B cambia su rumbo entre las posiciones 2 y 3, Y tuvo que realizar una maniobra brusca para mantenerse claro.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La decisión se basa en la violación de Regla 10.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La decisión se basa en el análisis proporcionado por TR CALL D2.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B alteró su rumbo forzando a Y a realizar una maniobra brusca para evitar la colisión.",
+                "verdict": "not_supported",
+                "evidence_ids": [
+                  "rrs|16.2"
+                ],
+                "rationale": "la regla 16.2 indica que la barco de estribor no debe cambiar rumbo si esto fuerza al barco de babor a realizar una maniobra brusca para mantenerse claro, pero el fragmento no menciona explícitamente que B haya cambiado su rumbo forzando a Y a realizar una maniobra brusca"
+              },
+              {
+                "claim": "Decisión: Penalizar a B.",
+                "verdict": "supported",
+                "evidence_ids": [
+                  "call|D2"
+                ],
+                "rationale": "el fragmento de evidencia call|D2 indica que se penaliza a la barco en estribor (B) por cambiar su rumbo y forzar al barco de babor (Y) a realizar una maniobra brusca para evitar la colisión"
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -2317,7 +2793,10 @@
             "f1": null
           },
           "citations_found": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "18.2(a)(2)",
+              "14"
+            ],
             "calls": [
               "A3"
             ],
@@ -2328,9 +2807,164 @@
           "token_jaccard_answer_context": 0.011086474501108648,
           "token_jaccard_answer_reference": 0.13125,
           "verdict_expected": "penalizar",
-          "verdict_predicted": "otro",
-          "verdict_match": false,
-          "penalized_boats_match": true
+          "verdict_predicted": "penalizar",
+          "verdict_match": true,
+          "penalized_boats_match": true,
+          "faithfulness": {
+            "n_claims": 24,
+            "n_supported": 20,
+            "n_not_supported": 1,
+            "n_unknown": 3,
+            "n_parse_failures": 0,
+            "faithfulness_rate": 0.8333333333333334,
+            "faithfulness_rate_strict": 0.9523809523809523,
+            "claims": [
+              {
+                "claim": "Y entra primero en la zona del obstáculo antes que B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según Regla 18.2(a)(2), Y tiene derecho a espacio para pasar el obstáculo de manera segura y eficiente.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B debe dar espacio a Y según Regla 18.2(a)(2).",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Si Y no da suficiente espacio a B, incumple con su deber de permitir que B mantenga distancia segura.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL A3 establece la obligación de mantenerse clara cuando se enfrenta a cambios de curso por parte de la embarcación que tiene derecho de paso.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "CASE 2 ilustra una situación similar donde A no dio suficiente espacio para que B pasara el obstáculo, resultando en un contacto.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Si Y lucha por mantener su posición y no da suficiente espacio a B, incumple con la regla 18.2(a)(2).",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según TR CALL A3, si B responde de manera pronta y seamanlike pero aún así no puede evitar el contacto debido a la falta de espacio por parte de Y, entonces es Y quien incumple.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Si Y no da suficiente espacio a B y hay un contacto, entonces es Y quien incumple según CASE 2.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y reclamó espacio pero no proporcionó el espacio necesario para que B pudiera pasar de manera segura.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La falta de cumplimiento por parte de Y resulta en un contacto innecesario y dañino.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 14 requiere evitar cualquier contacto innecesario y dañino con otras embarcaciones.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y incumplió al no proporcionar el espacio necesario para que B pudiera pasar el obstáculo de manera segura.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B no tiene espacio físico para dejar virar a Y sin chocar.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La situación plantea una complejidad en la aplicación de las reglas pertinentes.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Dado que Y entró primero en la zona del obstáculo y reclamó espacio pero no proporcionó el espacio necesario, Y incumple con su obligación según Regla 18.2(a)(2) y TR CALL A3.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La decisión final es penalizar a Y por falta de cumplimiento.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y debe dar suficiente espacio para que B pueda pasar el obstáculo sin contacto innecesario.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B no puede evitar el contacto después del cambio de curso por parte de Y debido a la falta de espacio.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Si B responde prontamente pero aún así no puede evitar el contacto, es responsabilidad de Y proporcionar suficiente espacio.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La obligación de mantenerse clara se aplica cuando una embarcación enfrenta cambios de curso por parte de otra que tiene derecho de paso.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y debe permitir que B mantenga distancia segura para pasar el obstáculo sin riesgo de contacto innecesario.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Si Y no proporciona suficiente espacio, resultará en un contacto innecesario y dañino.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La falta de cumplimiento por parte de Y resulta en una penalización según las reglas pertinentes.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -2665,7 +3299,10 @@
           "context_char_len": 8263,
           "context_chunk_count": 8,
           "answer_refs": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "18.2(a)(2)",
+              "14"
+            ],
             "calls": [
               "A3"
             ],
@@ -2722,7 +3359,10 @@
             "f1": null
           },
           "citations_found": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "60.5(b)",
+              "14"
+            ],
             "calls": [
               "A3"
             ],
@@ -2733,7 +3373,102 @@
           "verdict_expected": "penalizar",
           "verdict_predicted": "otro",
           "verdict_match": false,
-          "penalized_boats_match": false
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 14,
+            "n_supported": 8,
+            "n_not_supported": 2,
+            "n_unknown": 4,
+            "n_parse_failures": 0,
+            "faithfulness_rate": 0.5714285714285714,
+            "faithfulness_rate_strict": 0.8,
+            "claims": [
+              {
+                "claim": "B está cumpliendo una penalización de una vuelta.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y debe desviarse para evitar un choque con B durante su penalización.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 60.5(b) y (c) establece que una embarcación que continúa la competencia después de infringir una regla conserva sus derechos y obligaciones bajo las reglas, incluyendo el derecho a protestar incidentes posteriores.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL A3 aborda situaciones en las cuales dos barcos están sobre la misma vía y se encuentran superpuestos.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 14 requiere que las embarcaciones eviten el contacto y, si es posible, eviten situaciones peligrosas.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según Regla 60.5(b) y (c), B mantiene sus derechos de protestar incluso después de infringir una regla durante su penalización.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL A3 indica que Y tiene la obligación de mantenerse en un curso que permita a B cumplir su penalización sin peligro.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Si Y no puede evitar el contacto y lo hace para protegerse, podría estar exonerada por Regla 43.1(c).",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 14 establece que ambas embarcaciones deben actuar de manera seamanlike (de marinero) para evitar el contacto.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Si Y tuvo que desviarse significativamente para evitar un choque con B, esto podría indicar que B no estaba manejándose correctamente durante su penalización.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Dado que B está cumpliendo una penalización y Y debe evadir el contacto para mantener la seguridad, se considera que Y actuó de manera seamanlike al desviarse.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "No hay evidencia clara de una infracción adicional por parte de Y más allá del hecho de tener que evadir el contacto con B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La acción de desviarse para evitar un choque no constituye una infracción.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Decisión: No penalizar a Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -3062,7 +3797,10 @@
           "context_char_len": 8263,
           "context_chunk_count": 8,
           "answer_refs": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "60.5(b)",
+              "14"
+            ],
             "calls": [
               "A3"
             ],
@@ -3118,7 +3856,8 @@
           },
           "citations_found": {
             "rrs_rules": [
-              "18.2(a)(2)"
+              "18.2(a)(2)",
+              "14"
             ],
             "calls": [
               "A3",
@@ -3129,9 +3868,116 @@
           "token_jaccard_answer_context": 0.007281553398058253,
           "token_jaccard_answer_reference": 0.16806722689075632,
           "verdict_expected": "sin_penalizacion",
-          "verdict_predicted": "otro",
+          "verdict_predicted": "penalizar",
           "verdict_match": false,
-          "penalized_boats_match": null
+          "penalized_boats_match": null,
+          "faithfulness": {
+            "n_claims": 16,
+            "n_supported": 9,
+            "n_not_supported": 2,
+            "n_unknown": 5,
+            "n_parse_failures": 0,
+            "faithfulness_rate": 0.5625,
+            "faithfulness_rate_strict": 0.8181818181818182,
+            "claims": [
+              {
+                "claim": "Y y B se encuentran solapados en babor mientras navegan hacia la boya de sotavento",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y está en posición interior respecto a B",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "En la zona de la boya, Y traslucha a estribor para alejar a B de la marca",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Como resultado, B es obligada a trasluchar también",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 14 establece que una embarcación debe evitar cualquier contacto con otra embarcación en todas las circunstancias",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL A3 se refiere a situaciones donde dos barcos están solapados y uno de ellos cambia de curso para mantener distancia, mientras que el otro debe responder prontamente y de manera marinera para evitar contacto",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 18.2(a)(2) requiere a la embarcación en posición exterior al marco dar espacio suficiente a la embarcación interior para pasar el marco según lo requerido",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL A2 se refiere a situaciones donde una embarcación que está en posición exterior debe proporcionar espacio adecuado a la embarcación interior al pasar un marco, y si no lo hace, puede ser penalizada por romper reglas 14 y 18.2(a)(2)",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y traslucha a estribor en la zona del marco para alejar a B de la marca",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B, al verse obligada por Y, también traslucha",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según TR CALL A3 y Regla 14, Y debe proporcionar espacio suficiente a B para que pueda mantener su curso sin contacto inmediato",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La acción de Y de trasluchar en estribor puede interpretarse como una violación de la regla 18.2(a)(2) al no dar el espacio adecuado a B",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Dada la situación descrita y las reglas aplicables, se concluye que Y rompió la regla 18.2(a)(2) al no proporcionar suficiente espacio a B en la zona del marco",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según TR CALL A3, B actuó de manera marinera al responder prontamente a los cambios de curso de Y",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Esta decisión se basa en el hecho de que Y no cumplió con su obligación de proporcionar espacio suficiente a la embarcación interior (B) conforme a Regla 18.2(a)(2)",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Se decide penalizar a Y",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -3473,7 +4319,8 @@
           "context_chunk_count": 8,
           "answer_refs": {
             "rrs_rules": [
-              "18.2(a)(2)"
+              "18.2(a)(2)",
+              "14"
             ],
             "calls": [
               "A3",
@@ -3515,9 +4362,9 @@
         },
         "response": {
           "citation_rrs": {
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1": 0.0
+            "precision": 0.3333333333333333,
+            "recall": 0.3333333333333333,
+            "f1": 0.3333333333333333
           },
           "citation_calls": {
             "precision": 0.0,
@@ -3530,16 +4377,97 @@
             "f1": null
           },
           "citations_found": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "12",
+              "14(a)",
+              "18.2(a)(2)"
+            ],
             "calls": [],
             "cases": []
           },
           "token_jaccard_answer_context": 0.005037783375314861,
           "token_jaccard_answer_reference": 0.1388888888888889,
           "verdict_expected": "sin_penalizacion",
-          "verdict_predicted": "otro",
+          "verdict_predicted": "penalizar",
           "verdict_match": false,
-          "penalized_boats_match": null
+          "penalized_boats_match": null,
+          "faithfulness": {
+            "n_claims": 11,
+            "n_supported": 7,
+            "n_not_supported": 4,
+            "n_unknown": 0,
+            "n_parse_failures": 0,
+            "faithfulness_rate": 0.6363636363636364,
+            "faithfulness_rate_strict": 0.6363636363636364,
+            "claims": [
+              {
+                "claim": "Y gira en la zona de la marca de barlovento antes que B.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B debe caer inmediatamente para evitar chocar con Y.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 12 establece la obligación de mantenerse claramente alejada de otra embarcación que tiene derecho de vía.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 14(a) requiere a una embarcación evitar cualquier contacto si es posible hacerlo sin comprometer su posición en la regata.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 18.2(a)(2) obliga a la embarcación libre por proa a dar espacio para el paso al barco que está libre por popa.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Cuando Y completa su virada, queda libre por proa y B debe mantenerse claramente alejada de Y (Regla 12).",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Si B no puede evitar chocar con la popa de Y, entonces no cumple con Regla 12.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según Regla 14(a), si es posible para B evitar el contacto sin comprometer su posición en la regata, debe hacerlo.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B no pudo mantenerse claramente alejada de Y (Regla 12).",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B no evitó el contacto cuando era posible hacerlo sin comprometer su posición en la regata (Regla 14(a)).",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Se debe penalizar a B por incumplimiento de Reglas 12 y 14(a).",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -3880,7 +4808,11 @@
           "context_char_len": 8263,
           "context_chunk_count": 8,
           "answer_refs": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "12",
+              "14(a)",
+              "18.2(a)(2)"
+            ],
             "calls": [],
             "cases": []
           }
@@ -3933,7 +4865,9 @@
             "f1": null
           },
           "citations_found": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "16.1"
+            ],
             "calls": [
               "A3",
               "A2"
@@ -3943,9 +4877,98 @@
           "token_jaccard_answer_context": 0.007177033492822967,
           "token_jaccard_answer_reference": 0.1322314049586777,
           "verdict_expected": "penalizar",
-          "verdict_predicted": "otro",
-          "verdict_match": false,
-          "penalized_boats_match": true
+          "verdict_predicted": "penalizar",
+          "verdict_match": true,
+          "penalized_boats_match": true,
+          "faithfulness": {
+            "n_claims": 13,
+            "n_supported": 8,
+            "n_not_supported": 0,
+            "n_unknown": 5,
+            "n_parse_failures": 0,
+            "faithfulness_rate": 0.6153846153846154,
+            "faithfulness_rate_strict": 1.0,
+            "claims": [
+              {
+                "claim": "B cruza por delante de Y y luego orza hacia babor durante su virada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Durante la maniobra, B choca con Y antes de completar su rumbo de ceñida.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 16.1 establece que una embarcación debe mantenerse clara al cambiar el rumbo del barco con derecho de vía.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL A3 indica que si B no puede mantenerse clara debido a las acciones de Y, entonces es Y quien incumple la regla 16.1.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL A2 establece que una embarcación debe mantener un curso con suficiente distancia para evitar cualquier contacto inmediato y cambiar el rumbo en ambas direcciones sin causar contacto.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según TR CALL A2, B estaba superpuesta con Y antes de realizar su virada.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B no mantuvo suficiente distancia para evitar un contacto inmediato con Y al orzar.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "De acuerdo a Regla 16.1 y TR CALL A3, si una embarcación cambia el curso y la otra embarcación no puede mantenerse clara, entonces es responsabilidad de B hacer todo lo posible para establecer suficiente distancia entre ambas embarcaciones.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B orzó antes de completar su rumbo de ceñida.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Esta acción indica una maniobra inadecuada y sin consideración a la posición de Y.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B no actuó de manera marinera al realizar esta acción.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Se concluye que B incumplió las reglas al orzar antes de completar su rumbo de ceñida y causar un contacto con Y.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La decisión es penalizar a B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -4274,7 +5297,9 @@
           "context_char_len": 8263,
           "context_chunk_count": 8,
           "answer_refs": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "16.1"
+            ],
             "calls": [
               "A3",
               "A2"
@@ -4331,7 +5356,10 @@
             "f1": null
           },
           "citations_found": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "14",
+              "18.2(a)(2)"
+            ],
             "calls": [
               "A3"
             ],
@@ -4340,9 +5368,86 @@
           "token_jaccard_answer_context": 0.007263922518159807,
           "token_jaccard_answer_reference": 0.10084033613445378,
           "verdict_expected": "penalizar",
-          "verdict_predicted": "otro",
-          "verdict_match": false,
-          "penalized_boats_match": true
+          "verdict_predicted": "penalizar",
+          "verdict_match": true,
+          "penalized_boats_match": true,
+          "faithfulness": {
+            "n_claims": 11,
+            "n_supported": 3,
+            "n_not_supported": 0,
+            "n_unknown": 8,
+            "n_parse_failures": 0,
+            "faithfulness_rate": 0.2727272727272727,
+            "faithfulness_rate_strict": 1.0,
+            "claims": [
+              {
+                "claim": "X frena bruscamente para permitir que Y pase por el interior de B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Esta acción resulta en una colisión entre B y X.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 14 establece que un barco debe evitar cualquier contacto con otro barco siempre que sea posible.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según TR CALL A3, si dos barcos están solapados y uno cambia de curso, el barco que debe mantenerse a distancia debe responder prontamente para evitar cualquier contacto.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 18.2(a)(2) requiere que un barco en posición claramente a popa dé espacio suficiente a otro barco para pasar sin obstáculos.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "X no cumplió con su obligación de evitar el contacto según Regla 14.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Al momento de la colisión, X era responsable de mantenerse a distancia según TR CALL A3.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "X no cumplió con la obligación de dar espacio suficiente a B para pasar el mar sin obstáculos según Regla 18.2(a)(2).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La responsabilidad del incidente recae sobre X por no cumplir con sus obligaciones bajo Regla 14 y Regla 18.2(a)(2).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Se concluye que X es responsable del incidente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "X debe ser penalizado por el incidente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -4677,7 +5782,10 @@
           "context_char_len": 8263,
           "context_chunk_count": 8,
           "answer_refs": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "14",
+              "18.2(a)(2)"
+            ],
             "calls": [
               "A3"
             ],
@@ -4733,7 +5841,11 @@
             "f1": null
           },
           "citations_found": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "14",
+              "16.1",
+              "43.1(c)"
+            ],
             "calls": [
               "A3"
             ],
@@ -4742,9 +5854,110 @@
           "token_jaccard_answer_context": 0.0069605568445475635,
           "token_jaccard_answer_reference": 0.13432835820895522,
           "verdict_expected": "mixto",
-          "verdict_predicted": "otro",
+          "verdict_predicted": "penalizar",
           "verdict_match": false,
-          "penalized_boats_match": true
+          "penalized_boats_match": true,
+          "faithfulness": {
+            "n_claims": 15,
+            "n_supported": 10,
+            "n_not_supported": 3,
+            "n_unknown": 2,
+            "n_parse_failures": 0,
+            "faithfulness_rate": 0.6666666666666666,
+            "faithfulness_rate_strict": 0.7692307692307693,
+            "claims": [
+              {
+                "claim": "Durante la maniobra de viraje, un tripulante de B empuja deliberadamente la botavara hacia afuera.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 14 establece que cada competidor debe evitar cualquier contacto con otro barco en la medida de lo posible.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL A3 se refiere a situaciones donde dos barcos están superpuestos y uno tiene la obligación de mantenerse claro del otro.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 16.1 protege al barco que está obligado a mantenerse claro si responde prontamente y de manera marinera a cualquier cambio de rumbo del barco con derecho de paso.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 43.1(c) exonera al barco que es el derecho de paso en caso de incumplimiento si no causa daño ni lesiones.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La acción del tripulante de B empujando la botavara hacia afuera provocó el contacto.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La acción del tripulante de B viola la regla 14 ya que su intención era causar un contacto deliberado.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B no actuaba de manera marinera al empujar la botavara, lo cual provocó el contacto.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y tuvo que virar para evitar a B y su maniobra fue legítima.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La maniobra de Y no violó ninguna regla ya que respondió prontamente a la acción de B.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Dado que Y no tuvo opción para evitar el contacto, está exonerada por regla 43.1(c).",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y no causó daño ni lesiones y era el barco con derecho de paso.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B violó la regla 14 al provocar deliberadamente el contacto.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y no incumplió ninguna regla ya que su maniobra fue legítima y respondió prontamente a la acción de B.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La decisión es clara: penalizar a B.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -5079,7 +6292,11 @@
           "context_char_len": 8263,
           "context_chunk_count": 8,
           "answer_refs": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "14",
+              "16.1",
+              "43.1(c)"
+            ],
             "calls": [
               "A3"
             ],
@@ -5117,9 +6334,9 @@
         },
         "response": {
           "citation_rrs": {
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1": 0.0
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
           },
           "citation_calls": {
             "precision": 0.0,
@@ -5132,7 +6349,9 @@
             "f1": null
           },
           "citations_found": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "17"
+            ],
             "calls": [
               "A3",
               "A2"
@@ -5142,9 +6361,86 @@
           "token_jaccard_answer_context": 0.009708737864077669,
           "token_jaccard_answer_reference": 0.08064516129032258,
           "verdict_expected": "sin_penalizacion",
-          "verdict_predicted": "otro",
+          "verdict_predicted": "penalizar",
           "verdict_match": false,
-          "penalized_boats_match": null
+          "penalized_boats_match": null,
+          "faithfulness": {
+            "n_claims": 11,
+            "n_supported": 4,
+            "n_not_supported": 0,
+            "n_unknown": 7,
+            "n_parse_failures": 0,
+            "faithfulness_rate": 0.36363636363636365,
+            "faithfulness_rate_strict": 1.0,
+            "claims": [
+              {
+                "claim": "B está en una situación donde aplica la Regla 17.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 17 limita la capacidad de B para cambiar de rumbo.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL A3 explica que una embarcación con restricciones debe responder marinera a los cambios del barco con derecho de vía.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B realizó varias trasluchas rápidas sin considerar adecuadamente el impacto sobre Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según TR CALL A3, B no actuó de manera seamanlike al realizar trasluchas rápidas.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL A2 indica que una embarcación sotavento debe mantenerse clara y evitar cualquier contacto inmediato con el barco con derecho de vía.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B violó la obligación de mantenerse clara ante Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "no se proporciona información suficiente en los fragmentos para determinar si B no mantuvo una distancia segura con respecto a Y."
+              },
+              {
+                "claim": "Los movimientos de B provocaron un riesgo de contacto con Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "no se proporciona información suficiente en los fragmentos para determinar si los movimientos de B pusieron en peligro la seguridad de Y."
+              },
+              {
+                "claim": "B no cumplió adecuadamente las reglas aplicables.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "no se proporciona información suficiente en los fragmentos para determinar si B incumplió alguna regla de la competencia."
+              },
+              {
+                "claim": "Se concluye que B actuó en contra del espíritu y letra de la RRS.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "no se proporciona información suficiente en los fragmentos para determinar si las acciones de B fueron contrarias al espíritu y a la letra de las reglas de regata."
+              },
+              {
+                "claim": "Dado el comportamiento de B, se decide penalizar a B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": "no se proporciona información suficiente en los fragmentos para determinar si las acciones de B justifican una penalización."
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -5473,7 +6769,9 @@
           "context_char_len": 8263,
           "context_chunk_count": 8,
           "answer_refs": {
-            "rrs_rules": [],
+            "rrs_rules": [
+              "17"
+            ],
             "calls": [
               "A3",
               "A2"
@@ -5530,7 +6828,8 @@
           },
           "citations_found": {
             "rrs_rules": [
-              "14"
+              "14",
+              "18.2(a)(2)"
             ],
             "calls": [
               "A3"
@@ -5540,9 +6839,92 @@
           "token_jaccard_answer_context": 0.0069124423963133645,
           "token_jaccard_answer_reference": 0.09701492537313433,
           "verdict_expected": "penalizar",
-          "verdict_predicted": "otro",
-          "verdict_match": false,
-          "penalized_boats_match": true
+          "verdict_predicted": "penalizar",
+          "verdict_match": true,
+          "penalized_boats_match": true,
+          "faithfulness": {
+            "n_claims": 12,
+            "n_supported": 8,
+            "n_not_supported": 0,
+            "n_unknown": 4,
+            "n_parse_failures": 0,
+            "faithfulness_rate": 0.6666666666666666,
+            "faithfulness_rate_strict": 1.0,
+            "claims": [
+              {
+                "claim": "Y ya ha terminado la regata.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B aún está compitiendo activamente en la regata.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La proximidad entre las dos embarcaciones obliga a B a virar para evitar un contacto con Y.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y debe actuar de manera marinera y evitar causar problemas innecesarios a otras embarcaciones que aún están compitiendo.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 14 establece que una embarcación debe hacer todo lo posible para evitar un contacto peligroso.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Si no puede ser evitado, la regla 14 requiere minimizar cualquier daño o perjuicio.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL A3 se refiere a la situación en la cual dos barcos están superpuestos y uno de ellos (Y) cambia de rumbo para mantener distancia con el otro (B).",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Si B responde prontamente y de manera marinera, Y no puede continuar ladeando sin infringir regla 16.1.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Regla 18.2(a)(2) establece que una embarcación que llega a la zona del obstáculo después de otra debe recibir espacio para pasar el obstáculo en la dirección requerida de manera marinera.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "A pesar de que Y ya ha terminado su participación en la regata, su acción de pasar cerca de B obligando a esta última a virar para evitar un contacto infringe regla 14.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según TR CALL A3, si Y continúa ladeando sin dar espacio suficiente a B, está infringiendo reglas adicionales.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La decisión final es penalizar a Y por su acción de pasar cerca de B y obligándola a virar para evitar un contacto.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              }
+            ]
+          }
         },
         "retrieved": [
           {
@@ -5872,7 +7254,8 @@
           "context_chunk_count": 8,
           "answer_refs": {
             "rrs_rules": [
-              "14"
+              "14",
+              "18.2(a)(2)"
             ],
             "calls": [
               "A3"
@@ -5942,9 +7325,164 @@
           "token_jaccard_answer_context": 0.0075046904315197,
           "token_jaccard_answer_reference": 0.136,
           "verdict_expected": "penalizar",
-          "verdict_predicted": "otro",
-          "verdict_match": false,
-          "penalized_boats_match": false
+          "verdict_predicted": "penalizar",
+          "verdict_match": true,
+          "penalized_boats_match": false,
+          "faithfulness": {
+            "n_claims": 24,
+            "n_supported": 9,
+            "n_not_supported": 7,
+            "n_unknown": 8,
+            "n_parse_failures": 0,
+            "faithfulness_rate": 0.375,
+            "faithfulness_rate_strict": 0.5625,
+            "claims": [
+              {
+                "claim": "B navegaba en posición de derechas frente a Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y estaba en posición de izquierdas respecto a B.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B decidió virar justo frente a la proa de Y.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La maniobra de B forzó a Y a virar inmediatamente para evitar un choque.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según Regla 14, una embarcación de derechas debe esforzarse por evitar cualquier contacto con otra embarcación de izquierdas si puede hacerlo sin sacrificar su propia posición en la carrera.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Los árbitros pueden penalizar a una embarcación que no cumple correctamente las reglas según TR CALL M10 (D2.3).",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "TR CALL M10 (D1.1(d)) establece que los árbitros deben actuar si no hubo una señal clara y repetida.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según Case 27, cuando una embarcación adquiere derecho de paso debido a su propia acción, la otra embarcación es obligada a darle espacio para mantenerse clara.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B forzó a Y a tomar medidas inmediatas para evitar un choque.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B no cumplió con su obligación de dar claridad y espacio suficiente a Y según Regla 14 y TR CALL M10 (D2.3).",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y estaba en su derecho de esperar que B le diera espacio suficiente para mantenerse clara.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La decisión final es penalizar a B por incumplimiento de la regla 14.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B no cumplió con las obligaciones establecidas en TR CALL M10 (D2.3).",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Los árbitros deben actuar según TR CALL M10 (D1.1(d)) si no hubo una señal clara y repetida.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según Case 27, Y tenía derecho a esperar que B le diera espacio suficiente para mantenerse clara.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B forzó a Y a tomar medidas inmediatas sin darle tiempo y espacio necesario para mantenerse clara.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La maniobra de B fue una violación directa de la regla 14.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Los árbitros deben considerar las circunstancias específicas descritas en TR CALL M10 (D2.3).",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según Case 27, cuando una embarcación adquiere derecho de paso, debe dar espacio a la otra embarcación para mantenerse clara.",
+                "verdict": "supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B no cumplió con su obligación de dar claridad y repetir señales visuales y vocales según TR CALL M10 (D2.3).",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Y estaba en posición de izquierdas respecto a B cuando ocurrió el incidente.",
+                "verdict": "unknown",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "Según Regla 14, la embarcación de derechas debe evitar cualquier contacto con otra embarcación de izquierdas si es posible hacerlo sin sacrificar su propia posición en la carrera.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "B no cumplió con las obligaciones establecidas en TR CALL M10 (D2.3) al forzar a Y a tomar medidas inmediatas para evitar un choque.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              },
+              {
+                "claim": "La decisión final refleja que B incumplió la regla 14 al forzar a Y a tomar medidas inmediatas para evitar un choque sin darle el tiempo y el espacio necesario para mantenerse clara.",
+                "verdict": "not_supported",
+                "evidence_ids": [],
+                "rationale": ""
+              }
+            ]
+          }
         },
         "retrieved": [
           {

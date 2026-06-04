@@ -2,11 +2,15 @@
 
 Conjunto de **15 casos** desde `docs/Casos de Regatas.xlsx` (columna **Input** = relato; etiquetas desde **Output Ideal**).
 
+**Resumen narrativo (E0–E13):** [`eval/RESUMEN_CORRIDAS_EVAL.md`](RESUMEN_CORRIDAS_EVAL.md) — objetivo y delta de cada corrida (lectura humana).
+
 **Diario de todas las corridas (E0, E1, …):** [`eval/DIARIO_PRUEBAS.md`](DIARIO_PRUEBAS.md) — se **regenera solo** al final de cada `eval_run.py` (cambios vs corrida anterior + comparativa vs E0). Opcional: `--diario-nota "…"`.
 
 **Registro narrativo (informe final):** [`docs/REGISTRO_TRABAJO_INFORME_FINAL.md`](../docs/REGISTRO_TRABAJO_INFORME_FINAL.md) — decisiones, código y bitácora; complementa el diario automático.
 
-**Timeline visual:** [Draw.io](docs/timeline_corridas_eval.drawio) · [HTML navegable](docs/timeline_corridas_eval.html) — línea temporal E0→E11, métricas y guía integrada.
+**Comparativa E0 vs E12 (citabile):** [`docs/INFORME_CITAS_E0_vs_E12.md`](../docs/INFORME_CITAS_E0_vs_E12.md) — métricas, faithfulness, Jaccard, conclusiones y CSV.
+
+**Timeline visual:** [Draw.io](docs/timeline_corridas_eval.drawio) · [HTML navegable](docs/timeline_corridas_eval.html) — línea temporal E0→E13, métricas y guía integrada.
 
 ## 1. Generar golden set
 
@@ -24,7 +28,7 @@ Salida: `eval/data/eval_set.json`
 | Corpus | JSONL `processed` + cupos 2+3+2+1 | PDF Call+Case |
 | Doc | `docs/PERFIL_PRODUCTIVO.md` | `eval/corrida baseline/` |
 
-Regresión tras cambios: `python scripts/regression_eval.py <carpeta_corrida>`
+Regresión tras cambios (umbrales E11 retrieval + E13 respuesta): `python scripts/regression_eval.py <carpeta_corrida>` — ver [`RESUMEN_CORRIDAS_EVAL.md`](RESUMEN_CORRIDAS_EVAL.md).
 
 ## Línea base histórica (E0)
 
@@ -159,6 +163,16 @@ Enriquecer una corrida ya guardada (sin re-llamar al LLM):
 ```bash
 python scripts/enrich_eval_report.py "eval/corrida baseline"
 ```
+
+## Re-score de citas (sin re-ejecutar LLM)
+
+Tras ampliar el parser en `regatas_assistant/eval/refs.py` (p. ej. viñetas `**Regla 16.1**`, `**Case N**` del prompt v3):
+
+```bash
+python scripts/rescore_eval_citations.py eval/runs/<run_id>
+```
+
+Actualiza `report.json`, `metrics_long.csv`, `summary.txt` y plots en la carpeta de la corrida.
 
 ## Métricas
 

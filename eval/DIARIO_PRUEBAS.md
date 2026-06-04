@@ -2,7 +2,7 @@
 
 Documento **generado automáticamente** al finalizar cada `eval_run.py`. No editar a mano las secciones §1–§4; usar `eval/diario_runs.json` (`nota_usuario`) o `--diario-nota` si hace falta aclarar algo.
 
-**Última regeneración:** 2026-06-03 15:57 (local)
+**Última regeneración:** 2026-06-04 10:11 (local)
 
 **Golden set fijo (15 casos):** `docs/Casos de Regatas.xlsx` → `eval/data/eval_set.json`.
 
@@ -26,6 +26,7 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 | E10 | 2026-05-26 | `processed_cupos_3_2_2_1` | `20260526_000249_proc…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.69 | 0.07 | 0.09 | 0.07 | [`eval/runs/20260526_000249_processed_cupos_3_2_2_1/`](runs/20260526_000249_processed_cupos_3_2_2_1/) |
 | E11 | 2026-05-26 | `processed_cupos_2_3_2_1` | `20260526_185624_proc…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.76 | 0.20 | 0.22 | 0.07 | [`eval/runs/20260526_185624_processed_cupos_2_3_2_1/`](runs/20260526_185624_processed_cupos_2_3_2_1/) |
 | E12 | 2026-06-03 | `prompt_v2_cot` | `20260603_183901_prom…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.76 | 0.20 | 0.00 | 0.13 | [`eval/runs/20260603_183901_prompt_v2_cot/`](runs/20260603_183901_prompt_v2_cot/) |
+| E13 | 2026-06-04 | `prompt_v3_format` | `20260604_124747_prom…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.76 | 0.20 | 0.11 | 0.07 | [`eval/runs/20260604_124747_prompt_v3_format/`](runs/20260604_124747_prompt_v3_format/) |
 
 ---
 
@@ -45,6 +46,7 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 | E10 | 74.1 % | 11.1 % | 6.7 % | 6.7 % | 2 | 4 | 17 | 0 | 21 |
 | E11 | 77.8 % | 18.5 % | 20.0 % | 6.7 % | 1 | 6 | 18 | 0 | 18 |
 | E12 | 77.8 % | 0.0 % | 20.0 % | 13.3 % | 1 | 2 | 22 | 0 | 18 |
+| E13 | 77.8 % | 7.4 % | 20.0 % | 6.7 % | 1 | 3 | 21 | 0 | 18 |
 
 ---
 
@@ -69,7 +71,8 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 - Jaccard resp↔ctx: — → 0.03
 - Jaccard resp↔ref: — → 0.13
 - Dictamen auto: — → 0.00
-- Faithfulness: — → 0.00
+- Faithfulness: — → 0.37
+- Faithfulness estricta: — → 0.72
 
 #### Configuración
 
@@ -99,7 +102,8 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 - Jaccard resp↔ctx: 0.03 → —
 - Jaccard resp↔ref: 0.13 → —
 - Dictamen auto: 0.00 → —
-- Faithfulness: 0.00 → —
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
 
 #### Configuración
 
@@ -134,7 +138,8 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 - Jaccard resp↔ctx: 0.03 → —
 - Jaccard resp↔ref: 0.13 → —
 - Dictamen auto: 0.00 → —
-- Faithfulness: 0.00 → —
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
 
 #### Configuración
 
@@ -165,7 +170,8 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 - Jaccard resp↔ctx: 0.03 → 0.05 (+0.02)
 - Jaccard resp↔ref: 0.13 → 0.12 (-0.01)
 - Dictamen auto: 0.00 → 0.00 (+0.00)
-- Faithfulness: 0.00 → —
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
 
 #### Comparativa vs E0 (baseline)
 
@@ -176,7 +182,8 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 - Jaccard resp↔ctx: 0.03 → 0.05 (+0.02)
 - Jaccard resp↔ref: 0.13 → 0.12 (-0.01)
 - Dictamen auto: 0.00 → 0.00 (+0.00)
-- Faithfulness: 0.00 → —
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
 
 #### Configuración
 
@@ -218,7 +225,8 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 - Jaccard resp↔ctx: 0.03 → 0.02 (-0.00)
 - Jaccard resp↔ref: 0.13 → 0.13 (+0.00)
 - Dictamen auto: 0.00 → 0.00 (+0.00)
-- Faithfulness: 0.00 → —
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
 
 #### Configuración
 
@@ -263,7 +271,8 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 - Jaccard resp↔ctx: 0.03 → 0.04 (+0.01)
 - Jaccard resp↔ref: 0.13 → 0.13 (-0.00)
 - Dictamen auto: 0.00 → 0.00 (+0.00)
-- Faithfulness: 0.00 → —
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
 
 #### Configuración
 
@@ -305,7 +314,8 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 - Jaccard resp↔ctx: 0.03 → 0.04 (+0.01)
 - Jaccard resp↔ref: 0.13 → 0.13 (-0.01)
 - Dictamen auto: 0.00 → 0.00 (+0.00)
-- Faithfulness: 0.00 → —
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
 
 #### Configuración
 
@@ -350,7 +360,8 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 - Jaccard resp↔ctx: 0.03 → 0.04 (+0.01)
 - Jaccard resp↔ref: 0.13 → 0.12 (-0.01)
 - Dictamen auto: 0.00 → 0.00 (+0.00)
-- Faithfulness: 0.00 → —
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
 
 #### Configuración
 
@@ -391,7 +402,8 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 - Jaccard resp↔ctx: 0.03 → 0.05 (+0.02)
 - Jaccard resp↔ref: 0.13 → 0.12 (-0.01)
 - Dictamen auto: 0.00 → 0.00 (+0.00)
-- Faithfulness: 0.00 → —
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
 
 #### Configuración
 
@@ -438,7 +450,8 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 - Jaccard resp↔ctx: 0.03 → 0.03 (-0.00)
 - Jaccard resp↔ref: 0.13 → 0.13 (-0.01)
 - Dictamen auto: 0.00 → 0.00 (+0.00)
-- Faithfulness: 0.00 → 0.00 (+0.00)
+- Faithfulness: 0.37 → 0.00 (-0.37)
+- Faithfulness estricta: 0.72 → —
 
 #### Configuración
 
@@ -482,7 +495,8 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 - Jaccard resp↔ctx: 0.03 → 0.02 (-0.00)
 - Jaccard resp↔ref: 0.13 → 0.12 (-0.01)
 - Dictamen auto: 0.00 → 0.00 (+0.00)
-- Faithfulness: 0.00 → —
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
 
 #### Configuración
 
@@ -499,7 +513,6 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 
 **Run ID:** `20260603_183901_prompt_v2_cot`  
 **Carpeta:** `eval/runs/20260603_183901_prompt_v2_cot`  
-**Nota:** JSONL v2 metadatos + prompt v2  
 
 #### Qué cambió respecto a la corrida anterior
 
@@ -514,6 +527,8 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 - Jaccard resp↔ctx: 0.02 → 0.01 (-0.02)
 - Jaccard resp↔ref: 0.12 → 0.13 (+0.02)
 - Dictamen auto: 0.00 → 0.00 (+0.00)
+- Faithfulness: — → 0.57
+- Faithfulness estricta: — → 0.82
 
 #### Comparativa vs E0 (baseline)
 
@@ -524,7 +539,53 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 - Jaccard resp↔ctx: 0.03 → 0.01 (-0.02)
 - Jaccard resp↔ref: 0.13 → 0.13 (+0.00)
 - Dictamen auto: 0.00 → 0.00 (+0.00)
-- Faithfulness: 0.00 → —
+- Faithfulness: 0.37 → 0.57 (+0.20)
+- Faithfulness estricta: 0.72 → 0.82 (+0.10)
+
+#### Configuración
+
+- Índice: RRS JSONL+def (~495 ch.), solo processed
+- `corpus_sources`: `processed`
+- Retrieval: `lexical`, top_k=8
+- Hallazgo (auto): Mejora de recall de reglas respecto al baseline.
+
+- Gráfico vs baseline: `plots_retrieval/05_comparacion_corridas.png`
+
+---
+
+### E13 — `prompt_v3_format`
+
+**Run ID:** `20260604_124747_prompt_v3_format`  
+**Carpeta:** `eval/runs/20260604_124747_prompt_v3_format`  
+**Nota:** Prompt v3: plantilla fija, §4 Resolución, viñetas Regla/TR CALL  
+
+#### Qué cambió respecto a la corrida anterior
+
+- Misma configuración de corpus/retriever/LLM que la corrida anterior; variación solo en resultados estocásticos o artefactos.
+
+#### Comparativa vs corrida anterior
+
+- Recall@k reglas: 0.76 → 0.76 (+0.00)
+- Recall@k CALL: 0.20 → 0.20 (+0.00)
+- F1 citas RRS: 0.00 → 0.11 (+0.11)
+- F1 citas CALL: 0.13 → 0.07 (-0.07)
+- Jaccard resp↔ctx: 0.01 → 0.01 (+0.00)
+- Jaccard resp↔ref: 0.13 → 0.16 (+0.03)
+- Dictamen auto: 0.00 → 0.60 (+0.60)
+- Faithfulness: 0.57 → —
+- Faithfulness estricta: 0.82 → —
+
+#### Comparativa vs E0 (baseline)
+
+- Recall@k reglas: 0.41 → 0.76 (+0.34)
+- Recall@k CALL: 0.27 → 0.20 (-0.07)
+- F1 citas RRS: 0.22 → 0.11 (-0.11)
+- F1 citas CALL: 0.13 → 0.07 (-0.07)
+- Jaccard resp↔ctx: 0.03 → 0.01 (-0.02)
+- Jaccard resp↔ref: 0.13 → 0.16 (+0.03)
+- Dictamen auto: 0.00 → 0.60 (+0.60)
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
 
 #### Configuración
 
@@ -550,6 +611,7 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 | E10 | +0.28 | -0.20 | -0.14 | -0.07 |
 | E11 | +0.34 | -0.07 | -0.01 | -0.07 |
 | E12 | +0.34 | -0.07 | -0.22 | +0.00 |
+| E13 | +0.34 | -0.07 | -0.11 | -0.07 |
 
 ## 5. Registro automático
 

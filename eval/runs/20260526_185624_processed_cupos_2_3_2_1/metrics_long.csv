@@ -50,9 +50,9 @@ case_id,titulo,metric,value,k,category
 2,Sobre-rotación del barco de barlovento proa al viento,recall_at_6,1.0,6,retrieval_curve_calls
 2,Sobre-rotación del barco de barlovento proa al viento,recall_at_7,1.0,7,retrieval_curve_calls
 2,Sobre-rotación del barco de barlovento proa al viento,recall_at_8,1.0,8,retrieval_curve_calls
-2,Sobre-rotación del barco de barlovento proa al viento,citation_rrs_precision,0.0,,response_citation_rrs
-2,Sobre-rotación del barco de barlovento proa al viento,citation_rrs_recall,0.0,,response_citation_rrs
-2,Sobre-rotación del barco de barlovento proa al viento,citation_rrs_f1,0.0,,response_citation_rrs
+2,Sobre-rotación del barco de barlovento proa al viento,citation_rrs_precision,0.25,,response_citation_rrs
+2,Sobre-rotación del barco de barlovento proa al viento,citation_rrs_recall,0.5,,response_citation_rrs
+2,Sobre-rotación del barco de barlovento proa al viento,citation_rrs_f1,0.3333333333333333,,response_citation_rrs
 2,Sobre-rotación del barco de barlovento proa al viento,citation_calls_precision,0.0,,response_citation_calls
 2,Sobre-rotación del barco de barlovento proa al viento,citation_calls_recall,0.0,,response_citation_calls
 2,Sobre-rotación del barco de barlovento proa al viento,citation_calls_f1,0.0,,response_citation_calls
@@ -82,9 +82,9 @@ case_id,titulo,metric,value,k,category
 3,Retraso en la respuesta al solapamiento desde atrás,recall_at_6,0.0,6,retrieval_curve_calls
 3,Retraso en la respuesta al solapamiento desde atrás,recall_at_7,0.0,7,retrieval_curve_calls
 3,Retraso en la respuesta al solapamiento desde atrás,recall_at_8,0.0,8,retrieval_curve_calls
-3,Retraso en la respuesta al solapamiento desde atrás,citation_rrs_precision,0.0,,response_citation_rrs
-3,Retraso en la respuesta al solapamiento desde atrás,citation_rrs_recall,0.0,,response_citation_rrs
-3,Retraso en la respuesta al solapamiento desde atrás,citation_rrs_f1,0.0,,response_citation_rrs
+3,Retraso en la respuesta al solapamiento desde atrás,citation_rrs_precision,0.2,,response_citation_rrs
+3,Retraso en la respuesta al solapamiento desde atrás,citation_rrs_recall,0.5,,response_citation_rrs
+3,Retraso en la respuesta al solapamiento desde atrás,citation_rrs_f1,0.28571428571428575,,response_citation_rrs
 3,Retraso en la respuesta al solapamiento desde atrás,citation_calls_precision,0.0,,response_citation_calls
 3,Retraso en la respuesta al solapamiento desde atrás,citation_calls_recall,0.0,,response_citation_calls
 3,Retraso en la respuesta al solapamiento desde atrás,citation_calls_f1,0.0,,response_citation_calls
@@ -144,9 +144,9 @@ case_id,titulo,metric,value,k,category
 5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_6,1.0,6,retrieval_curve_calls
 5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_7,1.0,7,retrieval_curve_calls
 5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_8,1.0,8,retrieval_curve_calls
-5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_rrs_precision,1.0,,response_citation_rrs
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_rrs_precision,0.5,,response_citation_rrs
 5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_rrs_recall,1.0,,response_citation_rrs
-5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_rrs_f1,1.0,,response_citation_rrs
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_rrs_f1,0.6666666666666666,,response_citation_rrs
 5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_calls_precision,0.0,,response_citation_calls
 5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_calls_recall,0.0,,response_citation_calls
 5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_calls_f1,0.0,,response_citation_calls
@@ -454,9 +454,9 @@ case_id,titulo,metric,value,k,category
 15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_6,0.0,6,retrieval_curve_calls
 15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_7,0.0,7,retrieval_curve_calls
 15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_8,0.0,8,retrieval_curve_calls
-15,Virada en proa obligando a maniobra evitativa inmediata,citation_rrs_precision,0.5,,response_citation_rrs
-15,Virada en proa obligando a maniobra evitativa inmediata,citation_rrs_recall,0.5,,response_citation_rrs
-15,Virada en proa obligando a maniobra evitativa inmediata,citation_rrs_f1,0.5,,response_citation_rrs
+15,Virada en proa obligando a maniobra evitativa inmediata,citation_rrs_precision,0.6666666666666666,,response_citation_rrs
+15,Virada en proa obligando a maniobra evitativa inmediata,citation_rrs_recall,1.0,,response_citation_rrs
+15,Virada en proa obligando a maniobra evitativa inmediata,citation_rrs_f1,0.8,,response_citation_rrs
 15,Virada en proa obligando a maniobra evitativa inmediata,citation_calls_precision,0.0,,response_citation_calls
 15,Virada en proa obligando a maniobra evitativa inmediata,citation_calls_recall,0.0,,response_citation_calls
 15,Virada en proa obligando a maniobra evitativa inmediata,citation_calls_f1,0.0,,response_citation_calls

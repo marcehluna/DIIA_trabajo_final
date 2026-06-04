@@ -99,7 +99,7 @@
     }
     .timeline {
       position: relative;
-      min-width: 2000px;
+      min-width: 2800px;
       padding: 2.5rem 1rem 1rem;
     }
     .axis-line {
@@ -250,7 +250,7 @@
 <body>
   <header>
     <h1>Timeline de corridas de evaluación RAG</h1>
-    <p>Golden set 15 casos · Qwen2.5 · retrieval léxico top_k=8 · Línea base E0 · última E11</p>
+    <p>Golden set 15 casos · Qwen2.5 · retrieval léxico top_k=8 · Línea base E0 · retrieval productivo E11 · prompts E12–E13 (última E13)</p>
   </header>
 
   <div class="layout">
@@ -274,6 +274,7 @@
         <li><span class="legend-dot" style="background:#d5e8d4;border:1px solid #82b366"></span> Full + cupos</li>
         <li><span class="legend-dot" style="background:#dae8fc;border:1px solid #6c8ebf"></span> Solo JSONL</li>
         <li><span class="legend-dot" style="background:#e1d5e7;border:1px solid #9673a6"></span> Cupos por tipo (E10–E11)</li>
+        <li><span class="legend-dot" style="background:#b0e3e6;border:1px solid #009688"></span> Prompts v2/v3 (E12–E13)</li>
       </ul>
     </nav>
 
@@ -299,9 +300,9 @@
           </div>
         </div>
         <div class="next-chip">
-          <strong>Siguiente (sugerido):</strong><br>
-          E12: JSONL + Case PDF cupos 3+5<br>
-          o faithfulness (fix juez)
+          <strong>Siguiente (E14+):</strong><br>
+          Faithfulness en corrida completa<br>
+          o híbrido JSONL + Case PDF
         </div>
       </section>
 
@@ -474,18 +475,48 @@
       },
       {
         id: "E11", label: "processed_cupos_2_3_2_1", slug: "processed_cupos_2_3_2_1",
-        category: "cupos", branch: false, highlight: true,
+        category: "cupos", branch: false, highlight: false,
         fill: "#e1d5e7", stroke: "#9673a6", dashed: false,
         date: "26-may",
         runId: "20260526_185624_processed_cupos_2_3_2_1",
         retrievalOnly: false,
         metricHeadline: "R@k reglas <strong>0.76</strong> · CALL <strong>0.20</strong>",
         bullets: [
-          "Cupos 2+3+2+1 (más CALL)",
-          "Mismo JSONL 707 ch.",
-          "CALL +0.13 vs E10"
+          "Cupos 2+3+2+1 · perfil retrieval",
+          "JSONL 707 ch. · metadatos v1",
+          "Base para E12–E13 (mismo índice)"
         ],
-        metrics: { rkRules: 0.76, rkCall: 0.20, f1Rrs: 0.22, f1Call: 0.07, jaccard: 0.12 }
+        metrics: { rkRules: 0.76, rkCall: 0.20, f1Rrs: 0.25, f1Call: 0.07, jaccard: 0.12, verdict: 0.0 }
+      },
+      {
+        id: "E12", label: "prompt_v2_cot", slug: "prompt_v2_cot",
+        category: "prompt", branch: false, highlight: false,
+        fill: "#b0e3e6", stroke: "#009688", dashed: false,
+        date: "03-jun",
+        runId: "20260603_183901_prompt_v2_cot",
+        retrievalOnly: false,
+        metricHeadline: "R@k reglas <strong>0.76</strong> · CALL <strong>0.20</strong>",
+        bullets: [
+          "Mismo índice/cupos que E11",
+          "JSONL v2 + prompt v2 (citas, Decisión:)",
+          "F1 RRS 0.20 (parser); dictamen 60%"
+        ],
+        metrics: { rkRules: 0.76, rkCall: 0.20, f1Rrs: 0.20, f1Call: 0.13, jaccard: 0.13, verdict: 0.6 }
+      },
+      {
+        id: "E13", label: "prompt_v3_format", slug: "prompt_v3_format",
+        category: "prompt", branch: false, highlight: true,
+        fill: "#b0e3e6", stroke: "#009688", dashed: false,
+        date: "04-jun",
+        runId: "20260604_124747_prompt_v3_format",
+        retrievalOnly: false,
+        metricHeadline: "R@k reglas <strong>0.76</strong> · CALL <strong>0.20</strong>",
+        bullets: [
+          "Mismo retrieval E11",
+          "Prompt v3: plantilla fija, §4 Resolución",
+          "Dictamen 60% · F1 RRS 0.22 (parser)"
+        ],
+        metrics: { rkRules: 0.76, rkCall: 0.20, f1Rrs: 0.22, f1Call: 0.07, jaccard: 0.16, verdict: 0.6 }
       }
     ];
 
@@ -497,6 +528,7 @@
       <h3>F1 RRS · F1 CALL <span style="font-weight:normal;font-size:0.85rem">(citas en la respuesta vs golden)</span></h3>
       <p><strong>Qué mide:</strong> F1 entre referencias esperadas y las citadas en la respuesta (extracción por regex). Combina precisión (citas correctas / citas dichas) y recall (esperadas citadas / esperadas).</p>
       <p><strong>Por qué importa:</strong> Un buen R@k con F1 bajo indica que recuperamos bien pero el modelo no cita o alucina códigos. Clave para protestas náuticas donde la trazabilidad normativa (RRS + Call Book) es obligatoria.</p>
+      <p><em>E12–E13:</em> F1 con parser ampliado (<code>**Regla …**</code>, viñetas). E12 mostró F1=0 en corrida por formato, no por ausencia de citas.</p>
       <h3>Jaccard ref <span style="font-weight:normal;font-size:0.85rem">(solapamiento léxico respuesta ↔ output ideal)</span></h3>
       <p><strong>Qué mide:</strong> Similitud de tokens (≥3 letras) entre la respuesta generada y la respuesta de referencia del Excel.</p>
       <p><strong>Por qué importa:</strong> Señal barata de cercanía al criterio humano del curso. <em>Limitación:</em> corpus en inglés y respuestas en español → valores bajos aunque el contenido sea equivalente; no sustituye faithfulness ni revisión manual.</p>
@@ -521,6 +553,7 @@
         html += `<dt>F1 RRS</dt><dd>${fmt(m.f1Rrs)}</dd>`;
         html += `<dt>F1 CALL</dt><dd>${fmt(m.f1Call)}</dd>`;
         html += `<dt>Jaccard ref</dt><dd>${fmt(m.jaccard)}</dd>`;
+        if (m.verdict != null) html += `<dt>Dictamen</dt><dd>${(m.verdict * 100).toFixed(0)}%</dd>`;
         html += "</dl>";
       }
       html += "</div>";
@@ -658,7 +691,7 @@
     renderNav();
     initCompare();
     const hashId = location.hash.startsWith("#card-") ? location.hash.replace("#card-", "") : null;
-    selectRun(hashId && RUNS.some(r => r.id === hashId) ? hashId : "E11");
+    selectRun(hashId && RUNS.some(r => r.id === hashId) ? hashId : "E13");
   </script>
 </body>
 </html>

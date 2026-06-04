@@ -85,7 +85,12 @@
         }
       ],
       "citations_in_answer": {
-        "rrs_rules": [],
+        "rrs_rules": [
+          "11",
+          "14(a)",
+          "15",
+          "16.1"
+        ],
         "calls": [],
         "cases": [
           "13"
@@ -133,7 +138,13 @@
         }
       ],
       "citations_in_answer": {
-        "rrs_rules": [],
+        "rrs_rules": [
+          "10",
+          "15",
+          "31",
+          "61.4(b)(4)",
+          "13"
+        ],
         "calls": [],
         "cases": []
       }
@@ -184,7 +195,12 @@
         }
       ],
       "citations_in_answer": {
-        "rrs_rules": [],
+        "rrs_rules": [
+          "18",
+          "10",
+          "15",
+          "16.1"
+        ],
         "calls": [
           "A2"
         ],
@@ -226,7 +242,8 @@
       ],
       "citations_in_answer": {
         "rrs_rules": [
-          "16.2"
+          "16.2",
+          "10"
         ],
         "calls": [
           "A5"
@@ -431,7 +448,9 @@
         }
       ],
       "citations_in_answer": {
-        "rrs_rules": [],
+        "rrs_rules": [
+          "18.2(a)(2)"
+        ],
         "calls": [
           "A3"
         ],
@@ -575,7 +594,8 @@
       ],
       "citations_in_answer": {
         "rrs_rules": [
-          "15"
+          "15",
+          "16"
         ],
         "calls": [
           "A2"
@@ -660,7 +680,9 @@
       ],
       "citations_in_answer": {
         "rrs_rules": [
-          "15"
+          "15",
+          "16.1",
+          "12"
         ],
         "calls": [],
         "cases": []
@@ -709,7 +731,8 @@
       "citations_in_answer": {
         "rrs_rules": [
           "15",
-          "2"
+          "2",
+          "13"
         ],
         "calls": [],
         "cases": []

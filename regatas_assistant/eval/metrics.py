@@ -10,6 +10,7 @@ from regatas_assistant.eval.refs import (
     chunk_mentions_call,
     chunk_mentions_case,
     chunk_mentions_rule,
+    extract_decision,
     extract_penalized_boats,
     normalize_verdict,
 )
@@ -20,6 +21,25 @@ _TOKEN_RE = re.compile(r"[a-zA-ZáéíóúñÁÉÍÓÚÑ]{3,}")
 
 def _tokens(text: str) -> set[str]:
     return {t.lower() for t in _TOKEN_RE.findall(text)}
+
+
+def _extract_decision_line(answer: str) -> str | None:
+    """Prefiere línea `Decisión:` (prompt v3); evita confundir con el encabezado §4."""
+    if not answer:
+        return None
+    from_decision = extract_decision(answer)
+    if from_decision:
+        return from_decision
+    for line in reversed(answer.splitlines()):
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if re.match(r"(?i)^decisi[oó]n\s*:", stripped):
+            return stripped
+    for line in answer.splitlines():
+        if re.search(r"(?i)dictamen|decisi[oó]n|resoluci[oó]n", line):
+            return line.strip()
+    return None
 
 
 def _jaccard(a: set[str], b: set[str]) -> float | None:
@@ -152,11 +172,7 @@ def score_case(
         )
 
     exp_verdict = expected.get("verdict")
-    ans_decision = None
-    for line in answer.splitlines():
-        if re.search(r"(?i)dictamen|decisi[oó]n|resoluci[oó]n", line):
-            ans_decision = line
-            break
+    ans_decision = _extract_decision_line(answer)
     ans_verdict = normalize_verdict(ans_decision or answer[-400:])
     response["verdict_expected"] = exp_verdict
     response["verdict_predicted"] = ans_verdict

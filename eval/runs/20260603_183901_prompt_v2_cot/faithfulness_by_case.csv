@@ -1,0 +1,16 @@
+eval_id,run_id,label,case_id,titulo,has_answer,n_claims,n_supported,n_not_supported,n_unknown,n_parse_failures,faithfulness_rate,faithfulness_rate_strict,recall_at_k_rules,recall_at_k_calls,f1_citation_rrs,f1_citation_calls,verdict_match
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,1,Orzada brusca sin espacio para mantenerse alejado,True,24,15,5,4,0,0.625,0.75,1.0,1.0,0.0,1.0,False
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,2,Sobre-rotación del barco de barlovento proa al viento,True,14,13,0,1,0,0.9285714285714286,1.0,1.0,1.0,0.0,0.0,False
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,3,Retraso en la respuesta al solapamiento desde atrás,True,12,5,1,6,0,0.4166666666666667,0.8333333333333334,0.5,0.0,0.0,0.0,False
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,4,Derecho a espacio de marca y pérdida por virada,True,24,11,7,6,0,0.4583333333333333,0.6111111111111112,1.0,0.0,0.0,0.0,False
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),True,14,7,4,3,0,0.5,0.6363636363636364,1.0,1.0,0.0,1.0,False
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,6,Incapacidad física de dar espacio de marca al solapar,True,24,20,1,3,0,0.8333333333333334,0.9523809523809523,1.0,0.0,0.0,0.0,False
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,7,Interferencia durante el cumplimiento de una penalización,True,14,8,2,4,0,0.5714285714285714,0.8,0.0,0.0,0.0,0.0,False
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,8,Eliminación de la Regla 18.4 en Team Racing,True,16,9,2,5,0,0.5625,0.8181818181818182,0.3333333333333333,0.0,0.0,0.0,False
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,9,Virada completada libre por proa en la zona,True,11,7,4,0,0,0.6363636363636364,0.6363636363636364,1.0,0.0,0.0,0.0,False
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,10,Contacto antes de completar la virada tras cruce,True,13,8,0,5,0,0.6153846153846154,1.0,1.0,0.0,0.0,0.0,False
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,11,Táctica de frenado en la marca (The Trap),True,11,3,0,8,0,0.2727272727272727,1.0,1.0,0.0,0.0,0.0,False
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,12,Provocación de contacto deliberado (Antideportivo),True,15,10,3,2,0,0.6666666666666666,0.7692307692307693,0.5,0.0,0.0,0.0,False
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,13,"Trasluchada para ""apagar"" la restricción de la Regla 17",True,11,4,0,7,0,0.36363636363636365,1.0,1.0,0.0,0.0,0.0,False
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,14,Interferencia de un barco que ya terminó la regata,True,12,8,0,4,0,0.6666666666666666,1.0,0.0,0.0,0.0,0.0,False
+E12,20260603_183901_prompt_v2_cot,prompt_v2_cot,15,Virada en proa obligando a maniobra evitativa inmediata,True,24,9,7,8,0,0.375,0.5625,1.0,0.0,0.0,0.0,False

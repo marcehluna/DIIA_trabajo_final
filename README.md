@@ -2,9 +2,9 @@
 
 Baseline para la elaboración del trabajo final de la Diplomatura en Inteligencia Artificial Aplicada (DIIA). Última versión de la PoC elaborada para la materia PLN — 02/05/2026.
 
-**RAG en producción (post-eval E11):** corpus JSONL en `corpus/processed/`, cupos de retrieval 2+3+2+1 y perfil por defecto `production`. Ver [`docs/PERFIL_PRODUCTIVO.md`](docs/PERFIL_PRODUCTIVO.md). Evaluación: [`eval/README.md`](eval/README.md).
+**RAG en producción (E11 retrieval + E13 prompt v3):** corpus JSONL en `corpus/processed/`, cupos 2+3+2+1, perfil `production`. Ver [`docs/PERFIL_PRODUCTIVO.md`](docs/PERFIL_PRODUCTIVO.md). Evaluación: [`eval/README.md`](eval/README.md) · resumen corridas: [`eval/RESUMEN_CORRIDAS_EVAL.md`](eval/RESUMEN_CORRIDAS_EVAL.md).
 
-**Registro para el informe final:** [`docs/REGISTRO_TRABAJO_INFORME_FINAL.md`](docs/REGISTRO_TRABAJO_INFORME_FINAL.md) · bitácora corta: [`docs/REGISTRO_BITACORA.md`](docs/REGISTRO_BITACORA.md)
+**Registro para el informe final:** [`docs/REGISTRO_TRABAJO_INFORME_FINAL.md`](docs/REGISTRO_TRABAJO_INFORME_FINAL.md) · bitácora: [`docs/REGISTRO_BITACORA.md`](docs/REGISTRO_BITACORA.md) · **comparativa E0 vs E12:** [`docs/INFORME_CITAS_E0_vs_E12.md`](docs/INFORME_CITAS_E0_vs_E12.md)
 
 ## Tablero y tareas
 

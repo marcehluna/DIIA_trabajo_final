@@ -1,0 +1,67 @@
+﻿case_id,titulo,tipo,esperado,en_contexto_recuperado,rank_primer_chunk,chunk_id,citado_en_respuesta,todas_reglas_citadas,todos_calls_citados,dictamen_esperado,barcos_penalizados_esperados
+1,Orzada brusca sin espacio para mantenerse alejado,RRS,16.1,si,5,call|A3,si,16.1,A3,penalizar,Y
+1,Orzada brusca sin espacio para mantenerse alejado,CALL,A3,si,5,call|A3,si,16.1,A3,penalizar,Y
+2,Sobre-rotación del barco de barlovento proa al viento,RRS,11,si,3,call|B2,no,16.1,—,penalizar,B
+2,Sobre-rotación del barco de barlovento proa al viento,RRS,13,si,3,call|B2,no,16.1,—,penalizar,B
+2,Sobre-rotación del barco de barlovento proa al viento,CALL,B2,si,3,call|B2,no,16.1,—,penalizar,B
+2,Sobre-rotación del barco de barlovento proa al viento,"RRS (citado, no en golden)",— → citó 16.1,,,,si,16.1,—,penalizar,B
+3,Retraso en la respuesta al solapamiento desde atrás,RRS,11,no,,,no,—,M10,penalizar,Y
+3,Retraso en la respuesta al solapamiento desde atrás,RRS,15,si,7,case|27,no,—,M10,penalizar,Y
+3,Retraso en la respuesta al solapamiento desde atrás,CALL,B1,no,,,no,—,M10,penalizar,Y
+3,Retraso en la respuesta al solapamiento desde atrás,"CALL (citado, no en golden)",— → citó M10,,,,si,—,M10,penalizar,Y
+4,Derecho a espacio de marca y pérdida por virada,RRS,18.2(a)(2),si,6,case|2,no,—,—,sin_penalizacion,—
+4,Derecho a espacio de marca y pérdida por virada,RRS,12,si,6,case|2,no,—,—,sin_penalizacion,—
+4,Derecho a espacio de marca y pérdida por virada,RRS,18.2(d),si,6,case|2,no,—,—,sin_penalizacion,—
+4,Derecho a espacio de marca y pérdida por virada,CALL,E1,no,,,no,—,—,sin_penalizacion,—
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),RRS,16.2,si,1,rrs|16.2,no,16.1,3,penalizar,B
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),CALL,D2,si,5,call|D2,no,16.1,3,penalizar,B
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),"RRS (citado, no en golden)",— → citó 16.1,,,,si,16.1,3,penalizar,B
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),"CALL (citado, no en golden)",— → citó 3,,,,si,16.1,3,penalizar,B
+6,Incapacidad física de dar espacio de marca al solapar,RRS,18.2(a),si,7,case|2,no,18.2(a)(2),A3,penalizar,Y
+6,Incapacidad física de dar espacio de marca al solapar,RRS,18.2(d),si,7,case|2,no,18.2(a)(2),A3,penalizar,Y
+6,Incapacidad física de dar espacio de marca al solapar,CALL,E2,no,,,no,18.2(a)(2),A3,penalizar,Y
+6,Incapacidad física de dar espacio de marca al solapar,"RRS (citado, no en golden)",— → citó 18.2(a)(2),,,,si,18.2(a)(2),A3,penalizar,Y
+6,Incapacidad física de dar espacio de marca al solapar,"CALL (citado, no en golden)",— → citó A3,,,,si,18.2(a)(2),A3,penalizar,Y
+7,Interferencia durante el cumplimiento de una penalización,RRS,21.2,no,,,no,18.2(a)(2),A3,penalizar,B
+7,Interferencia durante el cumplimiento de una penalización,CALL,L2,no,,,no,18.2(a)(2),A3,penalizar,B
+7,Interferencia durante el cumplimiento de una penalización,"RRS (citado, no en golden)",— → citó 18.2(a)(2),,,,si,18.2(a)(2),A3,penalizar,B
+7,Interferencia durante el cumplimiento de una penalización,"CALL (citado, no en golden)",— → citó A3,,,,si,18.2(a)(2),A3,penalizar,B
+8,Eliminación de la Regla 18.4 en Team Racing,RRS,18.2(a)(1),si,7,case|2,no,18.2(a)(2),A3,sin_penalizacion,—
+8,Eliminación de la Regla 18.4 en Team Racing,RRS,D1.1,no,,,no,18.2(a)(2),A3,sin_penalizacion,—
+8,Eliminación de la Regla 18.4 en Team Racing,RRS,18.4,no,,,no,18.2(a)(2),A3,sin_penalizacion,—
+8,Eliminación de la Regla 18.4 en Team Racing,CALL,J5,no,,,no,18.2(a)(2),A3,sin_penalizacion,—
+8,Eliminación de la Regla 18.4 en Team Racing,"RRS (citado, no en golden)",— → citó 18.2(a)(2),,,,si,18.2(a)(2),A3,sin_penalizacion,—
+8,Eliminación de la Regla 18.4 en Team Racing,"CALL (citado, no en golden)",— → citó A3,,,,si,18.2(a)(2),A3,sin_penalizacion,—
+9,Virada completada libre por proa en la zona,RRS,12,si,7,case|2,no,18.2(a)(2),A3,sin_penalizacion,—
+9,Virada completada libre por proa en la zona,RRS,13,si,3,call|A1,no,18.2(a)(2),A3,sin_penalizacion,—
+9,Virada completada libre por proa en la zona,RRS,15,si,7,case|2,no,18.2(a)(2),A3,sin_penalizacion,—
+9,Virada completada libre por proa en la zona,CALL,E6,no,,,no,18.2(a)(2),A3,sin_penalizacion,—
+9,Virada completada libre por proa en la zona,"RRS (citado, no en golden)",— → citó 18.2(a)(2),,,,si,18.2(a)(2),A3,sin_penalizacion,—
+9,Virada completada libre por proa en la zona,"CALL (citado, no en golden)",— → citó A3,,,,si,18.2(a)(2),A3,sin_penalizacion,—
+10,Contacto antes de completar la virada tras cruce,RRS,13,si,3,call|A1,no,14,A3,penalizar,B
+10,Contacto antes de completar la virada tras cruce,CALL,D4,no,,,no,14,A3,penalizar,B
+10,Contacto antes de completar la virada tras cruce,"RRS (citado, no en golden)",— → citó 14,,,,si,14,A3,penalizar,B
+10,Contacto antes de completar la virada tras cruce,"CALL (citado, no en golden)",— → citó A3,,,,si,14,A3,penalizar,B
+11,Táctica de frenado en la marca (The Trap),RRS,11,si,4,call|A2,no,15|14|2,A3,penalizar,X
+11,Táctica de frenado en la marca (The Trap),RRS,18.2,si,7,case|2,no,15|14|2,A3,penalizar,X
+11,Táctica de frenado en la marca (The Trap),CALL,J9,no,,,no,15|14|2,A3,penalizar,X
+11,Táctica de frenado en la marca (The Trap),"RRS (citado, no en golden)",— → citó 14,,,,si,15|14|2,A3,penalizar,X
+11,Táctica de frenado en la marca (The Trap),"RRS (citado, no en golden)",— → citó 15,,,,si,15|14|2,A3,penalizar,X
+11,Táctica de frenado en la marca (The Trap),"RRS (citado, no en golden)",— → citó 2,,,,si,15|14|2,A3,penalizar,X
+11,Táctica de frenado en la marca (The Trap),"CALL (citado, no en golden)",— → citó A3,,,,si,15|14|2,A3,penalizar,X
+12,Provocación de contacto deliberado (Antideportivo),RRS,10,si,7,case|2,no,14|16.1,A3,mixto,B
+12,Provocación de contacto deliberado (Antideportivo),RRS,D2.3(f),no,,,no,14|16.1,A3,mixto,B
+12,Provocación de contacto deliberado (Antideportivo),CALL,L1,no,,,no,14|16.1,A3,mixto,B
+12,Provocación de contacto deliberado (Antideportivo),"RRS (citado, no en golden)",— → citó 14,,,,si,14|16.1,A3,mixto,B
+12,Provocación de contacto deliberado (Antideportivo),"RRS (citado, no en golden)",— → citó 16.1,,,,si,14|16.1,A3,mixto,B
+12,Provocación de contacto deliberado (Antideportivo),"CALL (citado, no en golden)",— → citó A3,,,,si,14|16.1,A3,mixto,B
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",RRS,17,si,3,call|A1,si,16.1|17,A3,sin_penalizacion,—
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",CALL,G3,no,,,no,16.1|17,A3,sin_penalizacion,—
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17","RRS (citado, no en golden)",— → citó 16.1,,,,si,16.1|17,A3,sin_penalizacion,—
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17","CALL (citado, no en golden)",— → citó A3,,,,si,16.1|17,A3,sin_penalizacion,—
+14,Interferencia de un barco que ya terminó la regata,RRS,D1.1(e),no,,,no,—,A3,penalizar,Y
+14,Interferencia de un barco que ya terminó la regata,CALL,K1,no,,,no,—,A3,penalizar,Y
+14,Interferencia de un barco que ya terminó la regata,"CALL (citado, no en golden)",— → citó A3,,,,si,—,A3,penalizar,Y
+15,Virada en proa obligando a maniobra evitativa inmediata,RRS,13,si,7,case|27,no,—,—,penalizar,B
+15,Virada en proa obligando a maniobra evitativa inmediata,RRS,15,si,7,case|27,no,—,—,penalizar,B
+15,Virada en proa obligando a maniobra evitativa inmediata,CALL,D3,no,,,no,—,—,penalizar,B

@@ -15,7 +15,10 @@ if str(ROOT) not in sys.path:
 from regatas_assistant.config import Settings  # noqa: E402
 from regatas_assistant.eval.enrich import enrich_report, export_sidecars  # noqa: E402
 from regatas_assistant.eval.faithfulness import llm_for_judge, score_faithfulness  # noqa: E402
+from regatas_assistant.eval.faithfulness_csv import export_faithfulness_csv  # noqa: E402
 from regatas_assistant.eval.metrics import aggregate_metrics  # noqa: E402
+
+DIARIO_PATH = ROOT / "eval" / "diario_runs.json"
 
 
 def _build_llm(settings: Settings):
@@ -93,12 +96,17 @@ def score_run_dir(
         encoding="utf-8",
     )
     export_sidecars(report, run_dir)
+    by_case_csv, claims_csv = export_faithfulness_csv(
+        report, run_dir, diario_path=DIARIO_PATH
+    )
 
     agg = report.get("aggregate") or {}
     print("\n=== Faithfulness agregado ===")
     print(f"Media:    {agg.get('mean_faithfulness_rate')}")
     print(f"Estricta: {agg.get('mean_faithfulness_rate_strict')}")
     print(f"Actualizado: {report_path}")
+    print(f"CSV por caso: {by_case_csv}")
+    print(f"CSV detalle:  {claims_csv}")
     return report
 
 
