@@ -1,0 +1,475 @@
+case_id,titulo,metric,value,k,category
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_k_rules,1.0,8,retrieval
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_k_calls,1.0,8,retrieval
+1,Orzada brusca sin espacio para mantenerse alejado,mrr_rules,0.3333333333333333,,retrieval
+1,Orzada brusca sin espacio para mantenerse alejado,mrr_calls,0.3333333333333333,,retrieval
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_1,0.0,1,retrieval_curve_rules
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_2,0.0,2,retrieval_curve_rules
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_3,1.0,3,retrieval_curve_rules
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_4,1.0,4,retrieval_curve_rules
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_5,1.0,5,retrieval_curve_rules
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_6,1.0,6,retrieval_curve_rules
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_7,1.0,7,retrieval_curve_rules
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_8,1.0,8,retrieval_curve_rules
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_1,0.0,1,retrieval_curve_calls
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_2,0.0,2,retrieval_curve_calls
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_3,1.0,3,retrieval_curve_calls
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_4,1.0,4,retrieval_curve_calls
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_5,1.0,5,retrieval_curve_calls
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_6,1.0,6,retrieval_curve_calls
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_7,1.0,7,retrieval_curve_calls
+1,Orzada brusca sin espacio para mantenerse alejado,recall_at_8,1.0,8,retrieval_curve_calls
+1,Orzada brusca sin espacio para mantenerse alejado,citation_rrs_precision,0.0,,response_citation_rrs
+1,Orzada brusca sin espacio para mantenerse alejado,citation_rrs_recall,0.0,,response_citation_rrs
+1,Orzada brusca sin espacio para mantenerse alejado,citation_rrs_f1,0.0,,response_citation_rrs
+1,Orzada brusca sin espacio para mantenerse alejado,citation_calls_precision,0.0,,response_citation_calls
+1,Orzada brusca sin espacio para mantenerse alejado,citation_calls_recall,0.0,,response_citation_calls
+1,Orzada brusca sin espacio para mantenerse alejado,citation_calls_f1,0.0,,response_citation_calls
+1,Orzada brusca sin espacio para mantenerse alejado,token_jaccard_answer_context,0.024193548387096774,,response
+1,Orzada brusca sin espacio para mantenerse alejado,token_jaccard_answer_reference,0.17355371900826447,,response
+1,Orzada brusca sin espacio para mantenerse alejado,verdict_match,1.0,,response
+1,Orzada brusca sin espacio para mantenerse alejado,answer_char_len,1828,,volume
+1,Orzada brusca sin espacio para mantenerse alejado,context_char_len,10698,,volume
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_k_rules,1.0,8,retrieval
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_k_calls,1.0,8,retrieval
+2,Sobre-rotación del barco de barlovento proa al viento,mrr_rules,0.26666666666666666,,retrieval
+2,Sobre-rotación del barco de barlovento proa al viento,mrr_calls,0.2,,retrieval
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_1,0.0,1,retrieval_curve_rules
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_2,0.0,2,retrieval_curve_rules
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_3,0.5,3,retrieval_curve_rules
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_4,0.5,4,retrieval_curve_rules
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_5,1.0,5,retrieval_curve_rules
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_6,1.0,6,retrieval_curve_rules
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_7,1.0,7,retrieval_curve_rules
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_8,1.0,8,retrieval_curve_rules
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_1,0.0,1,retrieval_curve_calls
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_2,0.0,2,retrieval_curve_calls
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_3,0.0,3,retrieval_curve_calls
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_4,0.0,4,retrieval_curve_calls
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_5,1.0,5,retrieval_curve_calls
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_6,1.0,6,retrieval_curve_calls
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_7,1.0,7,retrieval_curve_calls
+2,Sobre-rotación del barco de barlovento proa al viento,recall_at_8,1.0,8,retrieval_curve_calls
+2,Sobre-rotación del barco de barlovento proa al viento,citation_rrs_precision,1.0,,response_citation_rrs
+2,Sobre-rotación del barco de barlovento proa al viento,citation_rrs_recall,0.5,,response_citation_rrs
+2,Sobre-rotación del barco de barlovento proa al viento,citation_rrs_f1,0.6666666666666666,,response_citation_rrs
+2,Sobre-rotación del barco de barlovento proa al viento,citation_calls_precision,1.0,,response_citation_calls
+2,Sobre-rotación del barco de barlovento proa al viento,citation_calls_recall,1.0,,response_citation_calls
+2,Sobre-rotación del barco de barlovento proa al viento,citation_calls_f1,1.0,,response_citation_calls
+2,Sobre-rotación del barco de barlovento proa al viento,citation_cases_precision,0.0,,response_citation_cases
+2,Sobre-rotación del barco de barlovento proa al viento,token_jaccard_answer_context,0.008968609865470852,,response
+2,Sobre-rotación del barco de barlovento proa al viento,token_jaccard_answer_reference,0.16379310344827586,,response
+2,Sobre-rotación del barco de barlovento proa al viento,verdict_match,1.0,,response
+2,Sobre-rotación del barco de barlovento proa al viento,answer_char_len,1813,,volume
+2,Sobre-rotación del barco de barlovento proa al viento,context_char_len,9259,,volume
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_k_rules,0.5,8,retrieval
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_k_calls,0.0,8,retrieval
+3,Retraso en la respuesta al solapamiento desde atrás,mrr_rules,0.125,,retrieval
+3,Retraso en la respuesta al solapamiento desde atrás,mrr_calls,0.0,,retrieval
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_1,0.0,1,retrieval_curve_rules
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_2,0.0,2,retrieval_curve_rules
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_3,0.0,3,retrieval_curve_rules
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_4,0.5,4,retrieval_curve_rules
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_5,0.5,5,retrieval_curve_rules
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_6,0.5,6,retrieval_curve_rules
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_7,0.5,7,retrieval_curve_rules
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_8,0.5,8,retrieval_curve_rules
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_1,0.0,1,retrieval_curve_calls
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_2,0.0,2,retrieval_curve_calls
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_3,0.0,3,retrieval_curve_calls
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_4,0.0,4,retrieval_curve_calls
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_5,0.0,5,retrieval_curve_calls
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_6,0.0,6,retrieval_curve_calls
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_7,0.0,7,retrieval_curve_calls
+3,Retraso en la respuesta al solapamiento desde atrás,recall_at_8,0.0,8,retrieval_curve_calls
+3,Retraso en la respuesta al solapamiento desde atrás,citation_rrs_precision,0.0,,response_citation_rrs
+3,Retraso en la respuesta al solapamiento desde atrás,citation_rrs_recall,0.0,,response_citation_rrs
+3,Retraso en la respuesta al solapamiento desde atrás,citation_rrs_f1,0.0,,response_citation_rrs
+3,Retraso en la respuesta al solapamiento desde atrás,citation_calls_precision,0.0,,response_citation_calls
+3,Retraso en la respuesta al solapamiento desde atrás,citation_calls_recall,0.0,,response_citation_calls
+3,Retraso en la respuesta al solapamiento desde atrás,citation_calls_f1,0.0,,response_citation_calls
+3,Retraso en la respuesta al solapamiento desde atrás,token_jaccard_answer_context,0.008602150537634409,,response
+3,Retraso en la respuesta al solapamiento desde atrás,token_jaccard_answer_reference,0.17757009345794392,,response
+3,Retraso en la respuesta al solapamiento desde atrás,verdict_match,1.0,,response
+3,Retraso en la respuesta al solapamiento desde atrás,answer_char_len,1777,,volume
+3,Retraso en la respuesta al solapamiento desde atrás,context_char_len,9182,,volume
+4,Derecho a espacio de marca y pérdida por virada,recall_at_k_rules,1.0,8,retrieval
+4,Derecho a espacio de marca y pérdida por virada,recall_at_k_calls,0.0,8,retrieval
+4,Derecho a espacio de marca y pérdida por virada,mrr_rules,0.16666666666666666,,retrieval
+4,Derecho a espacio de marca y pérdida por virada,mrr_calls,0.0,,retrieval
+4,Derecho a espacio de marca y pérdida por virada,recall_at_1,0.0,1,retrieval_curve_rules
+4,Derecho a espacio de marca y pérdida por virada,recall_at_2,0.0,2,retrieval_curve_rules
+4,Derecho a espacio de marca y pérdida por virada,recall_at_3,0.0,3,retrieval_curve_rules
+4,Derecho a espacio de marca y pérdida por virada,recall_at_4,0.0,4,retrieval_curve_rules
+4,Derecho a espacio de marca y pérdida por virada,recall_at_5,0.0,5,retrieval_curve_rules
+4,Derecho a espacio de marca y pérdida por virada,recall_at_6,1.0,6,retrieval_curve_rules
+4,Derecho a espacio de marca y pérdida por virada,recall_at_7,1.0,7,retrieval_curve_rules
+4,Derecho a espacio de marca y pérdida por virada,recall_at_8,1.0,8,retrieval_curve_rules
+4,Derecho a espacio de marca y pérdida por virada,recall_at_1,0.0,1,retrieval_curve_calls
+4,Derecho a espacio de marca y pérdida por virada,recall_at_2,0.0,2,retrieval_curve_calls
+4,Derecho a espacio de marca y pérdida por virada,recall_at_3,0.0,3,retrieval_curve_calls
+4,Derecho a espacio de marca y pérdida por virada,recall_at_4,0.0,4,retrieval_curve_calls
+4,Derecho a espacio de marca y pérdida por virada,recall_at_5,0.0,5,retrieval_curve_calls
+4,Derecho a espacio de marca y pérdida por virada,recall_at_6,0.0,6,retrieval_curve_calls
+4,Derecho a espacio de marca y pérdida por virada,recall_at_7,0.0,7,retrieval_curve_calls
+4,Derecho a espacio de marca y pérdida por virada,recall_at_8,0.0,8,retrieval_curve_calls
+4,Derecho a espacio de marca y pérdida por virada,citation_rrs_precision,0.0,,response_citation_rrs
+4,Derecho a espacio de marca y pérdida por virada,citation_rrs_recall,0.0,,response_citation_rrs
+4,Derecho a espacio de marca y pérdida por virada,citation_rrs_f1,0.0,,response_citation_rrs
+4,Derecho a espacio de marca y pérdida por virada,citation_calls_precision,0.0,,response_citation_calls
+4,Derecho a espacio de marca y pérdida por virada,citation_calls_recall,0.0,,response_citation_calls
+4,Derecho a espacio de marca y pérdida por virada,citation_calls_f1,0.0,,response_citation_calls
+4,Derecho a espacio de marca y pérdida por virada,citation_cases_precision,0.0,,response_citation_cases
+4,Derecho a espacio de marca y pérdida por virada,token_jaccard_answer_context,0.011013215859030838,,response
+4,Derecho a espacio de marca y pérdida por virada,token_jaccard_answer_reference,0.14516129032258066,,response
+4,Derecho a espacio de marca y pérdida por virada,verdict_match,0.0,,response
+4,Derecho a espacio de marca y pérdida por virada,answer_char_len,1700,,volume
+4,Derecho a espacio de marca y pérdida por virada,context_char_len,10769,,volume
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_k_rules,1.0,8,retrieval
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_k_calls,0.0,8,retrieval
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),mrr_rules,1.0,,retrieval
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),mrr_calls,0.0,,retrieval
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_1,1.0,1,retrieval_curve_rules
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_2,1.0,2,retrieval_curve_rules
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_3,1.0,3,retrieval_curve_rules
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_4,1.0,4,retrieval_curve_rules
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_5,1.0,5,retrieval_curve_rules
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_6,1.0,6,retrieval_curve_rules
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_7,1.0,7,retrieval_curve_rules
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_8,1.0,8,retrieval_curve_rules
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_1,0.0,1,retrieval_curve_calls
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_2,0.0,2,retrieval_curve_calls
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_3,0.0,3,retrieval_curve_calls
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_4,0.0,4,retrieval_curve_calls
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_5,0.0,5,retrieval_curve_calls
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_6,0.0,6,retrieval_curve_calls
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_7,0.0,7,retrieval_curve_calls
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),recall_at_8,0.0,8,retrieval_curve_calls
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_rrs_precision,0.0,,response_citation_rrs
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_rrs_recall,0.0,,response_citation_rrs
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_rrs_f1,0.0,,response_citation_rrs
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_calls_precision,0.0,,response_citation_calls
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_calls_recall,0.0,,response_citation_calls
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_calls_f1,0.0,,response_citation_calls
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),citation_cases_precision,0.0,,response_citation_cases
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),token_jaccard_answer_context,0.019464720194647202,,response
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),token_jaccard_answer_reference,0.14634146341463414,,response
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),verdict_match,1.0,,response
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),answer_char_len,2010,,volume
+5,Cambio de rumbo táctico en babor-estribor (Anti-Hunt),context_char_len,8134,,volume
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_k_rules,1.0,8,retrieval
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_k_calls,0.0,8,retrieval
+6,Incapacidad física de dar espacio de marca al solapar,mrr_rules,0.16666666666666666,,retrieval
+6,Incapacidad física de dar espacio de marca al solapar,mrr_calls,0.0,,retrieval
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_1,0.0,1,retrieval_curve_rules
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_2,0.0,2,retrieval_curve_rules
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_3,0.0,3,retrieval_curve_rules
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_4,0.0,4,retrieval_curve_rules
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_5,0.0,5,retrieval_curve_rules
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_6,1.0,6,retrieval_curve_rules
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_7,1.0,7,retrieval_curve_rules
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_8,1.0,8,retrieval_curve_rules
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_1,0.0,1,retrieval_curve_calls
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_2,0.0,2,retrieval_curve_calls
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_3,0.0,3,retrieval_curve_calls
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_4,0.0,4,retrieval_curve_calls
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_5,0.0,5,retrieval_curve_calls
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_6,0.0,6,retrieval_curve_calls
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_7,0.0,7,retrieval_curve_calls
+6,Incapacidad física de dar espacio de marca al solapar,recall_at_8,0.0,8,retrieval_curve_calls
+6,Incapacidad física de dar espacio de marca al solapar,citation_rrs_precision,0.0,,response_citation_rrs
+6,Incapacidad física de dar espacio de marca al solapar,citation_rrs_recall,0.0,,response_citation_rrs
+6,Incapacidad física de dar espacio de marca al solapar,citation_rrs_f1,0.0,,response_citation_rrs
+6,Incapacidad física de dar espacio de marca al solapar,citation_calls_precision,0.0,,response_citation_calls
+6,Incapacidad física de dar espacio de marca al solapar,citation_calls_recall,0.0,,response_citation_calls
+6,Incapacidad física de dar espacio de marca al solapar,citation_calls_f1,0.0,,response_citation_calls
+6,Incapacidad física de dar espacio de marca al solapar,citation_cases_precision,0.0,,response_citation_cases
+6,Incapacidad física de dar espacio de marca al solapar,token_jaccard_answer_context,0.004597701149425287,,response
+6,Incapacidad física de dar espacio de marca al solapar,token_jaccard_answer_reference,0.19672131147540983,,response
+6,Incapacidad física de dar espacio de marca al solapar,verdict_match,1.0,,response
+6,Incapacidad física de dar espacio de marca al solapar,answer_char_len,2021,,volume
+6,Incapacidad física de dar espacio de marca al solapar,context_char_len,9958,,volume
+7,Interferencia durante el cumplimiento de una penalización,recall_at_k_rules,1.0,8,retrieval
+7,Interferencia durante el cumplimiento de una penalización,recall_at_k_calls,1.0,8,retrieval
+7,Interferencia durante el cumplimiento de una penalización,mrr_rules,0.25,,retrieval
+7,Interferencia durante el cumplimiento de una penalización,mrr_calls,0.25,,retrieval
+7,Interferencia durante el cumplimiento de una penalización,recall_at_1,0.0,1,retrieval_curve_rules
+7,Interferencia durante el cumplimiento de una penalización,recall_at_2,0.0,2,retrieval_curve_rules
+7,Interferencia durante el cumplimiento de una penalización,recall_at_3,0.0,3,retrieval_curve_rules
+7,Interferencia durante el cumplimiento de una penalización,recall_at_4,1.0,4,retrieval_curve_rules
+7,Interferencia durante el cumplimiento de una penalización,recall_at_5,1.0,5,retrieval_curve_rules
+7,Interferencia durante el cumplimiento de una penalización,recall_at_6,1.0,6,retrieval_curve_rules
+7,Interferencia durante el cumplimiento de una penalización,recall_at_7,1.0,7,retrieval_curve_rules
+7,Interferencia durante el cumplimiento de una penalización,recall_at_8,1.0,8,retrieval_curve_rules
+7,Interferencia durante el cumplimiento de una penalización,recall_at_1,0.0,1,retrieval_curve_calls
+7,Interferencia durante el cumplimiento de una penalización,recall_at_2,0.0,2,retrieval_curve_calls
+7,Interferencia durante el cumplimiento de una penalización,recall_at_3,0.0,3,retrieval_curve_calls
+7,Interferencia durante el cumplimiento de una penalización,recall_at_4,1.0,4,retrieval_curve_calls
+7,Interferencia durante el cumplimiento de una penalización,recall_at_5,1.0,5,retrieval_curve_calls
+7,Interferencia durante el cumplimiento de una penalización,recall_at_6,1.0,6,retrieval_curve_calls
+7,Interferencia durante el cumplimiento de una penalización,recall_at_7,1.0,7,retrieval_curve_calls
+7,Interferencia durante el cumplimiento de una penalización,recall_at_8,1.0,8,retrieval_curve_calls
+7,Interferencia durante el cumplimiento de una penalización,citation_rrs_precision,0.0,,response_citation_rrs
+7,Interferencia durante el cumplimiento de una penalización,citation_rrs_recall,0.0,,response_citation_rrs
+7,Interferencia durante el cumplimiento de una penalización,citation_rrs_f1,0.0,,response_citation_rrs
+7,Interferencia durante el cumplimiento de una penalización,citation_calls_precision,0.0,,response_citation_calls
+7,Interferencia durante el cumplimiento de una penalización,citation_calls_recall,0.0,,response_citation_calls
+7,Interferencia durante el cumplimiento de una penalización,citation_calls_f1,0.0,,response_citation_calls
+7,Interferencia durante el cumplimiento de una penalización,token_jaccard_answer_context,0.004889975550122249,,response
+7,Interferencia durante el cumplimiento de una penalización,token_jaccard_answer_reference,0.14130434782608695,,response
+7,Interferencia durante el cumplimiento de una penalización,verdict_match,0.0,,response
+7,Interferencia durante el cumplimiento de una penalización,answer_char_len,1500,,volume
+7,Interferencia durante el cumplimiento de una penalización,context_char_len,7729,,volume
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_k_rules,0.6666666666666666,8,retrieval
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_k_calls,0.0,8,retrieval
+8,Eliminación de la Regla 18.4 en Team Racing,mrr_rules,0.4166666666666667,,retrieval
+8,Eliminación de la Regla 18.4 en Team Racing,mrr_calls,0.0,,retrieval
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_1,0.3333333333333333,1,retrieval_curve_rules
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_2,0.3333333333333333,2,retrieval_curve_rules
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_3,0.3333333333333333,3,retrieval_curve_rules
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_4,0.6666666666666666,4,retrieval_curve_rules
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_5,0.6666666666666666,5,retrieval_curve_rules
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_6,0.6666666666666666,6,retrieval_curve_rules
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_7,0.6666666666666666,7,retrieval_curve_rules
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_8,0.6666666666666666,8,retrieval_curve_rules
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_1,0.0,1,retrieval_curve_calls
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_2,0.0,2,retrieval_curve_calls
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_3,0.0,3,retrieval_curve_calls
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_4,0.0,4,retrieval_curve_calls
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_5,0.0,5,retrieval_curve_calls
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_6,0.0,6,retrieval_curve_calls
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_7,0.0,7,retrieval_curve_calls
+8,Eliminación de la Regla 18.4 en Team Racing,recall_at_8,0.0,8,retrieval_curve_calls
+8,Eliminación de la Regla 18.4 en Team Racing,citation_rrs_precision,0.3333333333333333,,response_citation_rrs
+8,Eliminación de la Regla 18.4 en Team Racing,citation_rrs_recall,0.3333333333333333,,response_citation_rrs
+8,Eliminación de la Regla 18.4 en Team Racing,citation_rrs_f1,0.3333333333333333,,response_citation_rrs
+8,Eliminación de la Regla 18.4 en Team Racing,citation_calls_precision,0.0,,response_citation_calls
+8,Eliminación de la Regla 18.4 en Team Racing,citation_calls_recall,0.0,,response_citation_calls
+8,Eliminación de la Regla 18.4 en Team Racing,citation_calls_f1,0.0,,response_citation_calls
+8,Eliminación de la Regla 18.4 en Team Racing,citation_cases_precision,0.0,,response_citation_cases
+8,Eliminación de la Regla 18.4 en Team Racing,token_jaccard_answer_context,0.008310249307479225,,response
+8,Eliminación de la Regla 18.4 en Team Racing,token_jaccard_answer_reference,0.23333333333333334,,response
+8,Eliminación de la Regla 18.4 en Team Racing,verdict_match,0.0,,response
+8,Eliminación de la Regla 18.4 en Team Racing,answer_char_len,1449,,volume
+8,Eliminación de la Regla 18.4 en Team Racing,context_char_len,8921,,volume
+9,Virada completada libre por proa en la zona,recall_at_k_rules,0.6666666666666666,8,retrieval
+9,Virada completada libre por proa en la zona,recall_at_k_calls,0.0,8,retrieval
+9,Virada completada libre por proa en la zona,mrr_rules,0.11428571428571428,,retrieval
+9,Virada completada libre por proa en la zona,mrr_calls,0.0,,retrieval
+9,Virada completada libre por proa en la zona,recall_at_1,0.0,1,retrieval_curve_rules
+9,Virada completada libre por proa en la zona,recall_at_2,0.0,2,retrieval_curve_rules
+9,Virada completada libre por proa en la zona,recall_at_3,0.0,3,retrieval_curve_rules
+9,Virada completada libre por proa en la zona,recall_at_4,0.0,4,retrieval_curve_rules
+9,Virada completada libre por proa en la zona,recall_at_5,0.3333333333333333,5,retrieval_curve_rules
+9,Virada completada libre por proa en la zona,recall_at_6,0.3333333333333333,6,retrieval_curve_rules
+9,Virada completada libre por proa en la zona,recall_at_7,0.6666666666666666,7,retrieval_curve_rules
+9,Virada completada libre por proa en la zona,recall_at_8,0.6666666666666666,8,retrieval_curve_rules
+9,Virada completada libre por proa en la zona,recall_at_1,0.0,1,retrieval_curve_calls
+9,Virada completada libre por proa en la zona,recall_at_2,0.0,2,retrieval_curve_calls
+9,Virada completada libre por proa en la zona,recall_at_3,0.0,3,retrieval_curve_calls
+9,Virada completada libre por proa en la zona,recall_at_4,0.0,4,retrieval_curve_calls
+9,Virada completada libre por proa en la zona,recall_at_5,0.0,5,retrieval_curve_calls
+9,Virada completada libre por proa en la zona,recall_at_6,0.0,6,retrieval_curve_calls
+9,Virada completada libre por proa en la zona,recall_at_7,0.0,7,retrieval_curve_calls
+9,Virada completada libre por proa en la zona,recall_at_8,0.0,8,retrieval_curve_calls
+9,Virada completada libre por proa en la zona,citation_rrs_precision,0.0,,response_citation_rrs
+9,Virada completada libre por proa en la zona,citation_rrs_recall,0.0,,response_citation_rrs
+9,Virada completada libre por proa en la zona,citation_rrs_f1,0.0,,response_citation_rrs
+9,Virada completada libre por proa en la zona,citation_calls_precision,0.0,,response_citation_calls
+9,Virada completada libre por proa en la zona,citation_calls_recall,0.0,,response_citation_calls
+9,Virada completada libre por proa en la zona,citation_calls_f1,0.0,,response_citation_calls
+9,Virada completada libre por proa en la zona,token_jaccard_answer_context,0.005154639175257732,,response
+9,Virada completada libre por proa en la zona,token_jaccard_answer_reference,0.18085106382978725,,response
+9,Virada completada libre por proa en la zona,verdict_match,0.0,,response
+9,Virada completada libre por proa en la zona,answer_char_len,1092,,volume
+9,Virada completada libre por proa en la zona,context_char_len,7215,,volume
+10,Contacto antes de completar la virada tras cruce,recall_at_k_rules,1.0,8,retrieval
+10,Contacto antes de completar la virada tras cruce,recall_at_k_calls,0.0,8,retrieval
+10,Contacto antes de completar la virada tras cruce,mrr_rules,0.25,,retrieval
+10,Contacto antes de completar la virada tras cruce,mrr_calls,0.0,,retrieval
+10,Contacto antes de completar la virada tras cruce,recall_at_1,0.0,1,retrieval_curve_rules
+10,Contacto antes de completar la virada tras cruce,recall_at_2,0.0,2,retrieval_curve_rules
+10,Contacto antes de completar la virada tras cruce,recall_at_3,0.0,3,retrieval_curve_rules
+10,Contacto antes de completar la virada tras cruce,recall_at_4,1.0,4,retrieval_curve_rules
+10,Contacto antes de completar la virada tras cruce,recall_at_5,1.0,5,retrieval_curve_rules
+10,Contacto antes de completar la virada tras cruce,recall_at_6,1.0,6,retrieval_curve_rules
+10,Contacto antes de completar la virada tras cruce,recall_at_7,1.0,7,retrieval_curve_rules
+10,Contacto antes de completar la virada tras cruce,recall_at_8,1.0,8,retrieval_curve_rules
+10,Contacto antes de completar la virada tras cruce,recall_at_1,0.0,1,retrieval_curve_calls
+10,Contacto antes de completar la virada tras cruce,recall_at_2,0.0,2,retrieval_curve_calls
+10,Contacto antes de completar la virada tras cruce,recall_at_3,0.0,3,retrieval_curve_calls
+10,Contacto antes de completar la virada tras cruce,recall_at_4,0.0,4,retrieval_curve_calls
+10,Contacto antes de completar la virada tras cruce,recall_at_5,0.0,5,retrieval_curve_calls
+10,Contacto antes de completar la virada tras cruce,recall_at_6,0.0,6,retrieval_curve_calls
+10,Contacto antes de completar la virada tras cruce,recall_at_7,0.0,7,retrieval_curve_calls
+10,Contacto antes de completar la virada tras cruce,recall_at_8,0.0,8,retrieval_curve_calls
+10,Contacto antes de completar la virada tras cruce,citation_rrs_precision,0.0,,response_citation_rrs
+10,Contacto antes de completar la virada tras cruce,citation_rrs_recall,0.0,,response_citation_rrs
+10,Contacto antes de completar la virada tras cruce,citation_rrs_f1,0.0,,response_citation_rrs
+10,Contacto antes de completar la virada tras cruce,citation_calls_precision,0.0,,response_citation_calls
+10,Contacto antes de completar la virada tras cruce,citation_calls_recall,0.0,,response_citation_calls
+10,Contacto antes de completar la virada tras cruce,citation_calls_f1,0.0,,response_citation_calls
+10,Contacto antes de completar la virada tras cruce,token_jaccard_answer_context,0.010050251256281407,,response
+10,Contacto antes de completar la virada tras cruce,token_jaccard_answer_reference,0.14516129032258066,,response
+10,Contacto antes de completar la virada tras cruce,verdict_match,0.0,,response
+10,Contacto antes de completar la virada tras cruce,answer_char_len,1797,,volume
+10,Contacto antes de completar la virada tras cruce,context_char_len,7217,,volume
+11,Táctica de frenado en la marca (The Trap),recall_at_k_rules,1.0,8,retrieval
+11,Táctica de frenado en la marca (The Trap),recall_at_k_calls,0.0,8,retrieval
+11,Táctica de frenado en la marca (The Trap),mrr_rules,0.225,,retrieval
+11,Táctica de frenado en la marca (The Trap),mrr_calls,0.0,,retrieval
+11,Táctica de frenado en la marca (The Trap),recall_at_1,0.0,1,retrieval_curve_rules
+11,Táctica de frenado en la marca (The Trap),recall_at_2,0.0,2,retrieval_curve_rules
+11,Táctica de frenado en la marca (The Trap),recall_at_3,0.0,3,retrieval_curve_rules
+11,Táctica de frenado en la marca (The Trap),recall_at_4,0.5,4,retrieval_curve_rules
+11,Táctica de frenado en la marca (The Trap),recall_at_5,1.0,5,retrieval_curve_rules
+11,Táctica de frenado en la marca (The Trap),recall_at_6,1.0,6,retrieval_curve_rules
+11,Táctica de frenado en la marca (The Trap),recall_at_7,1.0,7,retrieval_curve_rules
+11,Táctica de frenado en la marca (The Trap),recall_at_8,1.0,8,retrieval_curve_rules
+11,Táctica de frenado en la marca (The Trap),recall_at_1,0.0,1,retrieval_curve_calls
+11,Táctica de frenado en la marca (The Trap),recall_at_2,0.0,2,retrieval_curve_calls
+11,Táctica de frenado en la marca (The Trap),recall_at_3,0.0,3,retrieval_curve_calls
+11,Táctica de frenado en la marca (The Trap),recall_at_4,0.0,4,retrieval_curve_calls
+11,Táctica de frenado en la marca (The Trap),recall_at_5,0.0,5,retrieval_curve_calls
+11,Táctica de frenado en la marca (The Trap),recall_at_6,0.0,6,retrieval_curve_calls
+11,Táctica de frenado en la marca (The Trap),recall_at_7,0.0,7,retrieval_curve_calls
+11,Táctica de frenado en la marca (The Trap),recall_at_8,0.0,8,retrieval_curve_calls
+11,Táctica de frenado en la marca (The Trap),citation_rrs_precision,0.0,,response_citation_rrs
+11,Táctica de frenado en la marca (The Trap),citation_rrs_recall,0.0,,response_citation_rrs
+11,Táctica de frenado en la marca (The Trap),citation_rrs_f1,0.0,,response_citation_rrs
+11,Táctica de frenado en la marca (The Trap),citation_calls_precision,0.0,,response_citation_calls
+11,Táctica de frenado en la marca (The Trap),citation_calls_recall,0.0,,response_citation_calls
+11,Táctica de frenado en la marca (The Trap),citation_calls_f1,0.0,,response_citation_calls
+11,Táctica de frenado en la marca (The Trap),citation_cases_precision,0.0,,response_citation_cases
+11,Táctica de frenado en la marca (The Trap),token_jaccard_answer_context,0.008108108108108109,,response
+11,Táctica de frenado en la marca (The Trap),token_jaccard_answer_reference,0.1827956989247312,,response
+11,Táctica de frenado en la marca (The Trap),verdict_match,1.0,,response
+11,Táctica de frenado en la marca (The Trap),answer_char_len,1280,,volume
+11,Táctica de frenado en la marca (The Trap),context_char_len,8304,,volume
+12,Provocación de contacto deliberado (Antideportivo),recall_at_k_rules,0.5,8,retrieval
+12,Provocación de contacto deliberado (Antideportivo),recall_at_k_calls,0.0,8,retrieval
+12,Provocación de contacto deliberado (Antideportivo),mrr_rules,0.125,,retrieval
+12,Provocación de contacto deliberado (Antideportivo),mrr_calls,0.0,,retrieval
+12,Provocación de contacto deliberado (Antideportivo),recall_at_1,0.0,1,retrieval_curve_rules
+12,Provocación de contacto deliberado (Antideportivo),recall_at_2,0.0,2,retrieval_curve_rules
+12,Provocación de contacto deliberado (Antideportivo),recall_at_3,0.0,3,retrieval_curve_rules
+12,Provocación de contacto deliberado (Antideportivo),recall_at_4,0.5,4,retrieval_curve_rules
+12,Provocación de contacto deliberado (Antideportivo),recall_at_5,0.5,5,retrieval_curve_rules
+12,Provocación de contacto deliberado (Antideportivo),recall_at_6,0.5,6,retrieval_curve_rules
+12,Provocación de contacto deliberado (Antideportivo),recall_at_7,0.5,7,retrieval_curve_rules
+12,Provocación de contacto deliberado (Antideportivo),recall_at_8,0.5,8,retrieval_curve_rules
+12,Provocación de contacto deliberado (Antideportivo),recall_at_1,0.0,1,retrieval_curve_calls
+12,Provocación de contacto deliberado (Antideportivo),recall_at_2,0.0,2,retrieval_curve_calls
+12,Provocación de contacto deliberado (Antideportivo),recall_at_3,0.0,3,retrieval_curve_calls
+12,Provocación de contacto deliberado (Antideportivo),recall_at_4,0.0,4,retrieval_curve_calls
+12,Provocación de contacto deliberado (Antideportivo),recall_at_5,0.0,5,retrieval_curve_calls
+12,Provocación de contacto deliberado (Antideportivo),recall_at_6,0.0,6,retrieval_curve_calls
+12,Provocación de contacto deliberado (Antideportivo),recall_at_7,0.0,7,retrieval_curve_calls
+12,Provocación de contacto deliberado (Antideportivo),recall_at_8,0.0,8,retrieval_curve_calls
+12,Provocación de contacto deliberado (Antideportivo),citation_rrs_precision,0.0,,response_citation_rrs
+12,Provocación de contacto deliberado (Antideportivo),citation_rrs_recall,0.0,,response_citation_rrs
+12,Provocación de contacto deliberado (Antideportivo),citation_rrs_f1,0.0,,response_citation_rrs
+12,Provocación de contacto deliberado (Antideportivo),citation_calls_precision,0.0,,response_citation_calls
+12,Provocación de contacto deliberado (Antideportivo),citation_calls_recall,0.0,,response_citation_calls
+12,Provocación de contacto deliberado (Antideportivo),citation_calls_f1,0.0,,response_citation_calls
+12,Provocación de contacto deliberado (Antideportivo),token_jaccard_answer_context,0.005305039787798408,,response
+12,Provocación de contacto deliberado (Antideportivo),token_jaccard_answer_reference,0.1836734693877551,,response
+12,Provocación de contacto deliberado (Antideportivo),verdict_match,0.0,,response
+12,Provocación de contacto deliberado (Antideportivo),answer_char_len,1425,,volume
+12,Provocación de contacto deliberado (Antideportivo),context_char_len,8252,,volume
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_k_rules,1.0,8,retrieval
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_k_calls,0.0,8,retrieval
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",mrr_rules,0.3333333333333333,,retrieval
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",mrr_calls,0.0,,retrieval
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_1,0.0,1,retrieval_curve_rules
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_2,0.0,2,retrieval_curve_rules
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_3,1.0,3,retrieval_curve_rules
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_4,1.0,4,retrieval_curve_rules
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_5,1.0,5,retrieval_curve_rules
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_6,1.0,6,retrieval_curve_rules
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_7,1.0,7,retrieval_curve_rules
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_8,1.0,8,retrieval_curve_rules
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_1,0.0,1,retrieval_curve_calls
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_2,0.0,2,retrieval_curve_calls
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_3,0.0,3,retrieval_curve_calls
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_4,0.0,4,retrieval_curve_calls
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_5,0.0,5,retrieval_curve_calls
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_6,0.0,6,retrieval_curve_calls
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_7,0.0,7,retrieval_curve_calls
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",recall_at_8,0.0,8,retrieval_curve_calls
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",citation_rrs_precision,1.0,,response_citation_rrs
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",citation_rrs_recall,1.0,,response_citation_rrs
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",citation_rrs_f1,1.0,,response_citation_rrs
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",citation_calls_precision,0.0,,response_citation_calls
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",citation_calls_recall,0.0,,response_citation_calls
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",citation_calls_f1,0.0,,response_citation_calls
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",citation_cases_precision,0.0,,response_citation_cases
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",token_jaccard_answer_context,0.057649667405764965,,response
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",token_jaccard_answer_reference,0.07602339181286549,,response
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",verdict_match,0.0,,response
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",answer_char_len,2184,,volume
+13,"Trasluchada para ""apagar"" la restricción de la Regla 17",context_char_len,7671,,volume
+14,Interferencia de un barco que ya terminó la regata,recall_at_k_rules,0.0,8,retrieval
+14,Interferencia de un barco que ya terminó la regata,recall_at_k_calls,0.0,8,retrieval
+14,Interferencia de un barco que ya terminó la regata,mrr_rules,0.0,,retrieval
+14,Interferencia de un barco que ya terminó la regata,mrr_calls,0.0,,retrieval
+14,Interferencia de un barco que ya terminó la regata,recall_at_1,0.0,1,retrieval_curve_rules
+14,Interferencia de un barco que ya terminó la regata,recall_at_2,0.0,2,retrieval_curve_rules
+14,Interferencia de un barco que ya terminó la regata,recall_at_3,0.0,3,retrieval_curve_rules
+14,Interferencia de un barco que ya terminó la regata,recall_at_4,0.0,4,retrieval_curve_rules
+14,Interferencia de un barco que ya terminó la regata,recall_at_5,0.0,5,retrieval_curve_rules
+14,Interferencia de un barco que ya terminó la regata,recall_at_6,0.0,6,retrieval_curve_rules
+14,Interferencia de un barco que ya terminó la regata,recall_at_7,0.0,7,retrieval_curve_rules
+14,Interferencia de un barco que ya terminó la regata,recall_at_8,0.0,8,retrieval_curve_rules
+14,Interferencia de un barco que ya terminó la regata,recall_at_1,0.0,1,retrieval_curve_calls
+14,Interferencia de un barco que ya terminó la regata,recall_at_2,0.0,2,retrieval_curve_calls
+14,Interferencia de un barco que ya terminó la regata,recall_at_3,0.0,3,retrieval_curve_calls
+14,Interferencia de un barco que ya terminó la regata,recall_at_4,0.0,4,retrieval_curve_calls
+14,Interferencia de un barco que ya terminó la regata,recall_at_5,0.0,5,retrieval_curve_calls
+14,Interferencia de un barco que ya terminó la regata,recall_at_6,0.0,6,retrieval_curve_calls
+14,Interferencia de un barco que ya terminó la regata,recall_at_7,0.0,7,retrieval_curve_calls
+14,Interferencia de un barco que ya terminó la regata,recall_at_8,0.0,8,retrieval_curve_calls
+14,Interferencia de un barco que ya terminó la regata,citation_rrs_precision,0.0,,response_citation_rrs
+14,Interferencia de un barco que ya terminó la regata,citation_rrs_recall,0.0,,response_citation_rrs
+14,Interferencia de un barco que ya terminó la regata,citation_rrs_f1,0.0,,response_citation_rrs
+14,Interferencia de un barco que ya terminó la regata,citation_calls_precision,0.0,,response_citation_calls
+14,Interferencia de un barco que ya terminó la regata,citation_calls_recall,0.0,,response_citation_calls
+14,Interferencia de un barco que ya terminó la regata,citation_calls_f1,0.0,,response_citation_calls
+14,Interferencia de un barco que ya terminó la regata,citation_cases_precision,0.0,,response_citation_cases
+14,Interferencia de un barco que ya terminó la regata,token_jaccard_answer_context,0.004819277108433735,,response
+14,Interferencia de un barco que ya terminó la regata,token_jaccard_answer_reference,0.10569105691056911,,response
+14,Interferencia de un barco que ya terminó la regata,verdict_match,0.0,,response
+14,Interferencia de un barco que ya terminó la regata,answer_char_len,1897,,volume
+14,Interferencia de un barco que ya terminó la regata,context_char_len,8083,,volume
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_k_rules,0.0,8,retrieval
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_k_calls,0.0,8,retrieval
+15,Virada en proa obligando a maniobra evitativa inmediata,mrr_rules,0.0,,retrieval
+15,Virada en proa obligando a maniobra evitativa inmediata,mrr_calls,0.0,,retrieval
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_1,0.0,1,retrieval_curve_rules
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_2,0.0,2,retrieval_curve_rules
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_3,0.0,3,retrieval_curve_rules
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_4,0.0,4,retrieval_curve_rules
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_5,0.0,5,retrieval_curve_rules
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_6,0.0,6,retrieval_curve_rules
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_7,0.0,7,retrieval_curve_rules
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_8,0.0,8,retrieval_curve_rules
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_1,0.0,1,retrieval_curve_calls
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_2,0.0,2,retrieval_curve_calls
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_3,0.0,3,retrieval_curve_calls
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_4,0.0,4,retrieval_curve_calls
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_5,0.0,5,retrieval_curve_calls
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_6,0.0,6,retrieval_curve_calls
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_7,0.0,7,retrieval_curve_calls
+15,Virada en proa obligando a maniobra evitativa inmediata,recall_at_8,0.0,8,retrieval_curve_calls
+15,Virada en proa obligando a maniobra evitativa inmediata,citation_rrs_precision,0.0,,response_citation_rrs
+15,Virada en proa obligando a maniobra evitativa inmediata,citation_rrs_recall,0.0,,response_citation_rrs
+15,Virada en proa obligando a maniobra evitativa inmediata,citation_rrs_f1,0.0,,response_citation_rrs
+15,Virada en proa obligando a maniobra evitativa inmediata,citation_calls_precision,0.0,,response_citation_calls
+15,Virada en proa obligando a maniobra evitativa inmediata,citation_calls_recall,0.0,,response_citation_calls
+15,Virada en proa obligando a maniobra evitativa inmediata,citation_calls_f1,0.0,,response_citation_calls
+15,Virada en proa obligando a maniobra evitativa inmediata,citation_cases_precision,0.0,,response_citation_cases
+15,Virada en proa obligando a maniobra evitativa inmediata,token_jaccard_answer_context,0.008830022075055188,,response
+15,Virada en proa obligando a maniobra evitativa inmediata,token_jaccard_answer_reference,0.14285714285714285,,response
+15,Virada en proa obligando a maniobra evitativa inmediata,verdict_match,1.0,,response
+15,Virada en proa obligando a maniobra evitativa inmediata,answer_char_len,1438,,volume
+15,Virada en proa obligando a maniobra evitativa inmediata,context_char_len,9608,,volume

@@ -2,7 +2,7 @@
 
 Documento **generado automáticamente** al finalizar cada `eval_run.py`. No editar a mano las secciones §1–§4; usar `eval/diario_runs.json` (`nota_usuario`) o `--diario-nota` si hace falta aclarar algo.
 
-**Última regeneración:** 2026-06-04 10:11 (local)
+**Última regeneración:** 2026-06-06 17:57 (local)
 
 **Golden set fijo (15 casos):** `docs/Casos de Regatas.xlsx` → `eval/data/eval_set.json`.
 
@@ -24,9 +24,13 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 | E8 | 2026-05-25 | `rrs_calls_jsonl` | `20260525_231904_rrs_…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.20 | 0.13 | 0.14 | 0.13 | [`eval/runs/20260525_231904_rrs_calls_jsonl/`](runs/20260525_231904_rrs_calls_jsonl/) |
 | E9 | 2026-05-25 | `rrs_calls_cases_jsonl` | `20260525_234431_rrs_…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.20 | 0.13 | 0.16 | 0.13 | [`eval/runs/20260525_234431_rrs_calls_cases_jsonl/`](runs/20260525_234431_rrs_calls_cases_jsonl/) |
 | E10 | 2026-05-26 | `processed_cupos_3_2_2_1` | `20260526_000249_proc…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.69 | 0.07 | 0.09 | 0.07 | [`eval/runs/20260526_000249_processed_cupos_3_2_2_1/`](runs/20260526_000249_processed_cupos_3_2_2_1/) |
-| E11 | 2026-05-26 | `processed_cupos_2_3_2_1` | `20260526_185624_proc…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.76 | 0.20 | 0.22 | 0.07 | [`eval/runs/20260526_185624_processed_cupos_2_3_2_1/`](runs/20260526_185624_processed_cupos_2_3_2_1/) |
-| E12 | 2026-06-03 | `prompt_v2_cot` | `20260603_183901_prom…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.76 | 0.20 | 0.00 | 0.13 | [`eval/runs/20260603_183901_prompt_v2_cot/`](runs/20260603_183901_prompt_v2_cot/) |
-| E13 | 2026-06-04 | `prompt_v3_format` | `20260604_124747_prom…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.76 | 0.20 | 0.11 | 0.07 | [`eval/runs/20260604_124747_prompt_v3_format/`](runs/20260604_124747_prompt_v3_format/) |
+| E11 | 2026-05-26 | `processed_cupos_2_3_2_1` | `20260526_185624_proc…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.76 | 0.20 | 0.25 | 0.07 | [`eval/runs/20260526_185624_processed_cupos_2_3_2_1/`](runs/20260526_185624_processed_cupos_2_3_2_1/) |
+| E12 | 2026-06-03 | `prompt_v2_cot` | `20260603_183901_prom…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.76 | 0.20 | 0.20 | 0.13 | [`eval/runs/20260603_183901_prompt_v2_cot/`](runs/20260603_183901_prompt_v2_cot/) |
+| E13 | 2026-06-04 | `prompt_v3_format` | `20260604_124747_prom…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.76 | 0.20 | 0.22 | 0.07 | [`eval/runs/20260604_124747_prompt_v3_format/`](runs/20260604_124747_prompt_v3_format/) |
+| E14 | 2026-06-06 | `prompt_v3_en_out` | `20260606_200214_prom…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.76 | 0.20 | 0.32 | 0.07 | [`eval/runs/20260606_200214_prompt_v3_en_out/`](runs/20260606_200214_prompt_v3_en_out/) |
+| E15 | 2026-06-06 | `hybrid_retrieval` | `20260606_203312_hybr…` | RRS JSONL+def (~495 ch.), solo processed | llama3 | solo retrieval | 0.60 | 0.13 | — | — | [`eval/runs/20260606_203312_hybrid_retrieval/`](runs/20260606_203312_hybrid_retrieval/) |
+| E16 | 2026-06-06 | `hybrid_retrieval` | `20260606_203610_hybr…` | RRS JSONL+def (~495 ch.), solo processed | llama3 | solo retrieval | 0.76 | 0.20 | — | — | [`eval/runs/20260606_203610_hybrid_retrieval/`](runs/20260606_203610_hybrid_retrieval/) |
+| E17 | 2026-06-06 | `hybrid_prompt_v3` | `20260606_203922_hybr…` | RRS JSONL+def (~495 ch.), solo processed | qwen2.5:14b-instruct | completo | 0.76 | 0.20 | 0.13 | 0.07 | [`eval/runs/20260606_203922_hybrid_prompt_v3/`](runs/20260606_203922_hybrid_prompt_v3/) |
 
 ---
 
@@ -47,6 +51,10 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 | E11 | 77.8 % | 18.5 % | 20.0 % | 6.7 % | 1 | 6 | 18 | 0 | 18 |
 | E12 | 77.8 % | 0.0 % | 20.0 % | 13.3 % | 1 | 2 | 22 | 0 | 18 |
 | E13 | 77.8 % | 7.4 % | 20.0 % | 6.7 % | 1 | 3 | 21 | 0 | 18 |
+| E14 | 77.8 % | 29.6 % | 20.0 % | 6.7 % | 1 | 9 | 15 | 0 | 18 |
+| E15 | 59.3 % | 0.0 % | 13.3 % | 0.0 % | 2 | 0 | 18 | 0 | 24 |
+| E16 | 74.1 % | 0.0 % | 20.0 % | 0.0 % | 2 | 0 | 23 | 0 | 19 |
+| E17 | 74.1 % | 11.1 % | 20.0 % | 6.7 % | 2 | 4 | 19 | 0 | 19 |
 
 ---
 
@@ -479,7 +487,7 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 
 - Recall@k reglas: 0.69 → 0.76 (+0.07)
 - Recall@k CALL: 0.07 → 0.20 (+0.13)
-- F1 citas RRS: 0.09 → 0.22 (+0.13)
+- F1 citas RRS: 0.09 → 0.25 (+0.17)
 - F1 citas CALL: 0.07 → 0.07 (+0.00)
 - Jaccard resp↔ctx: 0.03 → 0.02 (-0.00)
 - Jaccard resp↔ref: 0.13 → 0.12 (-0.01)
@@ -490,7 +498,7 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 
 - Recall@k reglas: 0.41 → 0.76 (+0.34)
 - Recall@k CALL: 0.27 → 0.20 (-0.07)
-- F1 citas RRS: 0.22 → 0.22 (-0.01)
+- F1 citas RRS: 0.22 → 0.25 (+0.03)
 - F1 citas CALL: 0.13 → 0.07 (-0.07)
 - Jaccard resp↔ctx: 0.03 → 0.02 (-0.00)
 - Jaccard resp↔ref: 0.13 → 0.12 (-0.01)
@@ -522,11 +530,11 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 
 - Recall@k reglas: 0.76 → 0.76 (+0.00)
 - Recall@k CALL: 0.20 → 0.20 (+0.00)
-- F1 citas RRS: 0.22 → 0.00 (-0.22)
+- F1 citas RRS: 0.25 → 0.20 (-0.05)
 - F1 citas CALL: 0.07 → 0.13 (+0.07)
 - Jaccard resp↔ctx: 0.02 → 0.01 (-0.02)
 - Jaccard resp↔ref: 0.12 → 0.13 (+0.02)
-- Dictamen auto: 0.00 → 0.00 (+0.00)
+- Dictamen auto: 0.00 → 0.60 (+0.60)
 - Faithfulness: — → 0.57
 - Faithfulness estricta: — → 0.82
 
@@ -534,11 +542,11 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 
 - Recall@k reglas: 0.41 → 0.76 (+0.34)
 - Recall@k CALL: 0.27 → 0.20 (-0.07)
-- F1 citas RRS: 0.22 → 0.00 (-0.22)
+- F1 citas RRS: 0.22 → 0.20 (-0.02)
 - F1 citas CALL: 0.13 → 0.13 (+0.00)
 - Jaccard resp↔ctx: 0.03 → 0.01 (-0.02)
 - Jaccard resp↔ref: 0.13 → 0.13 (+0.00)
-- Dictamen auto: 0.00 → 0.00 (+0.00)
+- Dictamen auto: 0.00 → 0.60 (+0.60)
 - Faithfulness: 0.37 → 0.57 (+0.20)
 - Faithfulness estricta: 0.72 → 0.82 (+0.10)
 
@@ -557,7 +565,6 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 
 **Run ID:** `20260604_124747_prompt_v3_format`  
 **Carpeta:** `eval/runs/20260604_124747_prompt_v3_format`  
-**Nota:** Prompt v3: plantilla fija, §4 Resolución, viñetas Regla/TR CALL  
 
 #### Qué cambió respecto a la corrida anterior
 
@@ -567,11 +574,11 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 
 - Recall@k reglas: 0.76 → 0.76 (+0.00)
 - Recall@k CALL: 0.20 → 0.20 (+0.00)
-- F1 citas RRS: 0.00 → 0.11 (+0.11)
+- F1 citas RRS: 0.20 → 0.22 (+0.02)
 - F1 citas CALL: 0.13 → 0.07 (-0.07)
 - Jaccard resp↔ctx: 0.01 → 0.01 (+0.00)
 - Jaccard resp↔ref: 0.13 → 0.16 (+0.03)
-- Dictamen auto: 0.00 → 0.60 (+0.60)
+- Dictamen auto: 0.60 → 0.60 (+0.00)
 - Faithfulness: 0.57 → —
 - Faithfulness estricta: 0.82 → —
 
@@ -579,7 +586,7 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 
 - Recall@k reglas: 0.41 → 0.76 (+0.34)
 - Recall@k CALL: 0.27 → 0.20 (-0.07)
-- F1 citas RRS: 0.22 → 0.11 (-0.11)
+- F1 citas RRS: 0.22 → 0.22 (-0.00)
 - F1 citas CALL: 0.13 → 0.07 (-0.07)
 - Jaccard resp↔ctx: 0.03 → 0.01 (-0.02)
 - Jaccard resp↔ref: 0.13 → 0.16 (+0.03)
@@ -598,6 +605,172 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 
 ---
 
+### E14 — `prompt_v3_en_out`
+
+**Run ID:** `20260606_200214_prompt_v3_en_out`  
+**Carpeta:** `eval/runs/20260606_200214_prompt_v3_en_out`  
+
+#### Qué cambió respecto a la corrida anterior
+
+- **idioma respuesta:** `None` → `en`
+
+#### Comparativa vs corrida anterior
+
+- Recall@k reglas: 0.76 → 0.76 (+0.00)
+- Recall@k CALL: 0.20 → 0.20 (+0.00)
+- F1 citas RRS: 0.22 → 0.32 (+0.10)
+- F1 citas CALL: 0.07 → 0.07 (+0.00)
+- Jaccard resp↔ctx: 0.01 → 0.16 (+0.14)
+- Jaccard resp↔ref: 0.16 → 0.02 (-0.15)
+- Dictamen auto: 0.60 → 0.40 (-0.20)
+
+#### Comparativa vs E0 (baseline)
+
+- Recall@k reglas: 0.41 → 0.76 (+0.34)
+- Recall@k CALL: 0.27 → 0.20 (-0.07)
+- F1 citas RRS: 0.22 → 0.32 (+0.09)
+- F1 citas CALL: 0.13 → 0.07 (-0.07)
+- Jaccard resp↔ctx: 0.03 → 0.16 (+0.13)
+- Jaccard resp↔ref: 0.13 → 0.02 (-0.12)
+- Dictamen auto: 0.00 → 0.40 (+0.40)
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
+
+#### Configuración
+
+- Índice: RRS JSONL+def (~495 ch.), solo processed
+- `corpus_sources`: `processed`
+- Retrieval: `lexical`, top_k=8
+- Hallazgo (auto): Mejora de recall de reglas respecto al baseline.
+
+- Gráfico vs baseline: `plots_retrieval/05_comparacion_corridas.png`
+
+---
+
+### E15 — `hybrid_retrieval`
+
+**Run ID:** `20260606_203312_hybrid_retrieval`  
+**Carpeta:** `eval/runs/20260606_203312_hybrid_retrieval`  
+
+#### Qué cambió respecto a la corrida anterior
+
+- **embedding:** `lexical` → `hybrid`
+- **modelo LLM:** `qwen2.5:14b-instruct` → `llama3`
+- **idioma respuesta:** `en` → `es`
+
+#### Comparativa vs corrida anterior
+
+- Recall@k reglas: 0.76 → 0.60 (-0.16)
+- Recall@k CALL: 0.20 → 0.13 (-0.07)
+- F1 citas RRS: 0.32 → —
+- F1 citas CALL: 0.07 → —
+- Jaccard resp↔ctx: 0.16 → —
+- Jaccard resp↔ref: 0.02 → —
+- Dictamen auto: 0.40 → —
+
+#### Comparativa vs E0 (baseline)
+
+- Recall@k reglas: 0.41 → 0.60 (+0.19)
+- Recall@k CALL: 0.27 → 0.13 (-0.13)
+- F1 citas RRS: 0.22 → —
+- F1 citas CALL: 0.13 → —
+- Jaccard resp↔ctx: 0.03 → —
+- Jaccard resp↔ref: 0.13 → —
+- Dictamen auto: 0.00 → —
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
+
+#### Configuración
+
+- Índice: RRS JSONL+def (~495 ch.), solo processed
+- `corpus_sources`: `processed`
+- Retrieval: `hybrid`, top_k=8
+- Hallazgo (auto): Solo retrieval: validación de métricas sin generación LLM.
+
+- Gráfico vs baseline: `plots_retrieval/05_comparacion_corridas.png`
+
+---
+
+### E16 — `hybrid_retrieval`
+
+**Run ID:** `20260606_203610_hybrid_retrieval`  
+**Carpeta:** `eval/runs/20260606_203610_hybrid_retrieval`  
+
+#### Qué cambió respecto a la corrida anterior
+
+- Misma configuración de corpus/retriever/LLM que la corrida anterior; variación solo en resultados estocásticos o artefactos.
+
+#### Comparativa vs corrida anterior
+
+- Recall@k reglas: 0.60 → 0.76 (+0.16)
+- Recall@k CALL: 0.13 → 0.20 (+0.07)
+
+#### Comparativa vs E0 (baseline)
+
+- Recall@k reglas: 0.41 → 0.76 (+0.34)
+- Recall@k CALL: 0.27 → 0.20 (-0.07)
+- F1 citas RRS: 0.22 → —
+- F1 citas CALL: 0.13 → —
+- Jaccard resp↔ctx: 0.03 → —
+- Jaccard resp↔ref: 0.13 → —
+- Dictamen auto: 0.00 → —
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
+
+#### Configuración
+
+- Índice: RRS JSONL+def (~495 ch.), solo processed
+- `corpus_sources`: `processed`
+- Retrieval: `hybrid`, top_k=8
+- Hallazgo (auto): Solo retrieval: validación de métricas sin generación LLM.
+
+- Gráfico vs baseline: `plots_retrieval/05_comparacion_corridas.png`
+
+---
+
+### E17 — `hybrid_prompt_v3`
+
+**Run ID:** `20260606_203922_hybrid_prompt_v3`  
+**Carpeta:** `eval/runs/20260606_203922_hybrid_prompt_v3`  
+**Nota:** E17: retrieval híbrido + prompt v3 (E13); vs E11 léxico  
+
+#### Qué cambió respecto a la corrida anterior
+
+- **modelo LLM:** `llama3` → `qwen2.5:14b-instruct`
+
+#### Comparativa vs corrida anterior
+
+- Recall@k reglas: 0.76 → 0.76 (+0.00)
+- Recall@k CALL: 0.20 → 0.20 (+0.00)
+- F1 citas RRS: — → 0.13
+- F1 citas CALL: — → 0.07
+- Jaccard resp↔ctx: — → 0.01
+- Jaccard resp↔ref: — → 0.16
+- Dictamen auto: — → 0.47
+
+#### Comparativa vs E0 (baseline)
+
+- Recall@k reglas: 0.41 → 0.76 (+0.34)
+- Recall@k CALL: 0.27 → 0.20 (-0.07)
+- F1 citas RRS: 0.22 → 0.13 (-0.09)
+- F1 citas CALL: 0.13 → 0.07 (-0.07)
+- Jaccard resp↔ctx: 0.03 → 0.01 (-0.02)
+- Jaccard resp↔ref: 0.13 → 0.16 (+0.03)
+- Dictamen auto: 0.00 → 0.47 (+0.47)
+- Faithfulness: 0.37 → —
+- Faithfulness estricta: 0.72 → —
+
+#### Configuración
+
+- Índice: RRS JSONL+def (~495 ch.), solo processed
+- `corpus_sources`: `processed`
+- Retrieval: `hybrid`, top_k=8
+- Hallazgo (auto): Mejora de recall de reglas respecto al baseline.
+
+- Gráfico vs baseline: `plots_retrieval/05_comparacion_corridas.png`
+
+---
+
 ## 4. Comparación rápida vs E0 (solo corridas con LLM)
 
 | ID | Δ recall reglas | Δ recall CALL | Δ F1 RRS | Δ F1 CALL |
@@ -609,9 +782,11 @@ Documento **generado automáticamente** al finalizar cada `eval_run.py`. No edit
 | E8 | -0.21 | -0.13 | -0.08 | +0.00 |
 | E9 | -0.21 | -0.13 | -0.06 | +0.00 |
 | E10 | +0.28 | -0.20 | -0.14 | -0.07 |
-| E11 | +0.34 | -0.07 | -0.01 | -0.07 |
-| E12 | +0.34 | -0.07 | -0.22 | +0.00 |
-| E13 | +0.34 | -0.07 | -0.11 | -0.07 |
+| E11 | +0.34 | -0.07 | +0.03 | -0.07 |
+| E12 | +0.34 | -0.07 | -0.02 | +0.00 |
+| E13 | +0.34 | -0.07 | -0.00 | -0.07 |
+| E14 | +0.34 | -0.07 | +0.09 | -0.07 |
+| E17 | +0.34 | -0.07 | -0.09 | -0.07 |
 
 ## 5. Registro automático
 

@@ -38,6 +38,12 @@ def main() -> None:
         default=ROOT / "eval" / "runs",
     )
     p.add_argument("--lang", choices=("es", "en"), default=None)
+    p.add_argument(
+        "--response-lang",
+        choices=("es", "en"),
+        default=None,
+        help="Idioma del informe (en = salida inglés, E14); default es",
+    )
     p.add_argument("--strategy", choices=("cot", "few_shot_cot"), default=None)
     p.add_argument("--model", default=None, help="Modelo LLM (backend http)")
     p.add_argument(
@@ -60,6 +66,18 @@ def main() -> None:
         action="store_true",
         help="Medir faithfulness (LLM juez: afirmaciones vs contexto recuperado)",
     )
+    p.add_argument(
+        "--embedding-backend",
+        choices=("lexical", "http", "local", "hybrid"),
+        default=None,
+        help="Override REGATAS_EMBEDDING_BACKEND (p. ej. hybrid)",
+    )
+    p.add_argument(
+        "--hybrid-semantic-backend",
+        choices=("local", "http"),
+        default=None,
+        help="Rama semántica del híbrido (default: local)",
+    )
     args = p.parse_args()
 
     os.environ.setdefault("REGATAS_ACTIVITY_CONSOLE", "0")
@@ -73,8 +91,11 @@ def main() -> None:
             eval_set_path=args.eval_set,
             runs_dir=args.runs_dir,
             system_prompt_lang=args.lang,
+            response_language=args.response_lang,
             prompt_strategy=args.strategy,
             llm_model=args.model,
+            embedding_backend=args.embedding_backend,
+            hybrid_semantic_backend=args.hybrid_semantic_backend,
         )
     )
     run_dir = args.runs_dir / report["run_id"]

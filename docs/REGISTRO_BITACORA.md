@@ -10,6 +10,12 @@ Agregar cada ítem **arriba** de la línea `<!-- NUEVAS ENTRADAS ARRIBA -->`.
 
 | Fecha | Tipo | Resumen |
 |-------|------|---------|
+| 2026-06-06 | eval | **E17** híbrido+v3 — F1 0.13, dictamen 47%; **decisión: perfil E11+E13** (léxico) |
+| 2026-06-06 | código | Retrieval híbrido: índice semántico compartido, fallback semántico sin overlap ES→EN |
+| 2026-06-06 | eval | E15–E16 híbrido retrieval-only; E16 R@k 0.76, caso 7 recupera 21.2 |
+| 2026-06-06 | eval | **E14** `prompt_v3_en_out` — salida EN; F1 RRS 0.32 (+0.10 vs E13), Jaccard ctx 0.16, dictamen 40% |
+| 2026-06-06 | docs | Timeline E14 + tabla caso a caso E14 en informe final; `REGATAS_RESPONSE_LANG` en `.env.example` |
+| 2026-06-06 | código | `REGATAS_RESPONSE_LANG` / `--response-lang en`; prompts EN_OUT; parser Rule/Decision |
 | 2026-06-04 | docs | `eval/RESUMEN_CORRIDAS_EVAL.md` + regresión E11/E13 (R@k, F1, dictamen) en `profiles.py` |
 | 2026-06-04 | docs | Timeline eval actualizado: E12–E13 en `timeline_corridas_eval.drawio` + HTML |
 | 2026-06-04 | código | Parser citas v3 (`refs.py`): `**Regla …**`, viñetas, `**Case N**`; `rescore_eval_citations.py` — E13 F1 RRS 0.11→0.22, E11 0.22→0.25 (sin re-LLM) |

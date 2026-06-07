@@ -36,6 +36,8 @@ def _extract_decision_line(answer: str) -> str | None:
             continue
         if re.match(r"(?i)^decisi[oó]n\s*:", stripped):
             return stripped
+        if re.match(r"(?i)^decision\s*:", stripped):
+            return stripped
     for line in answer.splitlines():
         if re.search(r"(?i)dictamen|decisi[oó]n|resoluci[oó]n", line):
             return line.strip()

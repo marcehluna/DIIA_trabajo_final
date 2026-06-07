@@ -15,6 +15,7 @@ from regatas_assistant.prompts import (
     get_system_prompt,
     get_user_template,
     normalize_prompt_strategy,
+    normalize_response_language,
     normalize_system_prompt_language,
 )
 from regatas_assistant.rag.retriever import CorpusRetriever, build_retriever
@@ -68,6 +69,7 @@ class ProtestPipeline:
         *,
         system_prompt_lang: str | None = None,
         prompt_strategy: str | None = None,
+        response_language: str | None = None,
         llm_model: str | None = None,
     ) -> str:
         query = _compose_query(relato_protesta, relato_protestado)
@@ -76,15 +78,18 @@ class ProtestPipeline:
         lang = normalize_system_prompt_language(
             system_prompt_lang or self.settings.system_prompt_language
         )
+        resp_lang = normalize_response_language(
+            response_language or self.settings.response_language
+        )
         if relato_protestado and relato_protestado.strip():
             protestado_block = relato_protestado.strip()
         else:
             protestado_block = (
                 "No narrative was provided for the protested boat."
-                if lang == "en"
+                if resp_lang == "en"
                 else "No se proporcionó relato del barco protestado."
             )
-        user_template = get_user_template(lang)
+        user_template = get_user_template(lang, response_lang=resp_lang)
         user_content = user_template.format(
             context=context,
             relato_protesta=relato_protesta.strip(),
@@ -93,7 +98,7 @@ class ProtestPipeline:
         strat = normalize_prompt_strategy(
             prompt_strategy or self.settings.prompt_strategy
         )
-        system_prompt = get_system_prompt(lang, strat)
+        system_prompt = get_system_prompt(lang, strat, response_lang=resp_lang)
 
         model_label: str | None
         if isinstance(self.llm, StubLLMClient):
@@ -131,6 +136,7 @@ class ProtestPipeline:
         *,
         system_prompt_lang: str | None = None,
         prompt_strategy: str | None = None,
+        response_language: str | None = None,
         llm_model: str | None = None,
         skip_llm: bool = False,
     ) -> dict[str, Any]:
@@ -144,15 +150,18 @@ class ProtestPipeline:
         lang = normalize_system_prompt_language(
             system_prompt_lang or self.settings.system_prompt_language
         )
+        resp_lang = normalize_response_language(
+            response_language or self.settings.response_language
+        )
         if relato_protestado and relato_protestado.strip():
             protestado_block = relato_protestado.strip()
         else:
             protestado_block = (
                 "No narrative was provided for the protested boat."
-                if lang == "en"
+                if resp_lang == "en"
                 else "No se proporcionó relato del barco protestado."
             )
-        user_template = get_user_template(lang)
+        user_template = get_user_template(lang, response_lang=resp_lang)
         user_content = user_template.format(
             context=context,
             relato_protesta=relato_protesta.strip(),
@@ -161,7 +170,7 @@ class ProtestPipeline:
         strat = normalize_prompt_strategy(
             prompt_strategy or self.settings.prompt_strategy
         )
-        system_prompt = get_system_prompt(lang, strat)
+        system_prompt = get_system_prompt(lang, strat, response_lang=resp_lang)
 
         if isinstance(self.llm, StubLLMClient):
             answer = self.llm.complete(system_prompt, user_content)

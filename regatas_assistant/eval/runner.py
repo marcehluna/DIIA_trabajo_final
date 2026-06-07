@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -25,8 +25,11 @@ class EvalRunConfig:
     eval_set_path: Path | None = None
     runs_dir: Path | None = None
     system_prompt_lang: str | None = None
+    response_language: str | None = None
     prompt_strategy: str | None = None
     llm_model: str | None = None
+    embedding_backend: str | None = None
+    hybrid_semantic_backend: str | None = None
 
 
 def _settings_snapshot(settings: Settings) -> dict[str, Any]:
@@ -40,9 +43,11 @@ def _settings_snapshot(settings: Settings) -> dict[str, Any]:
         "embedding_backend": settings.embedding_backend,
         "hybrid_semantic_backend": settings.hybrid_semantic_backend,
         "hybrid_rrf_k": settings.hybrid_rrf_k,
+        "local_embedding_model": settings.local_embedding_model,
         "llm_backend": settings.llm_backend,
         "llm_model": settings.llm_model,
         "system_prompt_language": settings.system_prompt_language,
+        "response_language": settings.response_language,
         "prompt_strategy": settings.prompt_strategy,
         "corpus_sources": settings.corpus_sources,
         "load_processed_jsonl": settings.load_processed_jsonl,
@@ -72,6 +77,14 @@ def run_evaluation(
     os.environ.setdefault("REGATAS_ACTIVITY_CONSOLE", "0")
 
     settings = settings or Settings.from_env()
+    if config.response_language:
+        settings = replace(settings, response_language=config.response_language)
+    if config.embedding_backend:
+        settings = replace(settings, embedding_backend=config.embedding_backend)
+    if config.hybrid_semantic_backend:
+        settings = replace(
+            settings, hybrid_semantic_backend=config.hybrid_semantic_backend
+        )
     eval_data = load_eval_set(config.eval_set_path)
     cases = eval_data["cases"]
 
@@ -93,6 +106,7 @@ def run_evaluation(
             relato,
             relato_protestado,
             system_prompt_lang=config.system_prompt_lang,
+            response_language=config.response_language,
             prompt_strategy=config.prompt_strategy,
             llm_model=config.llm_model,
             skip_llm=config.retrieval_only,

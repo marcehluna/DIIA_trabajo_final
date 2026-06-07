@@ -5,6 +5,8 @@ from __future__ import annotations
 import math
 import re
 from abc import ABC, abstractmethod
+from collections.abc import Callable
+from dataclasses import dataclass
 from typing import Sequence
 
 import numpy as np
@@ -75,37 +77,6 @@ class BaseRetriever(ABC):
         ...
 
 
-class LexicalRetriever(BaseRetriever):
-    def __init__(self, chunks: Sequence[TextChunk]):
-        self._chunks = list(chunks)
-        self._vocab = [_tokenize(c.text) for c in self._chunks]
-
-    def retrieve(self, query: str, top_k: int) -> list[TextChunk]:
-        q = _tokenize(query)
-        if not q:
-            return self._chunks[:top_k]
-        scores: list[tuple[float, int]] = []
-        for i, vocab in enumerate(self._vocab):
-            inter = len(q & vocab)
-            if inter == 0:
-                continue
-            # BM25-ish: crude idf using log(N/df)
-            df = sum(1 for v in self._vocab if q & v)
-            idf = math.log((len(self._chunks) + 1) / (df + 1)) + 1.0
-            scores.append((inter * idf, i))
-        scores.sort(key=lambda x: -x[0])
-        picked = [self._chunks[i] for _, i in scores[:top_k]]
-        if len(picked) < top_k:
-            seen = {id(c) for c in picked}
-            for c in self._chunks:
-                if len(picked) >= top_k:
-                    break
-                if id(c) not in seen:
-                    picked.append(c)
-                    seen.add(id(c))
-        return picked
-
-
 def _cosine_top_k(
     query_vec: np.ndarray, matrix: np.ndarray, top_k: int
 ) -> list[int]:
@@ -122,7 +93,11 @@ def _cosine_top_k(
 
 
 class HybridRetriever(BaseRetriever):
-    """Fusiona ranking léxico y semántico con RRF (compatible con cupos vía inner_builder)."""
+    """Fusiona ranking léxico y semántico con RRF.
+
+    Si la consulta no comparte tokens con el pool (p. ej. relato ES / corpus EN),
+    usa solo la rama semántica en ese pool en lugar del relleno léxico por defecto.
+    """
 
     def __init__(
         self,
@@ -143,6 +118,8 @@ class HybridRetriever(BaseRetriever):
         if not self._chunks:
             return []
         k = max(1, top_k)
+        if not self._lexical.has_lexical_signal(query):
+            return self._semantic.retrieve(query, k)
         n_cand = min(len(self._chunks), k * self._mult)
         lex_hits = self._lexical.retrieve(query, n_cand)
         sem_hits = self._semantic.retrieve(query, n_cand)
@@ -271,10 +248,51 @@ class QuotaRetriever(MultiPoolQuotaRetriever):
         )
 
 
-def _build_semantic_retriever(
+def chunk_index_text(chunk: TextChunk) -> str:
+    """Texto indexado para léxico y embeddings (metadatos + cuerpo)."""
+    parts: list[str] = []
+    header = chunk.header_line().strip()
+    if header:
+        parts.append(header)
+    if chunk.referenced_rules:
+        parts.append("Reglas: " + ", ".join(chunk.referenced_rules))
+    parts.append(chunk.text)
+    return "\n".join(parts)
+
+
+@dataclass
+class _SemanticIndex:
+    """Embeddings del corpus completo; se reutiliza por pool (cupos) sin re-encode."""
+
+    corpus_chunks: list[TextChunk]
+    matrix: np.ndarray
+    encode_query: Callable[[str], list[float]]
+
+    def retriever_for(self, chunks: list[TextChunk]) -> SemanticRetrieverWithEncoder:
+        if chunks is self.corpus_chunks:
+            return SemanticRetrieverWithEncoder(
+                chunks, self.matrix, self.encode_query
+            )
+        row_by_id = {id(c): i for i, c in enumerate(self.corpus_chunks)}
+        indices = [row_by_id[id(c)] for c in chunks]
+        sub_matrix = self.matrix[np.asarray(indices, dtype=np.intp)]
+        return SemanticRetrieverWithEncoder(chunks, sub_matrix, self.encode_query)
+
+
+def _semantic_backend_for(settings: Settings) -> str | None:
+    backend = settings.embedding_backend
+    if backend == "hybrid":
+        return settings.hybrid_semantic_backend
+    if backend in ("http", "local"):
+        return backend
+    return None
+
+
+def _build_semantic_index(
     settings: Settings, chunks: list[TextChunk], backend: str
-) -> BaseRetriever:
-    """Rama semántica (http | local) para uso directo o en híbrido."""
+) -> _SemanticIndex:
+    """Precomputa embeddings del corpus (una vez por pipeline / corrida)."""
+    texts = [chunk_index_text(c) for c in chunks]
     if backend == "http":
         from regatas_assistant.rag.embeddings_http import (
             HttpEmbeddingEncoder,
@@ -286,10 +304,8 @@ def _build_semantic_retriever(
                 "Embeddings HTTP requieren REGATAS_LLM_API_KEY en el entorno."
             )
         enc = HttpEmbeddingEncoder(settings)
-        matrix = embed_corpus_http(enc, [c.text for c in chunks])
-        return SemanticRetrieverWithEncoder(
-            chunks, matrix, lambda q: enc.embed_one(q)
-        )
+        matrix = embed_corpus_http(enc, texts)
+        return _SemanticIndex(chunks, matrix, lambda q: enc.embed_one(q))
 
     if backend == "local":
         from regatas_assistant.rag.embeddings_local import (
@@ -298,32 +314,160 @@ def _build_semantic_retriever(
         )
 
         enc = LocalSentenceEncoder(settings.local_embedding_model)
-        matrix = embed_corpus_local(enc, [c.text for c in chunks])
-        return SemanticRetrieverWithEncoder(
-            chunks, matrix, lambda q: enc.encode_query(q)
-        )
+        matrix = embed_corpus_local(enc, texts)
+        return _SemanticIndex(chunks, matrix, lambda q: enc.encode_query(q))
 
     raise ValueError(
         f"Rama semántica desconocida: {backend!r}. Use http | local."
     )
 
 
-def _build_inner_retriever(settings: Settings, chunks: list[TextChunk]) -> BaseRetriever:
+class _LexicalIndexRetriever(BaseRetriever):
+    """Léxico sobre subconjunto con vocabulario del corpus completo (cupos)."""
+
+    def __init__(
+        self,
+        chunks: Sequence[TextChunk],
+        corpus_vocab: list[set[str]],
+        chunk_to_row: dict[int, int],
+    ):
+        self._chunks = list(chunks)
+        self._corpus_vocab = corpus_vocab
+        self._chunk_to_row = chunk_to_row
+        self._n_corpus = len(corpus_vocab)
+
+    def has_lexical_signal(self, query: str) -> bool:
+        q = _tokenize(query)
+        if not q:
+            return False
+        for chunk in self._chunks:
+            row = self._chunk_to_row.get(id(chunk))
+            if row is None:
+                continue
+            if q & self._corpus_vocab[row]:
+                return True
+        return False
+
+    def retrieve(self, query: str, top_k: int) -> list[TextChunk]:
+        q = _tokenize(query)
+        if not q:
+            return self._chunks[:top_k]
+        scores: list[tuple[float, int]] = []
+        for i, chunk in enumerate(self._chunks):
+            row = self._chunk_to_row.get(id(chunk))
+            if row is None:
+                continue
+            vocab = self._corpus_vocab[row]
+            inter = len(q & vocab)
+            if inter == 0:
+                continue
+            df = sum(1 for v in self._corpus_vocab if q & v)
+            idf = math.log((self._n_corpus + 1) / (df + 1)) + 1.0
+            scores.append((inter * idf, i))
+        scores.sort(key=lambda x: -x[0])
+        picked = [self._chunks[i] for _, i in scores[:top_k]]
+        if len(picked) < top_k:
+            seen = {id(c) for c in picked}
+            for c in self._chunks:
+                if len(picked) >= top_k:
+                    break
+                if id(c) not in seen:
+                    picked.append(c)
+                    seen.add(id(c))
+        return picked
+
+
+@dataclass
+class _LexicalIndex:
+    corpus_chunks: list[TextChunk]
+    vocab: list[set[str]]
+
+    @classmethod
+    def from_corpus(cls, chunks: list[TextChunk]) -> _LexicalIndex:
+        return cls(chunks, [_tokenize(chunk_index_text(c)) for c in chunks])
+
+    def retriever_for(self, chunks: list[TextChunk]) -> BaseRetriever:
+        if chunks is self.corpus_chunks:
+            return LexicalRetriever(self.corpus_chunks, self.vocab)
+        row_by_id = {id(c): i for i, c in enumerate(self.corpus_chunks)}
+        return _LexicalIndexRetriever(
+            chunks,
+            self.vocab,
+            {id(c): row_by_id[id(c)] for c in chunks},
+        )
+
+
+class LexicalRetriever(BaseRetriever):
+    def __init__(
+        self,
+        chunks: Sequence[TextChunk],
+        vocab: list[set[str]] | None = None,
+    ):
+        self._chunks = list(chunks)
+        self._vocab = vocab or [_tokenize(chunk_index_text(c)) for c in self._chunks]
+
+    def has_lexical_signal(self, query: str) -> bool:
+        q = _tokenize(query)
+        if not q:
+            return False
+        return any(q & v for v in self._vocab)
+
+    def retrieve(self, query: str, top_k: int) -> list[TextChunk]:
+        q = _tokenize(query)
+        if not q:
+            return self._chunks[:top_k]
+        scores: list[tuple[float, int]] = []
+        for i, vocab in enumerate(self._vocab):
+            inter = len(q & vocab)
+            if inter == 0:
+                continue
+            # BM25-ish: crude idf using log(N/df)
+            df = sum(1 for v in self._vocab if q & v)
+            idf = math.log((len(self._chunks) + 1) / (df + 1)) + 1.0
+            scores.append((inter * idf, i))
+        scores.sort(key=lambda x: -x[0])
+        picked = [self._chunks[i] for _, i in scores[:top_k]]
+        if len(picked) < top_k:
+            seen = {id(c) for c in picked}
+            for c in self._chunks:
+                if len(picked) >= top_k:
+                    break
+                if id(c) not in seen:
+                    picked.append(c)
+                    seen.add(id(c))
+        return picked
+
+
+def _build_inner_retriever(
+    settings: Settings,
+    chunks: list[TextChunk],
+    *,
+    semantic_index: _SemanticIndex | None = None,
+    lexical_index: _LexicalIndex | None = None,
+) -> BaseRetriever:
     backend = settings.embedding_backend
     if backend == "lexical":
+        if lexical_index is not None:
+            return lexical_index.retriever_for(chunks)
         return LexicalRetriever(chunks)
 
     if backend == "hybrid":
-        sem_backend = settings.hybrid_semantic_backend
+        if semantic_index is None or lexical_index is None:
+            raise ValueError(
+                "Modo hybrid requiere índices precalculados (semantic_index, lexical_index)."
+            )
         return HybridRetriever(
             chunks,
-            LexicalRetriever(chunks),
-            _build_semantic_retriever(settings, chunks, sem_backend),
+            lexical_index.retriever_for(chunks),
+            semantic_index.retriever_for(chunks),
             rrf_k=settings.hybrid_rrf_k,
         )
 
-    if backend in ("http", "local"):
-        return _build_semantic_retriever(settings, chunks, backend)
+    sem_backend = _semantic_backend_for(settings)
+    if sem_backend and semantic_index is not None:
+        return semantic_index.retriever_for(chunks)
+    if sem_backend:
+        return _build_semantic_index(settings, chunks, sem_backend).retriever_for(chunks)
 
     raise ValueError(
         f"REGATAS_EMBEDDING_BACKEND desconocido: {backend}. "
@@ -332,10 +476,24 @@ def _build_inner_retriever(settings: Settings, chunks: list[TextChunk]) -> BaseR
 
 
 def build_retriever(settings: Settings, chunks: list[TextChunk]) -> BaseRetriever:
-    if not settings.retrieval_use_quotas:
-        return _build_inner_retriever(settings, chunks)
+    semantic_index: _SemanticIndex | None = None
+    lexical_index: _LexicalIndex | None = None
+    sem_backend = _semantic_backend_for(settings)
+    if sem_backend:
+        semantic_index = _build_semantic_index(settings, chunks, sem_backend)
+    if settings.embedding_backend in ("lexical", "hybrid"):
+        lexical_index = _LexicalIndex.from_corpus(chunks)
 
-    inner_builder = lambda subset: _build_inner_retriever(settings, subset)
+    def inner_builder(subset: list[TextChunk]) -> BaseRetriever:
+        return _build_inner_retriever(
+            settings,
+            subset,
+            semantic_index=semantic_index,
+            lexical_index=lexical_index,
+        )
+
+    if not settings.retrieval_use_quotas:
+        return inner_builder(chunks)
 
     if settings.retrieval_quota_by_doctype:
         pools = split_chunks_by_doctype(chunks)

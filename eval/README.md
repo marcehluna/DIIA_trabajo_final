@@ -2,7 +2,7 @@
 
 Conjunto de **15 casos** desde `docs/Casos de Regatas.xlsx` (columna **Input** = relato; etiquetas desde **Output Ideal**).
 
-**Resumen narrativo (E0–E13):** [`eval/RESUMEN_CORRIDAS_EVAL.md`](RESUMEN_CORRIDAS_EVAL.md) — objetivo y delta de cada corrida (lectura humana).
+**Resumen narrativo (E0–E17):** [`eval/RESUMEN_CORRIDAS_EVAL.md`](RESUMEN_CORRIDAS_EVAL.md) — objetivo y delta de cada corrida (lectura humana). **Perfil productivo:** E11 léxico + E13 prompt v3.
 
 **Diario de todas las corridas (E0, E1, …):** [`eval/DIARIO_PRUEBAS.md`](DIARIO_PRUEBAS.md) — se **regenera solo** al final de cada `eval_run.py` (cambios vs corrida anterior + comparativa vs E0). Opcional: `--diario-nota "…"`.
 
@@ -10,7 +10,7 @@ Conjunto de **15 casos** desde `docs/Casos de Regatas.xlsx` (columna **Input** =
 
 **Comparativa E0 vs E12 (citabile):** [`docs/INFORME_CITAS_E0_vs_E12.md`](../docs/INFORME_CITAS_E0_vs_E12.md) — métricas, faithfulness, Jaccard, conclusiones y CSV.
 
-**Timeline visual:** [Draw.io](docs/timeline_corridas_eval.drawio) · [HTML navegable](docs/timeline_corridas_eval.html) — línea temporal E0→E13, métricas y guía integrada.
+**Timeline visual:** [Draw.io](docs/timeline_corridas_eval.drawio) · [HTML navegable](docs/timeline_corridas_eval.html) — línea temporal E0→E14, métricas y guía integrada.
 
 ## 1. Generar golden set
 
@@ -29,6 +29,10 @@ Salida: `eval/data/eval_set.json`
 | Doc | `docs/PERFIL_PRODUCTIVO.md` | `eval/corrida baseline/` |
 
 Regresión tras cambios (umbrales E11 retrieval + E13 respuesta): `python scripts/regression_eval.py <carpeta_corrida>` — ver [`RESUMEN_CORRIDAS_EVAL.md`](RESUMEN_CORRIDAS_EVAL.md).
+
+**Salida en inglés (experimento E14):** `--response-lang en` (o `REGATAS_RESPONSE_LANG=en`). Mismo índice E11; informe en inglés (`Rule …`, `Decision:`). Producto por defecto sigue en español (E13).
+
+**Retrieval híbrido (experimento E15–E17):** `--embedding-backend hybrid`. Evaluado en **E17** vs E13: no mejora F1 ni dictamen — **no** es el perfil por defecto. Ver [`comparativa-e13-vs-e17-retrieval-hibrido.md`](../00.%20reporte%20final/05-evaluacion-de-resultados/comparativa-e13-vs-e17-retrieval-hibrido.md).
 
 ## Línea base histórica (E0)
 

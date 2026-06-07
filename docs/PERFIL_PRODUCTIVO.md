@@ -1,6 +1,6 @@
 # Perfil productivo RAG (E11 retrieval + E13 respuesta)
 
-Configuración por defecto de la PoC tras las corridas E0–E13. **Retrieval** validado en **E11** (cupos 2+3+2+1); **prompt y formato de respuesta** en **E13** (v3). La línea base histórica (E0, solo PDF) sigue disponible con `REGATAS_PROFILE=baseline`.
+Configuración por defecto de la PoC tras las corridas E0–E17. **Retrieval** validado en **E11** (léxico, cupos 2+3+2+1); **prompt y formato de respuesta** en **E13** (v3). Experimentos **E14** (inglés) y **E15–E17** (híbrido) no reemplazan este perfil. La línea base histórica (E0, solo PDF) sigue disponible con `REGATAS_PROFILE=baseline`.
 
 Resumen narrativo de corridas: [`eval/RESUMEN_CORRIDAS_EVAL.md`](../eval/RESUMEN_CORRIDAS_EVAL.md).
 
@@ -13,8 +13,13 @@ Resumen narrativo de corridas: [`eval/RESUMEN_CORRIDAS_EVAL.md`](../eval/RESUMEN
 | Embeddings | `lexical` (léxico) | Corridas E0–E11 |
 | LLM | Qwen ES (`cot`) | E0/E11/E13 |
 | Prompt | v3 (plantilla fija, viñetas, `Decisión:`) | **E13** (código en `prompts.py`) |
+| Idioma respuesta | `es` (defecto) | **E13** — ver experimento **E14** con `REGATAS_RESPONSE_LANG=en` |
 
 Sin variables de entorno, `Settings.from_env()` aplica este perfil.
+
+**Experimento E14** (`--response-lang en`): F1 RRS +0.10 y Jaccard contexto +0.15 vs E13, pero dictamen 40 % — no sustituye el perfil español. Ver [`eval/runs/20260606_200214_prompt_v3_en_out/`](../eval/runs/20260606_200214_prompt_v3_en_out/).
+
+**Experimento E17** (`REGATAS_EMBEDDING_BACKEND=hybrid`): mismo R@k que E13; F1 RRS 0.13 y dictamen 47 % — **mantener léxico (E11)**. Ver [`eval/runs/20260606_203922_hybrid_prompt_v3/`](../eval/runs/20260606_203922_hybrid_prompt_v3/) y [`comparativa E13 vs E17`](../00.%20reporte%20final/05-evaluacion-de-resultados/comparativa-e13-vs-e17-retrieval-hibrido.md).
 
 ### Arranque recomendado
 
@@ -50,9 +55,9 @@ Umbrales en `regatas_assistant/profiles.py`:
 | Respuesta | F1 CALL | ≥ 0.06 | E13 |
 | Respuesta | Dictamen | ≥ 0.50 | E13 |
 
-## Recuperación híbrida (léxica + semántica)
+## Recuperación híbrida (léxica + semántica) — experimento, no productivo
 
-**Compatible con cupos por `doc_type`:** los cupos envuelven el retriever interno; en modo `hybrid` cada pool usa RRF (léxico + semántica) antes de fusionar por cupo.
+Implementado y evaluado (E15–E17). **E17** no supera a E13 en F1 ni dictamen; el perfil por defecto sigue en **`lexical` (E11)**.
 
 ```bash
 export REGATAS_EMBEDDING_BACKEND=hybrid
@@ -68,7 +73,11 @@ export REGATAS_RETRIEVAL_QUOTA_BY_DOCTYPE=1
 # cupos 2+3+2+1 ya vienen con REGATAS_PROFILE=production
 ```
 
-Validar con `eval_run` antes de dar por cerrado el cambio a híbrido (las métricas E11 son con léxico).
+Validar con `eval_run` antes de dar por cerrado el cambio a híbrido (las métricas E11 son con léxico):
+
+```bash
+python scripts/eval_run.py --label hybrid_retrieval --embedding-backend hybrid --retrieval-only
+```
 
 ## Prompting (v3, alineado a JSONL y métricas eval)
 

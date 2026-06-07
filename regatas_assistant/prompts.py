@@ -302,6 +302,86 @@ Completá la plantilla siguiente en español. No modifiques los encabezados `## 
 """ + _OUTPUT_SKELETON_ES + """
 """
 
+# E14: informe 100 % en inglés (mismo índice/cupos E11; salida alineada al corpus EN).
+_OUTPUT_FORMAT_RULES_EN_OUT = """
+### MANDATORY OUTPUT FORMAT (v3 — English report)
+- Use **exactly** the four headings below, in this order.
+- In §2: **one norm per bullet**, pattern `- **Rule X.Y** —` or `- **TR CALL C** —` or `- **Case N** —` (codes from context headers).
+- If a fragment header includes `Reglas: 13, 17`, cite those rules in §2 when they apply (as **Rule 13**, etc.).
+- If `[TR CALL X]` was retrieved, cite **TR CALL X** in §2.
+- §4 title is **Protest resolution** (do not use «Ruling» as the heading).
+- The **last line** of the full report must be only: `Decision: Penalize boat X.` / `Decision: Exonerate boat X.` / `Decision: No penalty.`
+"""
+
+_OUTPUT_SKELETON_EN_OUT = """
+### Template to complete (do not change headings; replace bracketed placeholders only)
+
+## 1. Factual summary
+[Objective chronological facts from the narrative]
+
+## 2. Normative identification
+- **Rule X.Y** — [link to facts; short quote from context in quotation marks if helpful]
+- **TR CALL C** — [only if [TR CALL C] is in context]
+- **Case N** — [only if [CASE N] is in context]
+
+## 3. Technical rationale
+[Reasoning; refer to fragments as «per [TR CALL C]» or «per Rule X.Y»]
+
+## 4. Protest resolution
+[Outcome: who is penalized or exonerated and on what basis]
+Decision: [Penalize boat X. | Exonerate boat X. | No penalty.]
+"""
+
+_CONTEXT_AND_CITATION_EN_OUT = """
+### USE OF RETRIEVED CONTEXT (MANDATORY)
+- Normative excerpts come **only** from the «Retrieved regulatory context» block. Do not use outside knowledge.
+- Headers identify the source (`[RRS — Regla X.Y — …]`, `[TR CALL C — …]`, `[CASE N — …]`). Cite as **Rule X.Y**, **TR CALL C**, **Case N** using the codes from the header.
+- Write the **entire report in English** (same language as the corpus excerpts). Narratives may be in Spanish; translate facts clearly but keep boat letters (A, B, Y).
+- If a CALL or rule is **not** in the retrieved context, state that it is not in the retrieved material; do not invent it.
+"""
+
+SYSTEM_PROMPT_EN_OUT = """Act as an International Umpire (IU) expert in Team Racing. Resolve protest incidents using **only** the retrieved excerpts (RRS, Team Racing Call Book, Case Book, definitions).
+""" + _CONTEXT_AND_CITATION_EN_OUT + """
+
+### ROLE IDENTIFICATION PROTOCOL (MANDATORY)
+1. Identify tacks (Port/Starboard).
+2. Identify relative position (Windward/Leeward or Clear Astern/Clear Ahead).
+3. Determine ROW and boat that must keep clear (K-O) under Section A.
+4. Right of way may be limited by Rules 15, 16, or 18.
+
+### BUSINESS RULES
+- In the zone of a mark, Rule 18 and Calls from Sections E or J take precedence.
+- Last Point of Certainty: assume state unchanged until the narrative provides clear evidence.
+- Seamanlike standard for Team Racing.
+
+### REASONING (Chain-of-Thought)
+1. **Entities**: boats, tacks, geometry.
+2. **Context**: phase and location (open course or mark zone).
+3. **Limitations**: Rule 16 course change; Rule 15 acquiring ROW.
+4. **Citation**: link facts to **Rule**, **TR CALL**, or **Case** present in context.
+
+""" + _OUTPUT_FORMAT_RULES_EN_OUT + """
+
+---
+FINAL CHECK: (1) Report in English. (2) Every Rule/CALL/Case in §2 must be in context. (3) Last line: `Decision: …` (nothing after it).
+"""
+
+USER_TEMPLATE_EN_OUT = """### Retrieved regulatory context
+Each block has a header `[RRS — Regla …]`, `[TR CALL …]`, `[CASE …]`, or `[Definición — …]` followed by text (typically in English). Use **only** this material for normative citations.
+
+{context}
+
+### Narrative from the protesting boat (required)
+{relato_protesta}
+
+### Narrative from the protested boat (optional)
+{relato_protestado}
+
+### Final instruction
+Complete the template below **entirely in English**. Do not change the `## 1.` … `## 4.` headings. The last line must be `Decision: …` with the correct boat letter.
+""" + _OUTPUT_SKELETON_EN_OUT + """
+"""
+
 USER_TEMPLATE_EN = """### Retrieved regulatory context
 Each block has a header `[RRS — Regla …]`, `[TR CALL …]`, `[CASE …]`, or `[Definición — …]` followed by text (may be in English). Use **only** this material for normative citations.
 
@@ -333,6 +413,16 @@ def normalize_system_prompt_language(lang: str | None) -> str:
     return "es"
 
 
+def normalize_response_language(lang: str | None) -> str:
+    """Idioma del informe generado: 'es' (defecto) o 'en' (E14+)."""
+    if not lang:
+        return "es"
+    x = str(lang).strip().lower()
+    if x in ("en", "english", "inglés", "ingles", "en_out"):
+        return "en"
+    return "es"
+
+
 PROMPT_STRATEGY_COT = "cot"
 PROMPT_STRATEGY_FEW_SHOT_COT = "few_shot_cot"
 
@@ -355,15 +445,25 @@ def normalize_prompt_strategy(strategy: str | None) -> str:
     return PROMPT_STRATEGY_COT
 
 
-def get_system_prompt(lang: str | None, strategy: str | None = None) -> str:
+def get_system_prompt(
+    lang: str | None,
+    strategy: str | None = None,
+    *,
+    response_lang: str | None = None,
+) -> str:
     l = normalize_system_prompt_language(lang)
+    resp = normalize_response_language(response_lang)
     st = normalize_prompt_strategy(strategy)
+    if resp == "en":
+        return SYSTEM_PROMPT_EN_OUT
     if st == PROMPT_STRATEGY_FEW_SHOT_COT:
         return SYSTEM_PROMPT_FS_COT_EN if l == "en" else SYSTEM_PROMPT_FS_COT_ES
     return SYSTEM_PROMPT_EN if l == "en" else SYSTEM_PROMPT_ES
 
 
-def get_user_template(lang: str | None) -> str:
+def get_user_template(lang: str | None, *, response_lang: str | None = None) -> str:
+    if normalize_response_language(response_lang) == "en":
+        return USER_TEMPLATE_EN_OUT
     return (
         USER_TEMPLATE_EN
         if normalize_system_prompt_language(lang) == "en"

@@ -4,16 +4,16 @@ pypdf>=4.0.0
 pdfplumber>=0.11.0  # EDA: Notebook trabajo EDA NLP y RAG.ipynb
 numpy>=1.24.0
 scipy>=1.11.0  # KDE en notebooks (ingesta_datos_rag)
-# Opcional: regenerar regatas_assistant/stopwords_en.txt (ver celda markdown en ingesta_datos_rag.ipynb)
+# Opcional: regenerar regatas_assistant/stopwords_en.txt (ver celda markdown en 00. reporte final/03-eda-y-descubrimientos/ingesta_datos_rag.ipynb)
 # scikit-learn>=1.3.0
 matplotlib>=3.7.0  # gráficos en notebooks / análisis del corpus
 spacy>=3.8.0  # NER en PoC (análisis).ipynb; modelo: python -m spacy download en_core_web_sm
 openai>=1.40.0  # cliente HTTP en código (chat + embeddings); nombre del paquete en PyPI
 tiktoken>=0.7.0  # opcional: conteo tipo OpenAI (cl100k)
-transformers>=4.40.0  # tokenizer Qwen en ingesta_datos_rag.ipynb
+transformers>=4.40.0  # tokenizer Qwen en 00. reporte final/03-eda-y-descubrimientos/ingesta_datos_rag.ipynb
 pandas>=2.0.0  # golden set (scripts/build_eval_set.py)
 openpyxl>=3.1.0  # lectura Casos de Regatas.xlsx
 
-# Opcional: REGATAS_EMBEDDING_BACKEND=local
-# sentence-transformers>=2.2.0
-# torch  # según tu plataforma; en CPU Spaces suele instalarse con la imagen base
+# Híbrido / local: REGATAS_EMBEDDING_BACKEND=hybrid|local
+sentence-transformers>=2.2.0
+# torch  # suele instalarse como dependencia de sentence-transformers

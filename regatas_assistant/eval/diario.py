@@ -144,6 +144,7 @@ def _settings_diff(prev: dict, curr: dict) -> list[str]:
         ("embedding_backend", "embedding"),
         ("llm_model", "modelo LLM"),
         ("system_prompt_language", "idioma prompt"),
+        ("response_language", "idioma respuesta"),
         ("prompt_strategy", "estrategia prompt"),
     ]
     for key, label in keys:

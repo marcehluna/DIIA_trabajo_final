@@ -6,7 +6,7 @@ import os
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from regatas_assistant.prompts import normalize_prompt_strategy
+from regatas_assistant.prompts import normalize_prompt_strategy, normalize_response_language
 
 # API HTTP de chat/embeddings (p. ej. Ollama, vLLM, hosts con rutas tipo /v1)
 DEFAULT_LLM_BASE_URL = "http://127.0.0.1:11434/v1"
@@ -85,8 +85,10 @@ class Settings:
     local_embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
     # stub | http  (valor legacy `openai` se normaliza a `http` en from_env)
     llm_backend: str = "http"
-    # es | en — idioma del system prompt (plantilla); el informe sigue en español por diseño
+    # es | en — idioma del system prompt (plantilla legacy); ver response_language para el informe
     system_prompt_language: str = "es"
+    # es | en — idioma del informe generado (en = E14, corpus alineado)
+    response_language: str = "es"
     # cot | few_shot_cot — plantilla de system prompt (CoT explícito vs Few-Shot CoT con ranura de ejemplos)
     prompt_strategy: str = "cot"
     index_cache_dir: Path | None = None
@@ -252,6 +254,10 @@ class Settings:
         strat_raw = os.environ.get("REGATAS_PROMPT_STRATEGY", "cot")
         prompt_strategy = normalize_prompt_strategy(strat_raw)
 
+        response_language = normalize_response_language(
+            os.environ.get("REGATAS_RESPONSE_LANG", "es")
+        )
+
         emb_b_raw = os.environ.get("REGATAS_EMBEDDING_BACKEND", "lexical").strip().lower()
         if emb_b_raw in ("http", "openai"):
             embedding_backend = "http"
@@ -369,6 +375,7 @@ class Settings:
             ),
             llm_backend=llm_backend,
             system_prompt_language=system_prompt_language,
+            response_language=response_language,
             prompt_strategy=prompt_strategy,
             index_cache_dir=index_cache_dir,
             llm_timeout_seconds=llm_timeout_seconds,

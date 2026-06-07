@@ -1,0 +1,183 @@
+<mxfile host="65bd71144e">
+    <diagram id="arq-tecnica" name="Arquitectura técnica">
+        <mxGraphModel dx="1165" dy="638" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="960" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="t1" value="&lt;b&gt;Arquitectura técnica de la solución&lt;/b&gt;&lt;br&gt;Paquete regatas_assistant · perfil production (E11 + E13) · despliegue local PoC" style="text;html=1;align=center;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="15" width="1360" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="layer_entry" value="Puntos de entrada" style="swimlane;startSize=28;fillColor=#fff2cc;strokeColor=#d6b656;html=1;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="80" width="1520" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="c2" value="&lt;b&gt;app.py&lt;/b&gt;&lt;br&gt;UI Gradio · consulta en vivo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;" parent="layer_entry" vertex="1">
+                    <mxGeometry x="40" y="40" width="220" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="c3" value="&lt;b&gt;scripts/eval_run.py&lt;/b&gt;&lt;br&gt;Evaluación batch golden set" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;" parent="layer_entry" vertex="1">
+                    <mxGeometry x="280" y="40" width="220" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="c4" value="&lt;b&gt;scripts/build_corpus_processed.py&lt;/b&gt;&lt;br&gt;Build JSONL offline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;" parent="layer_entry" vertex="1">
+                    <mxGeometry x="560" y="40" width="220" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="c5" value="&lt;b&gt;scripts/regression_eval.py&lt;/b&gt;&lt;br&gt;Regresión umbrales E11/E13" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;" parent="layer_entry" vertex="1">
+                    <mxGeometry x="860" y="40" width="220" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="pkg" value="regatas_assistant" style="swimlane;startSize=32;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="200" width="1520" height="520" as="geometry"/>
+                </mxCell>
+                <mxCell id="mod_orch" value="Orquestación" style="swimlane;startSize=24;fillColor=#f5f5f5;strokeColor=#666666;html=1;" parent="pkg" vertex="1">
+                    <mxGeometry x="30" y="50" width="220" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="m6" value="&lt;b&gt;pipeline.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;ProtestPipeline · analyze() · analyze_trace()&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;align=left;spacingLeft=4;" parent="mod_orch" vertex="1">
+                    <mxGeometry x="8" y="32" width="204" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="mod_cfg" value="Configuración" style="swimlane;startSize=24;fillColor=#f8cecc;strokeColor=#b85450;html=1;" parent="pkg" vertex="1">
+                    <mxGeometry x="280" y="50" width="200" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="m7" value="&lt;b&gt;config.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Settings.from_env() · REGATAS_*&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;align=left;spacingLeft=4;" parent="mod_cfg" vertex="1">
+                    <mxGeometry x="8" y="32" width="184" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="m8" value="&lt;b&gt;profiles.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;production · baseline · umbrales&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;align=left;spacingLeft=4;" parent="mod_cfg" vertex="1">
+                    <mxGeometry x="8" y="60" width="184" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="mod_ing" value="Ingesta" style="swimlane;startSize=24;fillColor=#e1d5e7;strokeColor=#9673a6;html=1;" parent="pkg" vertex="1">
+                    <mxGeometry x="510" y="50" width="240" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="m9" value="&lt;b&gt;ingestion.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;load_corpus_chunks() · TextChunk&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;align=left;spacingLeft=4;" parent="mod_ing" vertex="1">
+                    <mxGeometry x="8" y="32" width="224" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="m10" value="&lt;b&gt;corpus_processed.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Lectura JSONL v2&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;align=left;spacingLeft=4;" parent="mod_ing" vertex="1">
+                    <mxGeometry x="8" y="60" width="224" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="m11" value="&lt;b&gt;call_book_extract.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;CSV → calls.jsonl&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;align=left;spacingLeft=4;" parent="mod_ing" vertex="1">
+                    <mxGeometry x="8" y="88" width="224" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="m12" value="&lt;b&gt;case_book_extract.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;CSV → cases.jsonl&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;align=left;spacingLeft=4;" parent="mod_ing" vertex="1">
+                    <mxGeometry x="8" y="116" width="224" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="mod_rag" value="Retrieval (RAG)" style="swimlane;startSize=24;fillColor=#d5e8d4;strokeColor=#82b366;html=1;" parent="pkg" vertex="1">
+                    <mxGeometry x="780" y="50" width="240" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="m13" value="&lt;b&gt;rag/retriever.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;CorpusRetriever · cupos por doc_type&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;align=left;spacingLeft=4;" parent="mod_rag" vertex="1">
+                    <mxGeometry x="8" y="32" width="224" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="m14" value="&lt;b&gt;rag/embeddings_*.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;léxico · http · local · hybrid&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;align=left;spacingLeft=4;" parent="mod_rag" vertex="1">
+                    <mxGeometry x="8" y="60" width="224" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="m15" value="&lt;b&gt;chunk_metadata.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Metadatos en cabeceras&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;align=left;spacingLeft=4;" parent="mod_rag" vertex="1">
+                    <mxGeometry x="8" y="88" width="224" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="mod_llm" value="LLM" style="swimlane;startSize=24;fillColor=#dae8fc;strokeColor=#6c8ebf;html=1;" parent="pkg" vertex="1">
+                    <mxGeometry x="1050" y="50" width="200" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="m16" value="&lt;b&gt;llm/chat_http_client.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;HTTPChatClient → /v1/chat&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;align=left;spacingLeft=4;" parent="mod_llm" vertex="1">
+                    <mxGeometry x="8" y="32" width="184" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="m17" value="&lt;b&gt;llm/stub.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;StubLLMClient (tests)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;align=left;spacingLeft=4;" parent="mod_llm" vertex="1">
+                    <mxGeometry x="8" y="60" width="184" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="m18" value="&lt;b&gt;llm/base.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Interfaz LLMClient&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;align=left;spacingLeft=4;" parent="mod_llm" vertex="1">
+                    <mxGeometry x="8" y="88" width="184" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="mod_pr" value="Prompts" style="swimlane;startSize=24;fillColor=#fff2cc;strokeColor=#d6b656;html=1;" parent="pkg" vertex="1">
+                    <mxGeometry x="1280" y="50" width="200" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="m19" value="&lt;b&gt;prompts.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;v3 ES · system + user · CoT&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;align=left;spacingLeft=4;" parent="mod_pr" vertex="1">
+                    <mxGeometry x="8" y="32" width="184" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="mod_ev" value="Evaluación" style="swimlane;startSize=24;fillColor=#f5f5f5;strokeColor=#999999;html=1;" parent="pkg" vertex="1">
+                    <mxGeometry x="30" y="220" width="460" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="m20" value="&lt;b&gt;eval/runner.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;run_evaluation()&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;align=left;spacingLeft=4;" parent="mod_ev" vertex="1">
+                    <mxGeometry x="8" y="32" width="444" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="m21" value="&lt;b&gt;eval/metrics.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;R@k · F1 · Jaccard · dictamen&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;align=left;spacingLeft=4;" parent="mod_ev" vertex="1">
+                    <mxGeometry x="8" y="60" width="444" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="m22" value="&lt;b&gt;eval/refs.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Parser citas · verdict&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;align=left;spacingLeft=4;" parent="mod_ev" vertex="1">
+                    <mxGeometry x="8" y="88" width="444" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="m23" value="&lt;b&gt;eval/golden.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;eval_set.json&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;align=left;spacingLeft=4;" parent="mod_ev" vertex="1">
+                    <mxGeometry x="8" y="116" width="444" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="m24" value="&lt;b&gt;eval/faithfulness.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;LLM-as-judge (opcional)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;align=left;spacingLeft=4;" parent="mod_ev" vertex="1">
+                    <mxGeometry x="8" y="144" width="444" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="mod_aux" value="Transversal" style="swimlane;startSize=24;fillColor=#ffffff;strokeColor=#999999;html=1;" parent="pkg" vertex="1">
+                    <mxGeometry x="520" y="220" width="300" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="m25" value="&lt;b&gt;activity_console.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Log chunks · modelo&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;align=left;spacingLeft=4;" parent="mod_aux" vertex="1">
+                    <mxGeometry x="8" y="32" width="284" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="m26" value="&lt;b&gt;ollama_models.py&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:9px&quot;&gt;Catálogo modelos Ollama&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;align=left;spacingLeft=4;" parent="mod_aux" vertex="1">
+                    <mxGeometry x="8" y="60" width="284" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="idx" value="&lt;b&gt;Índice runtime&lt;/b&gt;&lt;br&gt;list[TextChunk] en RAM&lt;br&gt;(singleton pipeline)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#d5e8d4;strokeColor=#82b366;" parent="pkg" vertex="1">
+                    <mxGeometry x="880" y="360" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="e32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" parent="pkg" source="mod_orch" target="mod_rag" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" parent="pkg" source="mod_orch" target="mod_pr" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" parent="pkg" source="mod_orch" target="mod_llm" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e35" value="config" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;" parent="pkg" source="mod_orch" target="mod_cfg" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e36" value="analyze_trace()" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeColor=#999999;" parent="pkg" source="mod_ev" target="mod_orch" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e41" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" parent="pkg" source="mod_ing" target="idx" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e42" value="retrieve()" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;" parent="pkg" source="mod_rag" target="idx" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ext" value="&lt;b&gt;Servicio externo&lt;/b&gt;&lt;br&gt;Ollama&lt;br&gt;HTTP API /v1/chat&lt;br&gt;qwen2.5:14b-instruct" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="pkg" vertex="1">
+                    <mxGeometry x="1280" y="380" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="e38" value="HTTP" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" parent="pkg" source="mod_llm" target="ext" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1260" y="115"/>
+                            <mxPoint x="1260" y="420"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="layer_data" value="Capa de datos (filesystem)" style="swimlane;startSize=28;fillColor=#e1d5e7;strokeColor=#9673a6;html=1;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="740" width="1520" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="d27" value="&lt;b&gt;corpus/&lt;/b&gt;&lt;br&gt;PDF Call Book · Case Book" style="shape=partialRectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;align=left;spacingLeft=6;" parent="layer_data" vertex="1">
+                    <mxGeometry x="40" y="38" width="260" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="d28" value="&lt;b&gt;corpus/processed/&lt;/b&gt;&lt;br&gt;JSONL: rrs · calls · cases · definitions" style="shape=partialRectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;align=left;spacingLeft=6;" parent="layer_data" vertex="1">
+                    <mxGeometry x="300" y="38" width="260" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="d29" value="&lt;b&gt;eval/data/&lt;/b&gt;&lt;br&gt;eval_set.json · golden set" style="shape=partialRectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;align=left;spacingLeft=6;" parent="layer_data" vertex="1">
+                    <mxGeometry x="620" y="38" width="260" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="d30" value="&lt;b&gt;eval/runs/&lt;/b&gt;&lt;br&gt;report.json · métricas · plots" style="shape=partialRectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;align=left;spacingLeft=6;" parent="layer_data" vertex="1">
+                    <mxGeometry x="880" y="38" width="260" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="d31" value="&lt;b&gt;.env / REGATAS_*&lt;/b&gt;&lt;br&gt;Variables de entorno" style="shape=partialRectangle;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;align=left;spacingLeft=6;" parent="layer_data" vertex="1">
+                    <mxGeometry x="1180" y="38" width="260" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="e37" value="invoca" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeWidth=2;" parent="1" source="layer_entry" target="pkg" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e39" value="I/O" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeColor=#9673a6;" parent="1" source="mod_ing" target="layer_data" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e40" value="I/O" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeColor=#9673a6;" parent="1" source="mod_ev" target="layer_data" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="leg43" value="&lt;b&gt;Dependencias principales&lt;/b&gt;&lt;br&gt;pipeline → retriever + prompts + llm · ingestion → índice · eval/runner → pipeline&lt;br&gt;Retrieval productivo: embedding_backend=lexical · cupos 2+3+2+1 · top_k=8" style="text;html=1;align=left;fontSize=10;fillColor=#fafafa;strokeColor=#cccccc;spacingLeft=8;spacingTop=4;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="880" width="900" height="45" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

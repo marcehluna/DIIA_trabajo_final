@@ -19,11 +19,18 @@ _RULE_EN_RE = re.compile(
     r"(?i)\b(?:rule|r\.)\s*(\d{1,2}(?:\.\d+)*|[Dd]\d+(?:\.\d+)*)"
 )
 _DECISION_RE = re.compile(r"(?i)decisi[oó]n:\s*(.+?)(?:\s*$|\n)")
+_DECISION_EN_RE = re.compile(r"(?i)decision:\s*(.+?)(?:\s*$|\n)")
 # Prompt v3 / E11: - **Regla 16.1** —, - **Regla RRS 11**:
 _REGLA_MARKDOWN_RE = re.compile(r"(?i)\*\*Regla(?:\s+RRS)?\s+([^*]+?)\*\*")
+# E14: - **Rule 16.1** —
+_RULE_MARKDOWN_RE = re.compile(r"(?i)\*\*Rule(?:\s+RRS)?\s+([^*]+?)\*\*")
 # Líneas tipo "- Regla 16.1 —" (con o sin negritas)
 _REGLA_BULLET_RE = re.compile(
     r"(?i)^\s*[-*•]\s+(?:\*\*)?Regla(?:\s+RRS)?\s+([^\n*—:]+)",
+    re.M,
+)
+_RULE_BULLET_RE = re.compile(
+    r"(?i)^\s*[-*•]\s+(?:\*\*)?Rule(?:\s+RRS)?\s+([^\n*—:]+)",
     re.M,
 )
 # **Case 92** / **CASE 13**
@@ -63,6 +70,12 @@ def extract_rrs_rules(text: str) -> list[str]:
     for m in _REGLA_BULLET_RE.finditer(text):
         label = m.group(1).strip().rstrip(":")
         found.extend(_split_rule_alternatives(label))
+    for m in _RULE_MARKDOWN_RE.finditer(text):
+        label = m.group(1).strip().rstrip(":")
+        found.extend(_split_rule_alternatives(label))
+    for m in _RULE_BULLET_RE.finditer(text):
+        label = m.group(1).strip().rstrip(":")
+        found.extend(_split_rule_alternatives(label))
     return _dedupe_preserve(found)
 
 
@@ -84,9 +97,12 @@ def extract_cases(text: str) -> list[str]:
 
 def extract_decision(text: str) -> str | None:
     m = _DECISION_RE.search(text)
-    if not m:
-        return None
-    return m.group(1).strip()
+    if m:
+        return m.group(1).strip()
+    m = _DECISION_EN_RE.search(text)
+    if m:
+        return m.group(1).strip()
+    return None
 
 
 def normalize_verdict(decision: str | None) -> str | None:
@@ -95,11 +111,11 @@ def normalize_verdict(decision: str | None) -> str | None:
     d = decision.lower()
     if "sin penal" in d or "no penalty" in d:
         return "sin_penalizacion"
-    if "exonerar" in d:
-        if "penalizar" in d:
+    if "exonerar" in d or "exonerate" in d:
+        if "penalizar" in d or "penalize" in d or "penalise" in d:
             return "mixto"
         return "exonerar"
-    if "penalizar" in d:
+    if "penalizar" in d or "penalize" in d or "penalise" in d:
         return "penalizar"
     return "otro"
 
@@ -108,6 +124,7 @@ def extract_penalized_boats(decision: str | None) -> list[str]:
     if not decision:
         return []
     boats = re.findall(r"(?i)penalizar\s+a\s+([A-Z])", decision)
+    boats.extend(re.findall(r"(?i)penali[sz]e\s+(?:boat\s+)?([A-Z])", decision))
     return list(dict.fromkeys(b.upper() for b in boats))
 
 

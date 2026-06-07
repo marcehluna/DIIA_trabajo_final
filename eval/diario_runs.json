@@ -12,9 +12,13 @@
     "20260526_000249_processed_cupos_3_2_2_1": "E10",
     "20260526_185624_processed_cupos_2_3_2_1": "E11",
     "20260603_183901_prompt_v2_cot": "E12",
-    "20260604_124747_prompt_v3_format": "E13"
+    "20260604_124747_prompt_v3_format": "E13",
+    "20260606_200214_prompt_v3_en_out": "E14",
+    "20260606_203312_hybrid_retrieval": "E15",
+    "20260606_203610_hybrid_retrieval": "E16",
+    "20260606_203922_hybrid_prompt_v3": "E17"
   },
-  "next_index": 14,
+  "next_index": 18,
   "notes": {
     "20260525_223713_full_cupos_4_4": "E6: índice full (RRS JSONL + Call/Case) con cupos retrieval 4+4",
     "20260525_225609_full_cupos_3_5": "E7: índice full con cupos retrieval 3 RRS + 5 PDF",
@@ -23,6 +27,10 @@
     "20260526_000249_processed_cupos_3_2_2_1": "E10: JSONL 707 ch. cupos por doc_type 3+2+2+1",
     "20260526_185624_processed_cupos_2_3_2_1": "E11: JSONL 707 ch. cupos por doc_type 2+3+2+1 (más CALL vs E10)",
     "20260603_183901_prompt_v2_cot": "JSONL v2 metadatos + prompt v2",
-    "20260604_124747_prompt_v3_format": "Prompt v3: plantilla fija, §4 Resolución, viñetas Regla/TR CALL"
+    "20260604_124747_prompt_v3_format": "Prompt v3: plantilla fija, §4 Resolución, viñetas Regla/TR CALL",
+    "20260606_200214_prompt_v3_en_out": "E14: prompt v3 salida inglés (mismo índice E11); hipótesis alineación corpus EN",
+    "20260606_203312_hybrid_retrieval": "E15: híbrido prototipo (sin fallback semántico); R@k 0.60 — descartado",
+    "20260606_203610_hybrid_retrieval": "E16: híbrido retrieval-only; R@k 0.76 (=E11); caso 7 ok",
+    "20260606_203922_hybrid_prompt_v3": "E17: híbrido + prompt v3; F1 0.13, dictamen 47% — no adoptar; perfil sigue E11+E13"
   }
 }

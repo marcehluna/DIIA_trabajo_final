@@ -1,0 +1,3 @@
+﻿corrida,tipo,n_esperados,n_en_contexto,tasa_contexto,n_citados,tasa_cita,n_pipeline_ok,tasa_pipeline,brecha_contexto_cita,mrr,pct_hits_top1,pct_hits_top3,pct_hits_call_book,n_citas_espurias_rrs,n_citas_espurias_call,n_citas_espurias_total
+hybrid_retrieval,RRS,27,20,0.7407407407407407,0,0.0,0,0.0,0.7407407407407407,0.22504409171075837,0.1,0.25,0.0,0,0,0
+hybrid_retrieval,CALL,15,3,0.2,0,0.0,0,0.0,0.2,0.05222222222222222,0.0,0.3333333333333333,0.0,0,0,0

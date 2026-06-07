@@ -1,0 +1,121 @@
+case_id,rank,chunk_id,source_file,page_start,chunk_index,char_len,refs_rrs,refs_calls
+1,1,rrs|14,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,19,436,14,
+1,2,rrs|69.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,147,487,69.1|1|2|69.1(a)|69,
+1,3,call|A3,Call-Book-TR (call_book_calls.csv),10,2,1634,11|16.1,A3
+1,4,call|C3,Call-Book-TR (call_book_calls.csv),24,15,905,21.1|23.2,C3
+1,5,call|F4,Call-Book-TR (call_book_calls.csv),63,42,921,11|17,F4
+1,6,case|107,Case-Book-WS (case_book_cases.csv),237,89,2788,14|44.1|60.5|10|43.1,
+1,7,case|99,Case-Book-WS (case_book_cases.csv),225,81,3246,10|14|44.1|60.5|61.1|61.4,
+1,8,definition|8,definitions.csv,0,7,281,,
+2,1,rrs|21.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,39,157,21.1,
+2,2,rrs|69.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,147,487,69.1|1|2|69.1(a)|69,
+2,3,call|B1,Call-Book-TR (call_book_calls.csv),14,6,1441,11|15|43.1,B1
+2,4,call|L2,Call-Book-TR (call_book_calls.csv),91,67,1114,21.2|23.2|44.2,L2|L5
+2,5,call|B2,Call-Book-TR (call_book_calls.csv),15,7,1884,11|13|16.1,B2
+2,6,case|13,Case-Book-WS (case_book_cases.csv),94,12,2859,11|14|15|16.1|17|43.1,
+2,7,case|69,Case-Book-WS (case_book_cases.csv),178,58,1044,42.1,
+2,8,definition|22,definitions.csv,0,21,273,30.1,
+3,1,rrs|60.5,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,123,846,60.5|63|1|2|62.4|64|69|3|36,
+3,2,rrs|20.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,35,528,20.2|20.1|18.2,
+3,3,call|M10,Call-Book-TR (call_book_calls.csv),107,81,1061,D1.1|D2.3,M10
+3,4,call|A3,Call-Book-TR (call_book_calls.csv),10,2,1634,11|16.1,A3
+3,5,call|C3,Call-Book-TR (call_book_calls.csv),24,15,905,21.1|23.2,C3
+3,6,case|20,Case-Book-WS (case_book_cases.csv),104,17,1605,1.1|61.4,
+3,7,case|82,Case-Book-WS (case_book_cases.csv),196,67,2322,61.4,
+3,8,definition|8,definitions.csv,0,7,281,,
+4,1,rrs|10,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,15,120,10,
+4,2,rrs|11,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,16,137,11,
+4,3,call|A1,Call-Book-TR (call_book_calls.csv),8,0,1348,13|17,A1
+4,4,call|G5,Call-Book-TR (call_book_calls.csv),69,47,1173,10|15,G5
+4,5,call|A2,Call-Book-TR (call_book_calls.csv),9,1,1093,11,A2
+4,6,case|2,Case-Book-WS (case_book_cases.csv),76,1,2768,12|14|15|18.2|43.1|10,
+4,7,case|75,Case-Book-WS (case_book_cases.csv),184,62,3556,10|14|16.1|18.2|18.4|18|13|43.1,
+4,8,definition|2,definitions.csv,0,1,574,18,
+5,1,rrs|16.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,23,276,16.2,
+5,2,rrs|42.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,83,670,42.2|42.1|1|2|3,
+5,3,call|A5,Call-Book-TR (call_book_calls.csv),12,4,1180,11|16.1,A5
+5,4,call|E11,Call-Book-TR (call_book_calls.csv),53,36,664,17,E11|G4
+5,5,call|A6,Call-Book-TR (call_book_calls.csv),13,5,1089,18|11|18.1|18.2|43.1|17,A6
+5,6,case|43,Case-Book-WS (case_book_cases.csv),141,39,1953,10|14|19.2|13|15|20,
+5,7,case|3,Case-Book-WS (case_book_cases.csv),78,2,1902,19.2|20|43.1|10|20.1,
+5,8,definition|9,definitions.csv,0,8,400,,
+6,1,rrs|18.4,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,29,250,18.4,
+6,2,rrs|19.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,32,168,19.2,
+6,3,call|E11,Call-Book-TR (call_book_calls.csv),53,36,664,17,E11|G4
+6,4,call|G5,Call-Book-TR (call_book_calls.csv),69,47,1173,10|15,G5
+6,5,call|D10,Call-Book-TR (call_book_calls.csv),37,25,1412,10|11|19|43.1|19.2,D10
+6,6,case|75,Case-Book-WS (case_book_cases.csv),184,62,3556,10|14|16.1|18.2|18.4|18|13|43.1,
+6,7,case|30,Case-Book-WS (case_book_cases.csv),122,27,2634,12|14|19|43|10|43.1,
+6,8,definition|24,definitions.csv,0,23,101,,
+7,1,rrs|D1.3,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,305,363,D1.3|44.1|2|31|42|D2.3|D3.3,
+7,2,rrs|P2.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,435,212,2.2,
+7,3,call|M5,Call-Book-TR (call_book_calls.csv),104,78,758,61|D2.3|D3|D3.3|D2.1|61.4,M5|M6
+7,4,call|L2,Call-Book-TR (call_book_calls.csv),91,67,1114,21.2|23.2|44.2,L2|L5
+7,5,call|L1,Call-Book-TR (call_book_calls.csv),90,66,853,10|43.1|D2.3,L1|A4
+7,6,case|99,Case-Book-WS (case_book_cases.csv),225,81,3246,10|14|44.1|60.5|61.1|61.4,
+7,7,case|19,Case-Book-WS (case_book_cases.csv),103,16,949,36|43.1|44.1|60.2|60.4|60.5|61.4|63.4,
+7,8,definition|7,definitions.csv,0,6,234,44.2,
+8,1,rrs|18.4,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,29,250,18.4,
+8,2,rrs|10,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,15,120,10,
+8,3,call|E11,Call-Book-TR (call_book_calls.csv),53,36,664,17,E11|G4
+8,4,call|H2,Call-Book-TR (call_book_calls.csv),74,51,1279,15|18.2|31|43.1|17,H2|H3
+8,5,call|D10,Call-Book-TR (call_book_calls.csv),37,25,1412,10|11|19|43.1|19.2,D10
+8,6,case|75,Case-Book-WS (case_book_cases.csv),184,62,3556,10|14|16.1|18.2|18.4|18|13|43.1,
+8,7,case|59,Case-Book-WS (case_book_cases.csv),166,52,1464,18.2,
+8,8,definition|11,definitions.csv,0,10,176,,
+9,1,rrs|M6.5,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,410,177,6.5|69|69.2(h)(2)|62.4,
+9,2,rrs|79,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,173,239,79,
+9,3,call|L2,Call-Book-TR (call_book_calls.csv),91,67,1114,21.2|23.2|44.2,L2|L5
+9,4,call|E11,Call-Book-TR (call_book_calls.csv),53,36,664,17,E11|G4
+9,5,call|G5,Call-Book-TR (call_book_calls.csv),69,47,1173,10|15,G5
+9,6,case|47,Case-Book-WS (case_book_cases.csv),148,42,1113,2|10|69,
+9,7,case|30,Case-Book-WS (case_book_cases.csv),122,27,2634,12|14|19|43|10|43.1,
+9,8,definition|24,definitions.csv,0,23,101,,
+10,1,rrs|10,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,15,120,10,
+10,2,rrs|28.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,57,40,28.1,
+10,3,call|E11,Call-Book-TR (call_book_calls.csv),53,36,664,17,E11|G4
+10,4,call|D8,Call-Book-TR (call_book_calls.csv),36,24,663,13,D8|D9
+10,5,call|B3,Call-Book-TR (call_book_calls.csv),17,8,1161,12|15|16.1,B3
+10,6,case|90,Case-Book-WS (case_book_cases.csv),208,73,2515,28.1|72,
+10,7,case|43,Case-Book-WS (case_book_cases.csv),141,39,1953,10|14|19.2|13|15|20,
+10,8,definition|24,definitions.csv,0,23,101,,
+11,1,rrs|10,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,15,120,10,
+11,2,rrs|16.2#2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,366,260,16.2,
+11,3,call|E11,Call-Book-TR (call_book_calls.csv),53,36,664,17,E11|G4
+11,4,call|H2,Call-Book-TR (call_book_calls.csv),74,51,1279,15|18.2|31|43.1|17,H2|H3
+11,5,call|D10,Call-Book-TR (call_book_calls.csv),37,25,1412,10|11|19|43.1|19.2,D10
+11,6,case|90,Case-Book-WS (case_book_cases.csv),208,73,2515,28.1|72,
+11,7,case|43,Case-Book-WS (case_book_cases.csv),141,39,1953,10|14|19.2|13|15|20,
+11,8,definition|24,definitions.csv,0,23,101,,
+12,1,rrs|19.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,31,313,19.1|19|18,
+12,2,rrs|16.2#2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,366,260,16.2,
+12,3,call|E11,Call-Book-TR (call_book_calls.csv),53,36,664,17,E11|G4
+12,4,call|H2,Call-Book-TR (call_book_calls.csv),74,51,1279,15|18.2|31|43.1|17,H2|H3
+12,5,call|E5,Call-Book-TR (call_book_calls.csv),44,30,1774,11|18.2|43.1|31,E5
+12,6,case|59,Case-Book-WS (case_book_cases.csv),166,52,1464,18.2,
+12,7,case|82,Case-Book-WS (case_book_cases.csv),196,67,2322,61.4,
+12,8,definition|11,definitions.csv,0,10,176,,
+13,1,rrs|1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,0,14,1,
+13,2,rrs|16.2#2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,366,260,16.2,
+13,3,call|E11,Call-Book-TR (call_book_calls.csv),53,36,664,17,E11|G4
+13,4,call|G5,Call-Book-TR (call_book_calls.csv),69,47,1173,10|15,G5
+13,5,call|L2,Call-Book-TR (call_book_calls.csv),91,67,1114,21.2|23.2|44.2,L2|L5
+13,6,case|90,Case-Book-WS (case_book_cases.csv),208,73,2515,28.1|72,
+13,7,case|52,Case-Book-WS (case_book_cases.csv),156,47,1788,16.1|11|13|15,
+13,8,definition|6,definitions.csv,0,5,143,,
+14,1,rrs|28.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,57,40,28.1,
+14,2,rrs|1.1,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,1,134,1.1,
+14,3,call|L2,Call-Book-TR (call_book_calls.csv),91,67,1114,21.2|23.2|44.2,L2|L5
+14,4,call|B9,Call-Book-TR (call_book_calls.csv),21,12,1112,21.3,B9
+14,5,call|E11,Call-Book-TR (call_book_calls.csv),53,36,664,17,E11|G4
+14,6,case|72,Case-Book-WS (case_book_cases.csv),181,59,582,60.2,
+14,7,case|140,Case-Book-WS (case_book_cases.csv),304,120,4391,30.3|30.4|43.1|61.4|2|28.1|36,
+14,8,definition|20,definitions.csv,0,19,46,,
+15,1,rrs|60.5,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,123,846,60.5|63|1|2|62.4|64|69|3|36,
+15,2,rrs|40.2,RRS-2025-2028 (rrs_reglas_2025_2028.csv),0,79,344,40.2|40.1,
+15,3,call|C3,Call-Book-TR (call_book_calls.csv),24,15,905,21.1|23.2,C3
+15,4,call|L2,Call-Book-TR (call_book_calls.csv),91,67,1114,21.2|23.2|44.2,L2|L5
+15,5,call|L5,Call-Book-TR (call_book_calls.csv),94,70,2059,21.2|44.2|D2.3|17|D1.3|D2.5,L5
+15,6,case|20,Case-Book-WS (case_book_cases.csv),104,17,1605,1.1|61.4,
+15,7,case|30,Case-Book-WS (case_book_cases.csv),122,27,2634,12|14|19|43|10|43.1,
+15,8,definition|24,definitions.csv,0,23,101,,
