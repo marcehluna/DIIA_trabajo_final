@@ -1,6 +1,6 @@
 ### 05. Evaluación de resultados
 
-Documentación cuantitativa de la mejora obtenida mediante métricas sobre un **golden set fijo de 15 casos** (`eval/data/eval_set.json`), derivados del Case Book y validados manualmente.
+Documentación cuantitativa de la mejora obtenida mediante métricas sobre un **golden set fijo de 15 casos** (`eval/data/eval_set.json`), derivados del *Case Book* [3] y validados manualmente.
 
 **Perfil recomendado:** retrieval **E11** (léxico, cupos 2+3+2+1) + respuesta **E13** (prompt v3 español).
 
@@ -8,87 +8,36 @@ Documentación cuantitativa de la mejora obtenida mediante métricas sobre un **
 
 ## Métricas de evaluación
 
-Todas las métricas se calculan sobre el **golden set de 15 casos** (`eval/data/eval_set.json`), comparando lo que el sistema recupera y genera contra referencias extraídas del Excel *Casos de Regatas* (reglas RRS, TR CALL, casos, dictamen y output ideal). La implementación está en `regatas_assistant/eval/metrics.py` y `regatas_assistant/eval/refs.py`; las corridas las produce `scripts/eval_run.py`.
+La evaluación del trabajo se apoyó en un conjunto acotado de indicadores, calculados siempre sobre los **15 casos del golden set** y comparados contra etiquetas de referencia (reglas RRS, TR CALL, dictamen y output ideal). Las métricas se agrupan por **capa del pipeline RAG** [5][6]: primero se mide si el contexto recuperado contiene la norma esperada; después, si el informe la cita, se ancla al contexto y cierra la protesta con un dictamen coherente.
 
-Las agrupamos en **cuatro familias** según qué capa del pipeline auditan: recuperación, respuesta, decisión y diagnóstico extendido.
+| Métrica | Capa | Qué mide | Rol en este trabajo |
+|---------|------|----------|---------------------|
+| **Recall@k reglas** | Recuperación | Fracción de reglas RRS esperadas presentes en los *k* fragmentos recuperados (*k* = 8). | Métrica central para validar ingesta JSONL y cupos (E10→E11); umbral de regresión ≥ 0.70. |
+| **Recall@k CALL** | Recuperación | Igual para códigos TR CALL del Call Book [2]. | Controla que el índice no sacrifique jurisprudencia de team racing; umbral ≥ 0.18. |
+| **F1 citas RRS / CALL** | Respuesta | Balance entre citas normativas correctas y omisiones en el informe del LLM. | Mide trazabilidad de la respuesta; estable con prompt v3; umbral F1 RRS ≥ 0.18, F1 CALL ≥ 0.06. |
+| **Jaccard respuesta↔contexto** | Respuesta | Solapamiento léxico entre el informe y los fragmentos recuperados. | Proxy de fidelidad al contexto; sensible al idioma (ES vs EN del corpus). |
+| **Jaccard respuesta↔referencia** | Respuesta | Solapamiento léxico entre el informe y el output ideal del golden set. | Aproxima cercanía al informe humano de referencia. |
+| **Acierto dictamen** | Decisión | Coincidencia de la categoría de decisión (`Decisión:`) con el golden set. | Métrica de utilidad práctica; pasó de 0 % a 60 % con prompt v3; umbral ≥ 50 %. |
 
-### Recuperación (retrieval)
+En las corridas **solo retrieval** (E1, E2, E15, E16) se reportaron únicamente las métricas de recuperación (R@k reglas y CALL), sin F1, Jaccard ni dictamen.
 
-Estas métricas miden si el contexto que recibe el LLM contiene el material normativo esperado. Se pueden evaluar **sin llamar al modelo** (`--retrieval-only`), lo que permite iterar rápido sobre corpus, chunking y cupos.
+### Cómo interpretar las métricas
 
-| Métrica | Definición breve | Utilidad |
-|---------|------------------|----------|
-| **Recall@k reglas** | Fracción de números de regla RRS esperados que aparecen en al menos uno de los `k` chunks recuperados (por defecto `k=8`). | Indica si el índice y el retriever traen las normas del golden set al prompt. Fue la métrica clave para decidir ingesta JSONL y cupos (E10→E11). |
-| **Recall@k CALL** | Igual para códigos TR CALL esperados (p. ej. B2, E1). | Mide cobertura del Call Book. Baja si el corpus no incluye calls o si los cupos priorizan otras fuentes. |
-| **Recall@k CASE** | Igual para identificadores de caso del Case Book. | Complementa CALL cuando el golden set espera precedentes de caso; útil tras incorporar `cases.jsonl`. |
+Todas las cifras de la tabla son **promedios sobre los 15 casos** del golden set y, salvo el dictamen (expresado en porcentaje), toman valores entre **0 y 1**. Un valor más alto indica mejor desempeño, pero conviene leer cada métrica según la capa que audita.
 
-**Por qué importan:** si el recall es bajo, ningún prompt mejorará la respuesta: el modelo no ve la norma relevante. Separar retrieval de generación nos permitió aislar la mejora E0→E11 sin confundirla con cambios de prompt.
+**Recuperación (R@k reglas y CALL).** Responden a una pregunta previa al LLM: *¿llegó al prompt el material normativo que el golden set espera?* Un R@k reglas de **0.76** significa que, en promedio, el 76 % de las reglas RRS etiquetadas por caso aparecen en al menos uno de los ocho fragmentos recuperados. Si este valor es bajo, el problema está en el índice, la ingesta o los cupos — no en el modelo generativo [5].
 
-### Respuesta y citas
+**Respuesta (F1 citas y Jaccard).** Miden qué hace el LLM con el contexto ya recuperado. El **F1** compara el conjunto de reglas o TR CALL citados en el informe contra los esperados: un F1 de **0.22** no implica que solo el 22 % del texto sea correcto, sino que hay un equilibrio entre citas acertadas y omitidas. Los **Jaccard** miden solapamiento de palabras (tokens de tres o más letras): respuesta↔contexto indica si el informe se apoya léxicamente en lo recuperado; respuesta↔referencia, si se parece al output ideal del golden set. Pueden ser bajos aun con buenas citas normativas, porque el corpus está en inglés y el informe en español.
 
-Requieren una corrida **completa** (retrieval + LLM). Evalúan si el informe cita correctamente lo recuperado y si se ancla al contexto.
+**Decisión (acierto dictamen).** Es la métrica más cercana a la utilidad práctica: *¿la protesta se resuelve como indica el golden set?* Se compara la categoría de la línea `Decisión:` (penalizar, exonerar, desestimar, etc.) con la etiqueta de referencia. Un **60 %** significa que en 9 de 15 casos la categoría coincide; no exige redacción idéntica al output ideal.
 
-| Métrica | Definición breve | Utilidad |
-|---------|------------------|----------|
-| **Precisión / recall / F1 citas RRS** | Conjunto de reglas citadas en la respuesta vs reglas esperadas; F1 balancea citas correctas y omisiones. | Mide trazabilidad normativa en el informe. Mejora con prompt v3 (formato de viñetas) y con parser ampliado en `refs.py`. |
-| **Precisión / recall / F1 citas CALL** | Igual para TR CALL en la respuesta. | Detecta si el modelo enlaza el incidente con la señal o procedimiento del Call Book. |
-| **F1 citas CASE** | Igual para casos del Case Book (cuando el golden set los declara). | Complemento menor en esta PoC; reservado para casos con precedente explícito. |
-| **Jaccard respuesta↔contexto** | Solapamiento léxico (tokens ≥3 letras) entre la respuesta y el texto de los chunks recuperados. | Proxy de **faithfulness léxica**: respuesta anclada al contexto. Sensible al idioma (ES vs EN del corpus); subió fuerte en E14. |
-| **Jaccard respuesta↔referencia** | Solapamiento léxico entre la respuesta y el *output ideal* del Excel. | Aproxima cercanía al informe humano de referencia; útil para comparar estilo y cobertura, no solo citas. |
-
-**Por qué importan:** con recall alto (E11) el cuello de botella pasó a la **generación**. F1 y Jaccard permiten ver si el LLM *usa* el contexto recuperado y si el formato del prompt hace las citas auditables.
-
-### Decisión (dictamen)
-
-| Métrica | Definición breve | Utilidad |
-|---------|------------------|----------|
-| **Acierto dictamen** (`verdict_match`) | Coincidencia de la categoría de decisión normalizada (p. ej. penalizar, sin penalización, exonerar) entre la línea `Decisión:` del modelo y el golden set. | Métrica de **utilidad práctica** para la comisión: no basta citar reglas; hay que cerrar la protesta. Pasó de 0 % (E0–E11) a 60 % con prompt v3 (E13). |
-| **Coincidencia barcos penalizados** | Igualdad del conjunto de embarcaciones penalizadas extraídas de la decisión. | Refinamiento del dictamen; se reporta cuando el golden set declara barcos concretos. |
-
-**Por qué importan:** en regatas el entregable es una resolución accionable. El dictamen automático es una aproximación (el Excel y el parser no capturan toda la matices del lenguaje), pero sirve para comparar prompts y detectar regresiones.
-
-### Diagnóstico extendido de retrieval
-
-Métricas derivadas de `retrieval_hits.json` / `retrieval_hits_detail.csv` (script `aggregate_retrieval_hits.py`). Operan **ítem a ítem** (cada regla o CALL esperada por caso), no solo promedios.
-
-| Métrica | Definición breve | Utilidad |
-|---------|------------------|----------|
-| **Tasa en contexto** (RRS / CALL) | % de referencias esperadas presentes en los chunks recuperados. | Equivalente granular al recall@k; desglosado por tipo y por caso. |
-| **Tasa en respuesta** (cita) | % de referencias esperadas citadas en el informe del LLM. | Aísla la capa de generación respecto del contexto ya recuperado. |
-| **Tasa pipeline** | % de referencias que están **tanto en contexto como citadas** en la respuesta. | Resume el flujo completo RAG: recuperar *y* reflejar en el informe. |
-| **Matriz contexto→cita (A / B / C / D)** | Clasificación por ítem: **A** contexto sí + cita sí; **B** contexto sí + cita no; **C** contexto no + cita sí; **D** ninguno. | Diagnóstico fino: **B** sugiere mejorar prompt; **C** posible alucinación; **D** fallo de retrieval o de todo el pipeline. |
-| **Rank del primer hit / MRR** | Posición del primer chunk que contiene la referencia; MRR promedia el recíproco del rank. | Indica si las normas relevantes quedan arriba en `top_k` o enterradas en posiciones bajas. |
-| **Citas espurias** | Reglas o CALL mencionados en la respuesta pero no esperados en el golden set. | Control de precisión: evitar que el modelo “rellene” con normas irrelevantes. |
-
-**Por qué importan:** los promedios de recall ocultan casos problemáticos (p. ej. regla 21.2 en caso 7). La matriz y el rank guiaron la lectura de dilución en E3 y la validación del híbrido en E16.
-
-### Faithfulness (fidelidad al contexto)
-
-Métrica **opcional** calculada con un LLM como juez (`regatas_assistant/eval/faithfulness.py`, script `score_faithfulness.py`):
-
-| Métrica | Definición breve | Utilidad |
-|---------|------------------|----------|
-| **Faithfulness rate** | Fracción de afirmaciones atómicas extraídas de la respuesta marcadas como *supported* por los chunks recuperados (incluye *unknown* en el denominador). | Evalúa si cada frase del informe está respaldada por evidencia, más allá del solapamiento léxico. |
-| **Faithfulness rate estricta** | Igual, pero solo cuenta *supported* vs *not_supported* (excluye *unknown*). | Versión más exigente; usada en el barrido E0 vs E12 (E12 ≈ 57 % / 82 % estricta). |
-
-**Por qué importa:** el Jaccard puede ser bajo con buenas citas normativas (idiomas distintos, paráfrasis). Faithfulness complementa con verificación semántica por afirmación, aunque tiene costo de LLM adicional y cierta variabilidad del juez.
-
-### Cómo leer las métricas en conjunto
-
-```text
-Retrieval (R@k)  →  ¿llegó la norma al prompt?
-F1 / matriz B    →  ¿el LLM la citó si estaba en contexto?
-Dictamen         →  ¿cerró la protesta como el golden set?
-Jaccard / faithfulness  →  ¿el texto se sostiene en la evidencia recuperada?
-```
-
-En la práctica usamos **R@k reglas y CALL** para regresión de índice y cupos (umbrales E11), y **F1 RRS, F1 CALL y dictamen** para regresión de prompt (umbrales E13). Las métricas extendidas y faithfulness se reservan para análisis cualitativo y comparativas del informe.
+**Lectura en conjunto.** Las métricas no son intercambiables: primero debe ser alto el R@k; solo entonces tiene sentido exigir F1 o dictamen elevados. Si R@k se mantiene y caen F1 o dictamen, el foco está en prompt y formato de salida; si cae R@k, en corpus y retrieval. Esa lógica separó la evolución del proyecto en dos etapas: E0→E11 (recuperación) y E11→E13 (respuesta auditable).
 
 ---
 
 ## Resumen del trabajo con las corridas
 
-Las evaluaciones se organizaron en **18 corridas numeradas (E0–E17, sin E5)**. En cada una se varió **una o pocas dimensiones** — corpus, cupos de retrieval, prompt o backend de embeddings — manteniendo el resto constante para aislar el efecto del cambio. El objetivo general fue pasar de una línea base con solo PDF (E0) a un perfil productivo que recupere bien las reglas RRS y cierre dictámenes auditables.
+Las evaluaciones se organizaron en **18 corridas numeradas (E0–E17, sin E5)**. En cada una se varió **una o pocas dimensiones** — corpus, cupos de retrieval, prompt o backend de embeddings — manteniendo el resto constante para aislar el efecto del cambio [6]. El objetivo general fue pasar de una línea base con solo PDF (E0) a un perfil productivo que recupere bien las reglas RRS [1] y cierre dictámenes auditables.
 
 ### Línea base y diagnóstico (E0–E2)
 
@@ -127,14 +76,14 @@ Las evaluaciones se organizaron en **18 corridas numeradas (E0–E17, sin E5)**.
 |----|----------------|
 | E12 | Probar **prompt v2** con metadatos JSONL v2 en contexto; mismo motor RAG que E11. |
 | **E13** | Validar **prompt v3** (plantilla fija, viñetas, línea `Decisión:`) como referencia de **respuesta en español**. |
-| E14 | Mismo retrieval E11 pero **salida en inglés** (`--response-lang en`) para probar alineación léxica con corpus EN. |
+| E14 | Mismo retrieval E11 pero **salida en inglés** (`--response-lang en`) para probar alineación léxica con corpus EN [6]. |
 
 ### Retrieval híbrido (E15–E17)
 
 | ID | Qué buscábamos |
 |----|----------------|
-| E15 | Prototipo **híbrido léxico+semántico** sin fallback cuando no hay overlap de tokens. |
-| E16 | Híbrido con **fallback semántico** (relato ES / corpus EN); solo retrieval. |
+| E15 | Prototipo **híbrido léxico+semántico** sin fallback cuando no hay overlap de tokens [8]. |
+| E16 | Híbrido con **fallback semántico** (relato ES / corpus EN); solo retrieval [8]. |
 | E17 | Híbrido + prompt v3 completo; decidir si reemplaza al léxico E11. **Resultado: no adoptar.** |
 
 ### Lectura integradora
@@ -161,7 +110,7 @@ En cada gráfico: línea de referencia E0 (cuando aplica), marcadores destacados
 
 ## Tabla de métricas por corrida
 
-Golden set: **15 casos**. Retrieval léxico `top_k=8` salvo E15–E17 (híbrido). LLM: **Qwen 2.5 14B** en corridas completas; **llama3** en E1, E2, E15 y E16 (solo retrieval).
+Golden set: **15 casos**. Retrieval léxico `top_k=8` salvo E15–E17 (híbrido [8]). LLM: **Qwen 2.5 14B** [7] en corridas completas; **llama3** en E1, E2, E15 y E16 (solo retrieval).
 
 | ID | Etiqueta | Índice / corpus | Modo | R@k reglas | R@k CALL | F1 RRS | F1 CALL | Jaccard resp↔ctx | Jaccard resp↔ref | Dictamen | Rol |
 |----|----------|-----------------|------|------------|----------|--------|---------|------------------|------------------|----------|-----|
@@ -198,11 +147,31 @@ Golden set: **15 casos**. Retrieval léxico `top_k=8` salvo E15–E17 (híbrido)
 
 La mejora del sistema no es un único salto, sino **dos capas encadenadas**. De **E0 a E11** el avance es casi todo en **recuperación**: R@k reglas pasa de 0.41 a **0.76** (+85 % relativo), lo que indica que el contexto que recibe el LLM suele incluir ya las normas RRS del golden set. En CALL el índice productivo queda en **0.20** frente a **0.27** del baseline PDF: se pierde un poco de recall de Call Book al pasar a JSONL+cupos, pero se gana un índice más compacto (~707 chunks) y mucho más fuerte en reglas, que es el cuello de botella en protestas. En **E11** el F1 de citas en respuesta (≈0.25 con parser actual) es del mismo orden que E0 (0.22): con mejor contexto, el modelo *podría* citar mejor, pero el **prompt heredado** no obligaba un formato parseable ni una línea `Decisión:` clara, y el **dictamen automático seguía en 0 %** — señal de que el problema ya no era “no encontrar la norma”, sino “no cerrar el dictamen de forma medible”.
 
-**E14 (inglés):** con el mismo R@k, el F1 RRS sube ~**+0.10** respecto a E13 y el solapamiento respuesta↔contexto ~**15×** (de ~0.01 a ~0.16), coherente con redactar en el idioma del corpus. A cambio, el dictamen automático baja (40% vs 60%) y el Jaccard vs Output Ideal español cae: las métricas de “cita exacta” mejoran en parte porque el parser ahora reconoce `Rule`/`Decision`, pero el criterio de decisión del Excel sigue en español. **Conclusión E14:** útil para faithfulness/contexto; **no** sustituye E13 para el informe del curso.
+**E14 (inglés):** con el mismo R@k, el F1 RRS sube ~**+0.10** respecto a E13 y el Jaccard respuesta↔contexto ~**15×** (de ~0.01 a ~0.16), coherente con redactar en el idioma del corpus [6]. A cambio, el dictamen automático baja (40 % vs 60 %) y el Jaccard respuesta↔referencia cae: las citas léxicas mejoran en parte porque el parser reconoce `Rule`/`Decision`, pero el criterio de decisión del golden set sigue en español. **Conclusión E14:** mejora el anclaje al contexto; **no** sustituye E13 para el informe del curso.
 
 De **E11 a E13** las métricas de retrieval **no se mueven** (mismo índice y cupos); el progreso es de **respuesta y trazabilidad**. El dictamen sube a **60 %** de coincidencia gruesa con el golden set, y el F1 RRS permanece estable (~0.22) una vez alineado el parser con las viñetas del prompt v3. E12 fue el puente (mismo R@k, dictamen ya mejora con v2; el F1=0 de la corrida fue un artefacto de evaluación, no de ausencia de citas). En conjunto, **E13 combina el techo de recuperación logrado en E11 con un formato de salida que las métricas y el informe pueden auditar**: R@k alto + F1 razonable + dictamen > 0. Lectura práctica: si en una corrida futura cae R@k, hay que mirar corpus, chunking o cupos; si R@k se mantiene y caen F1 o dictamen, hay que mirar prompt y postproceso, no el índice. Comparado con E0, el producto actual recupera **casi el doble de reglas esperadas** en top-8 y acierta el **dictamen automático en el 60 %** de los casos del golden set, a costa de un CALL ligeramente menor en recall — trade-off aceptado para la PoC con 15 casos.
 
-En este punto del trabajo, **E11 + E13** es la mejor elección no porque sea perfecta en todas las métricas, sino porque es la única combinación que **cumple los umbrales de regresión en retrieval y respuesta** y alinea las tres dimensiones que el golden set exige: traer las normas al contexto (E11), cerrar un dictamen medible (E13) y hacerlo en **español**, coherente con el relato del usuario y el Excel de referencia. Alternativas descartadas quedan documentadas: el baseline E0 no recupera RRS; los índices *full* sin cupos diluyen reglas; E10 sacrifica CALL; E14 mejora citas léxicas pero pierde dictamen; E17 no supera a E13 en F1 ni decisión pese al híbrido. Además, el par E11+E13 está **fijado en código** (`REGATAS_PROFILE=production`, `profiles.py`) y respaldado por regresión automática — es el perfil reproducible que la PoC entrega hoy, con margen claro para mejoras futuras (más casos en el golden set, refinamiento de prompt) sin reabrir la búsqueda de índice ni de backend de retrieval.
+En este punto del trabajo, **E11 + E13** es la mejor elección no porque sea perfecta en todas las métricas, sino porque es la única combinación que **cumple los umbrales de regresión en retrieval y respuesta** y alinea las tres dimensiones que el golden set exige: traer las normas al contexto (E11), cerrar un dictamen medible (E13) y hacerlo en **español**, coherente con el relato del usuario y el Excel de referencia. Alternativas descartadas quedan documentadas: el baseline E0 no recupera RRS; los índices *full* sin cupos diluyen reglas; E10 sacrifica CALL; E14 mejora citas léxicas pero pierde dictamen; E17 no supera a E13 en F1 ni decisión pese al híbrido [8]. Además, el par E11+E13 está **fijado en código** (`REGATAS_PROFILE=production`, `profiles.py`) y respaldado por regresión automática — es el perfil reproducible que la PoC entrega hoy, con margen claro para mejoras futuras (más casos en el golden set, refinamiento de prompt) sin reabrir la búsqueda de índice ni de backend de retrieval.
+
+---
+
+## Referencias bibliográficas
+
+[1] World Sailing. (2024). *The Racing Rules of Sailing 2025–2028*. Federación internacional de vela. https://www.sailing.org/racingrules/
+
+[2] World Sailing. (2025). *The Call Book for Team Racing 2025–2028* (8.ª ed.). https://www.sailing.org/document/2025-2028-call-book-for-team-racing/
+
+[3] World Sailing. (2025). *World Sailing Case Book 2025–2028*. https://www.sailing.org/document/world-sailing-case-book-2025-2028/
+
+[4] World Sailing. (s. f.). *RRS — Introduction* (publicaciones complementarias: Case Book, Call Books, interpretaciones). https://www.racingrulesofsailing.org/rules
+
+[5] Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Küttler, H., Lewis, M., Yih, W., Rocktäschel, T., Riedel, S., & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. *Advances in Neural Information Processing Systems*, 33, 9459–9474. https://proceedings.neurips.cc/paper/2020/hash/6b493230205f780e1bc26945df7481e5-Abstract.html
+
+[6] Gao, Y., Xiong, Y., Gao, X., Jia, K., Pan, J., Bi, Y., Dai, Y., Sun, J., Wang, M., & Wang, H. (2024). Retrieval-augmented generation for large language models: A survey. *arXiv preprint* arXiv:2312.10997. https://arxiv.org/abs/2312.10997
+
+[7] Qwen Team. (2024). Qwen2.5 technical report. *arXiv preprint* arXiv:2412.15115. https://arxiv.org/abs/2412.15115
+
+[8] Karpukhin, V., Oguz, B., Min, S., Wu, L., Edunov, S., Chen, D., & Yih, W. (2020). Dense passage retrieval for open-domain question answering. *Proceedings of EMNLP 2020*, 6769–6781. https://arxiv.org/abs/2004.04906
 
 ## Comparativas detalladas
 

@@ -1,10 +1,10 @@
 <mxfile host="65bd71144e">
     <diagram id="arq-rag" name="Arquitectura RAG">
-        <mxGraphModel dx="1361" dy="911" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+        <mxGraphModel dx="1829" dy="1124" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="title" value="&lt;b&gt;Arquitectura de la solución RAG&lt;/b&gt;&lt;br&gt;PoC asistente de protestas náuticas · perfil productivo (retrieval E11 + respuesta E13)" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;" parent="1" vertex="1">
+                <mxCell id="title" value="&lt;b&gt;Arquitectura de la solución RAG&lt;/b&gt;&lt;br&gt;PoC asistente de protestas náuticas" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;" parent="1" vertex="1">
                     <mxGeometry x="200" y="20" width="1200" height="50" as="geometry"/>
                 </mxCell>
                 <mxCell id="lane_offline" value="1. Preparación del corpus (offline)" style="swimlane;horizontal=0;startSize=36;fillColor=#fff2cc;strokeColor=#d6b656;html=1;fontStyle=1;" parent="1" vertex="1">
@@ -111,11 +111,17 @@
                 <mxCell id="e_llm_out" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" parent="pipeline_box" source="llm_client" target="output" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="e_ret_console" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;" parent="pipeline_box" source="retriever" target="console" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                <mxCell id="e_ret_console" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="pipeline_box" source="retriever" target="console" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="190" y="80"/>
+                            <mxPoint x="190" y="170"/>
+                            <mxPoint x="110" y="170"/>
+                        </Array>
+                    </mxGeometry>
                 </mxCell>
                 <mxCell id="ollama" value="&lt;b&gt;Ollama&lt;/b&gt;&lt;br&gt;Qwen 2.5 14B&lt;br&gt;API /v1/chat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="lane_runtime" vertex="1">
-                    <mxGeometry x="1280" y="175" width="150" height="70" as="geometry"/>
+                    <mxGeometry x="1280" y="195" width="150" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="e_user_ui" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;" parent="lane_runtime" source="user" target="ui" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -170,7 +176,12 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="e_eval_reg" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;" parent="lane_eval" source="eval_run" target="regression" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="380" y="160"/>
+                            <mxPoint x="1110" y="160"/>
+                        </Array>
+                    </mxGeometry>
                 </mxCell>
                 <mxCell id="e_pipe_eval" value="mismo pipeline" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeColor=#999999;" parent="1" source="pipeline_box" target="eval_run" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -179,12 +190,6 @@
                             <mxPoint x="420" y="800"/>
                         </Array>
                     </mxGeometry>
-                </mxCell>
-                <mxCell id="legend" value="&lt;b&gt;Componentes clave del paquete regatas_assistant&lt;/b&gt;&lt;br&gt;config.py · ingestion.py · rag/retriever.py · prompts.py · llm/ · profiles.py" style="text;html=1;align=left;verticalAlign=top;fontSize=11;fillColor=#ffffff;strokeColor=#cccccc;spacingLeft=8;spacingTop=4;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="970" width="520" height="50" as="geometry"/>
-                </mxCell>
-                <mxCell id="note_hybrid" value="&lt;i&gt;Opcional (no productivo):&lt;/i&gt; embedding híbrido léxico+semántico (E15–E17) vía REGATAS_EMBEDDING_BACKEND=hybrid" style="text;html=1;align=right;fontSize=10;fontColor=#666666;" parent="1" vertex="1">
-                    <mxGeometry x="900" y="970" width="660" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

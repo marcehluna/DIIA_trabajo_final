@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="indice" name="Índice">
-        <mxGraphModel dx="953" dy="638" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
+        <mxGraphModel dx="869" dy="787" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -95,7 +95,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="ratk-reglas" name="R@k reglas">
-        <mxGraphModel dx="953" dy="638" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
+        <mxGraphModel dx="869" dy="787" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -412,7 +412,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="ratk-call" name="R@k CALL">
-        <mxGraphModel dx="953" dy="638" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
+        <mxGraphModel dx="869" dy="787" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -729,7 +729,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="f1-rrs" name="F1 RRS">
-        <mxGraphModel dx="953" dy="638" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
+        <mxGraphModel dx="869" dy="787" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -1016,7 +1016,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="f1-call" name="F1 CALL">
-        <mxGraphModel dx="953" dy="638" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
+        <mxGraphModel dx="869" dy="787" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -1303,7 +1303,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="jaccard-resp-ctx" name="Jaccard resp-ctx">
-        <mxGraphModel dx="953" dy="638" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
+        <mxGraphModel dx="869" dy="787" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -1578,7 +1578,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="jaccard-resp-ref" name="Jaccard resp-ref">
-        <mxGraphModel dx="953" dy="638" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
+        <mxGraphModel dx="869" dy="787" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -1853,7 +1853,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="dictamen" name="Dictamen">
-        <mxGraphModel dx="953" dy="638" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
+        <mxGraphModel dx="869" dy="787" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="650" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
