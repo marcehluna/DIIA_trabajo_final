@@ -27,6 +27,7 @@ from regatas_assistant.config import Settings, is_huggingface_space
 from regatas_assistant.ollama_models import (
     default_choice as ollama_default_choice,
     list_installed_ollama_models,
+    resolve_model_name,
 )
 from regatas_assistant.pipeline import ProtestPipeline
 
@@ -289,25 +290,36 @@ main.gradio-main {
 
 def get_pipeline() -> ProtestPipeline:
     global _pipeline
+    if _pipeline is not None:
+        return _pipeline
+    with _pipeline_lock:
+        if _pipeline is not None:
+            return _pipeline
+    # Construir fuera del lock: init puede tardar; evita bloquear otras lecturas.
+    new_pipeline = ProtestPipeline.from_env()
     with _pipeline_lock:
         if _pipeline is None:
-            _pipeline = ProtestPipeline.from_env()
+            _pipeline = new_pipeline
         return _pipeline
 
 
-def _warm_pipeline_async() -> None:
-    def _run() -> None:
-        try:
-            if activity_console_enabled():
-                log_note("Precalentando índice del corpus en segundo plano…")
-            get_pipeline()
-            if activity_console_enabled():
-                log_note("Índice listo.")
-        except Exception as exc:
-            if activity_console_enabled():
-                log_note(f"Precalentado omitido: {exc!r}")
+def _should_sync_preload() -> bool:
+    """Precalentar índice antes de abrir la UI (1ª consulta sin espera de carga)."""
+    flag = os.environ.get("REGATAS_PRELOAD_SYNC", "").strip().lower()
+    if flag in ("0", "false", "no", "off"):
+        return False
+    if flag in ("1", "true", "yes", "on"):
+        return True
+    s = Settings.from_env()
+    return s.embedding_backend == "lexical"
 
-    threading.Thread(target=_run, name="regatas-pipeline-warmup", daemon=True).start()
+
+def _preload_pipeline() -> None:
+    if activity_console_enabled():
+        log_note("Precalentando índice del corpus…")
+    get_pipeline()
+    if activity_console_enabled():
+        log_note("Índice listo — la recuperación de contexto ya está preparada.")
 
 
 def analyze(
@@ -345,8 +357,26 @@ def analyze(
         strat = (estrategia_prompt or "").strip() or None
         llm_model: str | None = None
         if s.llm_backend == "http":
-            om = (ollama_model or "").strip()
-            llm_model = om or None
+            selected = (ollama_model or "").strip()
+            if not selected:
+                selected = s.llm_model
+            installed = list_installed_ollama_models(s.llm_base_url)
+            llm_model = (
+                resolve_model_name(installed, selected)
+                if installed
+                else selected
+            )
+            if activity_console_enabled():
+                log_note(f"Modelo elegido en la UI: {llm_model}")
+            if pending:
+                yield (
+                    pending
+                    + f'<p class="analysis-pending-line" style="margin-top:0.5rem">'
+                    f"Modelo seleccionado: <strong>{llm_model}</strong> — "
+                    f"recuperando contexto y generando informe "
+                    f"(1–3 min con modelos grandes; timeout {int(s.llm_timeout_seconds)} s)…"
+                    "</p>"
+                )
         yield p.analyze(
             str(relato_protesta).strip(),
             second,
@@ -369,7 +399,11 @@ def _settings_banner() -> str:
         f"- **System prompt (default env):** idioma `{s.system_prompt_language}` (`REGATAS_SYSTEM_PROMPT_LANG=es|en`), estrategia `{s.prompt_strategy}` (`REGATAS_PROMPT_STRATEGY=cot|few_shot_cot`). El informe sigue redactándose en español.",
     ]
     if s.llm_backend == "http":
-        lines.append(f"- **Modelo LLM:** `{s.llm_model}` (`REGATAS_LLM_MODEL`).")
+        lines.append(
+            f"- **Modelo LLM (default `.env`):** `{s.llm_model}`. "
+            "El modelo **usado en cada análisis** es el que elijas en el desplegable "
+            "«Modelo Ollama (local)» de la barra lateral."
+        )
         if s.llm_base_url:
             lines.append(f"- **Base URL (API compatible):** `{s.llm_base_url}`.")
         else:
@@ -379,7 +413,23 @@ def _settings_banner() -> str:
     return "\n".join(lines)
 
 
-def _ollama_dropdown_updates() -> tuple[dict, dict]:
+def _pick_ollama_dropdown_value(
+    installed: list[str],
+    current_model: str | None,
+    env_model: str,
+) -> str:
+    """Mantiene la selección del usuario si sigue instalada; si no, default del entorno."""
+    if not installed:
+        return env_model
+    current = (current_model or "").strip()
+    if current:
+        resolved = resolve_model_name(installed, current)
+        if resolved in installed:
+            return resolved
+    return ollama_default_choice(installed, env_model)
+
+
+def _ollama_dropdown_updates(current_model: str | None = None) -> tuple[dict, dict]:
     """Actualiza desplegable de modelos y mensaje de ayuda según Ollama y el entorno."""
     s = Settings.from_env()
     if s.llm_backend != "http":
@@ -389,7 +439,7 @@ def _ollama_dropdown_updates() -> tuple[dict, dict]:
         )
     installed = list_installed_ollama_models(s.llm_base_url)
     if installed:
-        value = ollama_default_choice(installed, s.llm_model)
+        value = _pick_ollama_dropdown_value(installed, current_model, s.llm_model)
         return (
             gr.update(
                 choices=installed,
@@ -480,10 +530,9 @@ def build_app() -> gr.Blocks:
                 gr.Markdown(
                     "**Motor de LLM**\n\n"
                     "En local, con `REGATAS_LLM_BACKEND=http`, la app habla con **Ollama** por la API HTTP compatible "
-                    "(`http://127.0.0.1:11434/v1` por defecto). El **modelo activo** lo elegís del desplegable: "
-                    "solo aparecen los que Ollama tiene instalados (`ollama list`). "
-                    "La URL y el modelo por defecto del entorno siguen en `REGATAS_LLM_BASE_URL` y `REGATAS_LLM_MODEL` "
-                    "(o las variables legacy documentadas en `.env.example`).\n\n"
+                    "(`http://127.0.0.1:11434/v1` por defecto). **Elegí el modelo en el desplegable de abajo**: "
+                    "solo aparecen los instalados en Ollama (`ollama list`). Ese modelo se usa en **cada** análisis. "
+                    "`REGATAS_LLM_MODEL` en `.env` solo define el valor inicial del desplegable al abrir la página.\n\n"
                     "Con `REGATAS_LLM_BACKEND=stub` verás solo una respuesta de demostración. "
                     "El valor legacy `openai` se acepta como alias de `http`.",
                     elem_classes=["app-sidebar-motor"],
@@ -497,6 +546,7 @@ def build_app() -> gr.Blocks:
                     choices=_ollama_choices if _ollama_choices else [_s0.llm_model],
                     value=_ollama_value,
                     label="Modelo Ollama (local)",
+                    info="Modelo usado en cada análisis. Lista desde `ollama list`.",
                     show_label=True,
                     visible=_ollama_show,
                     interactive=_ollama_show,
@@ -647,6 +697,7 @@ def build_app() -> gr.Blocks:
         )
         refresh_ollama.click(
             fn=_ollama_dropdown_updates,
+            inputs=[ollama_model_dd],
             outputs=[ollama_model_dd, ollama_models_hint],
         )
         demo.load(
@@ -656,6 +707,7 @@ def build_app() -> gr.Blocks:
         gr.HTML(
             f'<p class="app-version" aria-label="Versión {__version__}">v{__version__}</p>'
         )
+    demo.queue(default_concurrency_limit=1)
     return demo
 
 
@@ -676,7 +728,24 @@ if __name__ == "__main__":
         "no",
         "off",
     ):
-        _warm_pipeline_async()
+        if _should_sync_preload():
+            print("Precalentando índice RAG (caché + corpus)…")
+            try:
+                _preload_pipeline()
+                print("Índice RAG listo.")
+            except Exception as exc:
+                print(f"Precalentado omitido: {exc!r}")
+        else:
+            def _run_async() -> None:
+                try:
+                    _preload_pipeline()
+                except Exception as exc:
+                    if activity_console_enabled():
+                        log_note(f"Precalentado omitido: {exc!r}")
+
+            threading.Thread(
+                target=_run_async, name="regatas-pipeline-warmup", daemon=True
+            ).start()
     port = int(os.environ.get("PORT", "7860"))
     demo.launch(
         server_name="0.0.0.0",

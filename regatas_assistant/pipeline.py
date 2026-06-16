@@ -104,7 +104,11 @@ class ProtestPipeline:
         if isinstance(self.llm, StubLLMClient):
             model_label = "stub"
         elif isinstance(self.llm, HTTPChatClient):
-            model_label = (llm_model or "").strip() or self.llm._model
+            requested = (llm_model or "").strip()
+            if requested:
+                model_label = requested
+            else:
+                model_label = self.llm._model
         else:
             model_label = llm_model
 

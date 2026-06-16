@@ -56,9 +56,26 @@ def list_installed_ollama_models(
     return sorted(set(names))
 
 
+def resolve_model_name(installed: list[str], requested: str) -> str:
+    """Empareja `llama3` con `llama3:latest` y otros alias de Ollama."""
+    req = (requested or "").strip()
+    if not req:
+        return req
+    if req in installed:
+        return req
+    req_base = req.split(":")[0]
+    for name in installed:
+        if name == req or name.startswith(f"{req}:"):
+            return name
+        if name.split(":")[0] == req_base:
+            return name
+    return req
+
+
 def default_choice(installed: list[str], env_model: str) -> str:
-    if env_model in installed:
-        return env_model
+    resolved = resolve_model_name(installed, env_model)
+    if resolved in installed:
+        return resolved
     if installed:
         return installed[0]
     return env_model

@@ -13,6 +13,7 @@ import numpy as np
 
 from regatas_assistant.config import Settings
 from regatas_assistant.ingestion import TextChunk
+from regatas_assistant.rag.index_cache import IndexCache, build_fingerprint
 
 
 def _tokenize(text: str) -> set[str]:
@@ -195,22 +196,26 @@ class MultiPoolQuotaRetriever(BaseRetriever):
         ]
         self._all_chunks = list(all_chunks)
         self._default_top_k = default_top_k
+        self._pool_retrievers: list[tuple[BaseRetriever, int]] = [
+            (inner_builder(chunks), quota) for chunks, quota in self._pool_specs
+        ]
+        self._all_inner: BaseRetriever | None = (
+            inner_builder(self._all_chunks) if self._all_chunks else None
+        )
 
     def retrieve(self, query: str, top_k: int) -> list[TextChunk]:
         k = top_k if top_k > 0 else self._default_top_k
         picked: list[TextChunk] = []
 
-        for chunks, quota in self._pool_specs:
-            inner = self._inner_builder(chunks)
+        for inner, quota in self._pool_retrievers:
             picked.extend(inner.retrieve(query, quota))
 
         picked = _dedupe_chunks(picked)
         if len(picked) >= k:
             return picked[:k]
 
-        if picked and self._all_chunks:
-            inner_all = self._inner_builder(self._all_chunks)
-            extra = inner_all.retrieve(query, k)
+        if picked and self._all_inner is not None:
+            extra = self._all_inner.retrieve(query, k)
             seen = {id(c) for c in picked}
             for c in extra:
                 if len(picked) >= k:
@@ -222,6 +227,8 @@ class MultiPoolQuotaRetriever(BaseRetriever):
 
         if not self._all_chunks:
             return []
+        if self._all_inner is not None:
+            return self._all_inner.retrieve(query, k)
         return self._inner_builder(self._all_chunks).retrieve(query, k)
 
 
@@ -288,6 +295,28 @@ def _semantic_backend_for(settings: Settings) -> str | None:
     return None
 
 
+def _make_semantic_encode_query(
+    settings: Settings, backend: str
+) -> Callable[[str], list[float]]:
+    if backend == "http":
+        from regatas_assistant.rag.embeddings_http import HttpEmbeddingEncoder
+
+        if not settings.llm_api_key:
+            raise ValueError(
+                "Embeddings HTTP requieren REGATAS_LLM_API_KEY en el entorno."
+            )
+        enc = HttpEmbeddingEncoder(settings)
+        return lambda q: enc.embed_one(q)
+
+    if backend == "local":
+        from regatas_assistant.rag.embeddings_local import LocalSentenceEncoder
+
+        enc = LocalSentenceEncoder(settings.local_embedding_model)
+        return lambda q: enc.encode_query(q)
+
+    raise ValueError(f"Rama semántica desconocida: {backend!r}. Use http | local.")
+
+
 def _build_semantic_index(
     settings: Settings, chunks: list[TextChunk], backend: str
 ) -> _SemanticIndex:
@@ -320,6 +349,16 @@ def _build_semantic_index(
     raise ValueError(
         f"Rama semántica desconocida: {backend!r}. Use http | local."
     )
+
+
+def _semantic_index_from_matrix(
+    settings: Settings,
+    chunks: list[TextChunk],
+    matrix: np.ndarray,
+    backend: str,
+) -> _SemanticIndex:
+    encode_query = _make_semantic_encode_query(settings, backend)
+    return _SemanticIndex(chunks, matrix, encode_query)
 
 
 class _LexicalIndexRetriever(BaseRetriever):
@@ -383,8 +422,16 @@ class _LexicalIndex:
     vocab: list[set[str]]
 
     @classmethod
-    def from_corpus(cls, chunks: list[TextChunk]) -> _LexicalIndex:
-        return cls(chunks, [_tokenize(chunk_index_text(c)) for c in chunks])
+    def from_corpus(
+        cls,
+        chunks: list[TextChunk],
+        vocab: list[set[str]] | None = None,
+    ) -> _LexicalIndex:
+        if vocab is None:
+            vocab = [_tokenize(chunk_index_text(c)) for c in chunks]
+        elif len(vocab) != len(chunks):
+            raise ValueError("vocab length mismatch con chunks del corpus")
+        return cls(chunks, vocab)
 
     def retriever_for(self, chunks: list[TextChunk]) -> BaseRetriever:
         if chunks is self.corpus_chunks:
@@ -479,10 +526,40 @@ def build_retriever(settings: Settings, chunks: list[TextChunk]) -> BaseRetrieve
     semantic_index: _SemanticIndex | None = None
     lexical_index: _LexicalIndex | None = None
     sem_backend = _semantic_backend_for(settings)
-    if sem_backend:
-        semantic_index = _build_semantic_index(settings, chunks, sem_backend)
+    cache: IndexCache | None = None
+    if settings.index_cache_enabled:
+        cache = IndexCache(settings, build_fingerprint(settings, len(chunks)))
+
     if settings.embedding_backend in ("lexical", "hybrid"):
-        lexical_index = _LexicalIndex.from_corpus(chunks)
+        cached_vocab: list[set[str]] | None = None
+        if cache is not None:
+            cached_vocab = cache.load_lexical_vocab()
+            if cached_vocab is not None and len(cached_vocab) != len(chunks):
+                cached_vocab = None
+        lexical_index = _LexicalIndex.from_corpus(chunks, cached_vocab)
+        if cache is not None and cached_vocab is None:
+            try:
+                cache.save_lexical_vocab(lexical_index.vocab)
+            except OSError:
+                pass
+
+    if sem_backend:
+        cached_matrix: np.ndarray | None = None
+        if cache is not None:
+            cached_matrix = cache.load_semantic_matrix()
+            if cached_matrix is not None and cached_matrix.shape[0] != len(chunks):
+                cached_matrix = None
+        if cached_matrix is not None:
+            semantic_index = _semantic_index_from_matrix(
+                settings, chunks, cached_matrix, sem_backend
+            )
+        else:
+            semantic_index = _build_semantic_index(settings, chunks, sem_backend)
+            if cache is not None:
+                try:
+                    cache.save_semantic_matrix(semantic_index.matrix)
+                except OSError:
+                    pass
 
     def inner_builder(subset: list[TextChunk]) -> BaseRetriever:
         return _build_inner_retriever(

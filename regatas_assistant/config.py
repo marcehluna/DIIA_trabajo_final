@@ -31,6 +31,29 @@ def _root_dir() -> Path:
     return Path(__file__).resolve().parent.parent
 
 
+def _load_env_file() -> None:
+    """Carga `.env` del proyecto si existe (sin sobreescribir variables ya definidas)."""
+    env_path = _root_dir() / ".env"
+    if not env_path.is_file():
+        return
+    try:
+        for raw in env_path.read_text(encoding="utf-8").splitlines():
+            line = raw.strip()
+            if not line or line.startswith("#"):
+                continue
+            if line.startswith("export "):
+                line = line[7:].strip()
+            if "=" not in line:
+                continue
+            key, _, value = line.partition("=")
+            key = key.strip()
+            value = value.strip().strip("'").strip('"')
+            if key and key not in os.environ:
+                os.environ[key] = value
+    except OSError:
+        return
+
+
 def _bool(name: str, default: bool = False) -> bool:
     v = os.environ.get(name)
     if v is None:
@@ -92,6 +115,7 @@ class Settings:
     # cot | few_shot_cot — plantilla de system prompt (CoT explícito vs Few-Shot CoT con ranura de ejemplos)
     prompt_strategy: str = "cot"
     index_cache_dir: Path | None = None
+    index_cache_enabled: bool = True
     llm_timeout_seconds: float = 600.0
     # Cargar corpus/processed/*.jsonl (RRS y definiciones desde CSV)
     load_processed_jsonl: bool = True
@@ -187,6 +211,7 @@ class Settings:
 
     @classmethod
     def from_env(cls) -> Settings:
+        _load_env_file()
         from regatas_assistant.profiles import normalize_profile, profile_defaults
 
         profile = normalize_profile(_env_strip("REGATAS_PROFILE"))
@@ -206,6 +231,8 @@ class Settings:
             corpus_filenames = prof["corpus_filenames"]
         cache_raw = os.environ.get("REGATAS_INDEX_CACHE_DIR")
         index_cache_dir = Path(cache_raw).resolve() if cache_raw else None
+
+        index_cache_enabled = _bool("REGATAS_INDEX_CACHE", default=True)
 
         in_space = _is_huggingface_space()
 
@@ -378,6 +405,7 @@ class Settings:
             response_language=response_language,
             prompt_strategy=prompt_strategy,
             index_cache_dir=index_cache_dir,
+            index_cache_enabled=index_cache_enabled,
             llm_timeout_seconds=llm_timeout_seconds,
             load_processed_jsonl=load_processed_jsonl,
             corpus_sources=corpus_sources,

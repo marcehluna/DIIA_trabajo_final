@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from regatas_assistant.config import Settings
 from regatas_assistant.llm.base import LLMClient
+from regatas_assistant.ollama_models import list_installed_ollama_models, resolve_model_name
 
 
 class HTTPChatClient(LLMClient):
@@ -20,6 +21,7 @@ class HTTPChatClient(LLMClient):
             base_url=settings.llm_base_url or None,
             timeout=settings.llm_timeout_seconds,
         )
+        self._base_url = settings.llm_base_url
         self._model = settings.llm_model
 
     def complete(
@@ -30,6 +32,13 @@ class HTTPChatClient(LLMClient):
         model: str | None = None,
     ) -> str:
         use_model = (model or "").strip() or self._model
+        if (model or "").strip():
+            # Respetar el modelo elegido en la UI (dropdown Ollama).
+            use_model = (model or "").strip()
+        else:
+            installed = list_installed_ollama_models(self._base_url)
+            if installed:
+                use_model = resolve_model_name(installed, use_model)
         r = self._client.chat.completions.create(
             model=use_model,
             messages=[
